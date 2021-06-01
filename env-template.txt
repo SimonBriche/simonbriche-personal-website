@@ -1,0 +1,4 @@
+PORT="3000"
+NODE_ENV="developement"
+
+USE_LOCAL_SSL_CERT="true"

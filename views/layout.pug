@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    //-global configuration
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0, shrink-to-fit=no")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="keywords", content="keywords")
+    meta(name="theme-color" content="#ff2b20")
+
+    link(rel="icon", type="image/x-icon", href="/assets/images/favicon.ico")
+    link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet")
+
+    link(href='/assets/css/all.css', rel='stylesheet', type='text/css')
+
+    //-meta SEO/OG
+    title Title
+    meta(name="description", content="Description")
+
+
+    //-extra css specific to some pages
+    block pagecss
+
+  body(class=bodyClass)
+    include includes/header
+
+    //-page content
+    block content
+    
+    include includes/footer
+    
+    //-extra content that have to be outside the page skeleton for some pages (like modals)
+    block page-outer-content
+    
+    //-global js files that need to be loaded in every pages
+    include includes/js
+
+    //-extra js specific to some pages
+    block pagejs
