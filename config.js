@@ -10,4 +10,6 @@ module.exports = {
   useLocalSSLCert: (ENV.USE_LOCAL_SSL_CERT) ? (ENV.USE_LOCAL_SSL_CERT === "true") : false,
   forceSSLRedirection: (ENV.FORCE_SSL_REDIRECTION) ? (ENV.FORCE_SSL_REDIRECTION === "true") : true,
   domain: (ENV.DOMAIN) ? ENV.DOMAIN : null,
+
+  cdnURL: (ENV.CDN_URL) ? ENV.CDN_URL : ""
 }

@@ -67,6 +67,9 @@ app.use(session({
 }));
 
 //Routing
+//inject the CDN URL in all routes
+app.locals.cdnURL = config.cdnURL;
+//declare all public routes
 app.use('/', require('./routes/router-public'));
 
 //Routing for static files

@@ -12,3 +12,4 @@ This is a minimal template for a website powered by Node 16.x, ExpressJS and Pug
 - USE_LOCAL_SSL_CERT : Used if you provide your own SSL cert (`true`/`false`(default))
 - FORCE_SSL_REDIRECTION : Set to `true` to force SSL redirection of all requests (`true`(default)/`false`)
 - DOMAIN : Provide a domain to 301 redirect all requests to this specific domain (in case of multiple domains for the same site).
+- CDN_URL : Provide a CDN URL where the assets are hosted, if needed.
