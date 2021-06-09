@@ -1,8 +1,15 @@
 const fs = require('fs');
 const https = require('https');
-const config = require('./config');
+
+const helmet = require('helmet')
+const morgan = require('morgan')
+const compression = require('compression');
+const cookieParser = require('cookie-parser');
+const session = require('cookie-session');
 
 const express = require('express');
+const config = require('./config');
+
 const app = express();
 let server;
 
@@ -11,12 +18,12 @@ if(config.useLocalSSLCert){
     key: fs.readFileSync('./keys/localhost.key'),
     cert: fs.readFileSync('./keys/localhost.crt')
   }, app).listen(config.port, function() {
-    console.log('Express server listening on port %d in %s mode with https', server.address().port, app.settings.env);
+    console.log('Express server listening on port %d in %s mode with local SSL cert', server.address().port, app.settings.env);
   });
 }
 else{
   server = app.listen(config.port, function() {
-    console.log('Express server listening on port %d in %s mode with http', server.address().port, app.settings.env);
+    console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
   });
 }
 
@@ -25,6 +32,31 @@ app.enable('trust proxy');
 
 //Template engine
 app.set('view engine', 'pug');
+
+//add http logging
+app.use(morgan((config.production) ? 'combined' : 'dev'));
+
+//force HTTPS redirection if needed
+app.use(require('./middlewares/https'));
+
+//301 redirection to a specific domain if needed
+app.use(require('./middlewares/domain'));
+
+//minimum security for HTTP headers
+app.use(helmet());
+
+//add compression
+app.use(compression());
+
+//store the session information in a cookie named '_session'
+app.use(cookieParser(config.cookieSecret));
+app.use(session({
+  name: '_session',
+  httpOnly: true,
+  maxAge: null,
+  secret: [config.sessionSecret],
+  secure: config.forceSSLRedirection
+}));
 
 //Routing
 app.use('/', require('./routes/router-public'));
