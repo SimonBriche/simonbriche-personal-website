@@ -1,10 +1,16 @@
 {
   "name": "website",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
     "express": "^4.17.1",
-    "pug": "^3.0.2"
+    "helmet": "^4.6.0",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2",
+    "winston": "^3.3.3"
   },
   "engines": {
     "node": "16.0.0",
