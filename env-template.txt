@@ -1,5 +1,6 @@
 PORT="3000"
 NODE_ENV="developement"
+LOG_LEVEL="debug"
 
 SESSION_SECRET="ao!7HrcPT3NrPDe5"
 COOKIE_SECRET="MXiJ847o4jQ&9bpe"

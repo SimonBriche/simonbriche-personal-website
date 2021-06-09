@@ -3,6 +3,7 @@ const ENV = process.env;
 module.exports = {
   port: ENV.PORT,
   production: (ENV.NODE_ENV === 'production'),
+  logLevel: (ENV.LOG_LEVEL) ? ENV.LOG_LEVEL : ((ENV.NODE_ENV === 'production') ? 'info' : 'debug'),
   sessionSecret: ENV.SESSION_SECRET,
   cookieSecret: ENV.COOKIE_SECRET,
 

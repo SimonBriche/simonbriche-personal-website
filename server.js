@@ -11,6 +11,14 @@ const express = require('express');
 const config = require('./config');
 
 const app = express();
+const {logger} = require('./utils/log')
+if(!global['_logger']){
+  global._logger = logger;
+}
+else{
+  logger.error('_logger global variable name not available');
+}
+
 let server;
 
 if(config.useLocalSSLCert){
@@ -18,12 +26,12 @@ if(config.useLocalSSLCert){
     key: fs.readFileSync('./keys/localhost.key'),
     cert: fs.readFileSync('./keys/localhost.crt')
   }, app).listen(config.port, function() {
-    console.log('Express server listening on port %d in %s mode with local SSL cert', server.address().port, app.settings.env);
+    logger.info('Express server listening on port %d in %s mode with local SSL cert', server.address().port, app.settings.env);
   });
 }
 else{
   server = app.listen(config.port, function() {
-    console.log('Express server listening on port %d in %s mode', server.address().port, app.settings.env);
+    logger.info('Express server listening on port %d in %s mode with managed SSL cert', server.address().port, app.settings.env);
   });
 }
 
