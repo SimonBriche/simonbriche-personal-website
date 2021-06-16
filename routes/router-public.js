@@ -5,6 +5,8 @@ function r(route) {
   return require('./public/' + route);
 }
 
+//set the locale
+router.use(require('../middlewares/locale'));
 //inject SEO meta to all public routes
 router.use(require('../middlewares/seo-meta'));
 //show only SEO meta for crawlers

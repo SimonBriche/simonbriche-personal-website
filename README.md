@@ -14,3 +14,5 @@ This is a minimal template for a website powered by Node 16.x, ExpressJS and Pug
 - DOMAIN : Provide a domain to 301 redirect all requests to this specific domain (in case of multiple domains for the same site).
 - CDN_URL : Provide a CDN URL where the assets are hosted, if needed.
 - SHARE_CACHE_VERSION : Update this version number to force the cache of the meta crawlers (Facebook, Twitter, LinkedIn, etc...)
+- LOCALE_SUBFOLDERS : Activate locale support via subfolders. The definition of locale is made via a string that represent an object with the format : `[{"folder":"fr","locale":"fr_fr"},{"folder":"en","locale":"en_en"}]`.
+- LOCALE_DOMAINS : Activate locale support via specific domains. The definition of locale is made via a string that represents an object with the format : `[{"domain":"localhost","locale":"fr_fr"}]`.

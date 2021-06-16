@@ -8,6 +8,8 @@ COOKIE_SECRET="MXiJ847o4jQ&9bpe"
 USE_LOCAL_SSL_CERT="true"
 FORCE_SSL_REDIRECTION="false"
 DOMAIN=""
+#LOCALE_SUBFOLDERS='[{"folder":"fr","locale":"fr_fr"},{"folder":"en","locale":"en_en"}]'
+#LOCALE_DOMAINS='[{"domain":"localhost","locale":"fr_fr"}]'
 
 CDN_URL=""
 SHARE_CACHE_VERSION="1"
