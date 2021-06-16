@@ -11,6 +11,6 @@ module.exports = {
   "_loctest_localized_link": "Localized link to this page.",
   
   "_footer_terms": "Terms",
-  "_footer_cookie_policy": "Cookie policy",
+  "_footer_cookie_management": "Cookie policy",
   "_footer_data_privacy": "Data privacy"
 }

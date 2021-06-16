@@ -34,11 +34,14 @@ app.use(require('./middlewares/https'));
 //301 redirection to a specific domain if needed
 app.use(require('./middlewares/domain'));
 
-//set application locale
-app.use(require('./middlewares/locale'));
-
 //minimum security for HTTP headers
-app.use(helmet());
+app.use(helmet({contentSecurityPolicy: {
+  useDefaults: true,
+  directives:{
+    //allow here all the js cdn
+    scriptSrc:["'self'",'cdn.jsdelivr.net']
+  }
+}}));
 
 //add compression
 app.use(compression());
@@ -62,6 +65,7 @@ app.use(express.static(__dirname + '/public'));
 
 //declare all public routes
 app.use('/', require('./routes/router-public'));
+app.use('/', require('./routes/router-test'));
 
 //404 (no route has been found)
 app.use(function(req, res, next){

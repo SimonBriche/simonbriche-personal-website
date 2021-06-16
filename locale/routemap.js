@@ -6,7 +6,7 @@ module.exports = {
     },
     "localization": {
       "description":"Test de localisation",
-      "route": "/fr/test/localisation"
+      "route": "/fr/localisation"
     }
   },
   "en_en": {
@@ -16,7 +16,7 @@ module.exports = {
     },
     "localization": {
       "description":"Localization test",
-      "route": "/en/test/localize"
+      "route": "/en/localize"
     }
   }
 }
