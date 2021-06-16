@@ -19,22 +19,6 @@ else{
   logger.error('_logger global variable name not available');
 }
 
-let server;
-
-if(config.useLocalSSLCert){
-  server = https.createServer({
-    key: fs.readFileSync('./keys/localhost.key'),
-    cert: fs.readFileSync('./keys/localhost.crt')
-  }, app).listen(config.port, function() {
-    logger.info('Express server listening on port %d in %s mode with local SSL cert', server.address().port, app.settings.env);
-  });
-}
-else{
-  server = app.listen(config.port, function() {
-    logger.info('Express server listening on port %d in %s mode with managed SSL cert', server.address().port, app.settings.env);
-  });
-}
-
 //Trust http proxy to work wiht services like Heroku
 app.enable('trust proxy');
 
@@ -49,6 +33,9 @@ app.use(require('./middlewares/https'));
 
 //301 redirection to a specific domain if needed
 app.use(require('./middlewares/domain'));
+
+//set application locale
+app.use(require('./middlewares/locale'));
 
 //minimum security for HTTP headers
 app.use(helmet());
@@ -69,11 +56,12 @@ app.use(session({
 //Routing
 //inject the CDN URL in all routes
 app.locals.cdnURL = config.cdnURL;
+
+//Routing for public static files
+app.use(express.static(__dirname + '/public'));
+
 //declare all public routes
 app.use('/', require('./routes/router-public'));
-
-//Routing for static files
-app.use(express.static(__dirname + '/public'));
 
 //404 (no route has been found)
 app.use(function(req, res, next){
@@ -93,3 +81,19 @@ app.use(function(err, req, res, next) {
 app.use(function(err, req, res, next) {
   res.status(500).render('500');
 });
+
+//create the server and listen to traffic
+let server;
+if(config.useLocalSSLCert){
+  server = https.createServer({
+    key: fs.readFileSync('./keys/localhost.key'),
+    cert: fs.readFileSync('./keys/localhost.crt')
+  }, app).listen(config.port, function() {
+    logger.info('Express server listening on port %d in %s mode with local SSL cert', server.address().port, app.settings.env);
+  });
+}
+else{
+  server = app.listen(config.port, function() {
+    logger.info('Express server listening on port %d in %s mode with managed SSL cert', server.address().port, app.settings.env);
+  });
+}

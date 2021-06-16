@@ -11,5 +11,6 @@ module.exports = {
   forceSSLRedirection: (ENV.FORCE_SSL_REDIRECTION) ? (ENV.FORCE_SSL_REDIRECTION === "true") : true,
   domain: (ENV.DOMAIN) ? ENV.DOMAIN : null,
 
-  cdnURL: (ENV.CDN_URL) ? ENV.CDN_URL : ""
+  cdnURL: (ENV.CDN_URL) ? ENV.CDN_URL : "",
+  shareCacheVersion: (ENV.SHARE_CACHE_VERSION) ? ENV.SHARE_CACHE_VERSION : 1
 }

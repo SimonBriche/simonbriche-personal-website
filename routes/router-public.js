@@ -5,6 +5,11 @@ function r(route) {
   return require('./public/' + route);
 }
 
+//inject SEO meta to all public routes
+router.use(require('../middlewares/seo-meta'));
+//show only SEO meta for crawlers
+router.use(require('../middlewares/og-only'));
+
 //Declare all public routes here
 router
 .get('/', function(req, res) {
