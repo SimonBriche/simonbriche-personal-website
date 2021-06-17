@@ -1,10 +1,16 @@
 const router = require('express').Router();
-const tools = require('../utils/tools')
 
 function r(route) {
   // just a require wrapper
   return require('./public/' + route);
 }
+
+//set the locale
+router.use(require('../middlewares/locale'));
+//inject SEO meta to all public routes
+router.use(require('../middlewares/seo-meta'));
+//show only SEO meta for crawlers
+router.use(require('../middlewares/og-only'));
 
 //Declare all public routes here
 router

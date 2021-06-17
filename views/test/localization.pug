@@ -1,0 +1,68 @@
+extends ../layout
+    
+block pagecss
+
+block content
+  header.small.text-end.p-3
+    |Application with locale #{locale}
+    .dropdown
+      button#dropdown-locale.btn.btn-secondary.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-expanded="false")
+        img.rounded-circle(src="/assets/images/flags/flag-"+locale+".png" width="25")
+      ul.dropdown-menu(aria-labelledby="dropdown-locale")
+        if locale != "fr_fr"
+          li
+            a.dropdown-item(href=routemap["fr_fr"][route_id].route) 
+              img.rounded-circle.me-1(src="/assets/images/flags/flag-fr_fr.png" width="25")
+              |Français
+        if locale != "en_en"
+          li
+            a.dropdown-item(href=routemap["en_en"][route_id].route)
+              img.rounded-circle.me-1(src="/assets/images/flags/flag-en_en.png" width="25")
+              |English
+      
+  .container-fluid
+    h1 #{loc._loctest_title}
+    .card.mb-3
+      .card-header #{loc._loctest_subtitle1}
+      .card-body
+        p.mb-0 #{loc._loctest_disclaimer}
+
+    .card.mb-3
+      .card-header
+        h2 #{loc._loctest_subtitle2}
+      .card-body
+        p.mb-0
+          |#{loc._loctest_html_format_intro}
+          != loc._loctest_html_format
+
+    .card.mb-3
+      .card-header
+        h2 #{loc._loctest_subtitle3}
+      .card-body
+        img.img-fluid.img-thumbnail(src="/assets/images/flags/flag-"+locale+".png" width="200")
+  
+    .card.mb-3
+      .card-header
+        h2 #{loc._loctest_subtitle4}
+      .card-body
+        p #{loc._loctest_localized_links}
+        a(href=routemap[locale]["localization"].route) #{loc._loctest_localized_link}
+    
+    .text-center
+      ul.list-inline
+        li.list-inline-item
+          a.btn.btn-link(href="http://www.domain.com" target="_blank")
+            | www.domain.com
+        li.list-inline-item
+          a.btn.btn-link(href="/terms-"+locale+".pdf" target="_blank")
+            |  #{loc._footer_terms}
+        li.list-inline-item
+          .btn.btn-link(onclick="tarteaucitron.userInterface.openPanel();") #{loc._footer_cookie_management}
+        li.list-inline-item
+          a.btn.btn-link(href="/"+locale_subfolder+"/data-policy")
+            |  #{loc._footer_data_privacy}
+         
+    
+block page-outer-content
+
+block pagejs
