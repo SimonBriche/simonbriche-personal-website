@@ -3,10 +3,74 @@ extends layout
 block pagecss
 
 block content
-  h1 Home
-  section
-    | Home content
-    
+  .p-3
+    h1 Home
+    section.skill.mb-3
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-intro" aria-expanded="true" role="button"  aria-controls="skill-intro")
+        .property 
+          |title: 
+          span.text-red "Introduction"
+        .property description: 
+      .skill-content
+        #skill-intro.collapse.show
+          | Home content
+          
+          button.btn.btn-custom.btn-soft.mx-3 Press me 
+
+          .soft.flat.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
+            |I'm flat
+
+          .soft.flat.convexe.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
+            |I'm convexe
+          .soft.flat.concave.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
+            |I'm concave
+          .soft.text-center.m-3.p-5.mx-auto.rounded.shadow(style="width:300px")
+            |I'm floating
+
+
+    section.skill.mb-3
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button"  aria-controls="skill-real")
+        .property 
+          |title: 
+          span.text-red "Real"
+        .property content: 
+      .skill-content
+        #skill-real.collapse.show
+          .position-relative
+            .inner-shadow.rounded
+            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.my-3.overflow-scroll
+              - var n = 0;
+              ul.list-unstyled.text-nowrap
+                while n < 10
+                  li.d-inline-block
+                    .card.gallery-item.m-3.mx-3.rounded.border-0.shadow
+                      img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
+                      .card-body.text-start
+                        ul.list-unstyled
+                          li 
+                            h5.mb-0
+                              small client: 
+                              span.text-red Betclic 
+                          li 
+                            small name: 
+                            strong QI Foot
+                          li
+                            small type: 
+                            span Quiz
+                  - n++
+          .text-center
+            button.btn.btn-custom.btn-soft.mx-3 More 
+
+    section.skill.pb-5
+      .properties
+        .property 
+          |title: 
+          span.text-red "Exp"
+        .property description: 
+      .skill-content
+        #graph-container.pb-0
+
 block page-outer-content
 
 block pagejs
+  script(src="https://cdn.jsdelivr.net/npm/@gitgraph/js")

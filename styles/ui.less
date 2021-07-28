@@ -1,0 +1,55 @@
+// main: all.less
+
+.btn-custom{
+  .pending-spinner{
+    display: none;
+  }
+  &.pending{
+    .fa, .far, .fab, .fas, .fal, .fad{
+      display: none;
+    }
+    
+    .pending-spinner{
+      display: inline;
+      .fa, .far, .fab, .fas, .fal, .fad{
+        display: inline-block;
+      }
+    }
+  }
+}
+.btn-soft{
+  @btn-blur: 6px;
+  @btn-size: 3px;
+  border-radius: 0.75rem;
+  transition: 0.1s all ease-in;
+
+  &, &:focus{
+    background-color: @soft-bg-color;
+    box-shadow: @shadow;
+    
+    //box-shadow: @btn-size @btn-size @btn-blur darken(@soft-bg-color, 14%),
+    //          -@btn-size -@btn-size @btn-blur lighten(@soft-bg-color, 14%);
+  }
+  &:active{
+    box-shadow: @inner-shadow;
+    background-color: darken(@soft-bg-color, 2%);
+  }
+}
+.btn-glass-floating{
+  width: 60px;
+  height: 60px;
+  background-color: @background-color;
+  box-shadow: inset 0rem 0.3rem 1rem 0rem rgba(255, 255, 255, 0.9), 0rem 0rem 0.5rem 0.3rem rgba(0, 0, 0, 0.25);
+}
+@media (hover: hover) {
+  .btn-soft{
+    &:hover, &:hover:focus{
+      box-shadow: none;
+      background-color: darken(@soft-bg-color, 2%);
+    }
+    &:hover:focus:active{
+      box-shadow: @inner-shadow;
+      background-color: darken(@soft-bg-color, 2%);
+    }
+  }
+}

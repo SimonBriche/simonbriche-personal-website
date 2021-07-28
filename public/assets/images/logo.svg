@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="240.001" height="360.4" viewBox="0 0 240.001 360.4">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.254" x2="0.599" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#dd4e4e"/>
+      <stop offset="1" stop-color="#b12d29"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0" y1="0" x2="0.5" y2="1" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="square_2" data-name="square 2" transform="translate(-215.999 -400)">
+    <g id="_9_contour" data-name="9 contour" transform="translate(216 520)" fill="none" stroke="#676767" stroke-width="16">
+      <path d="M40,0H160a80,80,0,0,1,80,80V200a40,40,0,0,1-40,40H80A80,80,0,0,1,0,160V40A40,40,0,0,1,40,0Z" stroke="none"/>
+      <path d="M40,8H160a72,72,0,0,1,72,72V200a32,32,0,0,1-32,32H80A72,72,0,0,1,8,160V40A32,32,0,0,1,40,8Z" fill="none"/>
+    </g>
+    <path id="Exclusion_1" data-name="Exclusion 1" d="M200.014,240.4v0c-.006-.021-.012-.294-.013-.4H80a80.586,80.586,0,0,1-16.123-1.625,79.562,79.562,0,0,1-28.606-12.037,80.233,80.233,0,0,1-28.984-35.2,79.594,79.594,0,0,1-4.661-15.017A80.589,80.589,0,0,1,0,160V40A58.346,58.346,0,0,1,1.9,24.46,33.468,33.468,0,0,1,8.372,11.742,30.113,30.113,0,0,1,20.587,3.154,52.426,52.426,0,0,1,39.708,0H40c.112,7.349.07,13.083,0,20.38-.009.92-.021,1.884-.034,2.9V23.3c-.056,4.442-.126,9.971.034,16.7a98.305,98.305,0,0,0,5.273,32.9A69.076,69.076,0,0,0,60.694,98.129a67.8,67.8,0,0,0,25.074,16.165C95.839,118.076,107.356,120,120,120a129.074,129.074,0,0,1,21.088,1.631,87.575,87.575,0,0,1,17.348,4.664,65.515,65.515,0,0,1,13.893,7.376,57.578,57.578,0,0,1,10.725,9.768,60.884,60.884,0,0,1,7.843,11.838,74.654,74.654,0,0,1,5.248,13.587A115.484,115.484,0,0,1,200,200c.086,36.217.039,40.316.015,40.4ZM116,144a28,28,0,1,0,0,56h36V172a27.977,27.977,0,0,0-28-28Z" transform="translate(216 519.999)" fill="url(#linear-gradient)"/>
+    <path id="Tracé_2" data-name="Tracé 2" d="M-128,255.621c-.33-81.312,94.564-28,88-88" transform="translate(376 304.379)" fill="none" stroke="#dd4e4e" stroke-linejoin="round" stroke-width="16"/>
+    <path id="Tracé_8" data-name="Tracé 8" d="M-128,255.621c44.212-35.013,49.338-60.379,47.987-120" transform="translate(352.002 304.379)" fill="none" stroke="#dd4e4e" stroke-linejoin="round" stroke-width="16"/>
+    <path id="Tracé_9" data-name="Tracé 9" d="M-77.869,255.621c-.3-46.861,48.083-37.133,48-96" transform="translate(301.869 304.379)" fill="none" stroke="#dd4e4e" stroke-linejoin="round" stroke-width="16"/>
+    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(248 400)" fill="none" stroke="#dd4e4e" stroke-width="16">
+      <circle cx="24" cy="24" r="24" stroke="none"/>
+      <circle cx="24" cy="24" r="16" fill="none"/>
+    </g>
+    <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(312 436)" fill="none" stroke="#dd4e4e" stroke-width="16">
+      <circle cx="24" cy="24" r="24" stroke="none"/>
+      <circle cx="24" cy="24" r="16" fill="none"/>
+    </g>
+    <path id="point_red" data-name="point red" d="M0,0H36A28,28,0,0,1,64,28v0A28,28,0,0,1,36,56H28A28,28,0,0,1,0,28V0A0,0,0,0,1,0,0Z" transform="translate(304 560)" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>
