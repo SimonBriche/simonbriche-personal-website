@@ -1,6 +1,7 @@
 // main: all.less
 
 .btn-custom{
+  cursor: pointer;
   .pending-spinner{
     display: none;
   }
@@ -38,8 +39,22 @@
 .btn-glass-floating{
   width: 60px;
   height: 60px;
-  background-color: @background-color;
-  box-shadow: inset 0rem 0.3rem 1rem 0rem rgba(255, 255, 255, 0.9), 0rem 0rem 0.5rem 0.3rem rgba(0, 0, 0, 0.25);
+  transition: 0.2s background-color ease-in, 0.2s color ease-in;
+  color: @red-color;
+  font-size: 1.4rem;
+
+  &, &:focus{
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0rem 0.2rem 0.5rem 0.3rem rgba(0, 0, 0, 0.10);
+  }
+  &:active{
+    box-shadow: 0rem 0.2rem 0.5rem 0.3rem rgba(0, 0, 0, 0.10);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  &:hover{
+    background-color: rgba(255, 255, 255, 1);
+    color: lighten(@red-color, 10);
+  }
 }
 @media (hover: hover) {
   .btn-soft{

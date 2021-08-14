@@ -1,8 +1,17 @@
-footer.loof
+footer.max-width-container
   .links
     ul.list-unstyled.list-inline.text-end
       li.list-inline-item
-        a(href="#") Link 1
+        a.btn-custom.btn-link(href="#" title="Gestion des cookies")
+          i.fas.fa-cookie-bite
       li.list-inline-item
-        a(href="#") Link 2
-  button.btn.btn-custom.btn-glass-floating.rounded-circle OK
+        a.btn-custom.btn-link(href="#" title="Données personnelles")
+          i.fas.fa-file-contract
+  button#btn-profile.btn.btn-custom.btn-glass-floating.rounded-circle
+    img.logo(src=`${cdnURL}/assets/images/logo.svg`)
+
+  button#btn-close-footer.btn.btn-custom.btn-glass-floating.rounded-circle
+    i.fas.fa-times
+
+  button#btn-pending-footer.btn.btn-custom.btn-glass-floating.rounded-circle
+    i.fas.fa-spinner.fa-spin

@@ -3,17 +3,18 @@ extends layout
 block pagecss
 
 block content
-  .p-3
-    h1 Home
+  .max-width-container.p-3
     section.skill.mb-3
-      .properties(data-bs-toggle="collapse" data-bs-target="#skill-intro" aria-expanded="true" role="button"  aria-controls="skill-intro")
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-intro" aria-expanded="true" role="button" aria-controls="skill-intro")
         .property 
           |title: 
           span.text-red "Introduction"
-        .property description: 
+        .property 
+          |description: 
+          span.text-red "Simon BRICHE"
       .skill-content
         #skill-intro.collapse.show
-          | Home content
+          .property content: 
           
           button.btn.btn-custom.btn-soft.mx-3 Press me 
 
@@ -29,13 +30,50 @@ block content
 
 
     section.skill.mb-3
-      .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button"  aria-controls="skill-real")
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button" aria-controls="skill-real")
         .property 
           |title: 
-          span.text-red "Real"
-        .property content: 
+          span.text-red "Réalisations"
+        .property 
+          |description: 
+          span.text-red "Mes principales réalisations"
       .skill-content
         #skill-real.collapse.show
+          .property content: 
+          .position-relative
+            .inner-shadow.rounded
+            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.my-3.overflow-scroll
+              - var n = 0;
+              ul.list-unstyled.text-nowrap
+                while n < 10
+                  li.d-inline-block
+                    .card.gallery-item.m-3.mx-3.rounded.border-0.shadow
+                      img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
+                      .card-body.text-start
+                        ul.list-unstyled
+                          li 
+                            h5.mb-0
+                              small client: 
+                              span.text-red Betclic 
+                          li 
+                            small name: 
+                            strong QI Foot
+                          li
+                            small type: 
+                            span Quiz
+                  - n++
+
+    section.skill.mb-3
+      .properties.collapsed(data-bs-toggle="collapse" data-bs-target="#skill-more-real" aria-expanded="true" role="button" aria-controls="skill-more-real")
+        .property 
+          |title: 
+          span.text-red "Plus de réalisations"
+        .property 
+          |description: 
+          span.text-red "Un peu plus de projets, triés par client ou type"
+      .skill-content
+        #skill-more-real.collapse
+          .property content: 
           .position-relative
             .inner-shadow.rounded
             .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.my-3.overflow-scroll
@@ -62,15 +100,26 @@ block content
             button.btn.btn-custom.btn-soft.mx-3 More 
 
     section.skill.pb-5
-      .properties
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-xp" aria-expanded="true" role="button" aria-controls="skill-xp")
         .property 
           |title: 
-          span.text-red "Exp"
-        .property description: 
+          span.text-red "Experience"
+        .property 
+          |description: 
+          span.text-red "Mon cursus professionnel"
       .skill-content
-        #graph-container.pb-0
+        #skill-xp.collapse.show
+          .property content: 
+          .graph-wrapper.position-relative
+            #graph-tooltip.fade.rounded.shadow.px-3.py-2
+            #graph-container.pb-0
 
 block page-outer-content
+  #modal-footer.modal.fade(tabindex="-1" aria-labelledby="modalFooter" aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-body
+          |mon contenu
 
 block pagejs
   script(src="https://cdn.jsdelivr.net/npm/@gitgraph/js")

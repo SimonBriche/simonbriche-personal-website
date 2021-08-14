@@ -57,7 +57,10 @@ html, body{
       content: ">";
     }
   }
-
+  .property{
+    font-family: 'Source Code Pro', monospace;
+    color: @grey-color;
+  }
   .skill-content{
     position: relative;
     border-left: 1px solid lighten(@grey-color, 30%);
@@ -65,7 +68,7 @@ html, body{
     padding-left: 1rem;
 
     &:after{
-      content: "}";
+      content: "},";
       position: absolute;
       bottom: -3rem;
       left: -0.5rem;
@@ -75,8 +78,31 @@ html, body{
       .soft-text-shadow(0.5);
     }
   }
+  &:last-child{
+    .skill-content{
+      &:after{
+        content: "}";
+      }
+    }
+  }
 }
 
+#graph-container{
+  max-width: 500px;
+  circle{
+    cursor: pointer;
+  }
+}
+#graph-tooltip{
+  pointer-events: none;
+  position: absolute;
+  background-color: #fff;
+  z-index: 1;
+  max-width: 200px;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.8);
+  transition: 0.3s all ease-out;
+}
 .rounded{
   border-radius: 1.5rem!important;
 }
@@ -125,33 +151,115 @@ header{
 }
 footer{
   position: fixed;
+  z-index: 2;
   bottom: 0;
-  background-color: rgba(125, 125, 125, 0.3);
+  background-color: rgba(200, 200, 200, 0.3);
+  background: radial-gradient(circle at calc(100% - 46px) -3px, transparent 34px, rgba(0,0,0,0.1) 36px, rgba(255, 255, 255, 0.5) 0) top left;
   width: 100%;
   backdrop-filter: blur(3px);
-  box-shadow: inset 0rem 0.3rem 1rem 0rem rgba(255, 255, 255, 0.9), 0 -0.5rem 1rem rgba(0, 0, 0, 0.25);
-  transition: 0.5s all ease-in;
+  -webkit-backdrop-filter: blur(3px);
+  transition: 0.2s height ease-in;
   height: 40px;
+
+  &:before, &:after{
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: transparent;
+    border-top: 1px rgba(0,0,0,0.15) solid;
+    box-shadow: 0rem -0.1rem 0.6rem rgba(0, 0, 0, 0.15);
+    clip-path: inset(-1rem 1px);
+  }
+  &:before{
+    left: 0;
+    width: calc(100% - 81px);
+  }
+  &:after{
+    right: 0;
+    width: 10px;
+  }
 
   &.open{
     height: 110%;
-    background-color: rgba(255, 255, 255, 0.3);
+    #btn-profile{
+      display: none;
+    }
+    #btn-close-footer{
+      display: block;
+    }
+  }
+  &.pending{
+    #btn-pending-footer{
+      display: block;
+    }
+  }
+
+  #btn-close-footer, #btn-pending-footer{
+    display: none;
+  }
+  #btn-pending-footer{
+    background: #FFFFFF;
   }
 
   .links ul{
-    margin: 0.5rem 5rem 0.5rem;
+    margin: 0.5rem 6rem 0.5rem;
+    .btn-link{
+      color: @grey-color;
+      text-decoration: none;
+      &:hover{
+        color: darken(@grey-color, 10);
+        text-decoration: underline;
+      }
+    }
   }
   .btn-glass-floating{
     position: absolute;
     right: 1rem;
     bottom: 1rem;
+    .logo{
+      width: 28px;
+      margin-bottom: 5px;
+    }
   }
 }
-
+#modal-footer{
+  pointer-events: none;
+  .modal-dialog{
+    pointer-events: all;
+    max-width: @max-width-container;
+    .modal-content{
+      background-color: transparent;
+      border: none;
+    }
+  }
+}
+@media (max-width: @max-width-container) {
+  #modal-footer{
+    .modal-dialog{
+      margin: 0.5rem;
+    }
+  }
+}
 @media (min-width: @max-width-container) {
   .max-width-container{
     max-width: @max-width-container;
     margin-left: auto;
     margin-right: auto;
+  }
+  footer{
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 1px rgba(0,0,0,0.15) solid;
+    border-right: 1px rgba(0,0,0,0.15) solid;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    &:before{
+      border-top-left-radius: 0.5rem;
+    }
+    &:after{
+      border-top-right-radius: 0.5rem;
+    }
   }
 }
