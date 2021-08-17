@@ -49,7 +49,7 @@ block content
                   li.d-inline-block
                     .card.gallery-item.m-3.mx-3.rounded.border-0.shadow
                       img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-                      .card-body.text-start
+                      .card-body.text-start.rounded-bottom
                         ul.list-unstyled
                           li 
                             h5.mb-0
@@ -73,31 +73,30 @@ block content
           span.text-red "Un peu plus de projets, triés par client ou type"
       .skill-content
         #skill-more-real.collapse
-          .property content: 
-          .position-relative
-            .inner-shadow.rounded
-            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.my-3.overflow-scroll
+          .property content:
+          .container-fluid
+            .row.gallery-container
               - var n = 0;
-              ul.list-unstyled.text-nowrap
-                while n < 10
-                  li.d-inline-block
-                    .card.gallery-item.m-3.mx-3.rounded.border-0.shadow
-                      img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-                      .card-body.text-start
-                        ul.list-unstyled
-                          li 
-                            h5.mb-0
-                              small client: 
-                              span.text-red Betclic 
-                          li 
-                            small name: 
-                            strong QI Foot
-                          li
-                            small type: 
-                            span Quiz
-                  - n++
+              while n < 10
+                .col-12.col-sm-6.col-md-4.col-lg-3.mb-3
+                  .card.gallery-item.m-3.mx-auto.rounded.border-0.soft
+                    img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
+                    .card-body.text-start.rounded-bottom
+                      ul.list-unstyled
+                        li 
+                          h5.mb-0
+                            small client: 
+                            span.text-red Betclic 
+                        li 
+                          small name: 
+                          strong QI Foot
+                        li
+                          small type: 
+                          span Quiz
+                - n++
+                
           .text-center
-            button.btn.btn-custom.btn-soft.mx-3 More 
+            button.btn.btn-custom.btn-soft.mx-3 Plus de projets 
 
     section.skill.pb-5
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-xp" aria-expanded="true" role="button" aria-controls="skill-xp")
@@ -113,6 +112,65 @@ block content
           .graph-wrapper.position-relative
             #graph-tooltip.fade.rounded.shadow.px-3.py-2
             #graph-container.pb-0
+    
+    section.skill.pb-5
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-stack" aria-expanded="true" role="button" aria-controls="skill-stack")
+        .property 
+          |title: 
+          span.text-red "Ma stack"
+        .property 
+          |description: 
+          span.text-red "Les outils et platerformes que j'utilise au quotidien"
+      .skill-content
+        #skill-stack.collapse.show
+          .property.mb-2 content: 
+          #stack-accordion.accordion.accordion-custom.rounded.soft
+            each stackItem in stackItems
+              .accordion-item
+                h2.accordion-header(id="heading-"+stackItem.key)
+                  button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#collapse-"+stackItem.key aria-expanded="false" aria-controls="collapse-"+stackItem.key)
+                    .d-flex.align-items-center
+                      img.stack-logo.rounded-circle.me-2(src=`${cdnURL}/assets/images/stack/${stackItem.image}`)
+                      .stack
+                        |#{stackItem.name}
+                        .small #{stackItem.type}
+                .accordion-collapse.collapse(id="collapse-"+stackItem.key aria-labelledby="heading-"+stackItem.key data-bs-parent="#stack-accordion")
+                  .accordion-body.soft.pressed
+                    |!{stackItem.description}
+
+    section.skill.mb-3
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-hobby" aria-expanded="true" role="button" aria-controls="skill-hobby")
+        .property 
+          |title: 
+          span.text-red "Hobbies et projets étudiant"
+        .property 
+          |description: 
+          span.text-red "Des projets réalisés durant mon cursus scolaire et quelques croquis faits sur mon temps libre ou durant mes études."
+      .skill-content
+        #skill-hobby.collapse.show
+          .property content: 
+          .position-relative
+            .inner-shadow.rounded
+            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.my-3.overflow-scroll
+              - var n = 0;
+              ul.list-unstyled.text-nowrap
+                while n < 10
+                  li.d-inline-block
+                    .card.gallery-item.m-3.mx-3.rounded.border-0.shadow
+                      img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
+                      .card-body.text-start.rounded-bottom
+                        ul.list-unstyled
+                          li 
+                            h5.mb-0
+                              small client: 
+                              span.text-red Betclic 
+                          li 
+                            small name: 
+                            strong QI Foot
+                          li
+                            small type: 
+                            span Quiz
+                  - n++
 
 block page-outer-content
   #modal-footer.modal.fade(tabindex="-1" aria-labelledby="modalFooter" aria-hidden="true")

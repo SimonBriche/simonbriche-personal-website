@@ -97,12 +97,22 @@ body {
   background: rgba(255, 255, 255, 0.8);
   transition: 0.3s all ease-out;
 }
+#stack-accordion .stack-logo {
+  width: 30px;
+  height: 30px;
+  background-color: #f2f2f2;
+  box-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+}
 .rounded {
   border-radius: 1.5rem !important;
 }
 .rounded-top {
   border-top-left-radius: 1.5rem !important;
   border-top-right-radius: 1.5rem !important;
+}
+.rounded-bottom {
+  border-bottom-left-radius: 1.5rem !important;
+  border-bottom-right-radius: 1.5rem !important;
 }
 .soft {
   background-color: #f2f2f2;
@@ -301,6 +311,44 @@ footer .btn-glass-floating .logo {
   background-color: #ffffff;
   color: #d23d3a;
 }
+.accordion-custom .accordion-button {
+  color: #7e7e7e;
+  background-color: #f2f2f2;
+}
+.accordion-custom .accordion-button:focus {
+  box-shadow: none;
+}
+.accordion-custom .accordion-button:not(.collapsed) {
+  color: #b12b28;
+  background-color: #f8e1e0;
+}
+.accordion-custom .accordion-button:not(.collapsed):after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23b12b28'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.accordion-custom .accordion-item {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.accordion-custom .accordion-item:first-of-type {
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+}
+.accordion-custom .accordion-item:first-of-type .accordion-button {
+  border-top-left-radius: calc(1.5rem - 1px);
+  border-top-right-radius: calc(1.5rem - 1px);
+}
+.accordion-custom .accordion-item:last-of-type {
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+.accordion-custom .accordion-item:last-of-type .accordion-button.collapsed,
+.accordion-custom .accordion-item:last-of-type .accordion-body {
+  border-bottom-left-radius: calc(1.5rem - 1px);
+  border-bottom-right-radius: calc(1.5rem - 1px);
+}
+.accordion-custom .accordion-body {
+  background-image: none;
+}
 @media (hover: hover) {
   .btn-soft:hover,
   .btn-soft:hover:focus {
@@ -328,6 +376,7 @@ footer .btn-glass-floating .logo {
 }
 .gallery-item .card-body {
   position: relative;
+  background-color: #FFFFFF;
 }
 .gallery-item .card-body:before,
 .gallery-item .card-body:after {
