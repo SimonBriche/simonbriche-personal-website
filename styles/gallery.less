@@ -39,3 +39,30 @@
     }
   }
 }
+
+.portfolio-focus{
+  .thumbnail{
+    max-width: 190px;
+  }
+  #portfolio-carousel{
+    margin-left: -1rem;
+    margin-right: -1rem;
+    .carousel-control-container{
+      position: -webkit-sticky;
+      position: sticky;
+      bottom: 0.5rem;
+      height: 3rem;
+    }
+    .carousel-control{
+      background: #FFFFFF;
+      width: 2rem;
+      height: 2rem;
+      .soft-box-shadow(0.5);
+    }
+  } 
+}
+@media (min-width: 576px) {
+  .portfolio-focus{
+    max-width: 576px;
+  }
+}

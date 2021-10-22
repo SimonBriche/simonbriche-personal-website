@@ -10,7 +10,10 @@ body {
   background-color: #F2F2F2;
 }
 .text-red {
-  color: #b12b28;
+  color: #b12b28 !important;
+}
+.bg-red {
+  background: #b12b28 !important;
 }
 .skill .properties {
   position: relative;
@@ -97,7 +100,7 @@ body {
   background: rgba(255, 255, 255, 0.8);
   transition: 0.3s all ease-out;
 }
-#stack-accordion .stack-logo {
+.stack-logo {
   width: 30px;
   height: 30px;
   background-color: #f2f2f2;
@@ -145,13 +148,48 @@ header .logo {
   max-width: 10rem;
   filter: drop-shadow(-6px -2px 3px rgba(255, 255, 255, 0.8)) drop-shadow(6px 1px 7px rgba(0, 0, 0, 0.4));
 }
-footer {
+.footer-interface {
   position: fixed;
-  z-index: 2;
   bottom: 0;
+  width: 100%;
+}
+.footer-interface.close-interface {
+  z-index: 1080;
+  pointer-events: none;
+}
+.footer-interface.open {
+  height: 110%;
+}
+.footer-interface.open #btn-profile {
+  display: none;
+}
+.footer-interface.open #btn-close-footer {
+  display: block;
+}
+.footer-interface.pending #btn-pending-footer {
+  display: block;
+}
+.footer-interface #btn-close-footer,
+.footer-interface #btn-pending-footer {
+  display: none;
+}
+.footer-interface #btn-pending-footer {
+  background: #FFFFFF;
+}
+.footer-interface .btn-glass-floating {
+  pointer-events: all;
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+.footer-interface .btn-glass-floating .logo {
+  width: 28px;
+  margin-bottom: 5px;
+}
+footer {
+  z-index: 2;
   background-color: rgba(200, 200, 200, 0.3);
   background: radial-gradient(circle at calc(100% - 46px) -3px, transparent 34px, rgba(0, 0, 0, 0.1) 36px, rgba(255, 255, 255, 0.5) 0) top left;
-  width: 100%;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   transition: 0.2s height ease-in;
@@ -177,25 +215,6 @@ footer:after {
   right: 0;
   width: 10px;
 }
-footer.open {
-  height: 110%;
-}
-footer.open #btn-profile {
-  display: none;
-}
-footer.open #btn-close-footer {
-  display: block;
-}
-footer.pending #btn-pending-footer {
-  display: block;
-}
-footer #btn-close-footer,
-footer #btn-pending-footer {
-  display: none;
-}
-footer #btn-pending-footer {
-  background: #FFFFFF;
-}
 footer .links ul {
   margin: 0.5rem 6rem 0.5rem;
 }
@@ -207,28 +226,51 @@ footer .links ul .btn-link:hover {
   color: #656565;
   text-decoration: underline;
 }
-footer .btn-glass-floating {
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-}
-footer .btn-glass-floating .logo {
-  width: 28px;
-  margin-bottom: 5px;
-}
-#modal-footer {
-  pointer-events: none;
-}
-#modal-footer .modal-dialog {
-  pointer-events: all;
+.modal-interface .modal-dialog {
   max-width: 992px;
 }
-#modal-footer .modal-dialog .modal-content {
+.modal-interface .modal-dialog .modal-content {
   background-color: transparent;
   border: none;
 }
+#notifications-container {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2000;
+}
+#notifications-container .toast {
+  min-width: 285px;
+  max-width: 285px;
+  animation: right_to_left 0.5s ease;
+}
+#notifications-container .toast .toast-header {
+  position: relative;
+}
+#notifications-container .toast .toast-progress {
+  animation: notification_progress 0.5s linear;
+  position: absolute;
+  height: 3px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.5);
+  left: 0;
+  top: 0;
+  border-top-left-radius: 0.25rem;
+}
+#notifications-container #notification-template {
+  display: none;
+}
+@media (max-width: 320px) {
+  #notifications-container {
+    width: 100%;
+    right: auto;
+  }
+  #notifications-container .toast {
+    margin: auto;
+  }
+}
 @media (max-width: 992px) {
-  #modal-footer .modal-dialog {
+  .modal-interface .modal-dialog {
     margin: 0.5rem;
   }
 }
@@ -238,7 +280,7 @@ footer .btn-glass-floating .logo {
     margin-left: auto;
     margin-right: auto;
   }
-  footer {
+  .footer-interface {
     left: 50%;
     transform: translateX(-50%);
     border-left: 1px rgba(0, 0, 0, 0.15) solid;
@@ -246,11 +288,34 @@ footer .btn-glass-floating .logo {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
   }
-  footer:before {
+  .footer-interface:before {
     border-top-left-radius: 0.5rem;
   }
-  footer:after {
+  .footer-interface:after {
     border-top-right-radius: 0.5rem;
+  }
+}
+@media (min-width: 768px) {
+  #btn-close-footer {
+    top: 10%;
+  }
+}
+@keyframes right_to_left {
+  0% {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes notification_progress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
   }
 }
 .btn-custom {
@@ -398,4 +463,28 @@ footer .btn-glass-floating .logo {
 }
 .gallery-item .card-body small {
   font-size: 0.775em;
+}
+.portfolio-focus .thumbnail {
+  max-width: 190px;
+}
+.portfolio-focus #portfolio-carousel {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
+.portfolio-focus #portfolio-carousel .carousel-control-container {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0.5rem;
+  height: 3rem;
+}
+.portfolio-focus #portfolio-carousel .carousel-control {
+  background: #FFFFFF;
+  width: 2rem;
+  height: 2rem;
+  box-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+}
+@media (min-width: 576px) {
+  .portfolio-focus {
+    max-width: 576px;
+  }
 }

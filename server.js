@@ -39,7 +39,7 @@ app.use(helmet({contentSecurityPolicy: {
   useDefaults: true,
   directives:{
     //allow here all the js cdn
-    scriptSrc:["'self'",'cdn.jsdelivr.net']
+    scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com']
   }
 }}));
 

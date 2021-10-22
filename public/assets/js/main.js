@@ -1,131 +1,131 @@
-document.addEventListener('DOMContentLoaded', function() {
-  const graphContainer = document.getElementById("graph-container");
- 
-  // Instantiate the graph.
-  const gitgraph = GitgraphJS.createGitgraph(graphContainer, {
-    author: "Simon BRICHE < >",
-    responsive: true,
-    
-    template: GitgraphJS.templateExtend("metro", {
-      colors: ["#be451d", "#215fb8", "#f49f38"],
-      commit:{
-        message:{
-          displayAuthor: false,
-          displayHash: false
-        }
-      }
-    })
-  });
-
-  // Simulate git commands with Gitgraph API.
-  const master = gitgraph.branch("master");
-  master.commit({
-    hash: "1999",
-    subject: "1999 - Baccalauréat S (Scientifique)",
-    onClick: function(e){
-      toggleGitTooltip(e, "Lycée Henri Martin, Saint-Quentin (02)")
+window.CustomApp = {};
+window.CustomApp.formMessages = {
+  last_name: "Votre nom est obligatoire.",
+  first_name: "Votre prénom est obligatoire.",
+  email: {
+    required: "Votre email est obligatoire.",
+    email: "Votre email est incorrect."
+  },
+  message: "Votre message est obligatoire."
+};
+window.CustomApp.formOptions = {
+  debug: false,
+  rules: {},
+  messages: {},
+  submitHandler: function (form) {
+    console.log('default submitHandler');
+  },
+  invalidHandler: function(event, validator) {
+    // 'this' refers to the form
+    const errors = validator.numberOfInvalids();
+    if(errors) {
+      window.CustomApp.showNotif('Il y a <strong>'+errors+' erreur'+((errors > 1) ? "s":"")+"</strong> à corriger dans le formulaire.", 'danger');
     }
-    //body: "Lycée Henri Martin, Saint-Quentin (02)"
-  });
-
-  const develop = gitgraph.branch("develop");
-  develop.commit({
-    hash: "2000",
-    subject: "2000 - CPGE MPSI",
-    onClick: function(e){
-      toggleGitTooltip(e, "(Mathématiques, Informatique et Science de l’Ingénieur), Lycée Louis Thuillier, Amiens")
-    }
-    //body: "(Mathématiques, Informatique et Science de l’Ingénieur), Lycée Louis Thuillier, Amiens"
-  });
-  const esadFeature = gitgraph.branch("esad-feature");
-  esadFeature.commit({
-    hash: "",
-    subject: "2000 - Cours du soir à l'ESAD",
-    onClick: function(e){
-      toggleGitTooltip(e, "(Ecole Supérieure d'Art et de Design), Amiens")
-    }
-    //body: "(Ecole Supérieure d'Art et de Design), Amiens"
-  });
-  develop.commit({
-    hash: "2001",
-    subject: "2001 - DEUG MIAS 1",
-    onClick: function(e){
-      toggleGitTooltip(e, "(Mathématiques, Informatique et Applications aux Sciences), Université de Picardie Jules Verne, Amiens")
-    }
-    //body: "(Mathématiques, Informatique et Applications aux Sciences), Université de Picardie Jules Verne, Amiens"
-  });
-  develop.commit({
-    //hash: "2002",
-    subject: "2002 - DEUG MIAS 2",
-    onClick: function(e){
-      toggleGitTooltip(e, "(Mathématiques, Informatique et Applications aux Sciences), Université de Picardie Jules Verne, Amiens")
-    }
-    //body: "(Mathématiques, Informatique et Applications aux Sciences), Université de Picardie Jules Verne, Amiens"
-  });
-  develop.merge({
-    branch: esadFeature,
-    commitOptions:{
-      subject: "2002 - Fin ESAD"
-    }
-  });
-  master.merge({
-    branch: develop,
-    commitOptions:{
-      subject: "2002 - Obtention DEUG MIAS",
-      onClick: function(e){
-        toggleGitTooltip(e, "(Mathématiques, Informatique et Applications aux Sciences), Université de Picardie Jules Verne, Amiens")
-      }
-    }
-  }).tag("v1.0.0")
-
-/*
-  const aFeature = gitgraph.branch("a-feature");
-  aFeature
-    .commit("Make it work")
-    .commit({ subject: "Make it right", hash: "test" })
-    .commit("Make it fast");
-
-  develop.merge(aFeature);
-  develop.commit("Prepare v1");
-*/
-  //master.merge(develop).tag("v2.0.0");
+  },
+  errorClass: 'is-invalid',
+  validClass: 'is-valid',
+  ignore: "",
+  highlight: function (element, errorClass, validClass) {
+    $(element).removeClass(validClass).addClass(errorClass);
+    $(element).closest('.form-group').removeClass(validClass).addClass(errorClass);
+  },
+  unhighlight: function (element, errorClass, validClass) {
+    $(element).removeClass(errorClass).addClass(validClass);
+    $(element).closest('.form-group').removeClass(errorClass).addClass(validClass).find('.form-text').text('');
+  },
+  errorPlacement: function (error, element) {
+    $(element).closest('.form-group').find('.form-text').text(error.text());
+  }
+};
+//show a notification
+window.CustomApp.showNotif = function(message, context, delay, reloadPage){
+  let notif, autoHide;
+  //autoHide false if there is no delay
+  if(delay === false){
+    autoHide = false;
+    delay = 2000;
+  }
+  else{
+    autoHide = true;
+    //delay defaults to 2500ms
+    delay = (isNaN(delay) ? 2500 : delay);
+  }
   
-  var currentHash;
-  function toggleGitTooltip(commit, text){
-    console.log('show', text, 'at coord', commit.x, commit.y)
-    var tooltip = document.getElementById('graph-tooltip');
-    var SVGgraph = document.querySelector('#graph-container svg');
-    var originalHeight = SVGgraph.viewBox.baseVal.height;
-    var actualHeight = SVGgraph.getBBox().height;
-    var ratio = actualHeight/originalHeight;
-
-    tooltip.innerHTML = text;
-    tooltip.style.top = (commit.y*ratio)+'px';
-    tooltip.style.left = (commit.x*ratio)+'px';
-
-    if(currentHash === commit.hash){
-      currentHash = "";
-      tooltip.classList.remove('show');
+  //if message is a string or an object like {description:"description", title:"title"}, generate notif from template
+  if(message && (typeof message === 'string' || (message.description || message.title))){
+    notif = document.getElementById("notification-template").cloneNode(true);
+    notif.id = '';
+    
+    if(context){
+      let headerClassList = notif.querySelector('.toast-header').classList;
+      headerClassList.add('text-white', 'bg-'+context);
+      if(context === "warning" || context === "light" || context === "white"){
+        headerClassList.replace('text-white', 'text-dark')
+      }
+    }
+    if(autoHide){
+      notif.querySelector('.btn-close').remove();
+    }
+    if(message.description){
+      notif.querySelector('.toast-body').innerHTML = message.description;
     }
     else{
-      currentHash = commit.hash;
-      tooltip.classList.add('show');
+      notif.querySelector('.toast-body').innerHTML = message;
     }
-    console.log('commit', commit);
+    if(message.title){
+      notif.querySelector('.title').innerHTML = message.title;
+    }
+  }
+  //if message is a jQuery object, clone it to generate the notif
+  else if(typeof message === "Element"){
+    notif = $(message).cloneNode(true);
+    notif.id = '';
   }
 
-  var modalFooter = new bootstrap.Modal(document.getElementById('modal-footer'), {
+  if(notif){
+    document.getElementById("notifications-container").appendChild(notif);
+    const toast = new bootstrap.Toast(notif, {autohide: autoHide, delay: delay});
+    notif.addEventListener('hidden.bs.toast', function () {
+      this.remove();
+      if(reloadPage){
+        document.location = document.location;
+      }
+    });
+    if(autoHide === true){
+      notif.querySelector('.toast-progress').style = `animation-duration:${delay}ms;`;
+    }
+    else{
+      notif.querySelector('.toast-progress').style = "display:none;";
+    }
+    toast.show();
+  }
+  else{
+    console.log('notif message is not a string nor a Element object');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var modalProfile = new bootstrap.Modal(document.getElementById('modal-profile'), {
+    keyboard: false,
+    backdrop: false
+  });
+  var modalPortfolio = new bootstrap.Modal(document.getElementById('modal-portfolio'), {
     keyboard: false,
     backdrop: false
   });
 
-  document.querySelector('#btn-profile').addEventListener('click', function(){
-    document.querySelector('footer').classList.toggle('open');
-    modalFooter.show();
+  document.querySelector('#btn-profile').addEventListener('click', () => {
+    document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
+    modalProfile.show();
   }, false);
-  document.querySelector('#btn-close-footer').addEventListener('click', function(){
-    document.querySelector('footer').classList.toggle('open');
-    modalFooter.hide();
+  document.querySelector('#btn-close-footer').addEventListener('click', () => {
+    document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
+    document.querySelectorAll('.modal-interface').forEach(item => bootstrap.Modal.getInstance(item).hide())
   }, false);
+  
+  document.querySelectorAll('.gallery-item').forEach(item => item.addEventListener('click', () => {
+      document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
+      modalPortfolio.show();
+    }, false)
+  );
 });
-

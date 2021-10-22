@@ -1,4 +1,4 @@
-footer.max-width-container
+footer.footer-interface.max-width-container
   .links
     ul.list-unstyled.list-inline.text-end
       li.list-inline-item
@@ -10,8 +10,17 @@ footer.max-width-container
   button#btn-profile.btn.btn-custom.btn-glass-floating.rounded-circle
     img.logo(src=`${cdnURL}/assets/images/logo.svg`)
 
+  button#btn-pending-footer.btn.btn-custom.btn-glass-floating.rounded-circle
+    i.fas.fa-spinner.fa-spin
+
+.footer-interface.max-width-container.close-interface
   button#btn-close-footer.btn.btn-custom.btn-glass-floating.rounded-circle
     i.fas.fa-times
 
-  button#btn-pending-footer.btn.btn-custom.btn-glass-floating.rounded-circle
-    i.fas.fa-spinner.fa-spin
+#notifications-container
+  #notification-template.toast(role="alert" aria-live="assertive" aria-atomic="true")
+    .toast-header
+      strong.title.me-auto Information
+      button.btn-close(type="button" data-bs-dismiss="toast" aria-label="Close")
+      .toast-progress
+    .toast-body
