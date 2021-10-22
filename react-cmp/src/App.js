@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
+import Gallery from './cmp/Gallery';
 
-function App() {
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +18,7 @@ function App() {
         >
           Learn React
         </a>
+        <Gallery bridgeEvent={props.bridgeEvent}/>
       </header>
     </div>
   );

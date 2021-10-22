@@ -14,5 +14,9 @@ module.exports = {
   localeSubfolders: (ENV.LOCALE_SUBFOLDERS) ? ENV.LOCALE_SUBFOLDERS : null,
   
   cdnURL: (ENV.CDN_URL) ? ENV.CDN_URL : "",
-  shareCacheVersion: (ENV.SHARE_CACHE_VERSION) ? ENV.SHARE_CACHE_VERSION : 1
+  shareCacheVersion: (ENV.SHARE_CACHE_VERSION) ? ENV.SHARE_CACHE_VERSION : 1,
+  react:{
+    environment: (ENV.REACT_ENVIRONMENT) ? ENV.REACT_ENVIRONMENT : "production",
+    publicURL: ENV.REACT_PUBLIC_URL
+  }
 }

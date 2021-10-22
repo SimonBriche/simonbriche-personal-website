@@ -20,6 +20,9 @@ html
 
     link(href=`${cdnURL}/assets/css/all.css`, rel='stylesheet', type='text/css')
 
+    if reactApp && reactApp.css
+      !=reactApp.css
+
     //-meta SEO/OG
     include includes/seo-meta
 

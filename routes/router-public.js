@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const stackItems = require('../models/stack-items');
+const reactLoader = require('../middlewares/react-loader');
 
 function r(route) {
   // just a require wrapper
@@ -15,12 +16,11 @@ router.use(require('../middlewares/og-only'));
 
 //Declare all public routes here
 router
-.get('/', function(req, res) {
-  async function response(){
+.get('/', reactLoader, function(req, res) {
+  (async function response(){
     //render template with data
     res.render('index', {bodyClass: 'index', stackItems:stackItems});
-  }
-  response().catch(err => next(err));
+  })().catch(err => next(err));
 });
 
 module.exports = router;

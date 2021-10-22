@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "https://localhost:3000/react-cmp/production/static/css/main.1fe64006.chunk.css",
+    "main.js": "https://localhost:3000/react-cmp/production/static/js/main.6d53a877.chunk.js",
+    "main.js.map": "https://localhost:3000/react-cmp/production/static/js/main.6d53a877.chunk.js.map",
+    "runtime-main.js": "https://localhost:3000/react-cmp/production/static/js/runtime-main.c9588bda.js",
+    "runtime-main.js.map": "https://localhost:3000/react-cmp/production/static/js/runtime-main.c9588bda.js.map",
+    "static/js/2.22729047.chunk.js": "https://localhost:3000/react-cmp/production/static/js/2.22729047.chunk.js",
+    "static/js/2.22729047.chunk.js.map": "https://localhost:3000/react-cmp/production/static/js/2.22729047.chunk.js.map",
+    "static/css/3.d87cbb72.chunk.css": "https://localhost:3000/react-cmp/production/static/css/3.d87cbb72.chunk.css",
+    "static/js/3.81d1e99d.chunk.js": "https://localhost:3000/react-cmp/production/static/js/3.81d1e99d.chunk.js",
+    "static/js/3.81d1e99d.chunk.js.map": "https://localhost:3000/react-cmp/production/static/js/3.81d1e99d.chunk.js.map",
+    "static/js/4.39e17208.chunk.js": "https://localhost:3000/react-cmp/production/static/js/4.39e17208.chunk.js",
+    "static/js/4.39e17208.chunk.js.map": "https://localhost:3000/react-cmp/production/static/js/4.39e17208.chunk.js.map",
+    "static/js/5.0195ec3b.chunk.js": "https://localhost:3000/react-cmp/production/static/js/5.0195ec3b.chunk.js",
+    "static/js/5.0195ec3b.chunk.js.map": "https://localhost:3000/react-cmp/production/static/js/5.0195ec3b.chunk.js.map",
+    "static/js/6.fac6caca.chunk.js": "https://localhost:3000/react-cmp/production/static/js/6.fac6caca.chunk.js",
+    "static/js/6.fac6caca.chunk.js.map": "https://localhost:3000/react-cmp/production/static/js/6.fac6caca.chunk.js.map",
+    "index.html": "https://localhost:3000/react-cmp/production/index.html",
+    "static/css/3.d87cbb72.chunk.css.map": "https://localhost:3000/react-cmp/production/static/css/3.d87cbb72.chunk.css.map",
+    "static/css/main.1fe64006.chunk.css.map": "https://localhost:3000/react-cmp/production/static/css/main.1fe64006.chunk.css.map",
+    "static/js/2.22729047.chunk.js.LICENSE.txt": "https://localhost:3000/react-cmp/production/static/js/2.22729047.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "https://localhost:3000/react-cmp/production/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c9588bda.js",
+    "static/js/2.22729047.chunk.js",
+    "static/css/main.1fe64006.chunk.css",
+    "static/js/main.6d53a877.chunk.js"
+  ]
+}
