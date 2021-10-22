@@ -1,0 +1,114 @@
+// main: all.less
+
+.btn-custom{
+  cursor: pointer;
+  .pending-spinner{
+    display: none;
+  }
+  &.pending{
+    .fa, .far, .fab, .fas, .fal, .fad{
+      display: none;
+    }
+    
+    .pending-spinner{
+      display: inline;
+      .fa, .far, .fab, .fas, .fal, .fad{
+        display: inline-block;
+      }
+    }
+  }
+}
+.btn-soft{
+  @btn-blur: 6px;
+  @btn-size: 3px;
+  border-radius: 0.75rem;
+  transition: 0.1s all ease-in;
+
+  &, &:focus{
+    background-color: @soft-bg-color;
+    box-shadow: @shadow;
+    
+    //box-shadow: @btn-size @btn-size @btn-blur darken(@soft-bg-color, 14%),
+    //          -@btn-size -@btn-size @btn-blur lighten(@soft-bg-color, 14%);
+  }
+  &:active{
+    box-shadow: @inner-shadow;
+    background-color: darken(@soft-bg-color, 2%);
+  }
+}
+.btn-glass-floating{
+  width: 60px;
+  height: 60px;
+  transition: 0.2s background-color ease-in, 0.2s color ease-in;
+  color: @red-color;
+  font-size: 1.4rem;
+
+  &, &:focus{
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0rem 0.2rem 0.5rem 0.3rem rgba(0, 0, 0, 0.10);
+  }
+  &:active{
+    box-shadow: 0rem 0.2rem 0.5rem 0.3rem rgba(0, 0, 0, 0.10);
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  &:hover{
+    background-color: rgba(255, 255, 255, 1);
+    color: lighten(@red-color, 10);
+  }
+}
+.accordion-custom{
+  .accordion-button{
+    color: @grey-color;
+    background-color: @soft-bg-color;
+
+    &:focus{
+      box-shadow: none;
+    }
+    &:not(.collapsed){
+      color: @red-color;
+      background-color: lighten(@red-color, 50);
+      &:after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23b12b28'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e")
+      }
+    }
+  }
+
+  .accordion-item{
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+  }
+
+  .accordion-item:first-of-type {
+    border-top-left-radius: 1.5rem;
+    border-top-right-radius: 1.5rem;
+
+    .accordion-button {
+      border-top-left-radius: calc(1.5rem - 1px);
+      border-top-right-radius: calc(1.5rem - 1px);
+    }
+  }
+  .accordion-item:last-of-type {
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+
+    .accordion-button.collapsed, .accordion-body{
+      border-bottom-left-radius: calc(1.5rem - 1px);
+      border-bottom-right-radius: calc(1.5rem - 1px);
+    }
+  }
+  .accordion-body{
+    background-image: none;
+  }
+}
+@media (hover: hover) {
+  .btn-soft{
+    &:hover, &:hover:focus{
+      box-shadow: none;
+      background-color: darken(@soft-bg-color, 2%);
+    }
+    &:hover:focus:active{
+      box-shadow: @inner-shadow;
+      background-color: darken(@soft-bg-color, 2%);
+    }
+  }
+}

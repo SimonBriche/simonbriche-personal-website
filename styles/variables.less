@@ -1,0 +1,36 @@
+// main: all.less
+
+@std-font-family: 'Ubuntu', sans-serif;
+
+@background-color: #F2F2F2;
+@main-color: #454545;
+@red-color: #b12b28;
+@grey-color: #7e7e7e;
+
+@cdn-url: "";
+@max-width-container: 992px;
+
+
+@soft-bg-color: #f2f2f2;
+@soft-blur: 40px;
+@soft-size: 15px;
+
+
+:root {
+  --white: #FFFFFF;
+  --greyLight: #cecece;
+}
+
+.soft-text-shadow(@size){
+  text-shadow: @size*.3rem @size*.3rem @size*.6rem var(--greyLight), 
+  @size*-.2rem @size*-.2rem @size*.5rem var(--white);
+}
+.soft-box-shadow(@size){
+  box-shadow: @size*.3rem @size*.3rem @size*.6rem var(--greyLight), 
+  @size*-.2rem @size*-.2rem @size*.5rem var(--white);
+}
+
+@shadow: .3rem .3rem .6rem var(--greyLight), 
+-.2rem -.2rem .5rem var(--white);
+@inner-shadow: inset .2rem .2rem .5rem var(--greyLight), 
+inset -.2rem -.2rem .5rem var(--white);

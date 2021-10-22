@@ -1,2 +1,26 @@
-footer 
-  |Footer
+footer.footer-interface.max-width-container
+  .links
+    ul.list-unstyled.list-inline.text-end
+      li.list-inline-item
+        a.btn-custom.btn-link(href="#" title="Gestion des cookies")
+          i.fas.fa-cookie-bite
+      li.list-inline-item
+        a.btn-custom.btn-link(href="#" title="Données personnelles")
+          i.fas.fa-file-contract
+  button#btn-profile.btn.btn-custom.btn-glass-floating.rounded-circle
+    img.logo(src=`${cdnURL}/assets/images/logo.svg`)
+
+  button#btn-pending-footer.btn.btn-custom.btn-glass-floating.rounded-circle
+    i.fas.fa-spinner.fa-spin
+
+.footer-interface.max-width-container.close-interface
+  button#btn-close-footer.btn.btn-custom.btn-glass-floating.rounded-circle
+    i.fas.fa-times
+
+#notifications-container
+  #notification-template.toast(role="alert" aria-live="assertive" aria-atomic="true")
+    .toast-header
+      strong.title.me-auto Information
+      button.btn-close(type="button" data-bs-dismiss="toast" aria-label="Close")
+      .toast-progress
+    .toast-body
