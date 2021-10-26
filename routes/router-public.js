@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const stackItems = require('../models/stack-items');
 const reactLoader = require('../middlewares/react-loader');
+const PortfolioModel = require('../models/portfolio');
 
 function r(route) {
   // just a require wrapper

@@ -1,0 +1,13 @@
+type Query {
+  hello: String
+}
+
+
+input Filtering {
+  field: String!,
+  operator: Operator!,
+  value: [String!]
+}
+
+enum Direction { ASC, DESC }
+enum Operator { EQUAL, NOT_EQUAL, IN, NOT_IN, GREATER_THAN, LESS_THAN }

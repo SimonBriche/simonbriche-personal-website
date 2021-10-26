@@ -7,6 +7,12 @@ module.exports = {
   sessionSecret: ENV.SESSION_SECRET,
   cookieSecret: ENV.COOKIE_SECRET,
 
+  database:{
+    url: ENV.DATABASE_URL,
+    useSSL: (ENV.DATABASE_USE_SSL !== 'false'),
+  },
+  graphqlTokenSecret: ENV.GRAPHQL_TOKEN_SECRET,
+  
   useLocalSSLCert: (ENV.USE_LOCAL_SSL_CERT) ? (ENV.USE_LOCAL_SSL_CERT === "true") : false,
   forceSSLRedirection: (ENV.FORCE_SSL_REDIRECTION) ? (ENV.FORCE_SSL_REDIRECTION === "true") : true,
   domain: (ENV.DOMAIN) ? ENV.DOMAIN : null,

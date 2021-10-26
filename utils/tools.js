@@ -1,5 +1,26 @@
 module.exports = {
   /**
+   * Apply JSON.parse to all the target's values whose which key is in the "keys" array.
+   * @param {Object[]|Object} target An object or an array of objects
+   * @param {string[]} keys An array of the target's keys that needs to be parsed
+   * @returns The target object
+   */
+  parseKeys: function(target, keys){
+    const targetArray = (Array.isArray(target)) ? target : [target];
+    targetArray.forEach(item => {
+      Object.keys(item).map(key => {
+        if(keys.indexOf(key) !== -1){
+          try{
+            item[key] = JSON.parse(item[key]);
+          }
+          catch(e){
+            _logger.error('fail to parseKeys', key, e);
+          }
+        }
+      });
+    });
+  },
+  /**
    * Returns a random integer between two integers.
    * @param {number} min - Minimum integer
    * @param {number} max - Maximum integer

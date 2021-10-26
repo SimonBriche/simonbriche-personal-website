@@ -1,0 +1,47 @@
+type Query {
+  portfolioItem(id: String!): PortfolioItem,
+  portfolio(first: Int, after: String, last: Int, before: String, orderBy:[PortfolioOrdering!], filtering:[Filtering!]): PortfolioConnection,
+  technologies: TechnologyConnection
+}
+
+type Technology {
+  id: String!,
+  name: String,
+  link: String,
+  thumbnail: String
+}
+type TechnologyConnection{
+  data: [Technology],
+  totalCount: Int
+}
+
+type PortfolioItem {
+  id: String!,
+  name: String,
+  pitch: String,
+  description: String,
+  thumbnail: String,
+  client: String,
+  types: [String!],
+  images: [String!],
+  technology_ids: [String!]
+}
+
+type PortfolioConnection{
+  data: [PortfolioItem],
+  pageInfo: PortfolioPageInfo,
+  totalCount: Int
+}
+
+type PortfolioPageInfo{
+  hasNextPage: Boolean,
+  hasPreviousPage: Boolean,
+  startCursor: String,
+  endCursor: String
+}
+
+input PortfolioOrdering {
+  sort: PortfolioSort!
+  direction: Direction! = ASC
+}
+enum PortfolioSort { CREATED_AT }

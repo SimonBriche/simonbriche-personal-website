@@ -39,7 +39,7 @@ app.use(helmet({contentSecurityPolicy: {
   useDefaults: true,
   directives:{
     //allow here all the js cdn
-    scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com']
+    scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com',"'unsafe-inline'","'unsafe-eval'"]
   }
 }}));
 
@@ -66,6 +66,7 @@ app.use(express.static(__dirname + '/public'));
 //declare all public routes
 app.use('/', require('./routes/router-public'));
 app.use('/', require('./routes/router-test'));
+app.use('/graphql', require('./routes/router-graphql'));
 
 //404 (no route has been found)
 app.use(function(req, res, next){
