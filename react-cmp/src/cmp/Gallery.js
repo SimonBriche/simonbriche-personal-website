@@ -2,34 +2,56 @@ import { useEffect, useState } from 'react';
 
 function Gallery(props) {
   const bridge = props.bridgeEvent;
+  const section = props.section;
   const [posts, setPosts] = useState(null);
 
   useEffect(() => {
-    console.log('has mounted hey');
     (async () => {
-      const query = `{paginatedPosts(last: 3){data{id, title, rate, type}, pageInfo {endCursor}}}`;
+      const query = `{
+        portfolio(filtering:{field: "section", operator:EQUAL,value:"${section}"}){
+          data{id, name, client, pitch, description, thumbnail, types, images, technology_ids}
+        }
+      }`;
       const res = await (await fetch(`/graphql?query=${encodeURIComponent(query)}`)).json();
-      console.log('fetch data', res.data.paginatedPosts.data);
-      setPosts(res.data.paginatedPosts.data);
+      setPosts(res.data.portfolio.data);
     })().catch(e => {console.log('fail to fetch', e)});
-  }, []);
+  }, [section]);
   
   const postClickHandler = (e, item) => {
-    console.log('post clicked',e.target, item);
     const postEvent = new CustomEvent("openGalleryModal", {
       detail: item
     });
     bridge.dispatchEvent(postEvent);
   }
-  
+
   return (
-    <div className="gallery">
+    <ul className="list-unstyled text-nowrap d-flex align-items-stretch">
       {posts && posts.map(item => (
-        <div className="post" onClick={(e) => postClickHandler(e, item)} key={item.id}>
-          <h2>{item.title}</h2>
-        </div>
+        <li className="d-inline-block mb-3" key={item.id}>
+          <div className="card gallery-item mt-3 mx-3 rounded border-0 shadow h-100" onClick={(e) => postClickHandler(e, item)}>
+            <img className="card-img-top rounded-top" src={`${process.env.REACT_APP_CDN_URL}assets/images/gallery/${item.thumbnail}`} alt={item.name}/>
+            <div className="card-body text-start rounded-bottom pb-0">
+              <ul className="list-unstyled text-wrap">
+                <li>
+                  <h5 className="mb-0">
+                    <small>client: </small>
+                    <span className="text-red">{item.client}</span>
+                  </h5>
+                </li>
+                <li>
+                  <small>name: </small>
+                  <strong>{item.name}</strong>
+                </li>
+                <li>
+                  <small>types: </small>
+                  <span>{item.types.join(', ')}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 export default Gallery;

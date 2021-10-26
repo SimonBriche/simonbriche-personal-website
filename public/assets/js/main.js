@@ -109,10 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
     keyboard: false,
     backdrop: false
   });
-  var modalPortfolio = new bootstrap.Modal(document.getElementById('modal-portfolio'), {
-    keyboard: false,
-    backdrop: false
-  });
 
   document.querySelector('#btn-profile').addEventListener('click', () => {
     document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
@@ -122,10 +118,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
     document.querySelectorAll('.modal-interface').forEach(item => bootstrap.Modal.getInstance(item).hide())
   }, false);
-  
-  document.querySelectorAll('.gallery-item').forEach(item => item.addEventListener('click', () => {
-      document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
-      modalPortfolio.show();
-    }, false)
-  );
 });

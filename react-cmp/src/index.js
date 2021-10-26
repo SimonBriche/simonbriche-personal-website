@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 //list here all the components that can be inserted in a web page
 const apps = {
   'App': React.lazy(() => import('./App')),
+  'Gallery': React.lazy(() => import('./cmp/Gallery')),
   'TestComponent': React.lazy(() => import('./cmp/TestComponent')),
   'GalleryPostModal': React.lazy(() => import('./cmp/GalleryPostModal')),
 }
@@ -23,7 +24,10 @@ const renderAppInElement = (el) => {
     //render the component, inject all the HTML attributes and the Event bridge
     ReactDOM.render(
       <Suspense fallback={<Fallback />}>
-        <App {...el.dataset} bridgeEvent={bridgeEvent}/>
+        {el.dataset.keepLoading !== "true"
+          ? <App {...el.dataset} bridgeEvent={bridgeEvent}/>
+          : <Fallback />
+        }
       </Suspense>
     , el);
     el.dataset.rendered = true;
@@ -56,12 +60,12 @@ if(process.env.REACT_APP_RENDER_CMP_WITH_ATTRS){
     console.log('fail to parse REACT_APP_RENDER_CMP_WITH_ATTRS', e);
   }
   if(componentsWithAttrs){
-    Object.keys(componentsWithAttrs).forEach(key => {
+    componentsWithAttrs.forEach(cmp => {
       const componentEl = document.createElement('div');
-      componentEl.setAttribute("data-react-component", key);
+      componentEl.setAttribute("data-react-component", cmp.class);
       componentEl.className = "__react-cmp";
-      Object.keys(componentsWithAttrs[key]).forEach(attrKey => {
-        componentEl.setAttribute(attrKey, componentsWithAttrs[key][attrKey]);
+      Object.keys(cmp.data).forEach(attrKey => {
+        componentEl.setAttribute(attrKey, cmp.data[attrKey]);
       });
       rootEl.append(componentEl);
     });

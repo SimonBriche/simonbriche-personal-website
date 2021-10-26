@@ -426,7 +426,7 @@ footer .links ul .btn-link:hover {
   }
 }
 .gallery-item {
-  width: 190px;
+  width: 200px;
   cursor: pointer;
   transition: 0.1s all ease-in;
 }
@@ -474,7 +474,7 @@ footer .links ul .btn-link:hover {
 .portfolio-focus #portfolio-carousel .carousel-control-container {
   position: -webkit-sticky;
   position: sticky;
-  bottom: 0.5rem;
+  bottom: 5rem;
   height: 3rem;
 }
 .portfolio-focus #portfolio-carousel .carousel-control {

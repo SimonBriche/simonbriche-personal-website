@@ -42,26 +42,8 @@ block content
           .property content: 
           .position-relative
             .inner-shadow.rounded
-            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.my-3.overflow-scroll
-              - var n = 0;
-              ul.list-unstyled.text-nowrap
-                while n < 10
-                  li.d-inline-block
-                    .card.gallery-item.m-3.mx-3.rounded.border-0.shadow
-                      img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-                      .card-body.text-start.rounded-bottom
-                        ul.list-unstyled
-                          li 
-                            h5.mb-0
-                              small client: 
-                              span.text-red Betclic 
-                          li 
-                            small name: 
-                            strong QI Foot
-                          li
-                            small type: 
-                            span Quiz
-                  - n++
+            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll.my-3.pb-3
+              .__react-cmp.mx-auto(data-react-component="Gallery" data-section="featured")
 
     section.skill.mb-3
       .properties.collapsed(data-bs-toggle="collapse" data-bs-target="#skill-more-real" aria-expanded="true" role="button" aria-controls="skill-more-real")
@@ -153,28 +135,12 @@ block content
           .property content: 
           .position-relative
             .inner-shadow.rounded
-            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.my-3.overflow-scroll
-              - var n = 0;
-              ul.list-unstyled.text-nowrap
-                while n < 10
-                  li.d-inline-block
-                    .card.gallery-item.m-3.mx-3.rounded.border-0.shadow
-                      img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-                      .card-body.text-start.rounded-bottom
-                        ul.list-unstyled
-                          li 
-                            h5.mb-0
-                              small client: 
-                              span.text-red Betclic 
-                          li 
-                            small name: 
-                            strong QI Foot
-                          li
-                            small type: 
-                            span Quiz
-                  - n++
-
+            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll.my-3.pb-3
+              .__react-cmp.mx-auto(data-react-component="Gallery" data-section="perso")
+              
 block page-outer-content
+  .__react-cmp(data-react-component="GalleryPostModal")
+
   #modal-profile.modal.modal-interface.fade(tabindex="-1" aria-labelledby="modalFooter" aria-hidden="true")
     .modal-dialog
       .modal-content
@@ -232,57 +198,7 @@ block page-outer-content
                     span.pending-spinner
                       i.fas.fa-spinner.fa-spin
                     | Envoyer
-              
 
-  #modal-portfolio.modal.modal-interface.fade(tabindex="-1" aria-labelledby="modalPortfolio" aria-hidden="true")
-    .modal-dialog
-      .modal-content
-        .modal-body
-          .card.portfolio-focus.soft.flat.rounded.border-0.mx-sm-auto
-            img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-            .card-body.bg-white.rounded-bottom
-              h2.card-title.text-red 
-                strong QI Foot
-              h4 Betclic
-              h6.text-red.mb-0 En résumé
-              .card-text.mb-3
-                |Quiz pour l’Euro de football, décliné en 3 langues (FR, PT, PL). 4 sessions de Quiz, avec 120s pour répondre à un maximum de questions. A la fin, un score est déterminé avec le nombre de bonnes réponses, et un classement établi avec des personnalités qui ont également répondu au quiz.
-              h6.text-red.mb-0 Plus en détails
-              .card-text.mb-3
-                |Quiz pour l’Euro de football, décliné en 3 langues (FR, PT, PL). 4 sessions de Quiz, avec 120s pour répondre à un maximum de questions. A la fin, un score est déterminé avec le nombre de bonnes réponses, et un classement établi avec des personnalités qui ont également répondu au quiz.
-              #portfolio-carousel.carousel.slide(data-bs-ride="carousel")
-                .carousel-inner
-                  .carousel-item.active
-                    img.d-block.w-100(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-                  .carousel-item
-                    img.d-block.w-100(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-                  .carousel-item
-                    img.d-block.w-100(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-                  .carousel-item
-                    img.d-block.w-100(src=`${cdnURL}/assets/images/gallery/thumbnail@2x.png`)
-                .carousel-control-container
-                  button.carousel-control-prev.carousel-control.rounded-circle.m-2(type="button" data-bs-target="#portfolio-carousel" data-bs-slide="prev")
-                    i.fas.fa-chevron-left.text-red(aria-hidden="true")
-                    span.visually-hidden Previous
-                  button.carousel-control-next.carousel-control.rounded-circle.m-2(type="button" data-bs-target="#portfolio-carousel" data-bs-slide="next")
-                    i.fas.fa-chevron-right.text-red(aria-hidden="true")
-                    span.visually-hidden Next
-              .tags 
-                ul.list-inline
-                  li.list-inline-item
-                    span.badge.bg-secondary.rounded-pill
-                      |Website
-                  li.list-inline-item
-                    span.badge.bg-secondary.rounded-pill
-                      |Gameplay
-              .techno 
-                .small Built with
-                ul.list-inline.mb-0
-                  li.list-inline-item
-                    img.stack-logo.bg-white.rounded-circle.me-2(src=`${cdnURL}/assets/images/stack/ember.png`)
-                  li.list-inline-item
-                    img.stack-logo.bg-white.rounded-circle.me-2(src=`${cdnURL}/assets/images/stack/mysql.png`)
-              
 block pagejs
   script(src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous")
   script(src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js")

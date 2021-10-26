@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-cmp"]=this["webpackJsonpreact-cmp"]||[]).push([[6],{19:function(e,t,n){"use strict";n.r(t);var o=n(0);t.default=function(e){console.log("props",e);var t=e.bridgeEvent;return t.addEventListener("myEvent",(function(e){console.log("e",e.detail)})),t.addEventListener("myPrivateEvent",(function(e){console.log("e private",e.detail)})),Object(o.jsx)("div",{children:"Je suis le component test"})}}}]);
+//# sourceMappingURL=6.23e36a3a.chunk.js.map
