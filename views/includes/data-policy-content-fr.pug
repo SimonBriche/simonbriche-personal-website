@@ -1,0 +1,211 @@
+.container-fluid
+  h2 Données personnelles
+
+  p #{dataPolicy[locale].companyName} s'engage à ce que la collecte et le traitement de vos données, effectués à partir du site #{dataPolicy[locale].websiteUrl}, soient conformes au règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés.
+
+  p Chaque formulaire ou téléservice limite la collecte des données personnelles au strict nécessaire (minimisation des données) et indique notamment :
+  ul
+    li quels sont les objectifs du recueil de ces données (finalités)
+    li si ces données sont obligatoires ou facultatives pour la gestion de votre demande
+    li qui pourra en prendre connaissance
+    li 
+      a(href="https://www.cnil.fr/fr/comprendre-vos-droits" target="_blank") vos droits Informatique et Libertés 
+      | et la façon de les exercer auprès de la CNIL.
+
+  p Les données personnelles recueillies dans le cadre des services proposés sur #{dataPolicy[locale].websiteUrl} sont traitées selon des protocoles sécurisés et permettent à #{dataPolicy[locale].companyName} de gérer les demandes reçues dans ses applications informatiques.
+
+  p 
+    |Pour toute information ou exercice de vos droits Informatique et Libertés sur les traitements de données personnelles gérés par #{dataPolicy[locale].companyName}, vous pouvez contacter son délégué à la protection des données (DPO) par email à l'adresse 
+    a(href="mailto:"+dataPolicy[locale].dpoEmail) #{dataPolicy[locale].dpoEmail}
+
+
+  h2 Politique de cookie
+
+  strong Dernière mise à jour le 18 mai 2018
+
+  p 
+    | Cette politique de cookies explique comment #{dataPolicy[locale].companyName} («nous», «notre» et «nos») utilise des cookies et des technologies similaires pour vous reconnaître lorsque vous visitez nos sites Web à l'adresse #{dataPolicy[locale].websiteUrl}, ("Sites Internet"). Il explique quelles sont ces technologies et pourquoi nous les utilisons, ainsi que vos droits à contrôler notre utilisation de celles-ci.
+
+  if dataPolicy[locale].privacyPolicyUrl
+    p 
+      |Dans certains cas, nous pouvons utiliser des cookies pour collecter des informations personnelles, ou cela devient des informations personnelles si nous les combinons avec d'autres informations. Dans de tels cas, notre 
+      a(href=dataPolicy[locale].privacyPolicyUrl target="_blank") Politique de confidentialité
+      |  s'appliquera en plus de ce document.
+
+  h3 Que sont les cookies?
+
+  p Les cookies sont de petits fichiers de données qui sont placés sur votre ordinateur ou votre appareil mobile lorsque vous visitez un site Web. Les cookies sont largement utilisés par les propriétaires de sites Web pour faire fonctionner leurs sites Web, ou pour travailler plus efficacement, ainsi que pour fournir des informations sur les rapports.
+
+  p Les cookies définis par le propriétaire du site (dans ce cas, #{dataPolicy[locale].companyName}) sont appelés "cookies propriétaires" (ou "cookies de première partie" voire "cookies permanents"). Les cookies définis par des parties autres que le propriétaire du site Web sont appelés «cookies tiers». Les cookies tiers permettent aux fonctionnalités ou fonctionnalités tierces d'être fournies sur ou via le site Web (par exemple, comme la publicité, le contenu interactif et les analyses). Les parties qui établissent ces cookies tiers peuvent reconnaître votre ordinateur à la fois lorsqu'il visite le site Web en question et lorsqu'il visite certains autres sites Web.
+
+  h3 Pourquoi utilisons-nous des cookies?
+
+  p Nous utilisons des cookies de première et de troisième partie pour plusieurs raisons. Certains cookies sont requis pour des raisons techniques pour que nos sites Web fonctionnent, et nous les appelons cookies «essentiels» ou «strictement nécessaires». D'autres cookies nous permettent également de suivre et de cibler les intérêts de nos utilisateurs pour améliorer l'expérience sur nos propriétés en ligne. Les tiers servent des cookies via nos sites Web pour la publicité, l'analyse et d'autres fins. Ceci est décrit plus en détail ci-dessous.
+
+  p Les types spécifiques de cookies de première et de troisième partie servis via nos sites Web et les objectifs qu'ils remplissent sont décrits ci-dessous (veuillez noter que les cookies spécifiques peuvent varier en fonction des propriétés en ligne spécifiques que vous visitez):
+
+  h4 Cookies de site Web essentiels:
+
+  p Ces cookies sont strictement nécessaires pour vous fournir des services disponibles sur nos sites Web et pour utiliser certaines de ses fonctionnalités, telles que l'accès à des zones sécurisées.
+
+  ul
+    li 
+      h5 Qui sert ces cookies
+      ul
+        li 
+          strong Fournisseur de cookies: #{dataPolicy[locale].companyName}
+        li URL du site Web: #{dataPolicy[locale].websiteUrl}
+    li 
+      h5 Comment les refuser
+      p Parce que ces cookies sont strictement nécessaires pour vous livrer les sites Web, vous ne pouvez pas les refuser. Vous pouvez les bloquer ou les supprimer en modifiant les paramètres de votre navigateur, comme décrit ci-dessous dans la section "Comment puis-je contrôler les cookies ?".
+
+  if dataPolicy.stats.active
+    h4 Cookies d'analyse et de personnalisation
+
+    p Ces cookies recueillent des informations qui sont utilisées sous une forme agrégée pour nous aider à comprendre comment notre site Web est utilisé ou à quel point nos campagnes de marketing sont efficaces, ou pour nous aider à personnaliser nos sites Web pour vous.
+    
+    ul
+      li 
+        h5 Qui sert ces cookies:
+        
+        if dataPolicy.stats.isGoogleAnalytics
+          ul
+            li 
+              strong Fournisseur de cookies: Google Analytics
+            li 
+              |URL du site Web: 
+              a(href="https://support.google.com/analytics/answer/6004245" target="_blank") https://support.google.com/analytics/answer/6004245
+        if dataPolicy.stats.isGTM
+          ul
+            li 
+              strong Fournisseur de cookies: Google Tag Manager
+            li 
+              |URL du site Web: 
+              a(href="http://www.google.com/ads/preferences/" target="_blank") http://www.google.com/ads/preferences/
+
+      li 
+        h5 Comment les refuser
+        p Pour refuser ces cookies, veuillez suivre les instructions ci-dessous dans la rubrique "Comment puis-je contrôler les cookies ?".
+
+  if dataPolicy.marketing.active
+    h4 Cookies publicitaires:
+
+    p Ces cookies sont utilisés pour rendre les messages publicitaires plus pertinents pour vous. Ils remplissent des fonctions telles que la réapparition continue de la même annonce, en veillant à ce que les annonces soient correctement affichées pour les annonceurs et, dans certains cas, en sélectionnant des annonces basées sur vos centres d'intérêt.
+
+    ul 
+      li 
+        h5 Qui sert ces cookies
+        
+        if dataPolicy.marketing.isFacebookPixel
+          ul
+            li 
+              strong Fournisseur de cookies: Facebook
+            li 
+              |URL du site Web: 
+              a(href="https://www.facebook.com/business/help/www/651294705016616" target="_blank") https://www.facebook.com/business/help/www/651294705016616
+        
+        if dataPolicy.marketing.isLinkedInPixel
+          ul
+            li 
+              strong Fournisseur de cookies: LinkedIn
+            li 
+              |URL du site Web: 
+              a(href="https://www.linkedin.com/legal/cookie-policy" target="_blank") https://www.linkedin.com/legal/cookie-policy
+
+        if dataPolicy.marketing.isGoogleAdwordsRemarketing
+          ul
+            li 
+              strong Fournisseur de cookies: Google Adwords (remarketing)
+            li 
+              |URL du site Web: 
+              a(href="https://www.google.com/settings/ads" target="_blank") https://www.google.com/settings/ads
+
+      li 
+        h5 Comment les refuser : 
+        p Pour refuser ces cookies, veuillez suivre les instructions ci-dessous dans la rubrique "Comment puis-je contrôler les cookies?".
+  
+  if dataPolicy.social.active
+    h4 Cookies de réseaux sociaux:
+
+    p Ces cookies sont utilisés pour vous permettre de partager des pages et du contenu que vous trouvez intéressants sur nos sites Web via des réseaux sociaux tiers et d'autres sites Web. Ces cookies peuvent également être utilisés à des fins publicitaires.
+
+    ul
+      li 
+        h5 Qui sert ces cookies:
+        
+        if dataPolicy.social.isFacebook
+          ul
+            li 
+              strong Fournisseur de cookies: Facebook
+            li 
+              |URL du site Web: 
+              a(href="https://www.facebook.com/policies/cookies/" target="_blank") https://www.facebook.com/policies/cookies
+        
+        if dataPolicy.social.isTwitter
+          ul
+            li 
+              strong Fournisseur de cookies: Twitter
+            li 
+              |URL du site Web: 
+              a(href="https://support.twitter.com/articles/20170514" target="_blank") https://support.twitter.com/articles/20170514
+
+      li
+        h5 Comment les refuser : 
+        p Pour refuser ces cookies, veuillez suivre les instructions ci-dessous dans la rubrique "Comment puis-je contrôler les cookies?".
+
+  h3 Qu'en est-il des autres technologies de suivi, comme les balises Web?
+
+  p Les cookies ne sont pas le seul moyen de reconnaître ou de suivre les visiteurs d'un site Web. Nous pouvons utiliser d'autres technologies similaires de temps à autre, comme des balises Web (parfois appelées «pixels de suivi» ou «gifs clairs»). Ce sont de minuscules fichiers graphiques qui contiennent un identifiant unique qui nous permet de reconnaître quand quelqu'un a visité nos sites Web ou ouvert un courriel que nous leur avons envoyé. Cela nous permet, par exemple, de surveiller les habitudes de trafic des utilisateurs d'une page à l'autre, de livrer ou de communiquer avec des cookies, de savoir si vous êtes venus sur nos sites Web à partir d'une publicité en ligne affichée sur un site tiers, pour améliorer les performances du site et mesurer le succès des campagnes de marketing par e-mail. Dans de nombreux cas, ces technologies dépendent des cookies pour fonctionner correctement, et les cookies déclinants entravent leur fonctionnement.
+
+  h3 Êtes-vous au service d'une publicité ciblée?
+
+  p Des tiers peuvent diffuser des cookies sur votre ordinateur ou appareil mobile pour diffuser de la publicité sur nos sites Web. Ces entreprises peuvent utiliser des informations sur vos visites sur ce site et sur d'autres sites afin de fournir des publicités pertinentes sur des biens et services qui pourraient vous intéresser. Elles peuvent également utiliser une technologie utilisée pour mesurer l'efficacité des publicités. Cela peut être accompli par eux en utilisant des cookies ou des balises Web pour recueillir des informations sur vos visites sur ce site et d'autres sites afin de fournir des publicités pertinentes sur les biens et services susceptibles de vous intéresser. Les informations collectées via ce processus ne nous permettent pas d'identifier votre nom, vos coordonnées ou d'autres détails qui vous identifient directement, à moins que vous ne choisissiez de les fournir.
+
+  h3 Comment puis-je contrôler les cookies?
+
+  p 
+    | Vous avez le droit de décider d'accepter ou de refuser les cookies. Vous pouvez exercer vos préférences de cookies en cliquant sur le lien "
+    span.handleTASPanel(style="cursor:pointer;text-decoration:underline;") Gestion des cookies
+    | " présent sur ce site.
+
+  p Vous pouvez définir ou modifier les commandes de votre navigateur Web pour accepter ou refuser les cookies. Si vous choisissez de refuser les cookies, vous pouvez toujours utiliser notre site Web, bien que votre accès à certaines fonctionnalités et zones de notre site Web puisse être restreint. Comme les moyens par lesquels vous pouvez refuser les cookies via les contrôles de votre navigateur Web varient d'un navigateur à l'autre, vous devriez consulter le menu d'aide de votre navigateur pour plus d'informations.
+
+  p En outre, la plupart des réseaux publicitaires vous offrent un moyen de refuser la publicité ciblée. Si vous souhaitez obtenir plus d'informations, visitez :
+
+  ul
+    li 
+      |AllAboutCookies : (
+      a(href="https://www.allaboutcookies.org" target="_blank" rel="noopener") Voir le site
+      |)
+    li 
+      |Your Ad choices : (
+      a(href="http://www.aboutads.info/choices/" target="_blank" rel="noopener") Voir le site
+      |)
+    li 
+      |Your online choices : (
+      a(href="https://www.youronlinechoices.com" target="_blank" rel="noopener") Voir le site
+      |)
+    li 
+      |Network Advertising Initiative : (
+      a(href="https://www.networkadvertising.org" target="_blank" rel="noopener") Voir le site
+      |)
+
+
+  h3 À quelle fréquence allez-vous mettre à jour cette politique de cookie?
+
+  p Nous pouvons mettre à jour cette politique de cookies de temps en temps afin de refléter, par exemple, des changements aux cookies que nous utilisons ou pour d'autres raisons opérationnelles, légales ou réglementaires. Nous vous invitons donc à consulter régulièrement cette politique relative aux cookies pour rester informé de l'utilisation des cookies et des technologies associées.
+
+  p La date en haut de cette politique de cookie indique quand elle a été mise à jour pour la dernière fois.
+
+  h3 Où puis-je obtenir plus d'informations?
+
+  p 
+    |Si vous avez des questions concernant notre utilisation des cookies ou d'autres technologies, envoyez-nous un email à 
+    a(href="mailto:"+dataPolicy[locale].companyContactEmail) #{dataPolicy[locale].companyContactEmail}
+    if dataPolicy[locale].companyAddress
+      | ou par courrier postal à:
+      br
+      br
+      != dataPolicy[locale].companyAddress
+    else 
+      |.

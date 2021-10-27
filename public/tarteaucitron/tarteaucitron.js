@@ -421,7 +421,6 @@ var tarteaucitron = {
                     html += '</div>';
                 } else {
                     html += '<div tabindex="-1" id="tarteaucitronAlertBig" class="tarteaucitronAlertBig' + orientation + '">';
-                    //html += '<div class="tarteaucitronAlertBigWrapper">';
                     html += '   <span id="tarteaucitronDisclaimerAlert">';
 
                     if (tarteaucitron.parameters.highPrivacy) {
@@ -431,7 +430,7 @@ var tarteaucitron = {
                     }
 
                     html += '   </span>';
-                    //html += '   <span class="tarteaucitronAlertBigBtnWrapper">';
+                    html += '   <div class="tarteaucitronAlertBigBtnWrapper">';
                     html += '   <button type="button" class="tarteaucitronCTAButton tarteaucitronAllow" id="tarteaucitronPersonalize2">';
                     html += '       <span class="tarteaucitronCheck"></span> ' + tarteaucitron.lang.acceptAll;
                     html += '   </button>';
@@ -448,7 +447,7 @@ var tarteaucitron = {
                                     //html += '   <br/><br/>';
                     }
 
-                    html += '   <button type="button" id="tarteaucitronCloseAlert" aria-label="' + tarteaucitron.lang.personalize + ' ' + tarteaucitron.lang.modalWindow + '" title="' + tarteaucitron.lang.personalize + ' ' + tarteaucitron.lang.modalWindow + '">';
+                    html += '   <button type="button" class="tarteaucitronCTAButton" id="tarteaucitronCloseAlert" aria-label="' + tarteaucitron.lang.personalize + ' ' + tarteaucitron.lang.modalWindow + '" title="' + tarteaucitron.lang.personalize + ' ' + tarteaucitron.lang.modalWindow + '">';
                     html += '       ' + tarteaucitron.lang.personalize;
                     html += '   </button>';
 
@@ -458,8 +457,7 @@ var tarteaucitron = {
                         html += '   </button>';
                     }
 
-                    //html += '   </span>';
-                    //html += '</div>';
+                    html += '</div>';
                     html += '</div>';
                     html += '<div id="tarteaucitronPercentage"></div>';
                 }

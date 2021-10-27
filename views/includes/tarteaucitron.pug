@@ -1,5 +1,6 @@
 script(type="text/javascript" src=`${cdnURL}tarteaucitron/tarteaucitron.js`)
-script.
+//-inline script to save a server call and init tarteaucitron ASAP
+script(type='text/javascript' nonce="CookieTAS-fE3Cr6E3v6").
   tarteaucitron.init({
     "privacyUrl": "", /* Privacy policy url */
 
@@ -13,7 +14,7 @@ script.
     "showAlertSmall": false, /* Show the small banner on bottom right */
     "cookieslist": false, /* Show the cookie list */
                         
-    "closePopup": false, /* Show a close X on the banner */
+    "closePopup": true, /* Show a close X on the banner */
 
     "showIcon": false, /* Show cookie icon to manage cookies */
     //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
@@ -27,7 +28,7 @@ script.
                         
     "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
 
-    "removeCredit": false, /* Remove credit link */
+    "removeCredit": true, /* Remove credit link */
     "moreInfoLink": true, /* Show more info link */
 
     "useExternalCss": false, /* If false, the tarteaucitron.css file will be loaded */
@@ -40,7 +41,21 @@ script.
     "mandatory": true, /* Show a message about mandatory cookies */
   });
 
-
-  tarteaucitron.user.gajsUa = 'UA-XXXXXXXX-X';
+  //load GA
+  tarteaucitron.user.gajsUa = 'UA-49012203-1';
   tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
   (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
+
+  //handle custom button to display preferences panel
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.handleTASPanel').forEach(item => {
+      item.onclick = () => {
+        if(window.tarteaucitron){
+          window.tarteaucitron.userInterface.openPanel();
+        }
+        else{
+          window.parent.postMessage('showCookiePreference', '*');
+        }
+      }
+    });
+  });

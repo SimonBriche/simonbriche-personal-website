@@ -5,7 +5,7 @@ footer.footer-interface.max-width-container
         a#tarteaucitronManager.btn-custom.btn-link(title="Gestion des cookies")
           i.fas.fa-cookie-bite
       li.list-inline-item
-        a.btn-custom.btn-link(href="#" title="Données personnelles")
+        a.btn-custom.btn-link(href="/data-policy" title="Données personnelles")
           i.fas.fa-file-contract
   button#btn-profile.btn.btn-custom.btn-glass-floating.rounded-circle
     img.logo(src=`${cdnURL}/assets/images/logo.svg`)
@@ -24,3 +24,61 @@ footer.footer-interface.max-width-container
       button.btn-close(type="button" data-bs-dismiss="toast" aria-label="Close")
       .toast-progress
     .toast-body
+
+#modal-profile.modal.modal-interface.fade(tabindex="-1" aria-labelledby="modalFooter" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-body
+        .card.portfolio-focus.soft.flat.rounded.border-0.mx-sm-auto
+          img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/wam-thumbnail.png`)
+          .card-body.bg-white.rounded-bottom
+            h2.card-title.text-red 
+              strong Simon BRICHE
+            h6.text-red.mb-0 En résumé
+            .card-text.mb-3
+              |Développeur web professionnel depuis 2006 et passionné par le numérique depuis mon premier Amstrad CPC 6128, je suis spécialisé dans le développement d'applications interactives online.
+              |J'ai réuni ici quelques projets réalisés dans le cadre de mon activité professionnelle ou en tant que développeur indépendant sur le secteur de Lille (59).
+              |N'hésitez pas à prendre quelques minutes pour tester les projets en démonstration !
+            .text-center.mb-3
+              a.btn.btn-custom.btn-soft.mx-auto(href="http://sbriche.free.fr/CV-simon-briche-web.pdf" target="_blank") Voir mon CV
+
+            h6.text-red.mb-2 Contact
+            form#form-contact.op1c-form
+              .form-group.mb-3
+                .input-group
+                  span.input-group-text.text-secondary.px-3
+                    i.fas.fa-fw.fa-users
+                  .form-floating.form-floating-group.flex-grow-1
+                    input#last_name.form-control.rounded-0.rounded-end(type="text" name="last_name" placeholder="Votre nom *" autocomplete="family-name" required)
+                    label(for="last_name") Votre Nom *
+                span.form-text
+              .form-group.mb-3
+                .input-group
+                  span.input-group-text.text-secondary.px-3
+                    i.fas.fa-fw.fa-user
+                  .form-floating.form-floating-group.flex-grow-1
+                    input#first_name.form-control.rounded-0.rounded-end(type="text" name="first_name" placeholder="Votre Prénom *" autocomplete="given-name" required)
+                    label(for="first_name") Votre Prénom *
+                span.form-text
+              .form-group.mb-3
+                .input-group
+                  span.input-group-text.text-secondary.px-3
+                    i.fas.fa-fw.fa-paper-plane
+                  .form-floating.form-floating-group.flex-grow-1
+                    input#email.form-control.rounded-0.rounded-end(type="email" name="email" placeholder="Votre Email *" autocomplete="email" required)
+                    label(for="email") Email *
+                span.form-text
+              .form-group.mb-3
+                .input-group
+                  span.input-group-text.text-secondary.px-3
+                    i.fas.fa-fw.fa-comment
+                  .form-floating.form-floating-group.flex-grow-1
+                    textarea#message.form-control.rounded-0.rounded-end.h-auto(name="message" rows="5" placeholder="Votre message *" required)
+                    label(for="message") Message *
+                span.form-text
+                
+              .form-group.mt-3
+                button.btn.btn-custom.btn-soft.btn-submit.w-100(type="submit")
+                  span.pending-spinner
+                    i.fas.fa-spinner.fa-spin
+                  | Envoyer

@@ -1,0 +1,154 @@
+// main: all.less
+@tas-green-color: rgb(39, 174, 96);
+@tas-red-color: rgb(205, 51, 45);
+@tas-black-color: #333;
+
+#tarteaucitronRoot{
+  &:before{
+    display: none;
+  }
+  .tarteaucitronIsSelected{
+    &.tarteaucitronAllow{
+      background-color: @tas-green-color!important;
+    }
+    &.tarteaucitronDeny{
+      background-color: @tas-red-color!important;
+    }
+  }
+  
+  .tarteaucitronLine{
+    &.tarteaucitronIsAllowed{
+      border-left: 5px solid @tas-green-color!important;
+      .tarteaucitronAllow{
+        background-color: @tas-green-color!important;
+      }
+    }
+    &.tarteaucitronIsDenied{
+      border-left: 5px solid @tas-red-color!important;
+      .tarteaucitronDeny{
+        background-color: @tas-red-color!important;
+      }
+    }
+  }
+  #tarteaucitronAlertBig{
+    bottom: 1rem;
+    top: auto!important;
+    left: 1rem!important;
+    transform: none!important;
+    background: #FFFFFF !important;
+    color: @tas-black-color;
+    width: calc(100% - 2rem)!important;
+    padding: 1rem 0 0!important;
+    border-radius: 1.5rem!important;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+    #tarteaucitronCloseCross{
+      color: @tas-black-color;
+    }
+    #tarteaucitronDisclaimerAlert{
+      color: @tas-black-color;
+      font-size: 1rem;
+      strong{
+        color: @tas-black-color;
+      }
+    }
+    .tarteaucitronAlertBigBtnWrapper{
+      display: flex;
+      border-top: 1px solid #eee;
+
+      .tarteaucitronCTAButton{
+        margin: 0!important;
+        width: 100%;
+        padding: 0.75rem 0;
+        &.tarteaucitronAllow{
+          border-bottom-left-radius: 1.5rem!important;
+          background-color: @tas-green-color;
+        }
+        &.tarteaucitronDeny{
+          background-color: @tas-red-color;
+        }
+        
+        &#tarteaucitronCloseAlert{
+          border-bottom-right-radius: 1.5rem!important;
+        }
+      }
+    }
+  }
+  #tarteaucitronClosePanel{
+    background: #FFFFFF !important;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: #4c4c4c !important;
+    border: 2px solid #4c4c4c;
+    outline: none!important;
+    width: 20px !important;
+    height: 20px !important;
+    top: 30px;
+    right: 10px !important;
+    font-size: 15px;
+    padding: 0 !important;
+    z-index: 1;
+  }
+  .tarteaucitronTitle{
+    background: #FFF;
+  }
+  #tarteaucitronServices{
+    background: #FFF;
+  
+    .tarteaucitronMainLine{
+      border: 0!important;
+      background: #FFF!important;
+      .tarteaucitronH1{
+        color: @tas-green-color;
+      }
+      #tarteaucitronInfo{
+        background: #FFF!important;
+        color: @tas-black-color;
+        border-color: #ccc;
+        font-size: 1rem;
+        strong{
+          font-size: 1rem;
+          font-weight: 700;
+        }
+      }
+    }
+    .tarteaucitronTitle button {
+      background: #FFF!important;
+      color: @tas-green-color!important;
+      border-top: 1px solid #ccc;
+      margin-bottom: 0!important;
+      padding-top: 13px!important;
+      .tarteaucitronPlus::before{
+        color: @tas-green-color!important;
+      }
+    }
+    #tarteaucitronScrollbarAdjust{
+      float: none;
+    }
+    .tarteaucitronBorder{
+      border: none;
+      & > ul > li {
+        background: #FFF;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  #tarteaucitronRoot{
+    #tarteaucitronAlertBig{
+      width: 50%!important;
+      left: 50%!important;
+      transform: translateX(-50%)!important;
+    }
+    #tarteaucitronServices{
+      border-top-left-radius: 1.5rem;
+      border-bottom-left-radius: 1.5rem;
+      .tarteaucitronTitle button {
+        border-top-right-radius: 1.5rem;
+        border-right: 1px solid #ccc;
+        padding-top: 5px!important;
+      }
+    }
+  }
+}

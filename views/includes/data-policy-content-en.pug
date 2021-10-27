@@ -1,0 +1,203 @@
+.container-fluid
+  h2 Personal data
+
+  p #{companyName} undertakes that the collection and processing of your data, made from the website #{websiteUrl}, comply with the General Data Protection Regulation (GDPR) and the Data Protection Act .
+
+  p Each form or teleservice limits the collection of personal data to the strict minimum necessary (minimization of data) and indicates in particular:
+  ul
+    li What are the objectives of collecting these data (purposes)?
+    li if this data is mandatory or optional for the management of your request
+    li who will be able to read it
+    li
+      a(href = "https://www.cnil.fr/fr/comprendre-vos-droits" target = "_blank") your rights Informatique et Libertés 
+      | and how to exercise them with the CNIL.
+
+  p The personal data collected as part of the services offered on #{websiteUrl} are processed according to secure protocols and allow #{companyName} to manage the requests received in its computer applications.
+
+  p
+    |For any information or exercise of your computer rights and Freedoms on the processing of personal data managed by #{companyName}, you can contact its data protection officer (DPO) by email at the address 
+    a(href="mailto:"+dpoEmail) #{dpoEmail}
+
+
+  h2 Cookie Policy
+  
+  strong Last updated on May 18, 2018
+  p
+    | This cookie policy explains how #{companyName} ("we", "us" and "our") uses cookies and similar technologies to recognize you when you visit our websites at #{websiteUrl}, ("Websites"). It explains what these technologies are and why we use them, as well as your rights to control our use of them.
+  p
+    | In some cases, we may use cookies to collect personal information, or it becomes personal information if we combine it with other information. In such cases, our 
+    a(href=privacyPolicyUrl target="_blank") Privacy Policy 
+    | will apply in addition to this document.
+
+  h3 What are cookies?
+
+  p Cookies are small data files that are placed on your computer or mobile device when you visit a website. Cookies are widely used by website owners to operate their websites, or to work more efficiently, as well as to provide information about reports.
+
+  p Cookies defined by the website owner (in this case, #{companyName}) are called "proprietary cookies" (or "first-party cookies" or even "permanent cookies"). Cookies defined by parties other than the owner of the website are referred to as "third-party cookies". Third-party cookies allow third-party features or functionality to be provided on or through the website (for example, such as advertising, interactive content, and analytics). Parties who establish these third-party cookies may recognize your computer at a time when visiting the website in question and when visiting certain other websites.
+
+  
+  h3 Why do we use cookies?
+
+  p We use first and third party cookies for several reasons. Some cookies are required for technical reasons to make our websites work, and we call them "essential" or "strictly necessary" cookies. Other cookies also allow us to track and target the interests of our users to improve the experience on our online properties. Third parties serve cookies through our websites for advertising, analysis and other purposes. This is described in more detail below.
+
+  p The specific types of first and third party cookies served through our websites and the goals they fulfill are described below (please note that specific cookies may vary depending on the specific online properties you visit):
+
+  
+  h4 Essential website cookies:
+
+  p These cookies are strictly necessary to provide you with services available on our websites and to use some of its features, such as access to secure areas.
+
+  ul
+    li
+      h5 Who serves these cookies
+      ul
+        li
+          strong Supplier of cookies: #{companyName}
+        li Website URL: #{websiteUrl}
+    li
+      h5 How to refuse them
+      p Because these cookies are strictly necessary to deliver the websites to you, you can not refuse them. You can block or delete them by changing your browser settings, as described below in the "How can I control cookies?" Section.
+
+  h4 Cookies for analysis and customization
+
+  p These cookies collect information that is used in aggregate form to help us understand how our website is used or how effective our marketing campaigns are, or to help us customize our websites for you.
+
+  ul
+    li
+      h5 Who serves these cookies:
+      
+      if isGoogleAnalytics
+        ul
+          li
+            Strong Supplier of Cookies: Google Analytics
+          li
+            |URL of the website : 
+            a(href="https://support.google.com/analytics/answer/6004245" target="_blank") https://support.google.com/analytics/answer/6004245
+      if isGTM
+        ul
+          li
+            strong Cookies provider: Google Tag Manager
+          li
+            |URL of the website : 
+            a(href="http://www.google.com/ads/preferences/" target="_blank") http://www.google.com/ads/preferences/
+
+    li
+      h5 How to refuse them
+      p To refuse these cookies, please follow the instructions below in the "How can I control cookies?" section.
+      
+  h4 Advertising cookies:
+
+  p These cookies are used to make advertising messages more relevant to you. They perform functions such as the continued reappearance of the same ad, ensuring that ads are properly displayed for advertisers and, in some cases, selecting ads based on your interests.
+
+  ul
+    li
+      h5 Who serves these cookies
+      
+      if isFacebookPixel
+        ul
+          li
+            strong Supplier of cookies: Facebook
+          li
+            |URL of the website:
+            a(href="https://www.facebook.com/business/help/www/651294705016616" target="_blank") https://www.facebook.com/business/help/www/651294705016616
+      
+      if isLinkedInPixel
+        ul
+          li
+            strong Cookie Supplier: LinkedIn
+          li
+            |URL of the website: 
+            a(href="https://www.linkedin.com/legal/cookie-policy" target="_blank") https://www.linkedin.com/legal/cookie-policy
+
+      if isGoogleAdwordsRemarketing
+        ul
+          li
+            strong Cookies provider: Google Adwords (Remarketing)
+          li
+            |URL of the website: 
+            a(href="https://www.google.com/settings/ads" target="_blank") https://www.google.com/settings/ads
+
+    li
+      h5 How to refuse them:
+      p To refuse these cookies, please follow the instructions below in the "How can I control cookies?" section.
+
+  
+  h4 Social Network Cookies:
+
+  p These cookies are used to allow you to share pages and content that you find interesting on our websites through third-party social networks and other websites. These cookies may also be used for advertising purposes.
+
+  ul
+    li
+      h5 Who serves these cookies:
+      
+      if isFacebook
+        ul
+          li
+            strong Supplier of cookies: Facebook
+          li
+            |URL of the website:
+            a(href="https://www.facebook.com/policies/cookies/" target="_blank") https://www.facebook.com/policies/cookies
+      
+      if isTwitter
+        ul
+          li
+            strong Cookies provider: Twitter
+          li
+            |URL of the website:
+            a(href="https://support.twitter.com/articles/20170514" target = "_blank") https://support.twitter.com/articles/20170514
+
+    li
+      h5 How to refuse them:
+      p To refuse these cookies, please follow the instructions below in the "How can I control cookies?" section.
+
+  h3 What about other tracking technologies, such as web beacons?
+
+  p Cookies are not the only way to recognize or follow visitors to a website. We may use other similar technologies from time to time, such as web beacons (sometimes referred to as "tracking pixels" or "clear gifs"). These are tiny graphic files that contain a unique identifier that allows us to recognize when someone has visited our websites or opened an email that we sent them. This allows us, for example, to monitor users' traffic patterns from one page to another, to deliver or communicate with cookies, to find out if you have come to our websites from an advertising campaign. line displayed on a third-party site, to improve site performance and measure the success of e-mail marketing campaigns. In many cases, these technologies depend on cookies to function properly, and declining cookies hinder their operation.
+
+  h3 Are you serving a targeted ad?
+
+  p Third parties may place cookies on your computer or mobile device to serve advertising on our websites. These companies may use information about your visits to this site and other sites to provide relevant advertising on goods and services that may be of interest to you. They can also use a technology used to measure the effectiveness of advertisements. This can be accomplished by them by using cookies or web beacons to collect information about your visits to this site and other sites to provide relevant advertising on goods and services that may be of interest to you. The information collected through this process does not allow us to identify your name, contact information, or other details that identify you directly unless you choose to provide it.
+
+  
+  h3 How can I control cookies?
+
+  p
+    | You have the right to decide whether to accept or reject cookies. You can exercise your cookie preferences by clicking on the link "
+    span(onclick="if (window.tarteaucitron)) {window.tarteaucitron.userInterface.openPanel();} else{window.parent.postMessage ('showCookiePreference', '*');}" style="cursor:pointer; text-decoration:underline; ") Cookie management
+    | " present on this site.
+
+  p You can set or change the controls on your web browser to accept or reject cookies. If you choose to decline cookies, you may still use our website, although your access to certain features and areas of our website may be restricted. Since the means by which you can refuse cookies through the controls of your web browser vary from one browser to another, you should consult the help menu of your browser for more information.
+
+  p In addition, most ad networks offer you a way to opt out of targeted advertising. If you want more information, visit:
+
+  ul
+    li
+      |AllAboutCookies: 
+      a(href="http://www.allaboutcookies.org/" target="_blank") http://www.allaboutcookies.org/
+    li
+      |Your Ad choices: 
+      a(href="http://www.aboutads.info/choices/" target="_blank") http://www.aboutads.info/choices/
+    li
+      |Your online choices: 
+      a(href="http://www.youronlinechoices.com" target="_blank") http://www.youronlinechoices.com
+    li
+      |Network Advertising Initiative: 
+      a(href="http://www.networkadvertising.org/" target="_blank") http://www.networkadvertising.org/
+
+
+  
+  h3 How often will you update this cookie policy?
+
+  p We may update this cookie policy from time to time to reflect, for example, changes to the cookies we use or for other operational, legal or regulatory reasons. We therefore invite you to regularly review this cookie policy to stay informed about the use of cookies and related technologies.
+
+  p The date at the top of this cookie policy indicates when it was last updated.
+
+  h3 Where can I get more information?
+
+  p
+    |If you have any questions about our use of cookies or other technologies, send us an email at 
+    a(href="mailto:"+companyContactEmail) #{companyContactEmail}
+    |  or by post to:
+
+  p
+    != companyAddress

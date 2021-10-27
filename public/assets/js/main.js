@@ -1,3 +1,21 @@
+//custom code that needs to be execited on each page
+document.addEventListener('DOMContentLoaded', function() {
+  var modalProfile = new bootstrap.Modal(document.getElementById('modal-profile'), {
+    keyboard: false,
+    backdrop: false
+  });
+
+  document.querySelector('#btn-profile').addEventListener('click', () => {
+    document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
+    modalProfile.show();
+  }, false);
+  document.querySelector('#btn-close-footer').addEventListener('click', () => {
+    document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
+    document.querySelectorAll('.modal-interface').forEach(item => bootstrap.Modal.getInstance(item).hide())
+  }, false);
+});
+
+//global configuration
 window.CustomApp = {};
 window.CustomApp.formMessages = {
   last_name: "Votre nom est obligatoire.",
@@ -103,19 +121,3 @@ window.CustomApp.showNotif = function(message, context, delay, reloadPage){
     console.log('notif message is not a string nor a Element object');
   }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-  var modalProfile = new bootstrap.Modal(document.getElementById('modal-profile'), {
-    keyboard: false,
-    backdrop: false
-  });
-
-  document.querySelector('#btn-profile').addEventListener('click', () => {
-    document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
-    modalProfile.show();
-  }, false);
-  document.querySelector('#btn-close-footer').addEventListener('click', () => {
-    document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
-    document.querySelectorAll('.modal-interface').forEach(item => bootstrap.Modal.getInstance(item).hide())
-  }, false);
-});

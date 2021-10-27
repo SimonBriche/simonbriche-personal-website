@@ -1,7 +1,7 @@
+const config = require('../config');
 const router = require('express').Router();
 const stackItems = require('../models/stack-items');
 const reactLoader = require('../middlewares/react-loader');
-const PortfolioModel = require('../models/portfolio');
 
 function r(route) {
   // just a require wrapper
@@ -22,6 +22,9 @@ router
     //render template with data
     res.render('index', {bodyClass: 'index', stackItems:stackItems});
   })().catch(err => next(err));
+})
+.get('/data-policy', reactLoader, function(req, res) {
+  res.render('data-policy', {bodyClass: 'data-policy', dataPolicy:config.dataPolicy});
 });
 
 module.exports = router;

@@ -1,0 +1,16 @@
+extends layout
+    
+block pagecss
+
+block content
+  .max-width-container.p-3.pb-5
+    case locale
+      when 'en_en'
+        include includes/data-policy-content-en
+      default
+        include includes/data-policy-content-fr
+    
+  
+block page-outer-content
+
+block pagejs

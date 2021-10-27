@@ -24,5 +24,39 @@ module.exports = {
   react:{
     environment: (ENV.REACT_ENVIRONMENT) ? ENV.REACT_ENVIRONMENT : "production",
     publicURL: ENV.REACT_PUBLIC_URL
+  },
+  dataPolicy:{
+    "fr_fr":{
+      companyName: "Simon BRICHE",
+      websiteUrl: "http://sbriche.free.fr/",
+      dpoEmail: "sbriche@free.fr",
+      privacyPolicyUrl: "/terms-fr_fr.pdf",
+      companyContactEmail: "sbriche@free.fr",
+      companyAddress:"Nom compagnie<br>numéro rue<br>CODE_POSTAL VILLE",
+    },
+    "en_en":{
+      companyName: "Simon BRICHE",
+      websiteUrl: "http://sbriche.free.fr/",
+      dpoEmail: "sbriche@free.fr",
+      privacyPolicyUrl: "/terms.pdf",
+      companyContactEmail: "sbriche@free.fr",
+      companyAddress:"",
+    },
+    stats:{
+      active: true,
+      isGoogleAnalytics: true,
+      isGTM: true
+    },
+    social:{
+      active: true,
+      isFacebook: true,
+      isTwitter: true,
+    },
+    marketing:{
+      active: true,
+      isFacebookPixel: true,
+      isLinkedInPixel: true,
+      isGoogleAdwordsRemarketing: true
+    }
   }
 }

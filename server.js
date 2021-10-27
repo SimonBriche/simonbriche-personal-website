@@ -39,7 +39,9 @@ app.use(helmet({contentSecurityPolicy: {
   useDefaults: true,
   directives:{
     //allow here all the js cdn
-    scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com',"'unsafe-inline'","'unsafe-eval'"]
+    scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com', "'nonce-CookieTAS-fE3Cr6E3v6'", "*.google-analytics.com","'unsafe-inline'","'unsafe-eval'"],
+    //allow here all the img source
+    imgSrc:["'self'", "data:", "*.google-analytics.com"]
   }
 }}));
 

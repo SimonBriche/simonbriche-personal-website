@@ -1,7 +1,7 @@
 /*global tarteaucitron */
 tarteaucitron.lang = {
 
-    "middleBarHead": "☝ 🍪",
+    "middleBarHead": "",
     "adblock": "Bonjour! Ce site joue la transparence et vous donne le choix des services tiers à activer.",
     "adblock_call": "Merci de désactiver votre adblocker pour commencer la personnalisation.",
     "reload": "Recharger la page",
@@ -10,18 +10,18 @@ tarteaucitron.lang = {
     "alertBigClick": "En poursuivant votre navigation,",
     "alertBig": "vous acceptez l'utilisation de services tiers pouvant installer des cookies",
     
-    "alertBigPrivacy": "Ce site utilise des cookies et vous donne le contrôle sur ceux que vous souhaitez activer",
+    "alertBigPrivacy": "Ce site utilise des cookies et vous donne le contrôle sur ceux que vous souhaitez activer. <strong>Refuser ces cookies ne désactiveront pas les publicités</strong>, mais uniquement leur pertinence.",
     "alertSmall": "Gestion des services",
     "acceptAll": "Tout accepter",
     "personalize": "Personnaliser",
-    "close": "Fermer",
+    "close": "X",
 
     "privacyUrl": "Politique de confidentialité",
 
     "all": "Préférences pour tous les services",
 
     "info": "Protection de votre vie privée",
-    "disclaimer": "En autorisant ces services tiers, vous acceptez le dépôt et la lecture de cookies et l'utilisation de technologies de suivi nécessaires à leur bon fonctionnement.",
+    "disclaimer": "Certaines fonctionnalités de ce site (partage de contenus sur les réseaux sociaux, lecture directe de vidéos) s’appuient sur des services proposés par des sites tiers. Ces fonctionnalités déposent des cookies permettant notamment à ces sites de tracer votre navigation. <strong>Refuser ces cookies ne désactiveront pas les publicités</strong>, mais uniquement leur pertinence. Ces cookies ne sont déposés que si vous donnez votre accord. Vous pouvez vous informer sur les cookies déposés, les accepter ou les refuser soit globalement pour l’ensemble du site et l’ensemble des services, soit service par service.",
     "allow": "Autoriser",
     "deny": "Interdire",
     "noCookie": "Ce service ne dépose aucun cookie.",
@@ -34,7 +34,7 @@ tarteaucitron.lang = {
     "noServices": "Ce site n'utilise aucun cookie nécessitant votre consentement.",
 
     "toggleInfoBox": "Afficher/masquer les informations sur le stockage des cookies",
-    "title": "Panneau de gestion des cookies",
+    "title": "Gestion des cookies",
     "cookieDetail": "Détail des cookies",
     "ourSite": "sur notre site",
     "modalWindow": "(fenêtre modale)",
