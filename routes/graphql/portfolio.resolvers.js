@@ -1,8 +1,6 @@
 const { parse, simplify } = require('graphql-parse-resolve-info');
 const PortfolioModel = require('../../models/portfolio');
 
-const util = require('util');
-
 const resolvers = {
   Query: {
     portfolioItem: (root, args, context, info) => {

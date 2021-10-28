@@ -3,7 +3,7 @@ module.exports = {
    * Apply JSON.parse to all the target's values whose which key is in the "keys" array.
    * @param {Object[]|Object} target An object or an array of objects
    * @param {string[]} keys An array of the target's keys that needs to be parsed
-   * @returns The target object
+   * @returns {Object} The target object
    */
   parseKeys: function(target, keys){
     const targetArray = (Array.isArray(target)) ? target : [target];
@@ -24,7 +24,7 @@ module.exports = {
    * Returns a random integer between two integers.
    * @param {number} min - Minimum integer
    * @param {number} max - Maximum integer
-   * @returns A random integer between min and max
+   * @returns {number} A random integer between min and max
    */
   randomBetween: function(min, max){
     return Math.ceil(max - Math.random()*(max - (min - 1)));
@@ -32,7 +32,7 @@ module.exports = {
   /**
    * Returns a randmon string of wanted length.
    * @param {string} length - The length of the wanted string
-   * @returns A random string of the requested length
+   * @returns {string} A random string of the requested length
    */
   randomString: function (length) {
     const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -45,7 +45,7 @@ module.exports = {
   /**
    * Convert all undefined values of an object to null.
    * @param {Object} obj - The object to convert
-   * @returns An object without undefined values.
+   * @returns {Object} An object without undefined values.
    */
   safeUndefined: function(obj){
     const newObj = {};
@@ -58,7 +58,7 @@ module.exports = {
    * Overwrites target's values with source's and adds source's if non existent in target
    * @param {Object} target - The target object 
    * @param {Object} source - The source object
-   * @returns An object with properties of both objects. Doesn't mutate target or source.
+   * @returns {Object} An object with properties of both objects. Doesn't mutate target or source.
    */
   mergeObjects: function(target, source){
     let result = {};
@@ -71,7 +71,7 @@ module.exports = {
    * @param {Object} target - The target object 
    * @param {Object} source - The source object
    * @param {Boolean} isMergingArrays - If set to true, will have any source array's elements overwrite those of the target array at the same index. If false (default) will replace source array's with target array's
-   * @returns An object with properties of both objects. Doesn't mutate target or source.
+   * @returns {Object} An object with properties of both objects. Doesn't mutate target or source.
    */
   mergeDeepObjects: function(target, source, isMergingArrays = false){
     target = ((obj) => {

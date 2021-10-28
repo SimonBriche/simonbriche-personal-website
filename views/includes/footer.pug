@@ -7,13 +7,15 @@ footer.footer-interface.max-width-container
       li.list-inline-item
         a.btn-custom.btn-link(href="/data-policy" title="Données personnelles")
           i.fas.fa-file-contract
-  button#btn-profile.btn.btn-custom.btn-glass-floating.rounded-circle
-    img.logo(src=`${cdnURL}/assets/images/logo.svg`)
+  
 
+  
+
+.footer-interface.max-width-container.buttons-interface
   button#btn-pending-footer.btn.btn-custom.btn-glass-floating.rounded-circle
     i.fas.fa-spinner.fa-spin
-
-.footer-interface.max-width-container.close-interface
+  button#btn-profile.btn.btn-custom.btn-glass-floating.rounded-circle
+    img.logo(src=`${cdnURL}/assets/images/logo.svg`)
   button#btn-close-footer.btn.btn-custom.btn-glass-floating.rounded-circle
     i.fas.fa-times
 
@@ -79,6 +81,6 @@ footer.footer-interface.max-width-container
                 
               .form-group.mt-3
                 button.btn.btn-custom.btn-soft.btn-submit.w-100(type="submit")
-                  span.pending-spinner
+                  span.pending-spinner.me-1
                     i.fas.fa-spinner.fa-spin
                   | Envoyer

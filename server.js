@@ -1,5 +1,6 @@
 const fs = require('fs');
 const https = require('https');
+const crypto = require("crypto");
 
 const helmet = require('helmet')
 const morgan = require('morgan')
@@ -35,15 +36,23 @@ app.use(require('./middlewares/https'));
 app.use(require('./middlewares/domain'));
 
 //minimum security for HTTP headers
-app.use(helmet({contentSecurityPolicy: {
-  useDefaults: true,
-  directives:{
-    //allow here all the js cdn
-    scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com', "'nonce-CookieTAS-fE3Cr6E3v6'", "*.google-analytics.com","'unsafe-inline'","'unsafe-eval'"],
-    //allow here all the img source
-    imgSrc:["'self'", "data:", "*.google-analytics.com"]
-  }
-}}));
+app.use((req, res, next) => {
+  //the "nonce" variable must be set on all inline script tag's "nonce" attribute
+  res.locals.nonce = crypto.randomBytes(16).toString("hex");
+  next();
+}, (req, res, next) => {
+  helmet({
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives:{
+        //allow here all the js cdn
+        scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com',"*.google-analytics.com",`'nonce-${res.locals.nonce}'`],
+        //allow here all the img source
+        imgSrc:["'self'", "data:", "*.google-analytics.com"]
+      }
+    }
+  })(req, res, next);
+});
 
 //add compression
 app.use(compression());
@@ -71,12 +80,12 @@ app.use('/', require('./routes/router-test'));
 app.use('/graphql', require('./routes/router-graphql'));
 
 //404 (no route has been found)
-app.use(function(req, res, next){
+app.use((req, res, next) => {
  res.status(404).render('404', {url: req.url});
 });
 
 //Routing Error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   console.error(err.stack);
   if(req.xhr){
     res.status(500).json({success: false, error: 'internal_server_error'});
@@ -85,7 +94,7 @@ app.use(function(err, req, res, next) {
     res.status(500).render('500');
   }
 });
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   res.status(500).render('500');
 });
 

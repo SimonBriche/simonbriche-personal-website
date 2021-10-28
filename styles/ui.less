@@ -23,7 +23,8 @@
   @btn-size: 3px;
   border-radius: 0.75rem;
   transition: 0.1s all ease-in;
-
+  color: @main-color;
+  
   &, &:focus{
     background-color: @soft-bg-color;
     box-shadow: @shadow;
@@ -42,6 +43,8 @@
   transition: 0.2s background-color ease-in, 0.2s color ease-in;
   color: @red-color;
   font-size: 1.4rem;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 
   &, &:focus{
     background-color: rgba(255, 255, 255, 0.5);
