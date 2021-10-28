@@ -21,31 +21,49 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     messages:formMessages,
     submitHandler: function (form) {
-      $('.btn-submit', form).prop('disabled', 'disabled');
-      $('.btn-submit', form).addClass('pending');
+      const formElements = form.elements;
+      const btnSubmit = form.querySelector('.btn-submit');
+      btnSubmit.disabled = true;
+      btnSubmit.classList.add('pending');
       
-      $.post("/api/register", $(form).serialize(), null, "json")
-      .done(function(data) {
-        console.log("done");
-        console.log(data);
-        if(data.success === true){
-          window.CustomApp.showNotif('Le user a bien été créé.', 'success');
+      (async () => {
+        const query = `mutation sendContactMessage($input: ContactMessageInput){
+          sendContactMessage(input: $input)
+        }`;
+        
+        const res = await (await fetch(window.CustomApp.cdnURL+'/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            query,
+            variables: {
+              input: {
+                first_name: formElements.first_name.value,
+                last_name: formElements.last_name.value,
+                email: formElements.email.value,
+                message: formElements.message.value
+              }
+            }
+          })
+        })).json();
+        console.log('res', res);
+        if(!res.errors){
+          window.CustomApp.showNotif('Votre message a bien été envoyé.', 'success');
         }
         else{
-          if(formMessages[data.error]){
-            window.CustomApp.showNotif(formMessages[data.error], 'danger',false);
-          }
-          else{
-            window.CustomApp.setError(formMessages.unexpected, 'danger',false);
-          }
+          console.log('submit form failed', res.errors);
+          window.CustomApp.showNotif(formMessages.unexpected, 'danger');
         }
-      })
-      .fail(function() {
-        window.CustomApp.setError(formMessages.unexpected, 'danger',false);
-      })
-      .always(function() {
-        $('.btn-submit', form).prop('disabled', false);
-        $('.btn-submit', form).removeClass('pending');
+        btnSubmit.disabled = false;
+        btnSubmit.classList.remove('pending');
+      })().catch((e) => {
+        console.log('submit form failed', e);
+        window.CustomApp.showNotif(formMessages.unexpected, 'danger');
+        btnSubmit.disabled = false;
+        btnSubmit.classList.remove('pending');
       });
     }
   };

@@ -16,8 +16,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 //global configuration
-window.CustomApp = {};
+window.CustomApp = {
+  cdnURL: window.__CDN_URL
+};
 window.CustomApp.formMessages = {
+  unexpected: "Une erreur inconnue est survenue",
   last_name: "Votre nom est obligatoire.",
   first_name: "Votre prénom est obligatoire.",
   email: {
