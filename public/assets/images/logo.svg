@@ -1,34 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="240.004" height="360.4" viewBox="0 0 240.004 360.4">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="240.004" height="240.4" viewBox="0 0 240.004 240.4">
   <defs>
     <linearGradient id="linear-gradient" y1="0.254" x2="0.599" y2="1" gradientUnits="objectBoundingBox">
       <stop offset="0" stop-color="#dd4e4e"/>
       <stop offset="1" stop-color="#b12d29"/>
     </linearGradient>
     <linearGradient id="linear-gradient-2" x1="0" y1="0" x2="0.5" y2="1" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#dd4e4e"/>
+      <stop offset="1" stop-color="#676767"/>
+    </linearGradient>
   </defs>
-  <g id="square_4" data-name="square 4" transform="translate(-215.996 -400)">
+  <g id="square_4" data-name="square 4" transform="translate(-215.996 -520)">
     <g id="_9_contour" data-name="9 contour" transform="translate(216 520)" fill="none" stroke="#676767" stroke-width="16">
       <path d="M80,0h80a80,80,0,0,1,80,80V200a40,40,0,0,1-40,40H80A80,80,0,0,1,0,160V80A80,80,0,0,1,80,0Z" stroke="none"/>
       <path d="M80,8h80a72,72,0,0,1,72,72V200a32,32,0,0,1-32,32H80A72,72,0,0,1,8,160V80A72,72,0,0,1,80,8Z" fill="none"/>
     </g>
     <path id="Exclusion_1" data-name="Exclusion 1" d="M200.014,240.4v0c-.007-.025-.013-.394-.013-.4H80a80.591,80.591,0,0,1-16.123-1.625,79.562,79.562,0,0,1-28.606-12.037,80.233,80.233,0,0,1-28.984-35.2,79.59,79.59,0,0,1-4.662-15.017A80.587,80.587,0,0,1,0,160V80A77.478,77.478,0,0,1,13.279,35.664a80.328,80.328,0,0,1,9.52-11.6A82,82,0,0,1,48.8,6.4,80.333,80.333,0,0,1,63.887,1.649,77.807,77.807,0,0,1,79.762,0H80c7.92.06,15.429.091,22.319.091C111.11.092,116.786.042,120,0c.046,6.244.032,12.67,0,16-15.269.045-27.417,1.065-37.139,3.12-9.41,1.989-16.553,4.954-21.837,9.064A30.247,30.247,0,0,0,50.675,43.156C48.89,48.6,48.04,55.22,48,64a59.419,59.419,0,0,0,3.378,20.577A46.329,46.329,0,0,0,62.125,101.53c5.869,5.885,13.546,10.433,22.818,13.518C94.8,118.33,106.6,120,120,120a129.073,129.073,0,0,1,21.088,1.631,87.573,87.573,0,0,1,17.347,4.664,65.515,65.515,0,0,1,13.893,7.376,57.579,57.579,0,0,1,10.725,9.768,60.889,60.889,0,0,1,7.843,11.838,74.659,74.659,0,0,1,5.248,13.587A115.483,115.483,0,0,1,200,200c.086,36.217.039,40.316.015,40.4ZM116,144a28,28,0,1,0,0,56h36V172a27.977,27.977,0,0,0-28-28Z" transform="translate(216 519.999)" fill="url(#linear-gradient)"/>
     <path id="point_red" data-name="point red" d="M0,0H36A28,28,0,0,1,64,28v0A28,28,0,0,1,36,56H28A28,28,0,0,1,0,28V0A0,0,0,0,1,0,0Z" transform="translate(304 560)" fill="url(#linear-gradient-2)"/>
-    <g id="Groupe_1" data-name="Groupe 1">
-      <path id="Tracé_2" data-name="Tracé 2" d="M-141.255,260C-101.682,210.576-33.417,236.771-48,135.621" transform="translate(376 304.379)" fill="none" stroke="#dd4e4e" stroke-linejoin="round" stroke-width="16"/>
-      <path id="Tracé_9" data-name="Tracé 9" d="M-133.868,199.621c38.54.111,39.994-40.741,40-48" transform="translate(461.868 328.379)" fill="none" stroke="#dd4e4e" stroke-linejoin="round" stroke-width="16"/>
-      <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(304 400)" fill="none" stroke="#dd4e4e" stroke-width="16">
-        <circle cx="24" cy="24" r="24" stroke="none"/>
-        <circle cx="24" cy="24" r="16" fill="none"/>
-      </g>
-      <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(344 440)" fill="none" stroke="#dd4e4e" stroke-width="16">
-        <circle cx="24" cy="24" r="24" stroke="none"/>
-        <circle cx="24" cy="24" r="16" fill="none"/>
-      </g>
-      <g id="Ellipse_8" data-name="Ellipse 8" transform="translate(264 440)" fill="none" stroke="#dd4e4e" stroke-width="16">
-        <circle cx="24" cy="24" r="24" stroke="none"/>
-        <circle cx="24" cy="24" r="16" fill="none"/>
-      </g>
-      <path id="Tracé_11" data-name="Tracé 11" d="M-149.868,215.621c4.889-10.457,47.864-20.641,32-64" transform="translate(405.868 328.379)" fill="none" stroke="#dd4e4e" stroke-linejoin="round" stroke-width="16"/>
-    </g>
+    <rect id="Rectangle_3" data-name="Rectangle 3" width="29" height="16" transform="translate(336 520)" fill="url(#linear-gradient-3)"/>
   </g>
 </svg>
