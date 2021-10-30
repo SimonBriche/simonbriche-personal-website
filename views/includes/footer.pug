@@ -2,14 +2,15 @@ footer.footer-interface.max-width-container
   .links
     ul.list-unstyled.list-inline.text-end
       li.list-inline-item
-        a#tarteaucitronManager.btn-custom.btn-link(title="Gestion des cookies")
-          i.fas.fa-cookie-bite
+        a.btn-custom.btn-link(href="https://www.linkedin.com/in/simonbriche/" title="Mon profil LinkedIn" target="_blank" rel="noopener")
+          i.fab.fa-fw.fa-linkedin
       li.list-inline-item
-        a.btn-custom.btn-link(href="/data-policy" title="Données personnelles")
-          i.fas.fa-file-contract
-  
-
-  
+        a#tarteaucitronManager.btn-custom.btn-link(title="Gestion des cookies")
+          i.fas.fa-fw.fa-cookie-bite
+      li.list-inline-item
+        a.btn-custom.btn-link(href=`${cdnURL}/data-policy` title="Données personnelles")
+          i.fas.fa-fw.fa-file-contract
+      
 
 .footer-interface.max-width-container.buttons-interface
   button#btn-pending-footer.btn.btn-custom.btn-glass-floating.rounded-circle

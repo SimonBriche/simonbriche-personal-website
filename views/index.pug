@@ -8,26 +8,60 @@ block content
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-intro" aria-expanded="true" role="button" aria-controls="skill-intro")
         .property 
           |title: 
-          span.text-red "Introduction"
+          span.text-red "Simon BRICHE"
         .property 
           |description: 
-          span.text-red "Simon BRICHE"
+          span.text-red "Leitmotiv"
       .skill-content
         #skill-intro.collapse.show
           .property content: 
-          
-          button.btn.btn-custom.btn-soft.mx-3 Press me 
+          .soft.flat.text-left.my-2.p-3.mx-auto.rounded
+            p
+              |J'apporte mon expertise du monde de la production d'applications web avec un objectif principal : 
+              strong augmenter la productivité.
 
-          .soft.flat.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
-            |I'm flat
+            p 
+              |Aujourd'hui, avec la mise en place de méthodes et d'outils adaptés à l'organisation, j'assure la 
+              strong rentabilité et la stabilité 
+              |de toute la production technique de l'agence pour nos clients. J'interviens à toutes les phases du projet : de la prise de brief à la conception puis à la réalisation, ou en autonomie totale avec le client. 
+            p 
+              |Qu'il s'agisse de sites événementiels, bots conversationnels, Facebook Live ou d'autres solutions techniques innovantes, elles sont toutes faites 
+              strong sur-mesure 
+              |pour répondre au mieux à la demande du client.
 
-          .soft.flat.convexe.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
-            |I'm convexe
-          .soft.flat.concave.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
-            |I'm concave
-          .soft.text-center.m-3.p-5.mx-auto.rounded.shadow(style="width:300px")
-            |I'm floating
+            p 
+              strong
+                span.text-red Mon leitmotiv : 
+                |toujours utiliser les bons outils pour la bonne tâche.
+          //-.buttons
+            button.btn.btn-custom.btn-soft.mx-3 Press me 
 
+            .soft.flat.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
+              |I'm flat
+
+            .soft.flat.convexe.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
+              |I'm convexe
+            .soft.flat.concave.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
+              |I'm concave
+            .soft.text-center.m-3.p-5.mx-auto.rounded.shadow(style="width:300px")
+              |I'm floating
+
+
+    section.skill.mb-3
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button" aria-controls="skill-real")
+        .property 
+          |title: 
+          span.text-red "Réalisations"
+        .property 
+          |description: 
+          span.text-red "Aide à la productivité"
+      .skill-content
+        #skill-real.collapse.show
+          .property content: 
+          .position-relative
+            .inner-shadow.rounded
+            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll.my-3.pb-3
+              .__react-cmp.mx-auto(data-react-component="Gallery" data-section="sixpans")
 
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button" aria-controls="skill-real")
@@ -114,7 +148,7 @@ block content
                 h2.accordion-header(id="heading-"+stackItem.key)
                   button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#collapse-"+stackItem.key aria-expanded="false" aria-controls="collapse-"+stackItem.key)
                     .d-flex.align-items-center
-                      img.stack-logo.rounded-circle.me-2(src=`${cdnURL}/assets/images/stack/${stackItem.image}`)
+                      img.lazyload.fade.stack-logo.rounded-circle.me-2(data-src=`${cdnURL}/assets/images/stack/${stackItem.image}` alt=stackItem.name loading="lazy")
                       .stack
                         |#{stackItem.name}
                         .small #{stackItem.type}

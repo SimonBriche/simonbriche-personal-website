@@ -44,4 +44,4 @@ input PortfolioOrdering {
   sort: PortfolioSort!
   direction: Direction! = ASC
 }
-enum PortfolioSort { CREATED_AT }
+enum PortfolioSort { CREATED_AT, PRIORITY }

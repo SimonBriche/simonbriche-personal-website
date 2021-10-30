@@ -14,6 +14,11 @@ html, body{
 .bg-red{
   background: @red-color!important;
 }
+//used for lazyloaded images, emulaye the Bootstrap "show" class
+.lazyloaded {
+	opacity: 1!important;
+	transition: opacity 300ms;
+}
 
 .skill{
   .properties{
@@ -101,7 +106,7 @@ html, body{
   position: absolute;
   background-color: #fff;
   z-index: 1;
-  max-width: 200px;
+  max-width: 230px;
   font-size: 0.8rem;
   background: rgba(255, 255, 255, 0.8);
   transition: 0.3s all ease-out;
@@ -199,7 +204,7 @@ header{
     bottom: 1rem;
     .logo{
       width: 28px;
-      margin-bottom: 5px;
+      margin-bottom: 3px;
     }
   }
 }
@@ -233,10 +238,11 @@ footer{
   }
 
   .links ul{
-    margin: 0.5rem 6rem 0.5rem;
+    margin: 0.2rem 6rem 0.2rem;
     .btn-link{
       color: @grey-color;
       text-decoration: none;
+      font-size: 1.4rem;
       &:hover{
         color: darken(@grey-color, 10);
         text-decoration: underline;

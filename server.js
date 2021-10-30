@@ -46,7 +46,7 @@ app.use((req, res, next) => {
       useDefaults: true,
       directives:{
         //allow here all the js cdn
-        scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com',"*.google-analytics.com",`'nonce-${res.locals.nonce}'`],
+        scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com',"cdnjs.cloudflare.com","*.google-analytics.com",`'nonce-${res.locals.nonce}'`],
         //allow here all the img source
         imgSrc:["'self'", "data:", "*.google-analytics.com"]
       }

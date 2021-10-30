@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
-import { isBootstrapAvailable } from "../utils/Tools";
+import { useEffect, useState, useRef } from "react";
+import { isBootstrapAvailable, lazyLoadImages } from "../utils/Tools";
 
 const GalleryPostModal = (props) => {
+  const el = useRef(null);
   const bridge = props.bridgeEvent;
   const [modal, setModal] = useState(null);
   const [modalInfos, setModalInfos] = useState(null);
@@ -9,7 +10,7 @@ const GalleryPostModal = (props) => {
 
   useEffect(() => {
     if(isBootstrapAvailable("5")){      
-      setModal(new window.bootstrap.Modal(document.getElementById('modal-portfolio'),{
+      setModal(new window.bootstrap.Modal(el.current,{
         keyboard: false,
         backdrop: false
       }));
@@ -32,7 +33,7 @@ const GalleryPostModal = (props) => {
                   data {id, name, link, thumbnail}
                 }
               }`;
-              const res = await (await fetch(`/graphql?query=${encodeURIComponent(query)}`)).json();
+              const res = await (await fetch(`${process.env.REACT_APP_CDN_URL}/graphql?query=${encodeURIComponent(query)}`)).json();
               resolve(res.data.technologies.data);
             })().catch(reject);
           });
@@ -45,22 +46,29 @@ const GalleryPostModal = (props) => {
         //compute the technologies regarding the ist of IDs
         getTechnologies().then(technologies => {
           setTechnologies(e.detail.technology_ids.map(technologyId => technologies.find(item => item.id === technologyId)));
-        }, e => {console.log('fail to get technologies', e);});
+        })
+        .catch(e => {console.log('fail to get technologies', e);})
+        .finally(()=>{
+          lazyLoadImages(el.current);
+        });
         //show the modal and the close button
         modal.show();
+        el.current.addEventListener('hidden.bs.modal', function (event) {
+          setModalInfos(null);
+        }, {once: true});
         document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
       });
     }
   }, [bridge, modal]);
 
   return ( 
-    <div id="modal-portfolio" className="modal modal-interface fade" tabIndex="-1" aria-labelledby="modalPortfolio" aria-hidden="true">
+    <div id="modal-portfolio" className="modal modal-interface fade" tabIndex="-1" aria-labelledby="modalPortfolio" aria-hidden="true" ref={el}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-body">
             {modalInfos &&
               <div className="card portfolio-focus soft flat rounded border-0 mx-sm-auto">
-                <img className="card-img-top rounded-top" src={`${process.env.REACT_APP_CDN_URL}assets/images/gallery/${modalInfos.thumbnail}`} alt={modalInfos.name}/>
+                <img className="card-img-top rounded-top" src={`${process.env.REACT_APP_CDN_URL}/assets/images/gallery/${modalInfos.thumbnail}`} alt={modalInfos.name}/>
                 <div className="card-body bg-white rounded-bottom">
                   <h2 className="card-title text-red">
                     <strong>{modalInfos.name}</strong>
@@ -82,7 +90,7 @@ const GalleryPostModal = (props) => {
                     <div className="carousel-inner">
                       {modalInfos.images && modalInfos.images.map((image, index) => (
                         <div className={`carousel-item ${index === 0 ? "active" : ""}`} key={`carousel-image-${index}`}>
-                          <img className="d-block w-100" src={`${process.env.REACT_APP_CDN_URL}assets/images/gallery/${image}`} alt={`${modalInfos.client}-${index}`}/>
+                          <img className="d-block w-100 lazyload fade" data-src={`${process.env.REACT_APP_CDN_URL}/assets/images/gallery/${image}`} alt={`${modalInfos.client}-${index}`} loading="lazy"/>
                         </div>
                       ))}
                     </div>
@@ -116,7 +124,7 @@ const GalleryPostModal = (props) => {
                       <ul className="list-inline mb-0">
                         {technologies.map((technology, index) => (
                           <li className="list-inline-item" key={`carousel-technology-${index}`}>
-                            <img className="stack-logo bg-white rounded-circle me-2" src={`${process.env.REACT_APP_CDN_URL}assets/images/stack/${technology.thumbnail}`} alt={`${technology.name}-${index}`}/>
+                            <img className="stack-logo bg-white rounded-circle lazyload fade me-2 mb-2" data-src={`${process.env.REACT_APP_CDN_URL}/assets/images/stack/${technology.thumbnail}`} alt={`${technology.name}-${index}`} loading="lazy"/>
                           </li>
                         ))}
                       </ul>

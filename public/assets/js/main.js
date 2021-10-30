@@ -124,3 +124,22 @@ window.CustomApp.showNotif = function(message, context, delay, reloadPage){
     console.log('notif message is not a string nor a Element object');
   }
 }
+//handle native lazy loading for images if available
+if ('loading' in HTMLImageElement.prototype) {
+  const images = document.querySelectorAll("img.lazyload");
+  images.forEach(img => {
+    img.onload = function(){
+      if(this.classList){
+        //adding the 'show' class "nullify" the 'fade' class that is applied to lazyload img
+        this.classList.add('show')
+      }
+    };
+    img.src = img.dataset.src;
+  });
+} else {
+  // Dynamically import the LazySizes library
+  var script = document.createElement("script");
+  script.async = true;
+  script.src = "https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js";
+  document.body.appendChild(script);
+}
