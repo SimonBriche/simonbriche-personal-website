@@ -2,8 +2,9 @@ const fs = require('fs');
 const https = require('https');
 const crypto = require("crypto");
 
-const helmet = require('helmet')
-const morgan = require('morgan')
+const helmet = require('helmet');
+const morgan = require('morgan');
+const cors = require('cors');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const session = require('cookie-session');
@@ -53,6 +54,11 @@ app.use((req, res, next) => {
     }
   })(req, res, next);
 });
+
+//handle CORS
+app.use(cors({
+  origin: ['https://lunald.com']
+}));
 
 //add compression
 app.use(compression());
