@@ -31,30 +31,30 @@ module.exports = {
       companyName: "Simon BRICHE",
       websiteUrl: "http://sbriche.free.fr/",
       dpoEmail: "sbriche@free.fr",
-      privacyPolicyUrl: "/terms-fr_fr.pdf",
+      privacyPolicyUrl: "",
       companyContactEmail: "sbriche@free.fr",
-      companyAddress:"Nom compagnie<br>numéro rue<br>CODE_POSTAL VILLE",
+      companyAddress:"",
     },
     "en_en":{
       companyName: "Simon BRICHE",
       websiteUrl: "http://sbriche.free.fr/",
       dpoEmail: "sbriche@free.fr",
-      privacyPolicyUrl: "/terms.pdf",
+      privacyPolicyUrl: "",
       companyContactEmail: "sbriche@free.fr",
       companyAddress:"",
     },
     stats:{
       active: true,
       isGoogleAnalytics: true,
-      isGTM: true
+      isGTM: false
     },
     social:{
-      active: true,
+      active: false,
       isFacebook: true,
       isTwitter: true,
     },
     marketing:{
-      active: true,
+      active: false,
       isFacebookPixel: true,
       isLinkedInPixel: true,
       isGoogleAdwordsRemarketing: true

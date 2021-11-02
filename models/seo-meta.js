@@ -7,24 +7,30 @@ module.exports = {
     //global meta config
     base_url: baseURL_fr_fr,
     html: {
-      title : "Title",
-      description : "Description"
+      //opti 55c
+      title : "Consultant digital et Développement web - Simon BRICHE",
+      //opti 155c
+      description : "J'apporte mon expertise du monde de la production d'applications web développées sur-mesure avec un objectif principal : augmenter la productivité."
     },
     og: {
-      title: "Title OG",
-      description: "Description OG",
+      //between 40c and 50c
+      title: "Consultant digital et Développement web - Simon BRICHE",
+      //opti 60c, 200c max
+      description: "J'apporte mon expertise du monde de la production d'applications web développées sur-mesure avec un objectif principal : augmenter la productivité.",
       url: baseURL_fr_fr+"?v="+config.shareCacheVersion,
-      name: "Application Name",
+      name: "Simon BRICHE",
       type: "website",
       image: baseURL_fr_fr+"assets/images/share-fb.png?v="+config.shareCacheVersion,
       locale: "fr_FR"
     },
     twitter: {
       card: "summary_large_image",
-      title: "Title Twitter",
-      description: "Description Twitter",
-      site: "@username",
-      creator: "@username",
+      //between 40c and 50c, 70c max
+      title: "Consultant digital et Développement web - Simon BRICHE",
+      //opti 60c, 200c max
+      description: "J'apporte mon expertise du monde de la production d'applications web développées sur-mesure avec un objectif principal : augmenter la productivité.",
+      site: "@amanodev69",
+      creator: "@amanodev69",
       image: baseURL_fr_fr+"assets/images/share-tw.png?v="+config.shareCacheVersion
     },
     "test":{

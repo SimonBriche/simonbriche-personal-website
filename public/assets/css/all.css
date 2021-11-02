@@ -91,7 +91,7 @@ body {
 #graph-container {
   max-width: 500px;
 }
-#graph-container circle {
+#graph-container text {
   cursor: pointer;
 }
 #graph-tooltip {
@@ -101,8 +101,11 @@ body {
   z-index: 1;
   max-width: 230px;
   font-size: 0.8rem;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   transition: 0.3s all ease-out;
+}
+#graph-tooltip:focus {
+  outline: none;
 }
 .stack-logo {
   width: 30px;
