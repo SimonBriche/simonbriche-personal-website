@@ -49,7 +49,8 @@ app.use((req, res, next) => {
         //allow here all the js cdn
         scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com',"cdnjs.cloudflare.com","*.google-analytics.com",`'nonce-${res.locals.nonce}'`, config.applicationURL],
         //allow here all the img source
-        imgSrc:["'self'", "data:", "*.google-analytics.com", config.applicationURL]
+        imgSrc:["'self'", "data:", "*.google-analytics.com", config.applicationURL],
+        connectSrc:["'self'", config.applicationURL]
       }
     }
   })(req, res, next);
