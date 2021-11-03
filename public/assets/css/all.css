@@ -167,7 +167,7 @@ header .logo {
 .footer-interface.open {
   height: 110%;
 }
-.footer-interface.open #btn-profile {
+.footer-interface.open .btn-profile {
   display: none;
 }
 .footer-interface.open #btn-close-footer {

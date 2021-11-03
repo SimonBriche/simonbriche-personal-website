@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){
-      toggleGitTooltip(e, "Animation d'un workshop autour de la création d'applications mobile avec AIR pour e-ArtSup, École de création visuelle, Lille")
+      toggleGitTooltip(e, "Animation d'un workshop ‘Flash et applications mobiles’ pour e-ArtSup, École de création visuelle (groupe IONIS), Lille")
     }
   });
   master.commit({

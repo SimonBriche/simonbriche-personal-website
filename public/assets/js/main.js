@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     backdrop: false
   });
 
-  document.querySelector('#btn-profile').addEventListener('click', () => {
+  document.querySelectorAll('.btn-profile').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
     modalProfile.show();
-  }, false);
+  }, false));
   document.querySelector('#btn-close-footer').addEventListener('click', () => {
     document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
     document.querySelectorAll('.modal-interface').forEach(item => bootstrap.Modal.getInstance(item).hide())
