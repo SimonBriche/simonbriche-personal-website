@@ -9,6 +9,10 @@ body {
   background: url("/assets/images/bg-white-3.png");
   background-color: #F2F2F2;
 }
+a {
+  font-weight: 700;
+  color: #b12b28;
+}
 .text-red {
   color: #b12b28 !important;
 }
@@ -124,6 +128,21 @@ body {
   border-bottom-left-radius: 1.5rem !important;
   border-bottom-right-radius: 1.5rem !important;
 }
+.noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
 .soft {
   background-color: #f2f2f2;
   box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight), -0.2rem -0.2rem 0.5rem var(--white);
@@ -152,7 +171,7 @@ body {
   z-index: 1;
 }
 header .logo {
-  max-width: 10rem;
+  max-height: 10rem;
   filter: drop-shadow(-6px -2px 3px rgba(255, 255, 255, 0.8)) drop-shadow(6px 1px 7px rgba(0, 0, 0, 0.4));
 }
 .footer-interface {
@@ -225,12 +244,14 @@ footer:after {
 footer .links ul {
   margin: 0.2rem 6rem 0.2rem;
 }
-footer .links ul .btn-link {
+footer .links ul .btn-link,
+footer .links ul a.btn-link {
   color: #7e7e7e;
   text-decoration: none;
   font-size: 1.4rem;
 }
-footer .links ul .btn-link:hover {
+footer .links ul .btn-link:hover,
+footer .links ul a.btn-link:hover {
   color: #656565;
   text-decoration: underline;
 }
@@ -325,6 +346,9 @@ footer .links ul .btn-link:hover {
   100% {
     width: 100%;
   }
+}
+.social-networks {
+  font-size: 3rem;
 }
 .btn-custom {
   cursor: pointer;
@@ -469,9 +493,6 @@ footer .links ul .btn-link:hover {
   border-radius: 1.5rem !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
-#tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronCloseCross {
-  color: #333;
-}
 #tarteaucitronRoot #tarteaucitronAlertBig #tarteaucitronDisclaimerAlert {
   color: #333;
   font-size: 1rem;
@@ -498,21 +519,27 @@ footer .links ul .btn-link:hover {
 #tarteaucitronRoot #tarteaucitronAlertBig .tarteaucitronAlertBigBtnWrapper .tarteaucitronCTAButton#tarteaucitronCloseAlert {
   border-bottom-right-radius: 1.5rem !important;
 }
-#tarteaucitronRoot #tarteaucitronClosePanel {
+#tarteaucitronRoot #tarteaucitronClosePanel,
+#tarteaucitronRoot #tarteaucitronCloseCross {
   background: #FFFFFF !important;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  color: #4c4c4c !important;
+  color: #333 !important;
+  text-align: center;
   border: 2px solid #4c4c4c;
   outline: none!important;
   width: 20px !important;
   height: 20px !important;
-  top: 30px;
   right: 10px !important;
   font-size: 15px;
   padding: 0 !important;
   z-index: 1;
+  font-weight: 700;
+}
+#tarteaucitronRoot #tarteaucitronClosePanel#tarteaucitronClosePanel,
+#tarteaucitronRoot #tarteaucitronCloseCross#tarteaucitronClosePanel {
+  top: 30px;
 }
 #tarteaucitronRoot .tarteaucitronTitle {
   background: #FFF;

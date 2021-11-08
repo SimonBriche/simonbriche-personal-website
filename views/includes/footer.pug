@@ -38,18 +38,40 @@ footer.footer-interface.max-width-container
             h2.card-title.text-red 
               strong Simon BRICHE
             h6.text-red.mb-0 En résumé
-            .card-text.mb-3
-              |Développeur web professionnel depuis 2006 et passionné par le numérique depuis mon premier Amstrad CPC 6128, je suis spécialisé dans le développement d'applications interactives online.
-              |J'ai réuni ici quelques projets réalisés dans le cadre de mon activité professionnelle ou en tant que développeur indépendant sur le secteur de Lille (59).
-              |N'hésitez pas à prendre quelques minutes pour tester les projets en démonstration !
+            .card-text.mb-3 
+              p
+                strong Ma mission : 
+                |Améliorer la productivité d'une organisation en adaptant ses outils pour en faciliter l'utilisation via :
+                ul 
+                  li L'exploitation des APIs disponibles
+                  li L'analyse des usages pour proposer un workflow plus efficace
+                  li La fluidification des échanges entre les équipes
+                  li L'apport d'un regard neuf sur une organisation, l'identification des goulots d'étranglement et des solutions pour y remédier
+              p
+                |J'ai la conviction qu'une tâche répétitive, chronophage et sans valeur ajoutée doit pouvoir être automatisée pour rendre l'humain plus productif et épanoui dans sa mission. C'est pourquoi mis à part la pure production client, j'élabore et mets également en place différents outils pour :
+                ul 
+                  li l'amélioration de la performance des équipes dans leur quotidien
+                  li l'aide à la décision
+                  li la gestion des ressources humaines
+            
+            h6.text-red.mb-0 Plus particulièrement
+            .card-text.mb-3 
+              p J'aime explorer ce que proposent les APIs des différents services et outils pour en tirer le meilleur parti (ou simplement par curiosité). Je pars du principe qu'un même outil ne peut pas toujours répondre aux besoins spécifiques de tout le monde, et qu'on peut toujours optimiser les usages.
+              p J'aime également mettre en place des frameworks et des outils pour optimiser la productivité, et privilégie toujours la simplicité et l'accessibilité, ce qui rend l'onboarding d'un nouveau collaborateur plus aisé.
+            
             .text-center.mb-3
               a.btn.btn-custom.btn-soft.mx-auto(href=`${cdnURL}/cv-simon-briche.pdf` target="_blank") Voir mon CV
 
-            h6.text-red.mb-2 Contact
+            h6.text-red.mb-2 Retrouvez-moi sur
+            .text-center.social-networks
+              a.text-secondary(href="https://www.linkedin.com/in/simonbriche/" title="Mon profil LinkedIn" target="_blank" rel="noopener")
+                i.fab.fa-fw.fa-linkedin
+
+            h6.text-red.mb-2 Ou envoyez-moi un message
             form#form-contact.op1c-form
               .form-group.mb-3
                 .input-group
-                  span.input-group-text.text-secondary.px-3
+                  span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-users
                   .form-floating.form-floating-group.flex-grow-1
                     input#last_name.form-control.rounded-0.rounded-end(type="text" name="last_name" placeholder="Votre nom *" autocomplete="family-name" required)
@@ -57,7 +79,7 @@ footer.footer-interface.max-width-container
                 span.form-text
               .form-group.mb-3
                 .input-group
-                  span.input-group-text.text-secondary.px-3
+                  span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-user
                   .form-floating.form-floating-group.flex-grow-1
                     input#first_name.form-control.rounded-0.rounded-end(type="text" name="first_name" placeholder="Votre Prénom *" autocomplete="given-name" required)
@@ -65,7 +87,7 @@ footer.footer-interface.max-width-container
                 span.form-text
               .form-group.mb-3
                 .input-group
-                  span.input-group-text.text-secondary.px-3
+                  span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-paper-plane
                   .form-floating.form-floating-group.flex-grow-1
                     input#email.form-control.rounded-0.rounded-end(type="email" name="email" placeholder="Votre Email *" autocomplete="email" required)
@@ -73,7 +95,7 @@ footer.footer-interface.max-width-container
                 span.form-text
               .form-group.mb-3
                 .input-group
-                  span.input-group-text.text-secondary.px-3
+                  span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-comment
                   .form-floating.form-floating-group.flex-grow-1
                     textarea#message.form-control.rounded-0.rounded-end.h-auto(name="message" rows="5" placeholder="Votre message *" required)

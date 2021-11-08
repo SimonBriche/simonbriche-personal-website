@@ -8,6 +8,11 @@ html, body{
   background-color: @background-color;
 }
 
+a{
+  font-weight: 700;
+  color: @red-color;
+}
+
 .text-red{
   color: @red-color!important;
 }
@@ -131,7 +136,15 @@ html, body{
   border-bottom-left-radius: 1.5rem!important;
   border-bottom-right-radius: 1.5rem!important;
 }
-
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
 .soft{
   background-color: @soft-bg-color;
   .soft-box-shadow(1);
@@ -166,7 +179,7 @@ html, body{
 
 header{
   .logo{
-    max-width: 10rem;
+    max-height: 10rem;
     filter: drop-shadow(-6px -2px 3px rgba(255, 255, 255, 0.8)) drop-shadow(6px 1px 7px rgba(0, 0, 0, 0.4));
   }
 }
@@ -242,7 +255,8 @@ footer{
 
   .links ul{
     margin: 0.2rem 6rem 0.2rem;
-    .btn-link{
+    .btn-link, a.btn-link{
+
       color: @grey-color;
       text-decoration: none;
       font-size: 1.4rem;
