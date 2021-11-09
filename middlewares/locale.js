@@ -1,8 +1,8 @@
 const config = require('../config');
 
 //you MUST choose between domain or subfolder localization strategy
-let localeDomains = config.localeDomains;
-let localeSubfolders = config.localeSubfolders;
+let localeDomains = config.application.localeDomains;
+let localeSubfolders = config.application.localeSubfolders;
 
 if(localeDomains !== null){
   if(typeof localeDomains === 'string'){

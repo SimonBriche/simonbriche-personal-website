@@ -7,8 +7,8 @@ const config = require('../config');
  */
 module.exports = function(req, res, next) {
   if(config.production) {
-    if(config.redirectToDomain && req.hostname !== config.redirectToDomain) {
-      res.redirect(301, ((config.forceSSL) ? 'https://' : (req.protocol+'://')) + config.redirectToDomain + req.originalUrl);
+    if(config.application.redirectToDomain && req.hostname !== config.application.redirectToDomain) {
+      res.redirect(301, ((config.forceSSL) ? 'https://' : (req.protocol+'://')) + config.application.redirectToDomain + req.originalUrl);
     } else {
       next();
     }

@@ -29,7 +29,7 @@ module.exports = {
         //if we want autoPath
         if(!variables || (variables && variables.imagesAutoPath !== false)){
           //guess images absolute URL with ENV.APPLICATION_URL or ENV.REDIRECT_TO_DOMAIN
-          const applicationURL = (config.applicationURL || `https://${config.redirectToDomain}/`);
+          const applicationURL = (config.application.url || `https://${config.application.redirectToDomain}/`);
           if(applicationURL){
             //trim start of the path
             imagesPath = htmlLocation.substr(htmlLocation.indexOf('public/')).replace('public/','');

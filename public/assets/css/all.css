@@ -143,6 +143,9 @@ a {
   /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
+.overflow-scroll-x {
+  overflow-x: scroll!important;
+}
 .soft {
   background-color: #f2f2f2;
   box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight), -0.2rem -0.2rem 0.5rem var(--white);
@@ -657,6 +660,51 @@ footer .links ul a.btn-link:hover {
   height: 3rem;
   font-size: 1.5rem;
   box-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+}
+.gallery-container:hover .scroll-arrows {
+  opacity: 0.5;
+}
+.gallery-container .scroll-arrows {
+  pointer-events: none;
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+.gallery-container .scroll-arrows span {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-bottom: 2px solid #b12b28;
+  border-right: 2px solid #b12b28;
+  transform: rotate(45deg);
+  animation: animate-scroll-arrows 2s infinite;
+}
+.gallery-container .scroll-arrows span:nth-child(2) {
+  animation-delay: -0.2s;
+}
+.gallery-container .scroll-arrows span:nth-child(3) {
+  animation-delay: -0.4s;
+}
+@keyframes animate-scroll-arrows {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-20px, -20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(20px, 20px);
+  }
+}
+@media (hover: none) {
+  .gallery-container .scroll-arrows {
+    opacity: 0.5;
+  }
 }
 @media (min-width: 576px) {
   .portfolio-focus {
