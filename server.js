@@ -21,7 +21,9 @@ else{
   logger.error('_logger global variable name not available');
 }
 
+const ConfigModel = require('./models/config');
 const tools = require('./utils/tools');
+const MarvelLib = require('./lib/marvel');
 
 //Trust http proxy to work wiht services like Heroku
 app.enable('trust proxy');
@@ -113,10 +115,39 @@ app.use((err, req, res, next) => {
 //handle server events
 const serverListeningHandler = () => {
   logger.info(`Express server listening on port ${server.address().port} in ${app.settings.env} mode with ${config.application.useLocalSSLCert ? 'local' : 'managed'} SSL cert`);
-
+  
   if(config.application.keepAwake){
     tools.pingURL(config.application.url);
   }
+
+  if(config.marvel){
+    (async () => {
+      const marvelAccessToken = {public: config.marvel.publicKey, private: config.marvel.privateKey};
+      if(config.marvel.fetchCharacter){
+        const marvelCharacter = await MarvelLib.getRandomItem(marvelAccessToken, 'characters', true).catch(e => {
+          logger.error('Get Marvel character failed', e);
+          return null;
+        });
+        if(marvelCharacter){
+          logger.verbose('Get Marvel character', marvelCharacter);
+          await ConfigModel.set('MARVEL_CHARACTER', JSON.stringify(marvelCharacter)).catch(e => logger.error('Save Marvel character failed', e));
+        }
+      }
+      if(config.marvel.fetchComics){
+        const marvelComics = await MarvelLib.getRandomItem(marvelAccessToken, 'comics', true).catch(e => {
+          logger.error('Get Marvel comics failed', e);
+          return null;
+        });
+        if(marvelComics){
+          logger.verbose('Get Marvel comics', marvelComics);
+          await ConfigModel.set('MARVEL_COMICS', JSON.stringify(marvelComics)).catch(e => logger.error('Save Marvel comics failed', e));
+        }
+      }
+
+    })().catch(e => logger.error('Marvel connexion failed', e))
+  }
+  
+  
 }
 const serverErrorHandler = (e) => {
   logger.error("Express server failed", e);

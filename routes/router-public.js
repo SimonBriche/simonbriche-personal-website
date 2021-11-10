@@ -21,11 +21,19 @@ router.use(require('../middlewares/og-only'));
 router
 .get('/', reactLoader, function(req, res, next) {
   (async function response(){
-    const trophies = await ConfigModel.get('PSN_TROPHIES', true);
-    const randomTrophies = arrayUtil.shuffle(trophies).slice(0, 10);
+    const trophies = await ConfigModel.get('PSN_TROPHIES', true).catch(e => null);
+    const randomTrophies = (trophies) ? arrayUtil.shuffle(trophies).slice(0, 10) : null;
+    const marvelCharacter = await ConfigModel.get('MARVEL_CHARACTER', true).catch(e => null);
+    const marvelComics = await ConfigModel.get('MARVEL_COMICS', true).catch(e => null);
 
     //render template with data
-    res.render('index', {bodyClass: 'index', stackItems: StackItemsModel, trophies: randomTrophies});
+    res.render('index', {
+      bodyClass: 'index', 
+      stackItems: StackItemsModel, 
+      trophies: randomTrophies, 
+      marvelCharacter: marvelCharacter, 
+      marvelComics: marvelComics
+    });
   })().catch(err => next(err));
 })
 .get('/data-policy', reactLoader, function(req, res) {

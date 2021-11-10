@@ -78,8 +78,20 @@ module.exports = {
       'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/',
       '*.google-analytics.com'
     ],
-    imgSrc: ['*.google-analytics.com', 'image.api.playstation.com','i.ytimg.com'],
+    imgSrc: [
+      '*.google-analytics.com', //Google Analytics
+      'image.api.playstation.com', //PSN
+      'i.ytimg.com', //Youtube
+      'i.annihil.us' //Marvel
+    ],
     connectSrc: [],
     frameSrc: ['*.youtube-nocookie.com','*.youtube.com']
+  },
+  marvel: {
+    apiGateway: "https://gateway.marvel.com/v1/public/",
+    privateKey: ENV.MARVEL_PRIVATE_KEY,
+    publicKey: ENV.MARVEL_PUBLIC_KEY,
+    fetchCharacter: (ENV.MARVEL_FETCH_CHARACTER) ? (ENV.MARVEL_FETCH_CHARACTER === "true") : false,
+    fetchComics: (ENV.MARVEL_FETCH_COMICS) ? (ENV.MARVEL_FETCH_COMICS === "true") : false,
   }
 }

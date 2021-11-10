@@ -173,6 +173,10 @@ a {
   box-shadow: inset 0.2rem 0.2rem 0.5rem 0rem rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
+.marvel-thumbnail {
+  width: 150px;
+  box-shadow: 0.6rem 0.6rem 1.2rem var(--greyLight), -0.4rem -0.4rem 1rem var(--white);
+}
 header .logo {
   max-height: 10rem;
   filter: drop-shadow(-6px -2px 3px rgba(255, 255, 255, 0.8)) drop-shadow(6px 1px 7px rgba(0, 0, 0, 0.4));

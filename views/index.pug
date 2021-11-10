@@ -184,6 +184,41 @@ block content
                 span 
                 span 
                 span
+
+    if marvelCharacter || marvelComics
+      section.skill.mb-3
+        .properties(data-bs-toggle="collapse" data-bs-target="#skill-hobby" aria-expanded="true" role="button" aria-controls="skill-hobby")
+          .property 
+            |title: 
+            span.text-red "BONUS : 1 jour - 1 personnage - 1 comics"
+          .property 
+            |description: 
+            span.text-red "J'aime les comics et les mangas, mais aussi partager mes passions ! Je vous propose donc de découvrir chaque jour un personnage et un comics Marvel au hasard 🎁"
+        .skill-content
+          #skill-hobby.collapse.show
+            .property content: 
+            .position-relative
+              .row.align-items-center
+                if marvelCharacter
+                  .col-12.col-md-4
+                    .soft.flat.text-left.my-2.p-3.mx-auto.rounded.text-center
+                      img.marvel-thumbnail.lazyload.fade.rounded-circle.mb-3(data-src=marvelCharacter.thumbnail alt=marvelCharacter.name loading="lazy")
+                      h2.text-red #{marvelCharacter.name}
+                      if marvelCharacter.description 
+                        p #{marvelCharacter.description}
+                if marvelComics
+                  .col-12.col-md-8
+                    .soft.flat.text-left.my-2.p-3.mx-auto.rounded
+                      .row.align-items-center
+                        .col-4
+                          img.soft.img-fluid.lazyload.fade.rounded(data-src=marvelComics.thumbnail alt=marvelComics.name loading="lazy")
+                        .col-8 
+                          h2.text-red #{marvelComics.name}
+                          if marvelComics.description 
+                            p #{marvelComics.description}
+    .text-center.mb-5
+      .btn.btn-custom.btn-soft.btn-profile.mx-auto Voir ce que j'aime faire
+
 block page-outer-content
   .__react-cmp(data-react-component="GalleryPostModal")
 
