@@ -23,100 +23,6 @@ a {
   opacity: 1!important;
   transition: opacity 300ms;
 }
-.skill .properties {
-  position: relative;
-  padding-left: 1rem;
-  font-family: 'Source Code Pro', monospace;
-  color: #7e7e7e;
-  cursor: pointer;
-  transition: 0.1s all ease-in;
-}
-.skill .properties:before,
-.skill .properties:after {
-  content: "{";
-  position: absolute;
-  transition: 0.1s all ease-in;
-  font-size: 4rem;
-  line-height: 0.6;
-  color: #f2f2f2;
-  text-shadow: -8px -8px 12px rgba(255, 255, 255, 0.4), 8px 8px 12px rgba(0, 0, 0, 0.08);
-  text-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
-}
-.skill .properties:before {
-  content: "{";
-  top: 0;
-  left: -1rem;
-}
-.skill .properties:after {
-  content: "v";
-  opacity: 0;
-  font-size: 2rem;
-  top: 1rem;
-  left: -0.2rem;
-}
-.skill .properties:hover,
-.skill .properties.collapsed {
-  padding-left: 3rem;
-}
-.skill .properties:hover:after,
-.skill .properties.collapsed:after {
-  opacity: 1;
-}
-.skill .properties:hover:before,
-.skill .properties.collapsed:before {
-  left: 1rem;
-}
-.skill .properties.collapsed:after {
-  content: ">";
-}
-.skill .property {
-  font-family: 'Source Code Pro', monospace;
-  color: #7e7e7e;
-}
-.skill .skill-content {
-  position: relative;
-  border-left: 1px solid #cbcbcb;
-  margin: 1rem 0 6rem 0.5rem;
-  padding-left: 1rem;
-}
-.skill .skill-content:after {
-  content: "},";
-  position: absolute;
-  bottom: -3rem;
-  left: -0.5rem;
-  font-size: 4rem;
-  line-height: 0.6;
-  color: #f2f2f2;
-  text-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
-}
-.skill:last-child .skill-content:after {
-  content: "}";
-}
-#graph-container {
-  max-width: 500px;
-}
-#graph-container text {
-  cursor: pointer;
-}
-#graph-tooltip {
-  pointer-events: none;
-  position: absolute;
-  background-color: #fff;
-  z-index: 1;
-  max-width: 230px;
-  font-size: 0.8rem;
-  background: rgba(255, 255, 255, 0.9);
-  transition: 0.3s all ease-out;
-}
-#graph-tooltip:focus {
-  outline: none;
-}
-.stack-logo {
-  width: 30px;
-  height: 30px;
-  background-color: #f2f2f2;
-  box-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
-}
 .rounded {
   border-radius: 1.5rem !important;
 }
@@ -127,6 +33,9 @@ a {
 .rounded-bottom {
   border-bottom-left-radius: 1.5rem !important;
   border-bottom-right-radius: 1.5rem !important;
+}
+.youtube_player iframe {
+  border-radius: 1.5rem !important;
 }
 .noselect {
   -webkit-touch-callout: none;
@@ -172,10 +81,6 @@ a {
   height: 100%;
   box-shadow: inset 0.2rem 0.2rem 0.5rem 0rem rgba(0, 0, 0, 0.2);
   z-index: 1;
-}
-.marvel-thumbnail {
-  width: 150px;
-  box-shadow: 0.6rem 0.6rem 1.2rem var(--greyLight), -0.4rem -0.4rem 1rem var(--white);
 }
 header .logo {
   max-height: 10rem;
@@ -608,6 +513,104 @@ footer .links ul a.btn-link:hover {
     border-right: 1px solid #ccc;
     padding-top: 5px!important;
   }
+}
+.skill .properties {
+  position: relative;
+  padding-left: 1rem;
+  font-family: 'Source Code Pro', monospace;
+  color: #7e7e7e;
+  cursor: pointer;
+  transition: 0.1s all ease-in;
+}
+.skill .properties:before,
+.skill .properties:after {
+  content: "{";
+  position: absolute;
+  transition: 0.1s all ease-in;
+  font-size: 4rem;
+  line-height: 0.6;
+  color: #f2f2f2;
+  text-shadow: -8px -8px 12px rgba(255, 255, 255, 0.4), 8px 8px 12px rgba(0, 0, 0, 0.08);
+  text-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+}
+.skill .properties:before {
+  content: "{";
+  top: 0;
+  left: -1rem;
+}
+.skill .properties:after {
+  content: "v";
+  opacity: 0;
+  font-size: 2rem;
+  top: 1rem;
+  left: -0.2rem;
+}
+.skill .properties:hover,
+.skill .properties.collapsed {
+  padding-left: 3rem;
+}
+.skill .properties:hover:after,
+.skill .properties.collapsed:after {
+  opacity: 1;
+}
+.skill .properties:hover:before,
+.skill .properties.collapsed:before {
+  left: 1rem;
+}
+.skill .properties.collapsed:after {
+  content: ">";
+}
+.skill .property {
+  font-family: 'Source Code Pro', monospace;
+  color: #7e7e7e;
+}
+.skill .skill-content {
+  position: relative;
+  border-left: 1px solid #cbcbcb;
+  margin: 1rem 0 6rem 0.5rem;
+  padding-left: 1rem;
+}
+.skill .skill-content:after {
+  content: "},";
+  position: absolute;
+  bottom: -3rem;
+  left: -0.5rem;
+  font-size: 4rem;
+  line-height: 0.6;
+  color: #f2f2f2;
+  text-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+}
+.skill:last-child .skill-content:after {
+  content: "}";
+}
+#graph-container {
+  max-width: 500px;
+}
+#graph-container text {
+  cursor: pointer;
+}
+#graph-tooltip {
+  pointer-events: none;
+  position: absolute;
+  background-color: #fff;
+  z-index: 1;
+  max-width: 230px;
+  font-size: 0.8rem;
+  background: rgba(255, 255, 255, 0.9);
+  transition: 0.3s all ease-out;
+}
+#graph-tooltip:focus {
+  outline: none;
+}
+.stack-logo {
+  width: 30px;
+  height: 30px;
+  background-color: #f2f2f2;
+  box-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+}
+.marvel-thumbnail {
+  width: 150px;
+  box-shadow: 0.6rem 0.6rem 1.2rem var(--greyLight), -0.4rem -0.4rem 1rem var(--white);
 }
 .gallery-item {
   width: 200px;

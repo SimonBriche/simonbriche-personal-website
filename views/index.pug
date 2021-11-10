@@ -210,9 +210,10 @@ block content
                   .col-12.col-md-8
                     .soft.flat.text-left.my-2.p-3.mx-auto.rounded
                       .row.align-items-center
-                        .col-4
-                          img.soft.img-fluid.lazyload.fade.rounded(data-src=marvelComics.thumbnail alt=marvelComics.name loading="lazy")
-                        .col-8 
+                        .col-12.col-sm-4.text-center
+                          a(href=marvelComics.link target="_blank" ref="noopener")
+                            img.soft.img-fluid.lazyload.fade.rounded.mb-3.mb-sm-0(data-src=marvelComics.thumbnail alt=marvelComics.name loading="lazy")
+                        .col-12.col-sm-8 
                           h2.text-red #{marvelComics.name}
                           if marvelComics.description 
                             p #{marvelComics.description}
