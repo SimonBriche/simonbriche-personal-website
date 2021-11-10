@@ -586,6 +586,9 @@ footer .links ul a.btn-link:hover {
 #tarteaucitronRoot #tarteaucitronServices .tarteaucitronBorder > ul > li {
   background: #FFF;
 }
+.tac_activate .tac_float .tarteaucitronAllow {
+  background-color: #27ae60 !important;
+}
 @media (min-width: 768px) {
   #tarteaucitronRoot #tarteaucitronAlertBig {
     width: 50%!important;

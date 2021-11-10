@@ -53,7 +53,9 @@ app.use((req, res, next) => {
         //allow here all the img sources
         imgSrc:["'self'", "data:", config.application.url].concat(config.cspDirectives.imgSrc),
         //allow here all the connect sources (ajax/fetch requests)
-        connectSrc:["'self'", config.application.url].concat(config.cspDirectives.connectSrc)
+        connectSrc:["'self'", config.application.url].concat(config.cspDirectives.connectSrc),
+        //allow here all the connect sources (ajax/fetch requests)
+        frameSrc:["'self'", config.application.url].concat(config.cspDirectives.frameSrc)
       }
     }
   })(req, res, next);

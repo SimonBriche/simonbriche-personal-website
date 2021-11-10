@@ -68,7 +68,7 @@ footer.footer-interface.max-width-container
                 i.fab.fa-fw.fa-linkedin
 
             h6.text-red.mb-2 Ou envoyez-moi un message
-            form#form-contact.op1c-form
+            form#form-contact.op1c-form.mb-3
               .form-group.mb-3
                 .input-group
                   span.input-group-text.text-secondary
@@ -107,3 +107,42 @@ footer.footer-interface.max-width-container
                   span.pending-spinner.me-1
                     i.fas.fa-spinner.fa-spin
                   | Envoyer
+            h6.text-red.mb-0 Et sinon ?
+            .card-text.mb-3 
+              p Passionné de jeux vidéos depuis mon premier Amstrad CPC 6128, je joue aujourd'hui sur PS4 (même si je ne suis pas non plus dans la course aux trophées 😄 ). 
+              p Gamer de longue date donc, je loue les créateurs et contributeurs de RetroArch pour me permettre de faire du rétrogaming et jouer aux titres qui ne m'étaient pas accessibles à l'époque (ou qui ne passaient pas le 2ème CD, merci Valkyrie Profile).
+            if trophies && trophies.length > 0
+              p Voici une liste random de jeux que j'ai pu faire (ou tester) sur PS3 et PS4.
+              .position-relative
+                .inner-shadow.rounded
+                .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
+                  ul.list-unstyled.text-nowrap.d-flex.align-items-stretch
+                    each trophy in trophies
+                      li.d-inline-block.mb-3
+                        .card.gallery-item.noselect.mt-3.mx-3.rounded.border-0.shadow.h-100
+                          img.card-img-top.rounded-top.lazyload.fade.show(data-src=trophy.image alt=trophy.title loading="lazy")
+                          .card-body.text-start.rounded-bottom.pb-0
+                            ul.list-unstyled.text-wrap
+                              li
+                                h5.mb-0
+                                  small titre: 
+                                  span.text-red #{trophy.title}
+                              if trophy.earnedTrophies
+                                li 
+                                  small trophies: 
+                                  ul.list-unstyled.d-flex.align-items-stretch.pt-1
+                                    each earnedTrophyKey in Object.keys(trophy.earnedTrophies)
+                                      li.d-inline-block.text-center.mb-3.px-1
+                                        img.img-fluid(src=`${cdnURL}/assets/images/trophy-${earnedTrophyKey}.png` alt=earnedTrophyKey)
+                                        small.d-block.text-grey #{trophy.earnedTrophies[earnedTrophyKey]}
+                          
+                  .scroll-arrows
+                    span 
+                    span 
+                    span
+            .card-text.mb-3 
+              p Je suis également ceinture noire 1er Dan d'Aïkido 🥋
+              .youtube_player.ratio.ratio-16x9(videoID="b3by13l_YTs")
+            .card-text.mb-3 
+              p Et j'adore faire du snowboard 🏂
+              .youtube_player.ratio.ratio-16x9(videoID="xAnjDKUxp1I")

@@ -78,7 +78,8 @@ module.exports = {
       'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/',
       '*.google-analytics.com'
     ],
-    imgSrc: ["*.google-analytics.com"],
+    imgSrc: ['*.google-analytics.com', 'image.api.playstation.com','i.ytimg.com'],
     connectSrc: [],
+    frameSrc: ['*.youtube-nocookie.com','*.youtube.com']
   }
 }
