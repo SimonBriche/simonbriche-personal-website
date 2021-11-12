@@ -45,7 +45,7 @@ app.use(compression());
 
 //handle CORS
 app.use(cors({
-  origin: ['https://lunald.com','https://simonbriche.lunald.com']
+  origin: ['https://simonbriche.lunald.com','https://simonbriche.dev','https://www.simonbriche.dev']
 }));
 
 //minimum security for HTTP headers
