@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.1",
