@@ -106,6 +106,21 @@
     background-image: none;
   }
 }
+@media (max-width: 575px) {
+  //prevent Chrome for Android to scroll down to the modal on text input
+  .modal-dialog-scrollable-mobile{
+    height: 100%;
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+    .modal-content{
+      max-height: 100%;
+      overflow: hidden;
+      .modal-body{
+        overflow-y: auto;
+      }
+    }
+  }
+}
 @media (hover: hover) {
   .btn-soft{
     &:hover, &:hover:focus{

@@ -29,7 +29,7 @@ footer.footer-interface.max-width-container
     .toast-body
 
 #modal-profile.modal.modal-interface.fade(tabindex="-1" aria-labelledby="modalFooter" aria-hidden="true")
-  .modal-dialog
+  .modal-dialog.modal-dialog-scrollable-mobile
     .modal-content
       .modal-body
         .card.portfolio-focus.soft.flat.rounded.border-0.mx-sm-auto
@@ -70,36 +70,36 @@ footer.footer-interface.max-width-container
             h6.text-red.mb-2 Ou envoyez-moi un message
             form#form-contact.op1c-form.mb-5
               .form-group.mb-3
-                .input-group
+                .input-group.flex-nowrap
                   span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-users
-                  .form-floating.form-floating-group.flex-grow-1
+                  .form-floating.form-floating-group.flex-grow-1.overflow-hidden
                     input#last_name.form-control.rounded-0.rounded-end(type="text" name="last_name" placeholder="Votre nom *" autocomplete="family-name" required)
-                    label(for="last_name") Votre Nom *
+                    label.text-nowrap(for="last_name") Votre Nom *
                 span.form-text
               .form-group.mb-3
-                .input-group
+                .input-group.flex-nowrap
                   span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-user
-                  .form-floating.form-floating-group.flex-grow-1
+                  .form-floating.form-floating-group.flex-grow-1.overflow-hidden
                     input#first_name.form-control.rounded-0.rounded-end(type="text" name="first_name" placeholder="Votre Prénom *" autocomplete="given-name" required)
-                    label(for="first_name") Votre Prénom *
+                    label.text-nowrap(for="first_name") Votre Prénom *
                 span.form-text
               .form-group.mb-3
-                .input-group
+                .input-group.flex-nowrap
                   span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-paper-plane
-                  .form-floating.form-floating-group.flex-grow-1
+                  .form-floating.form-floating-group.flex-grow-1.overflow-hidden
                     input#email.form-control.rounded-0.rounded-end(type="email" name="email" placeholder="Votre Email *" autocomplete="email" required)
-                    label(for="email") Email *
+                    label.text-nowrap(for="email") Email *
                 span.form-text
               .form-group.mb-3
-                .input-group
+                .input-group.flex-nowrap
                   span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-comment
-                  .form-floating.form-floating-group.flex-grow-1
+                  .form-floating.form-floating-group.flex-grow-1.overflow-hidden
                     textarea#message.form-control.rounded-0.rounded-end.h-auto(name="message" rows="5" placeholder="Votre message *" required)
-                    label(for="message") Message *
+                    label.text-nowrap(for="message") Message *
                 span.form-text
                 
               .form-group.mt-3
