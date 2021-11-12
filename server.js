@@ -65,7 +65,7 @@ app.use((req, res, next) => {
 
 //handle CORS
 app.use(cors({
-  origin: ['https://lunald.com']
+  origin: ['https://lunald.com','https://simonbriche.lunald.com']
 }));
 
 //add compression
