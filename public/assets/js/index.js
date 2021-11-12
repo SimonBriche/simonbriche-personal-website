@@ -34,15 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const master = gitgraph.branch("master");
   
   develop.commit({
-    subject: "Formation initiale",
-    style:{
-      message:{
-        font: interactiveMessageFont
-      }
-    },
-    onMessageClick: function(e){
-      toggleGitTooltip(e, "Lycée Henri Martin, Saint-Quentin (02)")
-    }
+    subject: "Formation initiale"
   });
 
   master.merge({
@@ -74,7 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){
-      toggleGitTooltip(e, "Mathématiques, Informatique et Science de l’Ingénieur, Lycée Louis Thuillier, Amiens")
+      toggleGitTooltip(e, `Cours Préparatoires aux Grandes Écoles (CPGE), Lycée Louis Thuillier, Amiens
+      <br>Filière Mathématiques, Informatique et Science de l’Ingénieur (MPSI) 
+      <br>Option Programmation`)
     }
   });
   const feature = develop.branch("feature");
@@ -86,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){
-      toggleGitTooltip(e, `Ecole Supérieure d'Art et de Design, Amiens : 
+      toggleGitTooltip(e, `Ecole Supérieure d'Art et de Design (ESAD), Amiens : 
       <br>- Modèle vivant
       <br>- Nature morte
       <br>- Peinture
@@ -96,7 +90,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   develop.commit({
-    subject: "2001 - DEUG MIAS 1"
+    subject: "2001 - DEUG MIAS 1",
+    style:{
+      message:{
+        font: interactiveMessageFont
+      }
+    },
+    onMessageClick: function(e){
+      toggleGitTooltip(e, `Diplôme d'Études Universitaires Générales (DEUG), Amiens
+      <br> Filière Mathématiques et Informatique Appliquées aux Sciences (MIAS)`)
+    }
   });
   develop.commit({
     subject: "2002 - DEUG MIAS 2"
@@ -127,7 +130,14 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){
-      toggleGitTooltip(e, "Ingénierie des Arts de l'Image et du Spectacle Vivant, UVHC, Valenciennes")
+      toggleGitTooltip(e, `Institut universitaire professionnalisé (IUP), UVHC, Valenciennes
+      <br> Filière Ingénierie des Arts de l'Image et du Spectacle Vivant (IAISV)
+      <br>- Arts numériques : Photoshop, Illustrator, Flash, 3DS Max, programmation interactive
+      <br>- Production vidéo : prise de vue, montage (Première, Final Cut), effets spéciaux (After Effects)
+      <br>- Spectacle vivant : scénographie, scénario, costumes, réalisation de courts-métrages
+      <br>- Arts plastiques : dessin, peinture, modèle vivant, sculpture, photographie argentique (prise de vue et développement)
+      <br>- Cours théoriques : histoire de l'art, histoire de la musique, ésthétique de la photographie, droits de l'image
+      `)
     }
   })
   develop.commit({
@@ -146,14 +156,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   develop.commit({
-    subject: "2006 - Master 2 (M2) Médias Interactifs",
+    subject: "2006 - Master 2 Médias Interactifs",
     style:{
       message:{
         font: interactiveMessageFont
       }
     },
     onMessageClick: function(e){
-      toggleGitTooltip(e, "UVHC, Valenciennes")
+      toggleGitTooltip(e, `Master 2 Médias Interactifs, UVHC, Valenciennes
+      <br>- Techniques de gestion de projets et d'entreprise
+      <br>- Vidéo interactive
+      <br>- Programmation web
+      `)
     }
   })
   master.commit({
@@ -173,8 +187,17 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){
-      toggleGitTooltip(e, `Stage, puis membre de l'équipe de développement, puis Lead Developer à Touche Etoile, Roubaix :
-      Garant de la qualité technique des applications, architecte des frameworks internes, référent technique best practices pour les nouveaux développeurs, consultant technique en déplacement client, gestion technique des projets, estimation des temps à passer pour devis client`)
+      toggleGitTooltip(e, `Agence Touche Etoile, Roubaix
+      <br>- Stage puis
+      <br>- Membre de l'équipe de développement puis
+      <br>- Lead Developer
+      <br>- Garant de la qualité technique des applications
+      <br>- Architecte des frameworks internes
+      <br>- Référent technique best practices pour les nouveaux développeurs
+      <br>- Consultant technique en déplacement client
+      <br>- Gestion technique des projets
+      <br>- Estimation des temps à passer pour devis client
+      `)
     }
   }).tag("v2.1.0")
   develop.merge({
@@ -191,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){toggleGitTooltip(e, 
-      `Formateur Flash / AS3 pour les 3è année du cursus Chef de Projet à CEPRECO, CCI Grand Lille, Roubaix :
+      `Formateur Flash / AS3 pour les 3è année du cursus Chef de Projet à CEPRECO, CCI Grand Lille, Roubaix
       <br>- Réalisation du plan de cours et de l'évolution
       <br>- Prise en main du logiciel
       <br>- Réalisation d'animations interactives
@@ -228,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){toggleGitTooltip(e, 
-      `Formateur Javascript pour les 3è année du cursus Chef de Projet à CEPRECO, CCI Grand Lille, Roubaix :
+      `Formateur Javascript pour les 3è année du cursus Chef de Projet à CEPRECO, CCI Grand Lille, Roubaix
       <br>- Réalisation du plan de cours et de l'évolution
       <br>- Sensibilisation à la relation client <-> serveur
       <br>- Initiation à la programmation avec javascript
@@ -256,7 +279,13 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){
-      toggleGitTooltip(e, "Responsable de la production technique et R&D à OP1C, Roubaix")
+      toggleGitTooltip(e, `Responsable de la production technique et R&D à OP1C, Roubaix
+      <br>- Prise de brief, estimation, conception et réalisation des applications
+      <br>- Animation des équipes
+      <br>- Architecture des frameworks internes
+      <br>- Applications internes pour l'amélioration de la performance des équipes, l'aide à la décision, la gestion des ressources humaines
+      <br>- R&D
+      `)
     }
   }).tag("v2.2.0");
   develop.merge({
@@ -293,7 +322,12 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     },
     onMessageClick: function(e){
-      toggleGitTooltip(e, "Organisation de la mise en oeuvre du RGPD au sein de l'agence en élaborant les grandes lignes des différentes politiques (PSSI, PAS, Classification des données, ...) et des différents registres (assets, fiches de traitement de la donnée personnelle, ...). Sensibilisation des équipes aux bonnes pratiques de la protection des données personnelles.")
+      toggleGitTooltip(e, `
+      <br>- Organisation de la mise en oeuvre du RGPD au sein de l'agence
+      <br>- Élaboration des grandes lignes des différentes politiques (PSSI, PAS, Classification des données, ...)
+      <br>- Mise en place des différents registres (assets, fiches de traitement de la donnée personnelle, ...)
+      <br>- Sensibilisation des équipes aux bonnes pratiques de la protection des données personnelles.
+      `)
     }
   }).tag("v2.3.0");
   develop.merge({

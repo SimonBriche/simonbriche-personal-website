@@ -13,13 +13,17 @@ const express = require('express');
 const config = require('./config');
 
 const app = express();
-const {logger} = require('./utils/log')
+const {logger} = require('./utils/log');
 if(!global['_logger']){
   global._logger = logger;
 }
 else{
   logger.error('_logger global variable name not available');
 }
+
+const ConfigModel = require('./models/config');
+const tools = require('./utils/tools');
+const MarvelLib = require('./lib/marvel');
 
 //Trust http proxy to work wiht services like Heroku
 app.enable('trust proxy');
@@ -47,10 +51,13 @@ app.use((req, res, next) => {
       useDefaults: true,
       directives:{
         //allow here all the js cdn
-        scriptSrc:["'self'",'cdn.jsdelivr.net','code.jquery.com',"cdnjs.cloudflare.com","*.google-analytics.com",`'nonce-${res.locals.nonce}'`, config.applicationURL],
-        //allow here all the img source
-        imgSrc:["'self'", "data:", "*.google-analytics.com", config.applicationURL],
-        connectSrc:["'self'", config.applicationURL]
+        scriptSrc:["'self'",`'nonce-${res.locals.nonce}'`, config.application.url].concat(config.cspDirectives.scriptSrc),
+        //allow here all the img sources
+        imgSrc:["'self'", "data:", config.application.url].concat(config.cspDirectives.imgSrc),
+        //allow here all the connect sources (ajax/fetch requests)
+        connectSrc:["'self'", config.application.url].concat(config.cspDirectives.connectSrc),
+        //allow here all the connect sources (ajax/fetch requests)
+        frameSrc:["'self'", config.application.url].concat(config.cspDirectives.frameSrc)
       }
     }
   })(req, res, next);
@@ -65,13 +72,13 @@ app.use(cors({
 app.use(compression());
 
 //store the session information in a cookie named '_session'
-app.use(cookieParser(config.cookieSecret));
+app.use(cookieParser(config.application.cookieSecret));
 app.use(session({
   name: '_session',
   httpOnly: true,
   maxAge: null,
-  secret: [config.sessionSecret],
-  secure: config.forceSSLRedirection
+  secret: [config.application.sessionSecret],
+  secure: config.application.forceSSLRedirection
 }));
 
 //Routing
@@ -105,18 +112,55 @@ app.use((err, req, res, next) => {
   res.status(500).render('500');
 });
 
+//handle server events
+const serverListeningHandler = () => {
+  logger.info(`Express server listening on port ${server.address().port} in ${app.settings.env} mode with ${config.application.useLocalSSLCert ? 'local' : 'managed'} SSL cert`);
+  
+  if(config.application.keepAwake){
+    tools.pingURL(config.application.url);
+  }
+
+  if(config.marvel){
+    (async () => {
+      const marvelAccessToken = {public: config.marvel.publicKey, private: config.marvel.privateKey};
+      if(config.marvel.fetchCharacter){
+        const marvelCharacter = await MarvelLib.getRandomItem(marvelAccessToken, 'characters', true).catch(e => {
+          logger.error('Get Marvel character failed', e);
+          return null;
+        });
+        if(marvelCharacter){
+          logger.verbose('Get Marvel character', marvelCharacter);
+          await ConfigModel.set('MARVEL_CHARACTER', JSON.stringify(marvelCharacter)).catch(e => logger.error('Save Marvel character failed', e));
+        }
+      }
+      if(config.marvel.fetchComics){
+        const marvelComics = await MarvelLib.getRandomItem(marvelAccessToken, 'comics', true).catch(e => {
+          logger.error('Get Marvel comics failed', e);
+          return null;
+        });
+        if(marvelComics){
+          logger.verbose('Get Marvel comics', marvelComics);
+          await ConfigModel.set('MARVEL_COMICS', JSON.stringify(marvelComics)).catch(e => logger.error('Save Marvel comics failed', e));
+        }
+      }
+
+    })().catch(e => logger.error('Marvel connexion failed', e))
+  }
+  
+  
+}
+const serverErrorHandler = (e) => {
+  logger.error("Express server failed", e);
+}
+
 //create the server and listen to traffic
 let server;
-if(config.useLocalSSLCert){
+if(config.application.useLocalSSLCert){
   server = https.createServer({
     key: fs.readFileSync('./keys/localhost.key'),
     cert: fs.readFileSync('./keys/localhost.crt')
-  }, app).listen(config.port, function() {
-    logger.info('Express server listening on port %d in %s mode with local SSL cert', server.address().port, app.settings.env);
-  });
+  }, app).listen(config.port, serverListeningHandler).on('error', serverErrorHandler);
 }
 else{
-  server = app.listen(config.port, function() {
-    logger.info('Express server listening on port %d in %s mode with managed SSL cert', server.address().port, app.settings.env);
-  });
+  server = app.listen(config.port, serverListeningHandler).on('error', serverErrorHandler);
 }

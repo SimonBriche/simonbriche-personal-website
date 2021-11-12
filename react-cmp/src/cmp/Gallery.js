@@ -31,7 +31,7 @@ function Gallery(props) {
     <ul className="list-unstyled text-nowrap d-flex align-items-stretch" ref={el}>
       {posts && posts.map(item => (
         <li className="d-inline-block mb-3" key={item.id}>
-          <div className="card gallery-item mt-3 mx-3 rounded border-0 shadow h-100" onClick={(e) => postClickHandler(e, item)}>
+          <div className="card gallery-item noselect mt-3 mx-3 rounded border-0 shadow h-100" onClick={(e) => postClickHandler(e, item)}>
             <img className="card-img-top rounded-top lazyload fade" data-src={`${process.env.REACT_APP_CDN_URL}/assets/images/gallery/${item.thumbnail}`} alt={item.name} loading="lazy"/>
             <div className="card-body text-start rounded-bottom pb-0">
               <ul className="list-unstyled text-wrap">

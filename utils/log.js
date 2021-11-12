@@ -19,7 +19,6 @@ const writeLogType = (logLevel) => {
   };
 };
 const logger = {
-  silly: writeLogType('silly'), //only for jokes
   debug: writeLogType('debug'), //only for quick debug (that will be deleted)
   verbose: writeLogType('verbose'), //log process/steps/states validations
   info: writeLogType('info'), //log important steps/configuration for production

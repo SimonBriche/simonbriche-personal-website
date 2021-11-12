@@ -7,7 +7,7 @@ const resolvers = {
       const mailOptions = {
         from: 'Contact <noreply@6pans.fr>',
         to: config.mail.supportEmail,
-        subject: `Nouveau message de contact de l'application ${config.applicationURL}`,
+        subject: `Nouveau message de contact de l'application ${config.application.url}`,
         htmlPath: './public/mails/contact',
         variables: input
       };

@@ -46,6 +46,9 @@ script(type='text/javascript' nonce=nonce).
   tarteaucitron.user.gajsMore = function () { /* add here your optionnal _ga.push() */ };
   (tarteaucitron.job = tarteaucitron.job || []).push('gajs');
 
+  //load Youtube
+  (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
+  
   //handle custom button to display preferences panel
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.handleTASPanel').forEach(item => {

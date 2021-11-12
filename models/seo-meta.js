@@ -1,6 +1,7 @@
 const config = require('../config');
 const baseURL_fr_fr = "https://domain.com/";
 const baseURL_en_en = "https://domain.com/";
+const shareCacheVersion = config.application.shareCacheVersion;
 
 module.exports = {
   "fr_fr":{
@@ -17,10 +18,10 @@ module.exports = {
       title: "Consultant digital et Développement web - Simon BRICHE",
       //opti 60c, 200c max
       description: "J'apporte mon expertise du monde de la production d'applications web développées sur-mesure avec un objectif principal : augmenter la productivité.",
-      url: baseURL_fr_fr+"?v="+config.shareCacheVersion,
+      url: baseURL_fr_fr+"?v="+shareCacheVersion,
       name: "Simon BRICHE",
       type: "website",
-      image: baseURL_fr_fr+"assets/images/share-fb.png?v="+config.shareCacheVersion,
+      image: baseURL_fr_fr+"assets/images/share-fb.png?v="+shareCacheVersion,
       locale: "fr_FR"
     },
     twitter: {
@@ -31,7 +32,7 @@ module.exports = {
       description: "J'apporte mon expertise du monde de la production d'applications web développées sur-mesure avec un objectif principal : augmenter la productivité.",
       site: "@amanodev69",
       creator: "@amanodev69",
-      image: baseURL_fr_fr+"assets/images/share-tw.png?v="+config.shareCacheVersion
+      image: baseURL_fr_fr+"assets/images/share-tw.png?v="+shareCacheVersion
     },
     "test":{
       html: {
@@ -72,10 +73,10 @@ module.exports = {
     og: {
       title: "Title OG EN",
       description: "Description OG EN",
-      url: baseURL_en_en+"?v="+config.shareCacheVersion,
+      url: baseURL_en_en+"?v="+shareCacheVersion,
       name: "Application Name EN",
       type: "website",
-      image: baseURL_en_en+"assets/images/share-fb.png?v="+config.shareCacheVersion,
+      image: baseURL_en_en+"assets/images/share-fb.png?v="+shareCacheVersion,
       locale: "fr_FR"
     },
     twitter: {
@@ -84,7 +85,7 @@ module.exports = {
       description: "Description Twitter EN",
       site: "@username",
       creator: "@username",
-      image: baseURL_en_en+"assets/images/share-tw.png?v="+config.shareCacheVersion
+      image: baseURL_en_en+"assets/images/share-tw.png?v="+shareCacheVersion
     },
     "test":{
       html: {

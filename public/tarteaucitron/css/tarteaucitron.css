@@ -719,13 +719,13 @@ span#tarteaucitronDisclaimerAlert {
 }
 
 #tarteaucitronRoot .tarteaucitronCross::before {
-    content: '\2717';
+    content: '';
     display: inline-block;
     color: white;
 }
 
 #tarteaucitronRoot .tarteaucitronCheck::before {
-    content: '\2713';
+    content: '';
     display: inline-block;
     color: white;
 }

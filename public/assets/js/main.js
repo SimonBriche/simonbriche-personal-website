@@ -1,10 +1,15 @@
-//custom code that needs to be execited on each page
+//custom code that needs to be executed on each page
 document.addEventListener('DOMContentLoaded', function() {
-  var modalProfile = new bootstrap.Modal(document.getElementById('modal-profile'), {
+  const modalProfileEl = document.getElementById('modal-profile');
+  const modalProfile = new bootstrap.Modal(modalProfileEl, {
     keyboard: false,
     backdrop: false
   });
-
+  //stops all the youtube vidéos taht are playing, if any
+  modalProfileEl.addEventListener('hidden.bs.modal', function (event) {
+    modalProfileEl.querySelectorAll('.youtube_player iframe').forEach(item => item.attributes.src.value = item.attributes.src.value);
+  });
+  
   document.querySelectorAll('.btn-profile').forEach(button => button.addEventListener('click', () => {
     document.querySelectorAll('.footer-interface').forEach(item => item.classList.toggle('open'));
     modalProfile.show();

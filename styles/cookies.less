@@ -41,9 +41,7 @@
     padding: 1rem 0 0!important;
     border-radius: 1.5rem!important;
     box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
-    #tarteaucitronCloseCross{
-      color: @tas-black-color;
-    }
+
     #tarteaucitronDisclaimerAlert{
       color: @tas-black-color;
       font-size: 1rem;
@@ -73,21 +71,26 @@
       }
     }
   }
-  #tarteaucitronClosePanel{
+  #tarteaucitronClosePanel, #tarteaucitronCloseCross{
     background: #FFFFFF !important;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    color: #4c4c4c !important;
+    color: @tas-black-color !important;
+    text-align: center;
     border: 2px solid #4c4c4c;
     outline: none!important;
     width: 20px !important;
     height: 20px !important;
-    top: 30px;
     right: 10px !important;
     font-size: 15px;
     padding: 0 !important;
     z-index: 1;
+    font-weight: 700;
+    
+    &#tarteaucitronClosePanel{
+      top: 30px;
+    }
   }
   .tarteaucitronTitle{
     background: #FFF;
@@ -132,6 +135,9 @@
       }
     }
   }
+}
+.tac_activate .tac_float .tarteaucitronAllow{
+  background-color: @tas-green-color!important;
 }
 
 @media (min-width: 768px) {

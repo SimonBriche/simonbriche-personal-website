@@ -1,16 +1,16 @@
 {
   "files": {
-    "static/js/0.40533e35.chunk.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/0.40533e35.chunk.js",
-    "static/js/0.40533e35.chunk.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/0.40533e35.chunk.js.map",
+    "static/js/0.26f045c5.chunk.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/0.26f045c5.chunk.js",
+    "static/js/0.26f045c5.chunk.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/0.26f045c5.chunk.js.map",
     "main.css": "https://simonbriche.herokuapp.com/react-cmp/production/static/css/main.1fe64006.chunk.css",
     "main.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/main.d6206902.chunk.js",
     "main.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/main.d6206902.chunk.js.map",
-    "runtime-main.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/runtime-main.eb8cf347.js",
-    "runtime-main.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/runtime-main.eb8cf347.js.map",
+    "runtime-main.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/runtime-main.0a9cf24d.js",
+    "runtime-main.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/runtime-main.0a9cf24d.js.map",
     "static/js/3.c3736c85.chunk.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/3.c3736c85.chunk.js",
     "static/js/3.c3736c85.chunk.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/3.c3736c85.chunk.js.map",
-    "static/js/4.e9812fb7.chunk.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/4.e9812fb7.chunk.js",
-    "static/js/4.e9812fb7.chunk.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/4.e9812fb7.chunk.js.map",
+    "static/js/4.448dc61b.chunk.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/4.448dc61b.chunk.js",
+    "static/js/4.448dc61b.chunk.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/4.448dc61b.chunk.js.map",
     "static/css/5.d87cbb72.chunk.css": "https://simonbriche.herokuapp.com/react-cmp/production/static/css/5.d87cbb72.chunk.css",
     "static/js/5.052fb575.chunk.js": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/5.052fb575.chunk.js",
     "static/js/5.052fb575.chunk.js.map": "https://simonbriche.herokuapp.com/react-cmp/production/static/js/5.052fb575.chunk.js.map",
@@ -27,7 +27,7 @@
     "static/media/logo.6ce24c58.svg": "https://simonbriche.herokuapp.com/react-cmp/production/static/media/logo.6ce24c58.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.eb8cf347.js",
+    "static/js/runtime-main.0a9cf24d.js",
     "static/js/3.c3736c85.chunk.js",
     "static/css/main.1fe64006.chunk.css",
     "static/js/main.d6206902.chunk.js"

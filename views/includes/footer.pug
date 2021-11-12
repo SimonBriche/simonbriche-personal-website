@@ -29,7 +29,7 @@ footer.footer-interface.max-width-container
     .toast-body
 
 #modal-profile.modal.modal-interface.fade(tabindex="-1" aria-labelledby="modalFooter" aria-hidden="true")
-  .modal-dialog
+  .modal-dialog.modal-dialog-scrollable-mobile
     .modal-content
       .modal-body
         .card.portfolio-focus.soft.flat.rounded.border-0.mx-sm-auto
@@ -38,46 +38,68 @@ footer.footer-interface.max-width-container
             h2.card-title.text-red 
               strong Simon BRICHE
             h6.text-red.mb-0 En résumé
-            .card-text.mb-3
-              |Développeur web professionnel depuis 2006 et passionné par le numérique depuis mon premier Amstrad CPC 6128, je suis spécialisé dans le développement d'applications interactives online.
-              |J'ai réuni ici quelques projets réalisés dans le cadre de mon activité professionnelle ou en tant que développeur indépendant sur le secteur de Lille (59).
-              |N'hésitez pas à prendre quelques minutes pour tester les projets en démonstration !
+            .card-text.mb-3 
+              p
+                strong Ma mission : 
+                |Améliorer la productivité d'une organisation en adaptant ses outils pour en faciliter l'utilisation via :
+                ul 
+                  li L'exploitation des APIs disponibles
+                  li L'analyse des usages pour proposer un workflow plus efficace
+                  li La fluidification des échanges entre les équipes
+                  li L'apport d'un regard neuf sur une organisation, l'identification des goulots d'étranglement et des solutions pour y remédier
+              p
+                |J'ai la conviction qu'une tâche répétitive, chronophage et sans valeur ajoutée doit pouvoir être automatisée pour rendre l'humain plus productif et épanoui dans sa mission. C'est pourquoi mis à part la pure production client, j'élabore et mets également en place différents outils pour :
+                ul 
+                  li l'amélioration de la performance des équipes dans leur quotidien
+                  li l'aide à la décision
+                  li la gestion des ressources humaines
+            
+            h6.text-red.mb-0 Plus particulièrement
+            .card-text.mb-3 
+              p J'aime explorer ce que proposent les APIs des différents services et outils pour en tirer le meilleur parti (ou simplement par curiosité). Je pars du principe qu'un même outil ne peut pas toujours répondre aux besoins spécifiques de tout le monde, et qu'on peut toujours optimiser les usages.
+              p J'aime également mettre en place des frameworks et des outils pour optimiser la productivité, et privilégie toujours la simplicité et l'accessibilité, ce qui rend l'onboarding d'un nouveau collaborateur plus aisé.
+            
             .text-center.mb-3
               a.btn.btn-custom.btn-soft.mx-auto(href=`${cdnURL}/cv-simon-briche.pdf` target="_blank") Voir mon CV
 
-            h6.text-red.mb-2 Contact
-            form#form-contact.op1c-form
+            h6.text-red.mb-2 Retrouvez-moi sur
+            .text-center.social-networks
+              a.text-secondary(href="https://www.linkedin.com/in/simonbriche/" title="Mon profil LinkedIn" target="_blank" rel="noopener")
+                i.fab.fa-fw.fa-linkedin
+
+            h6.text-red.mb-2 Ou envoyez-moi un message
+            form#form-contact.op1c-form.mb-5
               .form-group.mb-3
-                .input-group
-                  span.input-group-text.text-secondary.px-3
+                .input-group.flex-nowrap
+                  span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-users
-                  .form-floating.form-floating-group.flex-grow-1
+                  .form-floating.form-floating-group.flex-grow-1.overflow-hidden
                     input#last_name.form-control.rounded-0.rounded-end(type="text" name="last_name" placeholder="Votre nom *" autocomplete="family-name" required)
-                    label(for="last_name") Votre Nom *
+                    label.text-nowrap(for="last_name") Votre Nom *
                 span.form-text
               .form-group.mb-3
-                .input-group
-                  span.input-group-text.text-secondary.px-3
+                .input-group.flex-nowrap
+                  span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-user
-                  .form-floating.form-floating-group.flex-grow-1
+                  .form-floating.form-floating-group.flex-grow-1.overflow-hidden
                     input#first_name.form-control.rounded-0.rounded-end(type="text" name="first_name" placeholder="Votre Prénom *" autocomplete="given-name" required)
-                    label(for="first_name") Votre Prénom *
+                    label.text-nowrap(for="first_name") Votre Prénom *
                 span.form-text
               .form-group.mb-3
-                .input-group
-                  span.input-group-text.text-secondary.px-3
+                .input-group.flex-nowrap
+                  span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-paper-plane
-                  .form-floating.form-floating-group.flex-grow-1
+                  .form-floating.form-floating-group.flex-grow-1.overflow-hidden
                     input#email.form-control.rounded-0.rounded-end(type="email" name="email" placeholder="Votre Email *" autocomplete="email" required)
-                    label(for="email") Email *
+                    label.text-nowrap(for="email") Email *
                 span.form-text
               .form-group.mb-3
-                .input-group
-                  span.input-group-text.text-secondary.px-3
+                .input-group.flex-nowrap
+                  span.input-group-text.text-secondary
                     i.fas.fa-fw.fa-comment
-                  .form-floating.form-floating-group.flex-grow-1
+                  .form-floating.form-floating-group.flex-grow-1.overflow-hidden
                     textarea#message.form-control.rounded-0.rounded-end.h-auto(name="message" rows="5" placeholder="Votre message *" required)
-                    label(for="message") Message *
+                    label.text-nowrap(for="message") Message *
                 span.form-text
                 
               .form-group.mt-3
@@ -85,3 +107,42 @@ footer.footer-interface.max-width-container
                   span.pending-spinner.me-1
                     i.fas.fa-spinner.fa-spin
                   | Envoyer
+            h6.text-red.mb-0 Et sinon ?
+            .card-text.mb-3 
+              p Passionné de jeux vidéos depuis mon premier Amstrad CPC 6128, je joue aujourd'hui sur PS4 (même si je ne suis pas non plus dans la course aux trophées 😄 ). 
+              p Gamer de longue date donc, je loue les créateurs et contributeurs de RetroArch pour me permettre de faire du rétrogaming et jouer aux titres qui ne m'étaient pas accessibles à l'époque (ou qui ne passaient pas le 2ème CD, merci Valkyrie Profile).
+            if trophies && trophies.length > 0
+              p Voici une liste aléatoire de jeux que j'ai pu faire (ou tester) sur PS3 et PS4.
+              .position-relative
+                .inner-shadow.rounded
+                #psn-trophies.gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
+                  ul.list-unstyled.text-nowrap.d-flex.align-items-stretch
+                    each trophy in trophies
+                      li.d-inline-block.mb-3
+                        .card.gallery-item.noselect.mt-3.mx-3.rounded.border-0.shadow.h-100
+                          img.card-img-top.rounded-top.lazyload.fade.show(data-src=trophy.image alt=trophy.title loading="lazy")
+                          .card-body.text-start.rounded-bottom.pb-0
+                            ul.list-unstyled.text-wrap
+                              li
+                                h5.mb-0
+                                  small titre: 
+                                  span.text-red #{trophy.title}
+                              if trophy.earnedTrophies
+                                li 
+                                  small trophies: 
+                                  ul.list-unstyled.d-flex.align-items-stretch.pt-1
+                                    each earnedTrophyKey in Object.keys(trophy.earnedTrophies)
+                                      li.d-inline-block.text-center.mb-3.px-1
+                                        img.img-fluid(src=`${cdnURL}/assets/images/trophy-${earnedTrophyKey}.png` alt=earnedTrophyKey)
+                                        small.d-block.text-grey #{trophy.earnedTrophies[earnedTrophyKey]}
+                          
+                  .scroll-arrows
+                    span 
+                    span 
+                    span
+            .card-text.mb-3 
+              p Je suis également ceinture noire 1er Dan d'Aïkido 🥋
+              .youtube_player.ratio.ratio-16x9(videoID="b3by13l_YTs")
+            .card-text.mb-0
+              p Et j'adore faire du snowboard 🏂
+              .youtube_player.ratio.ratio-16x9(videoID="xAnjDKUxp1I")

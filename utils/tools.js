@@ -1,3 +1,6 @@
+const got = require('got');
+const config = require('../config');
+
 module.exports = {
   /**
    * Apply JSON.parse to all the target's values whose which key is in the "keys" array.
@@ -92,7 +95,6 @@ module.exports = {
     if (!isObject(target) || !isObject(source)){
       return source;
     }
-    console.log('this', this)
     Object.keys(source).forEach(key => {
       const targetValue = target[key];
       const sourceValue = source[key];
@@ -116,5 +118,31 @@ module.exports = {
     });
 
     return target;
+  },
+  /**
+   * Ping the provided URL every "delay" milliseconds. Stop pinging if the URL fails more than "retries" times 
+   * @param {!string} url The URL to ping
+   * @param {number} [delay=60000] The delay (in milliseconds) between every ping
+   * @param {number} [retries=5] The maximum failures before the ping stops 
+   */
+  pingURL: (url, delay = 60000, retries = 5) => {
+    let currentRetries = 0;
+    const ping = () => {
+      got.get(url, { https:{rejectUnauthorized: config.production }}).then(() => {
+        _logger.verbose('Ping application success');
+        currentRetries = 0;
+        setTimeout(ping, delay);
+      }, (err) => {
+        _logger.error('Ping application failed', err);
+        currentRetries++;
+        if(currentRetries < retries){
+          setTimeout(ping, delay);
+        }
+        else{
+          _logger.info('Ping application stopped : Too many fails');
+        }
+      });
+    }
+    setTimeout(ping, delay);
   }
 }

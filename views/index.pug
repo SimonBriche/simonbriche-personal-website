@@ -23,7 +23,7 @@ block content
             p 
               |Aujourd'hui, avec la mise en place de méthodes et d'outils adaptés à l'organisation, j'assure la 
               strong rentabilité et la stabilité 
-              |de toute la production technique de l'agence pour nos clients. J'interviens à toutes les phases du projet : de la prise de brief à la conception puis à la réalisation, ou en totale autonomie avec le client. 
+              |de toute la production technique mes clients. J'interviens à toutes les phases du projet : de la prise de brief à la conception puis à la réalisation, ou en totale autonomie avec le client. 
             p 
               |Qu'il s'agisse de sites événementiels, bots conversationnels, Facebook Live ou d'autres solutions techniques innovantes, elles sont toutes faites 
               strong sur-mesure 
@@ -53,34 +53,41 @@ block content
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button" aria-controls="skill-real")
         .property 
           |title: 
-          span.text-red "Réalisations"
+          span.text-red "Sixpans"
         .property 
           |description: 
-          span.text-red "Aide à la productivité"
+          span.text-red "Plateforme d'aide à la productivité que j'ai développée 100% in-house au sein de l'agence OP1C. Elle est constituée de plusieurs modules répondant chacun à un besoin spécifique, pour l'interne ou les clients. C'est une plateforme évolutive qui s'est construite en symbiose avec les autres métiers de l'agence, à l'écoute de leurs problématiques."
       .skill-content
         #skill-real.collapse.show
           .property content: 
           .position-relative
             .inner-shadow.rounded
-            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll.my-3.pb-3
+            .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
               .__react-cmp.mx-auto(data-react-component="Gallery" data-section="sixpans")
+              .scroll-arrows
+                span 
+                span 
+                span
 
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button" aria-controls="skill-real")
         .property 
           |title: 
-          span.text-red "Réalisations"
+          span.text-red "Réalisations clients"
         .property 
           |description: 
-          span.text-red "Mes principales réalisations"
+          span.text-red "Une sélection d'applications, sites web ou dispositifs sociaux que j'ai pu faire pour mes clients."
       .skill-content
         #skill-real.collapse.show
           .property content: 
           .position-relative
             .inner-shadow.rounded
-            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll.my-3.pb-3
+            .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
               .__react-cmp.mx-auto(data-react-component="Gallery" data-section="featured")
-
+              .scroll-arrows
+                span 
+                span 
+                span
     //-section.skill.mb-3
       .properties.collapsed(data-bs-toggle="collapse" data-bs-target="#skill-more-real" aria-expanded="true" role="button" aria-controls="skill-more-real")
         .property 
@@ -123,7 +130,7 @@ block content
           span.text-red "Experience"
         .property 
           |description: 
-          span.text-red "Mon cursus professionnel"
+          span.text-red "Mon cursus professionnel et extra-professionnel. Cliquez sur les lignes en gras pour en savoir plus !"
       .skill-content
         #skill-xp.collapse.show
           .property content: 
@@ -171,9 +178,48 @@ block content
           .property content: 
           .position-relative
             .inner-shadow.rounded
-            .d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll.my-3.pb-3
+            .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
               .__react-cmp.mx-auto(data-react-component="Gallery" data-section="perso")
-              
+              .scroll-arrows
+                span 
+                span 
+                span
+
+    if marvelCharacter || marvelComics
+      section.skill.mb-3
+        .properties(data-bs-toggle="collapse" data-bs-target="#skill-hobby" aria-expanded="true" role="button" aria-controls="skill-hobby")
+          .property 
+            |title: 
+            span.text-red "BONUS : 1 jour - 1 personnage - 1 comics"
+          .property 
+            |description: 
+            span.text-red "J'aime les comics et les mangas, mais aussi partager mes passions ! Je vous propose donc de découvrir chaque jour un personnage et un comics Marvel au hasard 🎁"
+        .skill-content
+          #skill-hobby.collapse.show
+            .property content: 
+            .position-relative
+              .row.align-items-center
+                if marvelCharacter
+                  .col-12.col-md-4
+                    .soft.flat.text-left.my-2.p-3.mx-auto.rounded.text-center
+                      img.marvel-thumbnail.lazyload.fade.rounded-circle.mb-3(data-src=marvelCharacter.thumbnail alt=marvelCharacter.name loading="lazy")
+                      h2.text-red #{marvelCharacter.name}
+                      if marvelCharacter.description 
+                        p #{marvelCharacter.description}
+                if marvelComics
+                  .col-12.col-md-8
+                    .soft.flat.text-left.my-2.p-3.mx-auto.rounded
+                      .row.align-items-center
+                        .col-12.col-sm-4.text-center
+                          a(href=marvelComics.link target="_blank" ref="noopener")
+                            img.soft.img-fluid.lazyload.fade.rounded.mb-3.mb-sm-0(data-src=marvelComics.thumbnail alt=marvelComics.name loading="lazy")
+                        .col-12.col-sm-8 
+                          h2.text-red #{marvelComics.name}
+                          if marvelComics.description 
+                            p !{marvelComics.description}
+    .text-center.mb-5
+      .btn.btn-custom.btn-soft.btn-profile.mx-auto Voir ce que j'aime faire
+
 block page-outer-content
   .__react-cmp(data-react-component="GalleryPostModal")
 
