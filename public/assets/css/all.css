@@ -665,6 +665,15 @@ footer .links ul a.btn-link:hover {
 .gallery-item .card-body small {
   font-size: 0.775em;
 }
+#psn-trophies .gallery-item {
+  cursor: auto;
+}
+#psn-trophies .gallery-item:hover,
+#psn-trophies .gallery-item:active,
+#psn-trophies .gallery-item:active:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  transform: none;
+}
 .portfolio-focus .thumbnail {
   max-width: 190px;
 }
