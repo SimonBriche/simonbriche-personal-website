@@ -33,7 +33,7 @@ module.exports = {
   dataPolicy:{
     "fr_fr":{
       companyName: "Simon BRICHE",
-      websiteUrl: "http://sbriche.free.fr/",
+      websiteUrl: "https://simonbriche.dev/",
       dpoEmail: "sbriche@free.fr",
       privacyPolicyUrl: "",
       companyContactEmail: "sbriche@free.fr",
@@ -41,7 +41,7 @@ module.exports = {
     },
     "en_en":{
       companyName: "Simon BRICHE",
-      websiteUrl: "http://sbriche.free.fr/",
+      websiteUrl: "https://simonbriche.dev/",
       dpoEmail: "sbriche@free.fr",
       privacyPolicyUrl: "",
       companyContactEmail: "sbriche@free.fr",

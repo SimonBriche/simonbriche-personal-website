@@ -1,5 +1,5 @@
 const config = require('../config');
-const baseURL_fr_fr = "https://domain.com/";
+const baseURL_fr_fr = "https://simonbriche.dev/";
 const baseURL_en_en = "https://domain.com/";
 const shareCacheVersion = config.application.shareCacheVersion;
 
@@ -21,7 +21,7 @@ module.exports = {
       url: baseURL_fr_fr+"?v="+shareCacheVersion,
       name: "Simon BRICHE",
       type: "website",
-      image: baseURL_fr_fr+"assets/images/share-fb.png?v="+shareCacheVersion,
+      image: config.cdnURL+"/assets/images/share-fb.png?v="+shareCacheVersion,
       locale: "fr_FR"
     },
     twitter: {
@@ -32,7 +32,7 @@ module.exports = {
       description: "J'apporte mon expertise du monde de la production d'applications web développées sur-mesure avec un objectif principal : augmenter la productivité.",
       site: "@amanodev69",
       creator: "@amanodev69",
-      image: baseURL_fr_fr+"assets/images/share-tw.png?v="+shareCacheVersion
+      image: config.cdnURL+"assets/images/share-tw.png?v="+shareCacheVersion
     },
     "test":{
       html: {
