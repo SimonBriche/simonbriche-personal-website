@@ -32,7 +32,7 @@ module.exports = {
       description: "J'apporte mon expertise du monde de la production d'applications web développées sur-mesure avec un objectif principal : augmenter la productivité.",
       site: "@amanodev69",
       creator: "@amanodev69",
-      image: config.cdnURL+"assets/images/share-tw.png?v="+shareCacheVersion
+      image: config.cdnURL+"/assets/images/share-tw.png?v="+shareCacheVersion
     },
     "test":{
       html: {
