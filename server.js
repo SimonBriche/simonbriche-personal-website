@@ -40,6 +40,14 @@ app.use(require('./middlewares/https'));
 //301 redirection to a specific domain if needed
 app.use(require('./middlewares/domain'));
 
+//add compression
+app.use(compression());
+
+//handle CORS
+app.use(cors({
+  origin: ['https://simonbriche.lunald.com','https://simonbriche.dev','https://www.simonbriche.dev']
+}));
+
 //minimum security for HTTP headers
 app.use((req, res, next) => {
   //the "nonce" variable must be set on all inline script tag's "nonce" attribute
@@ -63,13 +71,8 @@ app.use((req, res, next) => {
   })(req, res, next);
 });
 
-//handle CORS
-app.use(cors({
-  origin: ['https://lunald.com']
-}));
-
-//add compression
-app.use(compression());
+//Routing for public static files
+app.use(express.static(__dirname + '/public'));
 
 //store the session information in a cookie named '_session'
 app.use(cookieParser(config.application.cookieSecret));
@@ -84,9 +87,6 @@ app.use(session({
 //Routing
 //inject the CDN URL in all routes
 app.locals.cdnURL = config.cdnURL;
-
-//Routing for public static files
-app.use(express.static(__dirname + '/public'));
 
 //declare all public routes
 app.use('/', require('./routes/router-public'));
