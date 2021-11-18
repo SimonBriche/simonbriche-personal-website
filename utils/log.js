@@ -28,6 +28,14 @@ const logger = {
 
 logger.info('LOG LEVEL :', config.logLevel);
 
+//try to set the logger as a global object
+if(!global['_logger']){
+  global._logger = logger;
+}
+else{
+  logger.error('_logger global variable name not available');
+}
+
 module.exports = {
   logger: logger
 }

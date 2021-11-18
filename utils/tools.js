@@ -1,27 +1,35 @@
+const v8 = require('v8');
 const got = require('got');
 const config = require('../config');
+const {logger} = require('../utils/log');
 
 module.exports = {
   /**
-   * Apply JSON.parse to all the target's values whose which key is in the "keys" array.
+   * Apply JSON.parse to all the target's values whose which key is in the "keys" array. It mutates the target object.
    * @param {Object[]|Object} target An object or an array of objects
    * @param {string[]} keys An array of the target's keys that needs to be parsed
-   * @returns {Object} The target object
+   * @returns {Object} An object with a "parsed" property that contains all the keys that has been parsed, and a "failed" property with the key that hasn't been parsed, along with the error.
    */
   parseKeys: function(target, keys){
-    const targetArray = (Array.isArray(target)) ? target : [target];
-    targetArray.forEach(item => {
-      Object.keys(item).map(key => {
-        if(keys.indexOf(key) !== -1){
-          try{
-            item[key] = JSON.parse(item[key]);
+    const parsedKeys = [];
+    const failedKeys = [];
+    if(Array.isArray(keys) && keys.length > 0){
+      const targetArray = (Array.isArray(target)) ? target : [target];
+      targetArray.forEach(item => {
+        Object.keys(item).map(key => {
+          if(keys.indexOf(key) !== -1){
+            try{
+              item[key] = JSON.parse(item[key]);
+              parsedKeys.push(key);
+            }
+            catch(e){
+              failedKeys.push({key: key, error: e});
+            }
           }
-          catch(e){
-            _logger.error('fail to parseKeys', key, e);
-          }
-        }
+        });
       });
-    });
+    }
+    return {parsed: parsedKeys, failed: failedKeys};
   },
   /**
    * Returns a random integer between two integers.
@@ -58,66 +66,125 @@ module.exports = {
     return newObj;
   },
   /**
-   * Overwrites target's values with source's and adds source's if non existent in target
-   * @param {Object} target - The target object 
-   * @param {Object} source - The source object
-   * @returns {Object} An object with properties of both objects. Doesn't mutate target or source.
+   * Deep clone an object. Set all the Functions of the cloned Object to undefined, as Functions can't be serialized.
+   * @param {Object} source The Object to clone
+   * @returns A new Object, with the source Object's values, but without any references to them.
    */
-  mergeObjects: function(target, source){
-    let result = {};
-    for (let attrname in target) { result[attrname] = target[attrname]; }
-    for (let attrname in source) { result[attrname] = source[attrname]; }
+  cloneObject: function(source){
+    //make a shallow clone for now
+    let result = Object.assign({}, source);
+    //filter the Function Objects that will throw an error when calling serialize, 
+    //without mutating the original object
+    const filter = (obj) => {
+      Object.keys(obj).forEach((key) => {
+        //check the properties
+        if(typeof obj[key] === 'function'){
+          obj[key] = undefined;
+        }
+        else if(Array.isArray(obj[key])){
+          //check the array's elements
+          obj[key] = obj[key].map(item => {
+            if(typeof item === 'function'){
+              return undefined;
+            }
+            //recursion on Object elements
+            else if(item && item.constructor === Object){
+              //make a shallow clone of the deep objects
+              item = Object.assign({}, item);
+              filter(item);
+              return item;
+            }
+            else{
+              return item;
+            }
+          });
+        }
+        //recursion on Object elements
+        else if(obj[key] && obj[key].constructor === Object){
+          //make a shallow clone of the deep objects
+          obj[key] = Object.assign({}, obj[key]);
+          filter(obj[key]);
+        }
+      });
+    }
+    filter(result);
+    try{
+      //clone a deep copy
+      //result = Object.assign({}, v8.deserialize(v8.serialize(result)));
+      result = v8.deserialize(v8.serialize(result));
+    }
+    catch(e){
+      result = null;
+    }
     return result;
   },
   /**
-   * Overwrites target's values with source's and adds source's if non existent in target
+   * Check if an object is a "litteral" Object, i.e. we can safely access its properties and crawl them to see if there are nested litteral Objects
+   * @param {Object} obj An object to test
+   * @returns {Boolean} true if the Object is litteral, false otherwise.
+   */
+  isObjectLiteral: (obj) => {
+    if(typeof obj !== "object" || obj === null){
+      return false;
+    }
+    
+    let ObjProto = obj;
+    //get obj's Object constructor's prototype by rewinding the prototype chain (it should be the first one)
+    while (Object.getPrototypeOf(ObjProto = Object.getPrototypeOf(ObjProto)) !== null);
+    //check if the prototype of the object is indeed the very first prototype of the prototype chain
+    return Object.getPrototypeOf(obj) === ObjProto;
+  },
+  /**
+   * Overwrites target's values with source's and adds source's if non existent in target.
    * @param {Object} target - The target object 
    * @param {Object} source - The source object
-   * @param {Boolean} isMergingArrays - If set to true, will have any source array's elements overwrite those of the target array at the same index. If false (default) will replace source array's with target array's
-   * @returns {Object} An object with properties of both objects. Doesn't mutate target or source.
+   * @param {boolean} noMutation - Whether or not the target and source objects should be deep cloned i.e. don't mutate them.
+   * @param {boolean} isDeepClone - If true, replace the nested properties of the target by the nested properties of the source. If false, replace only the first level of properties.
+   * @param {boolean} isMergingArrays - If set to true, will have any source array's elements overwrite those of the target array at the same index. If false (default) will replace source array's with target array's
+   * @returns {Object} An object with properties of both objects. 
    */
-  mergeDeepObjects: function(target, source, isMergingArrays = false){
-    target = ((obj) => {
-      let cloneObj;
-      try {
-        cloneObj = JSON.parse(JSON.stringify(obj));
-      } catch(err) {
-        // If the stringify fails due to circular reference, the merge defaults
-        // to a less-safe assignment that may still mutate elements in the target.
-        // You can change this part to throw an error for a truly safe deep merge.
-        cloneObj = Object.assign({}, obj);
-      }
-      return cloneObj;
-    })(target);
-
-    const isObject = (obj) => obj && typeof obj === "object";
-
-    if (!isObject(target) || !isObject(source)){
-      return source;
+  mergeObjects: function(target, source, noMutation, isDeepClone, isMergingArrays){
+    //if noMutation is needed, cut all references to the provided objects
+    const clonedTarget = (noMutation) ? this.cloneObject(target) : target;
+    const clonedSource = (noMutation) ? this.cloneObject(source) : source;
+    if(isDeepClone !== true){
+      //override the target's properties with the source's ones (or create them if inexistant)
+      Object.keys(clonedSource).forEach(key => clonedTarget[key] = clonedSource[key]);
+      return clonedTarget;
     }
-    Object.keys(source).forEach(key => {
-      const targetValue = target[key];
-      const sourceValue = source[key];
-      
-      if(Array.isArray(targetValue) && Array.isArray(sourceValue)){
-        if(isMergingArrays) {
-          target[key] = targetValue.map((x, i) => sourceValue.length <= i ? x : this.mergeDeepObjects(x, sourceValue[i],isMergingArrays));
-          if(sourceValue.length > targetValue.length){
-            target[key] = target[key].concat(sourceValue.slice(targetValue.length));
+    else{
+      if(!this.isObjectLiteral(clonedTarget) || !this.isObjectLiteral(clonedSource)){
+        return clonedSource;
+      }
+      Object.keys(clonedSource).forEach(key => {
+        const targetValue = clonedTarget[key];
+        const sourceValue = clonedSource[key];
+        
+        if(Array.isArray(targetValue) && Array.isArray(sourceValue)){
+          if(isMergingArrays) {
+            //replace the overlapping indexes of the target's and source's array (source.length <= target.length)
+            clonedTarget[key] = targetValue.map((item, index) => 
+              (sourceValue.length <= index) ? item : this.mergeObjects(item, sourceValue[index], false, true, true)
+            );
+            //if the soruce's array is longer than the target's array, add the remaining indexes
+            if(sourceValue.length > targetValue.length){
+              clonedTarget[key] = clonedTarget[key].concat(sourceValue.slice(targetValue.length));
+            }
+          } 
+          else {
+            clonedTarget[key] = sourceValue;
           }
-        } else {
-          target[key] = sourceValue;
         }
-      }
-      else if(isObject(targetValue) && isObject(sourceValue)){
-        target[key] = this.mergeDeepObjects(Object.assign({}, targetValue), sourceValue, isMergingArrays);
-      }
-      else{
-        target[key] = sourceValue;
-      }
-    });
-
-    return target;
+        else if(this.isObjectLiteral(targetValue) && this.isObjectLiteral(sourceValue)){
+          clonedTarget[key] = this.mergeObjects(targetValue, sourceValue, false, isMergingArrays);
+        }
+        else{
+          clonedTarget[key] = sourceValue;
+        }
+      });
+  
+      return clonedTarget;
+    }
   },
   /**
    * Ping the provided URL every "delay" milliseconds. Stop pinging if the URL fails more than "retries" times 
@@ -125,24 +192,33 @@ module.exports = {
    * @param {number} [delay=60000] The delay (in milliseconds) between every ping
    * @param {number} [retries=5] The maximum failures before the ping stops 
    */
-  pingURL: (url, delay = 60000, retries = 5) => {
+  pingURL: (url, delay = 60000, retries = 5, callback) => {
     let currentRetries = 0;
     const ping = () => {
       got.get(url, { https:{rejectUnauthorized: config.production }}).then(() => {
-        _logger.verbose('Ping application success');
         currentRetries = 0;
-        setTimeout(ping, delay);
+        const timeoutId = setTimeout(ping, delay);
+        if(typeof callback === 'function'){
+          callback(null, timeoutId);
+        }
       }, (err) => {
-        _logger.error('Ping application failed', err);
         currentRetries++;
         if(currentRetries < retries){
-          setTimeout(ping, delay);
+          const timeoutId = setTimeout(ping, delay);
+          if(typeof callback === 'function'){
+            callback(err, timeoutId);
+          }
         }
         else{
-          _logger.info('Ping application stopped : Too many fails');
+          if(typeof callback === 'function'){
+            callback(new Error('too_many_fails'));
+          }
         }
       });
     }
-    setTimeout(ping, delay);
+    const timeoutId = setTimeout(ping, delay);
+    if(typeof callback === 'function'){
+      callback(null, timeoutId);
+    }
   }
 }

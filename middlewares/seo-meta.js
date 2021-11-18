@@ -3,8 +3,8 @@ const tools = require('../utils/tools');
 const SEOMetaModel = require('../models/seo-meta');
 
 module.exports = function(req, res, next) {
-  //Use global configuration for meta tags. Clone object with parse and stringify to lose reference.
-  const SEOMetaConfig = JSON.parse(JSON.stringify(SEOMetaModel))[req.locale];
+  //Use global configuration for meta tags.
+  const SEOMetaConfig = tools.cloneObject(SEOMetaModel)[req.locale];
   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   const currentURL = new URL(fullUrl);
   let SEOMeta;
@@ -13,7 +13,7 @@ module.exports = function(req, res, next) {
   //if a meta exists for that route
   if(SEOMetaConfig[route]){
     //merge specific values with the default values
-    SEOMeta = tools.mergeDeepObjects(SEOMetaConfig, SEOMetaConfig[route]);
+    SEOMeta = tools.mergeObjects(SEOMetaConfig, SEOMetaConfig[route]);
     SEOMeta.canonical = SEOMetaConfig.base_url+route;
   }
   else{

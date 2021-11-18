@@ -49,3 +49,10 @@ Add the URLs, domains or hosts that are allowed, according to the website needs,
 - imgSrc : The images that are allowed to be loaded
 - connectSrc : The APIs that are allowed to be fetched
 - frameSrc : The iframes that are allowed to be displayed
+
+## Testing
+Run `npm test` to run the test suites. Update the `jest.testRegex` property in the `package.json` file to target the scripts that will be tested.
+
+Run `npm test -- --watch` to run the test suite with each file update. To watch only a specific test file, run `npm test -- --watch --findRelatedTests PATH/TO/FILE.js`.
+
+**Please note** that the jest package must match the Create React App one to avoid incompatibilities.

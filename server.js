@@ -11,19 +11,13 @@ const session = require('cookie-session');
 
 const express = require('express');
 const config = require('./config');
-
-const app = express();
 const {logger} = require('./utils/log');
-if(!global['_logger']){
-  global._logger = logger;
-}
-else{
-  logger.error('_logger global variable name not available');
-}
 
 const ConfigModel = require('./models/config');
 const tools = require('./utils/tools');
 const MarvelLib = require('./lib/marvel');
+
+const app = express();
 
 //Trust http proxy to work wiht services like Heroku
 app.enable('trust proxy');
@@ -117,7 +111,14 @@ const serverListeningHandler = () => {
   logger.info(`Express server listening on port ${server.address().port} in ${app.settings.env} mode with ${config.application.useLocalSSLCert ? 'local' : 'managed'} SSL cert`);
   
   if(config.application.keepAwake){
-    tools.pingURL(config.application.url);
+    tools.pingURL(config.application.url, 2000, 2, function(err, timeoutId){
+      if(err){
+        logger.error('Ping application failed', err);
+      }
+      if(timeoutId){
+        logger.verbose('Ping application scheduled with timeoutId', timeoutId);
+      }
+    });
   }
 
   if(config.marvel){

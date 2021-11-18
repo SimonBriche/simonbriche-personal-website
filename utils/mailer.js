@@ -53,15 +53,15 @@ module.exports = {
   },
   /**
    * Send an email based on the config.mail parameters, with the EU Mailgun service by default.
-   * @param {Object} mailOptions An object that contains necessary informations to send the mail, such as :
-   * - host: Host of the mailing service. Defaults to config.mail.host or "smtp.eu.mailgun.org"
-   * - port: Port of the mailing service. Defaults to 465
-   * - secure: If true the connection will use TLS when connecting to server. Defaults to true.
-   * - from: Contact of the sender
-   * - to: Recipient of the email
-   * - subject: Subject of the email
-   * - htmlPath: Path to the folder where the HTML template is located, that will be used for the HTML part of the email.
-   * - variables: Variables to be injected in the HTML template. All the variables properties' values will replace the string '{{property}}'
+   * @param {Object} mailOptions An object that contains necessary informations to send the mail.
+   * @param {string} mailOptions.host Host of the mailing service. Defaults to config.mail.host or "smtp.eu.mailgun.org"
+   * @param {number} mailOptions.port Port of the mailing service. Defaults to 465
+   * @param {boolean} mailOptions.secure If true the connection will use TLS when connecting to server. Defaults to true.
+   * @param {string} mailOptions.from Contact of the sender
+   * @param {string} mailOptions.to Recipient of the email, could be multiple emails, comma separated.
+   * @param {string} mailOptions.subject Subject of the email
+   * @param {string} mailOptions.htmlPath Path to the folder where the HTML template is located, that will be used for the HTML part of the email.
+   * @param {Object} mailOptions.variables Variables to be injected in the HTML template. All the variables properties' values will replace the string '{{property}}'
    * @returns {Object} Informations about the sent email.
    */
   sendMail: function(mailOptions){
