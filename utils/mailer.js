@@ -1,23 +1,34 @@
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-const config = require('../config');
+const {config} = require('../config');
 
 module.exports = {
   /**
    * Get the content of the HTML template located in htmlLocation and inject the variables' values.
    * @param {string} htmlLocation The path to the HTML template folder
-   * @param {Object} variables Variables to be injected in the HTML template. All the variables properties' values will replace the string '{{property}}'
-   * @returns {string} A string that represents the HTML template with the injected variables.
+   * @param {Object} variables Variables to be injected in the HTML template. All the variables properties' values will replace the string '{{property}}' in the HTML template
+   * @param {Boolean} variables.imagesAutoPath If false, prevent the images path to be guessed automatically, if the template already contain the absolute path of the images for instance.
+   * @param {string} variables.imagesPath The absolute path of the folder containing the email's images (e.g : https://domain.com/images/)
+   * @returns {string|false} A string that represents the HTML template with the injected variables, false if no template was found.
    */
   getHtmlContent: function(htmlLocation, variables){
-    let htmlContent = fs.readFileSync(htmlLocation+'/index.html');
+    let htmlContent;
+    try{
+      htmlContent = fs.readFileSync(htmlLocation+'/index.html');
+    } 
+    catch(e){
+      _logger.error('no template found with location', htmlLocation);
+    }
 
     if(htmlContent){
       htmlContent = htmlContent.toString();
-      //variables replacement
-      Object.keys(variables).forEach(key => {
-        htmlContent = htmlContent.replace(new RegExp('{{'+key+'}}', 'g'), variables[key]);
-      });
+      if(variables){
+        //variables replacement
+        Object.keys(variables).forEach(key => {
+          htmlContent = htmlContent.replace(new RegExp('{{'+key+'}}', 'g'), variables[key]);
+        });
+      }
+      
       //images path
       let imagesPath;
       // if imagesPath is provided
@@ -62,6 +73,8 @@ module.exports = {
    * @param {string} mailOptions.subject Subject of the email
    * @param {string} mailOptions.htmlPath Path to the folder where the HTML template is located, that will be used for the HTML part of the email.
    * @param {Object} mailOptions.variables Variables to be injected in the HTML template. All the variables properties' values will replace the string '{{property}}'
+   * @param {Boolean} mailOptions.variables.imagesAutoPath If false, prevent the images path to be guessed automatically, if the template already contain the absolute path of the images for instance.
+   * @param {string} mailOptions.variables.imagesPath The absolute path of the folder containing the email's images (e.g : https://domain.com/images/)
    * @returns {Object} Informations about the sent email.
    */
   sendMail: function(mailOptions){

@@ -1,6 +1,7 @@
 const ENV = process.env;
+const Tools = require('./utils/tools');
 
-module.exports = {
+const config = {
   port: ENV.PORT,
   production: (ENV.NODE_ENV === 'production'),
   logLevel: (ENV.LOG_LEVEL) ? ENV.LOG_LEVEL : ((ENV.NODE_ENV === 'production') ? 'info' : 'debug'),
@@ -93,5 +94,18 @@ module.exports = {
     publicKey: ENV.MARVEL_PUBLIC_KEY,
     fetchCharacter: (ENV.MARVEL_FETCH_CHARACTER) ? (ENV.MARVEL_FETCH_CHARACTER === "true") : false,
     fetchComics: (ENV.MARVEL_FETCH_COMICS) ? (ENV.MARVEL_FETCH_COMICS === "true") : false,
+  }
+};
+
+const mockConfig = JSON.parse(JSON.stringify(config));
+let currentMockConfig = JSON.parse(JSON.stringify(config));
+
+module.exports = {
+  config: (ENV.NODE_ENV === 'test') ? currentMockConfig : config,
+  mock: (mock) => {
+    Tools.mergeObjects(currentMockConfig, mock, false, true);
+  },
+  unmock: () => {
+    Tools.mergeObjects(currentMockConfig, mockConfig, false, false);
   }
 }

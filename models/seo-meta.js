@@ -1,4 +1,4 @@
-const config = require('../config');
+const {config} = require('../config');
 const baseURL_fr_fr = "https://simonbriche.dev/";
 const baseURL_en_en = "https://domain.com/";
 const shareCacheVersion = config.application.shareCacheVersion;

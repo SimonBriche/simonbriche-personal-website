@@ -1,5 +1,4 @@
 const v8 = require('v8');
-const {logger} = require('./log');
 const tools = require('./tools');
 
 describe('parseKeys', () => {
@@ -232,7 +231,7 @@ describe('pingURL', () => {
     const spy = jest.spyOn(global, 'setTimeout');
     const delay = 5000;
 
-    tools.pingURL("", delay, undefined, function(err, timeoutId){
+    tools.pingURL("", delay, undefined, false, function(err, timeoutId){
       clearTimeout(timeoutId);
       // At this point in time, there should have been a single call to setTimeout to schedule the next ping in delay seconds.
       expect(setTimeout).toHaveBeenCalledTimes(1);
@@ -254,6 +253,6 @@ describe('pingURL', () => {
       }
     };
 
-    tools.pingURL("", delay, retries, pingCallback);
+    tools.pingURL("", delay, retries, false, pingCallback);
   });
 });

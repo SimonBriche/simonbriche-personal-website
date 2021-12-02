@@ -10,9 +10,8 @@ const cookieParser = require('cookie-parser');
 const session = require('cookie-session');
 
 const express = require('express');
-const config = require('./config');
+const {config} = require('./config');
 const {logger} = require('./utils/log');
-
 const ConfigModel = require('./models/config');
 const tools = require('./utils/tools');
 const MarvelLib = require('./lib/marvel');
@@ -111,7 +110,7 @@ const serverListeningHandler = () => {
   logger.info(`Express server listening on port ${server.address().port} in ${app.settings.env} mode with ${config.application.useLocalSSLCert ? 'local' : 'managed'} SSL cert`);
   
   if(config.application.keepAwake){
-    tools.pingURL(config.application.url, 2000, 2, function(err, timeoutId){
+    tools.pingURL(config.application.url, undefined, undefined, config.production, function(err, timeoutId){
       if(err){
         logger.error('Ping application failed', err);
       }

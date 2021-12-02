@@ -1,5 +1,5 @@
 const fs = require('fs');
-const config = require('../config');
+const {config} = require('../config');
 
 let indexHTML, ReactCSS, ReactJS;
 
@@ -28,8 +28,8 @@ module.exports = function(req, res, next) {
   if(!config.production){
     load();
   }
-  console.log('load CSS files', ReactCSS)
-  console.log('load JS files', ReactJS)
+  _logger.verbose('load CSS files', ReactCSS)
+  _logger.verbose('load JS files', ReactJS)
   res.locals.reactApp = {
     css: ReactCSS,
     js: ReactJS

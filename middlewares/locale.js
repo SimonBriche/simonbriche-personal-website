@@ -1,4 +1,4 @@
-const config = require('../config');
+const {config} = require('../config');
 
 //you MUST choose between domain or subfolder localization strategy
 let localeDomains = config.application.localeDomains;

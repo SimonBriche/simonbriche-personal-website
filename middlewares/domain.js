@@ -1,4 +1,4 @@
-const config = require('../config');
+const {config} = require('../config');
 
 /*
  * Handle redirection 301 server side

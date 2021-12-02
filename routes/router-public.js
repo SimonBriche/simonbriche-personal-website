@@ -1,9 +1,9 @@
-const config = require('../config');
+const {config} = require('../config');
 const router = require('express').Router();
 const ConfigModel = require('../models/config');
 const StackItemsModel = require('../models/stack-items');
 const reactLoader = require('../middlewares/react-loader');
-const arrayUtil = require('../utils/array-util');
+const ArrayUtil = require('../utils/array-util');
 
 function r(route) {
   // just a require wrapper
@@ -22,7 +22,7 @@ router
 .get('/', reactLoader, function(req, res, next) {
   (async function response(){
     const trophies = await ConfigModel.get('PSN_TROPHIES', true).catch(e => null);
-    const randomTrophies = (trophies) ? arrayUtil.shuffle(trophies).slice(0, 10) : null;
+    const randomTrophies = (trophies) ? ArrayUtil.shuffle(trophies).slice(0, 10) : null;
     const marvelCharacter = await ConfigModel.get('MARVEL_CHARACTER', true).catch(e => null);
     const marvelComics = await ConfigModel.get('MARVEL_COMICS', true).catch(e => null);
 

@@ -1,7 +1,5 @@
 const v8 = require('v8');
 const got = require('got');
-const config = require('../config');
-const {logger} = require('../utils/log');
 
 module.exports = {
   /**
@@ -66,6 +64,22 @@ module.exports = {
     return newObj;
   },
   /**
+   * Check if an object is a "litteral" Object, i.e. we can safely access its properties and crawl them to see if there are nested litteral Objects
+   * @param {Object} obj An object to test
+   * @returns {Boolean} true if the Object is litteral, false otherwise.
+   */
+   isObjectLiteral: (obj) => {
+    if(typeof obj !== "object" || obj === null){
+      return false;
+    }
+    
+    let ObjProto = obj;
+    //get obj's Object constructor's prototype by rewinding the prototype chain (it should be the first one)
+    while (Object.getPrototypeOf(ObjProto = Object.getPrototypeOf(ObjProto)) !== null);
+    //check if the prototype of the object is indeed the very first prototype of the prototype chain
+    return Object.getPrototypeOf(obj) === ObjProto;
+  },
+  /**
    * Deep clone an object. Set all the Functions of the cloned Object to undefined, as Functions can't be serialized.
    * @param {Object} source The Object to clone
    * @returns A new Object, with the source Object's values, but without any references to them.
@@ -88,7 +102,7 @@ module.exports = {
               return undefined;
             }
             //recursion on Object elements
-            else if(item && item.constructor === Object){
+            else if(item && this.isObjectLiteral(item)){
               //make a shallow clone of the deep objects
               item = Object.assign({}, item);
               filter(item);
@@ -100,7 +114,7 @@ module.exports = {
           });
         }
         //recursion on Object elements
-        else if(obj[key] && obj[key].constructor === Object){
+        else if(obj[key] && this.isObjectLiteral(obj[key])){
           //make a shallow clone of the deep objects
           obj[key] = Object.assign({}, obj[key]);
           filter(obj[key]);
@@ -110,29 +124,12 @@ module.exports = {
     filter(result);
     try{
       //clone a deep copy
-      //result = Object.assign({}, v8.deserialize(v8.serialize(result)));
       result = v8.deserialize(v8.serialize(result));
     }
     catch(e){
       result = null;
     }
     return result;
-  },
-  /**
-   * Check if an object is a "litteral" Object, i.e. we can safely access its properties and crawl them to see if there are nested litteral Objects
-   * @param {Object} obj An object to test
-   * @returns {Boolean} true if the Object is litteral, false otherwise.
-   */
-  isObjectLiteral: (obj) => {
-    if(typeof obj !== "object" || obj === null){
-      return false;
-    }
-    
-    let ObjProto = obj;
-    //get obj's Object constructor's prototype by rewinding the prototype chain (it should be the first one)
-    while (Object.getPrototypeOf(ObjProto = Object.getPrototypeOf(ObjProto)) !== null);
-    //check if the prototype of the object is indeed the very first prototype of the prototype chain
-    return Object.getPrototypeOf(obj) === ObjProto;
   },
   /**
    * Overwrites target's values with source's and adds source's if non existent in target.
@@ -191,11 +188,13 @@ module.exports = {
    * @param {!string} url The URL to ping
    * @param {number} [delay=60000] The delay (in milliseconds) between every ping
    * @param {number} [retries=5] The maximum failures before the ping stops 
+   * @param {boolean} [rejectUnauthorized=true] Whether or not unsecure URLs must be blocked 
+   * @param {function(Error, timeoutId):void} callback A callback function that is called each time a setTimeout is triggered, of if an error occured.
    */
-  pingURL: (url, delay = 60000, retries = 5, callback) => {
+  pingURL: (url, delay = 60000, retries = 5, rejectUnauthorized = true, callback) => {
     let currentRetries = 0;
     const ping = () => {
-      got.get(url, { https:{rejectUnauthorized: config.production }}).then(() => {
+      got.get(url, { https:{rejectUnauthorized: rejectUnauthorized }}).then(() => {
         currentRetries = 0;
         const timeoutId = setTimeout(ping, delay);
         if(typeof callback === 'function'){

@@ -53,6 +53,12 @@ Add the URLs, domains or hosts that are allowed, according to the website needs,
 ## Testing
 Run `npm test` to run the test suites. Update the `jest.testRegex` property in the `package.json` file to target the scripts that will be tested.
 
-Run `npm test -- --watch` to run the test suite with each file update. To watch only a specific test file, run `npm test -- --watch --findRelatedTests PATH/TO/FILE.js`.
+Run `npm test -- --watch` to run the test suite with each file update. 
+
+To watch only a specific test file and all its related tests, run `npm test -- --watch --findRelatedTests PATH/TO/FILE.js`.
+To watch only a specific test file, run `npm test -- --watch --runTestsByPath PATH/TO/FILE.test.js`.
 
 **Please note** that the jest package must match the Create React App one to avoid incompatibilities.
+
+### References
+- https://testing.googleblog.com/

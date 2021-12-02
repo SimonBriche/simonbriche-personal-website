@@ -5,7 +5,7 @@ const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { mergeTypeDefs, mergeResolvers } = require('@graphql-tools/merge');
 const { loadFilesSync } = require('@graphql-tools/load-files');
 
-const config = require('../config');
+const {config} = require('../config');
 const graphqlAuth = require('../middlewares/graphql-auth');
 
 const router = express.Router();

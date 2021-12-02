@@ -43,6 +43,7 @@
   "jest": {
     "testRegex": [
       "/utils/.*\\.test\\.js?$"
-    ]
+    ],
+    "setupFiles": ["./utils/log.js"]
   }
 }
