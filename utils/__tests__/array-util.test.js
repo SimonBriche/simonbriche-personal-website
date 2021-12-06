@@ -1,4 +1,4 @@
-const arrayUtil = require('./array-util');
+const arrayUtil = require('../array-util');
 
 test('randomized is a new array of the same length', () => {
   const array = [1, 2, 3, 4, 5];

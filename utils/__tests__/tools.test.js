@@ -1,5 +1,5 @@
 const v8 = require('v8');
-const tools = require('./tools');
+const tools = require('../tools');
 
 describe('parseKeys', () => {
   const refObject = {
@@ -168,13 +168,40 @@ describe('mergeObjects', () => {
     const source = {"var1":"newval1"};
     expect(tools.mergeObjects(target, source).var1).toEqual("newval1");
   });
-  it('shouldn‘t mutate the target and source object if noMutation is required', () => {
+  it('shouldn‘t mutate the target and source object if noMutation is true', () => {
     const target = {"var1":"val1"};
     const source = {"var2":"val2", "var3":[1,2,3]};
     const merged = tools.mergeObjects(target, source, true);
     merged.var3.push(4);
 
     expect(target.var2).toBeUndefined();
+    expect(source.var3).toEqual([1, 2, 3]);
+  });
+  it('should mutate the target and source object if noMutation is false', () => {
+    const target = {"var1":"val1"};
+    const source = {"var2":"val2", "var3":[1,2,3]};
+    const merged = tools.mergeObjects(target, source, false);
+    merged.var3.push(4);
+
+    expect(target.var2).toEqual("val2");
+    expect(source.var3).toEqual([1, 2, 3, 4]);
+  });
+  it('shouldn‘t mutate the target object if noMutation is true for the target only', () => {
+    const target = {"var1":"val1"};
+    const source = {"var2":"val2", "var3":[1,2,3]};
+    const merged = tools.mergeObjects(target, source, {target:true});
+    merged.var3.push(4);
+
+    expect(target.var2).toBeUndefined();
+    expect(source.var3).toEqual([1, 2, 3, 4]);
+  });
+  it('shouldn‘t mutate the source object if noMutation is true for the source only', () => {
+    const target = {"var1":"val1"};
+    const source = {"var2":"val2", "var3":[1,2,3]};
+    const merged = tools.mergeObjects(target, source, {source:true});
+    merged.var3.push(4);
+
+    expect(target.var2).toEqual("val2");
     expect(source.var3).toEqual([1, 2, 3]);
   });
   it('should override the whole object if isDeepClone isn‘t required', () => {

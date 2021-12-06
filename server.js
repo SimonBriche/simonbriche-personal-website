@@ -27,11 +27,11 @@ app.set('view engine', 'pug');
 //add http logging
 app.use(morgan((config.production) ? 'combined' : 'dev'));
 
-//force HTTPS redirection if needed
-app.use(require('./middlewares/https'));
-
 //301 redirection to a specific domain if needed
 app.use(require('./middlewares/domain'));
+
+//force HTTPS redirection if needed
+app.use(require('./middlewares/https'));
 
 //add compression
 app.use(compression());

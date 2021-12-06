@@ -17,6 +17,7 @@ const config = {
     useLocalSSLCert: (ENV.USE_LOCAL_SSL_CERT) ? (ENV.USE_LOCAL_SSL_CERT === "true") : false,
     forceSSLRedirection: (ENV.FORCE_SSL_REDIRECTION) ? (ENV.FORCE_SSL_REDIRECTION === "true") : true,
     redirectToDomain: (ENV.REDIRECT_TO_DOMAIN) ? ENV.REDIRECT_TO_DOMAIN : null,
+    
     localeDomains: (ENV.LOCALE_DOMAINS) ? ENV.LOCALE_DOMAINS : null,
     localeSubfolders: (ENV.LOCALE_SUBFOLDERS) ? ENV.LOCALE_SUBFOLDERS : null,
 
@@ -106,6 +107,6 @@ module.exports = {
     Tools.mergeObjects(currentMockConfig, mock, false, true);
   },
   unmock: () => {
-    Tools.mergeObjects(currentMockConfig, mockConfig, false, false);
+    Tools.mergeObjects(currentMockConfig, mockConfig, {target:false, source: true}, false);
   }
 }

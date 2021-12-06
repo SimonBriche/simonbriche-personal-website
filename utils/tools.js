@@ -135,15 +135,15 @@ module.exports = {
    * Overwrites target's values with source's and adds source's if non existent in target.
    * @param {Object} target - The target object 
    * @param {Object} source - The source object
-   * @param {boolean} noMutation - Whether or not the target and source objects should be deep cloned i.e. don't mutate them.
+   * @param {boolean|Object} noMutation - Decide if the objects should be mutated or not. If true, neither of them will mutate (they are deep cloned first). If false, both of them could mutate. If an object is passed like {target:Boolean, source: Boolean} these rules are applied to the target and/or source depending on the property's name. noMutation is false by default i.e. the objects WILL mutate if not specified otherwise.
    * @param {boolean} isDeepClone - If true, replace the nested properties of the target by the nested properties of the source. If false, replace only the first level of properties.
    * @param {boolean} isMergingArrays - If set to true, will have any source array's elements overwrite those of the target array at the same index. If false (default) will replace source array's with target array's
    * @returns {Object} An object with properties of both objects. 
    */
   mergeObjects: function(target, source, noMutation, isDeepClone, isMergingArrays){
     //if noMutation is needed, cut all references to the provided objects
-    const clonedTarget = (noMutation) ? this.cloneObject(target) : target;
-    const clonedSource = (noMutation) ? this.cloneObject(source) : source;
+    const clonedTarget = (noMutation === true || (noMutation && noMutation.target === true)) ? this.cloneObject(target) : target;
+    const clonedSource = (noMutation === true || (noMutation && noMutation.source === true)) ? this.cloneObject(source) : source;
     if(isDeepClone !== true){
       //override the target's properties with the source's ones (or create them if inexistant)
       Object.keys(clonedSource).forEach(key => clonedTarget[key] = clonedSource[key]);

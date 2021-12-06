@@ -1,6 +1,41 @@
 script(type="text/javascript" src=`${cdnURL}/tarteaucitron/tarteaucitron.js`)
 //-inline script to save a server call and init tarteaucitron ASAP
 script(type='text/javascript' nonce=nonce).
+  const locale = "#{locale}";
+  if(locale){
+    //convert locale to tarteaucitron lang code 
+    switch(locale){
+      case 'de_de':
+        window.tarteaucitronForceLanguage = 'de';
+      break;
+      case 'en_en':
+        window.tarteaucitronForceLanguage = 'en';
+      break;
+      case 'es_es':
+        window.tarteaucitronForceLanguage = 'es';
+      break;
+      case 'it_it':
+        window.tarteaucitronForceLanguage = 'it';
+      break;
+      case 'pl_pl':
+        window.tarteaucitronForceLanguage = 'pl';
+      break;
+      case 'pt_pt':
+        window.tarteaucitronForceLanguage = 'pt';
+      break;
+      case 'ru_ru':
+        window.tarteaucitronForceLanguage = 'ru';
+      break;
+      case 'nl_nl':
+      case 'be_nl':
+        window.tarteaucitronForceLanguage = 'nl';
+      break;
+      default:
+        window.tarteaucitronForceLanguage = 'fr';
+      break;
+    }
+  }
+
   tarteaucitron.init({
     "privacyUrl": "", /* Privacy policy url */
 
