@@ -1,8 +1,8 @@
 module.exports = {
   /**
-   * Create a new array with randomized elements of the provided array.
-   * @param {array} array 
-   * @returns {array} A new array
+   * Creates a new array with randomized elements of the provided array.
+   * @param {array} array The array to randomize.
+   * @returns {array} A new array, with randomized elements.
    */
   shuffle: function(array){
     if(!array) return null;

@@ -1,4 +1,4 @@
-const config = require('../config');
+const {config} = require('../config');
 
 /*
  * Handle redirection 301 server side
@@ -8,7 +8,8 @@ const config = require('../config');
 module.exports = function(req, res, next) {
   if(config.production) {
     if(config.application.redirectToDomain && req.hostname !== config.application.redirectToDomain) {
-      res.redirect(301, ((config.forceSSL) ? 'https://' : (req.protocol+'://')) + config.application.redirectToDomain + req.originalUrl);
+      const protocol = (config.application.forceSSLRedirection) ? 'https' : req.protocol;
+      res.redirect(301, `${protocol}://${config.application.redirectToDomain}${req.originalUrl}`);
     } else {
       next();
     }

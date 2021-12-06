@@ -10,20 +10,13 @@ const cookieParser = require('cookie-parser');
 const session = require('cookie-session');
 
 const express = require('express');
-const config = require('./config');
-
-const app = express();
+const {config} = require('./config');
 const {logger} = require('./utils/log');
-if(!global['_logger']){
-  global._logger = logger;
-}
-else{
-  logger.error('_logger global variable name not available');
-}
-
 const ConfigModel = require('./models/config');
 const tools = require('./utils/tools');
 const MarvelLib = require('./lib/marvel');
+
+const app = express();
 
 //Trust http proxy to work wiht services like Heroku
 app.enable('trust proxy');
@@ -34,11 +27,11 @@ app.set('view engine', 'pug');
 //add http logging
 app.use(morgan((config.production) ? 'combined' : 'dev'));
 
-//force HTTPS redirection if needed
-app.use(require('./middlewares/https'));
-
 //301 redirection to a specific domain if needed
 app.use(require('./middlewares/domain'));
+
+//force HTTPS redirection if needed
+app.use(require('./middlewares/https'));
 
 //add compression
 app.use(compression());
@@ -117,7 +110,14 @@ const serverListeningHandler = () => {
   logger.info(`Express server listening on port ${server.address().port} in ${app.settings.env} mode with ${config.application.useLocalSSLCert ? 'local' : 'managed'} SSL cert`);
   
   if(config.application.keepAwake){
-    tools.pingURL(config.application.url);
+    tools.pingURL(config.application.url, undefined, undefined, config.production, function(err, timeoutId){
+      if(err){
+        logger.error('Ping application failed', err);
+      }
+      if(timeoutId){
+        logger.verbose('Ping application scheduled with timeoutId', timeoutId);
+      }
+    });
   }
 
   if(config.marvel){

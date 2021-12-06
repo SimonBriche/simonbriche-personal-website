@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.1",
@@ -32,5 +32,18 @@
   "engines": {
     "node": "16.0.0",
     "npm": "7.10.0"
+  },
+  "devDependencies": {
+    "jest": "26.6.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:react": "cd ./react-cmp && npm test"
+  },
+  "jest": {
+    "testRegex": [
+      "/(utils|middlewares)/.*\\.test\\.js?$"
+    ],
+    "setupFiles": ["./utils/log.js"]
   }
 }

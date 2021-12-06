@@ -1,6 +1,7 @@
 const ENV = process.env;
+const Tools = require('./utils/tools');
 
-module.exports = {
+const config = {
   port: ENV.PORT,
   production: (ENV.NODE_ENV === 'production'),
   logLevel: (ENV.LOG_LEVEL) ? ENV.LOG_LEVEL : ((ENV.NODE_ENV === 'production') ? 'info' : 'debug'),
@@ -16,6 +17,7 @@ module.exports = {
     useLocalSSLCert: (ENV.USE_LOCAL_SSL_CERT) ? (ENV.USE_LOCAL_SSL_CERT === "true") : false,
     forceSSLRedirection: (ENV.FORCE_SSL_REDIRECTION) ? (ENV.FORCE_SSL_REDIRECTION === "true") : true,
     redirectToDomain: (ENV.REDIRECT_TO_DOMAIN) ? ENV.REDIRECT_TO_DOMAIN : null,
+    
     localeDomains: (ENV.LOCALE_DOMAINS) ? ENV.LOCALE_DOMAINS : null,
     localeSubfolders: (ENV.LOCALE_SUBFOLDERS) ? ENV.LOCALE_SUBFOLDERS : null,
 
@@ -93,5 +95,18 @@ module.exports = {
     publicKey: ENV.MARVEL_PUBLIC_KEY,
     fetchCharacter: (ENV.MARVEL_FETCH_CHARACTER) ? (ENV.MARVEL_FETCH_CHARACTER === "true") : false,
     fetchComics: (ENV.MARVEL_FETCH_COMICS) ? (ENV.MARVEL_FETCH_COMICS === "true") : false,
+  }
+};
+
+const mockConfig = JSON.parse(JSON.stringify(config));
+let currentMockConfig = JSON.parse(JSON.stringify(config));
+
+module.exports = {
+  config: (ENV.NODE_ENV === 'test') ? currentMockConfig : config,
+  mock: (mock) => {
+    Tools.mergeObjects(currentMockConfig, mock, false, true);
+  },
+  unmock: () => {
+    Tools.mergeObjects(currentMockConfig, mockConfig, {target:false, source: true}, false);
   }
 }

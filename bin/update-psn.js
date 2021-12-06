@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+//don't warn if a .env file is missing
 require('dotenv').config({silent: true});
 
 const ENV = process.env;

@@ -7,8 +7,8 @@ module.exports = {
     return new Promise(function(resolve, reject) {
       (async function(){
         _logger.verbose('pagingInfos', pagingInfos)
-        const { first, after, last, before, limit, cursor } = formatPagingInfos(pagingInfos, 20);
-
+        const { first, after, last, before, limit, cursor } = formatPagingInfos(pagingInfos);
+        
         const defaultFields = [
           'portfolio.id',
           'portfolio.name',
