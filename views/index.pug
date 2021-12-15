@@ -50,7 +50,7 @@ block content
 
 
     section.skill.mb-3
-      .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button" aria-controls="skill-real")
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-sixpans" aria-expanded="true" role="button" aria-controls="skill-sixpans")
         .property 
           |title: 
           span.text-red "Sixpans"
@@ -58,7 +58,7 @@ block content
           |description: 
           span.text-red "Plateforme d'aide à la productivité que j'ai développée 100% in-house au sein de l'agence OP1C. Elle est constituée de plusieurs modules répondant chacun à un besoin spécifique, pour l'interne ou les clients. C'est une plateforme évolutive qui s'est construite en symbiose avec les autres métiers de l'agence, à l'écoute de leurs problématiques."
       .skill-content
-        #skill-real.collapse.show
+        #skill-sixpans.collapse.show
           .property content: 
           .position-relative
             .inner-shadow.rounded
@@ -155,7 +155,7 @@ block content
             each stackItem in stackItems
               .accordion-item
                 h2.accordion-header(id="heading-"+stackItem.key)
-                  button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#collapse-"+stackItem.key aria-expanded="false" aria-controls="collapse-"+stackItem.key)
+                  button.accordion-button.collapsed(type="button" data-bs-toggle="collapse" data-bs-target="#collapse-"+stackItem.key aria-expanded="false" aria-controls="collapse-"+stackItem.key aria-label="Déplier")
                     .d-flex.align-items-center
                       img.lazyload.fade.stack-logo.rounded-circle.me-2(data-src=`${cdnURL}/assets/images/stack/${stackItem.image}` alt=stackItem.name loading="lazy")
                       .stack

@@ -616,6 +616,9 @@ footer .links ul a.btn-link:hover {
 #graph-tooltip:focus {
   outline: none;
 }
+#graph-tooltip ul {
+  padding-left: 1rem;
+}
 .stack-logo {
   width: 30px;
   height: 30px;
