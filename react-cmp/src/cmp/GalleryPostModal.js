@@ -67,7 +67,7 @@ const GalleryPostModal = (props) => {
         <div className="modal-content">
           <div className="modal-body">
             {modalInfos &&
-              <div className="card portfolio-focus soft flat rounded border-0 mx-sm-auto">
+              <div className="card portfolio-focus soft shadow rounded border-0 mx-sm-auto">
                 <img className="card-img-top rounded-top" src={`${process.env.REACT_APP_CDN_URL}/assets/images/gallery/${modalInfos.thumbnail}`} alt={modalInfos.name}/>
                 <div className="card-body bg-white rounded-bottom">
                   <h2 className="card-title text-red">
@@ -77,7 +77,7 @@ const GalleryPostModal = (props) => {
                   {modalInfos.pitch && 
                     <>
                       <h6 className="text-red mb-0">En résumé</h6>
-                      <div className="card-text mb-3">{modalInfos.pitch}</div>
+                      <div className="card-text mb-3" dangerouslySetInnerHTML={{__html:modalInfos.pitch}}></div>
                     </>
                   }
                   {modalInfos.description &&

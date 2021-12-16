@@ -67,8 +67,10 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){
       toggleGitTooltip(e, `Cours Préparatoires aux Grandes Écoles (CPGE), Lycée Louis Thuillier, Amiens
-      <br>Filière Mathématiques, Informatique et Science de l’Ingénieur (MPSI) 
-      <br>Option Programmation`)
+      <ul>
+      <li>Filière Mathématiques, Informatique et Science de l’Ingénieur (MPSI)</li>
+      <li>Option Programmation</li>
+      </ul>`)
     }
   });
   const feature = develop.branch("feature");
@@ -81,12 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){
       toggleGitTooltip(e, `Ecole Supérieure d'Art et de Design (ESAD), Amiens : 
-      <br>- Modèle vivant
-      <br>- Nature morte
-      <br>- Peinture
-      <br>- Pastels.
-      <br>Années clôturées par une exposition.
-      `)
+      <ul>
+      <li>Modèle vivant</li>
+      <li>Nature morte</li>
+      <li>Peinture</li>
+      <li>Pastels</li>
+      <li>Années clôturées par une exposition</li>
+      </ul>`)
     }
   });
   develop.commit({
@@ -131,13 +134,14 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){
       toggleGitTooltip(e, `Institut universitaire professionnalisé (IUP), UVHC, Valenciennes
-      <br> Filière Ingénierie des Arts de l'Image et du Spectacle Vivant (IAISV)
-      <br>- Arts numériques : Photoshop, Illustrator, Flash, 3DS Max, programmation interactive
-      <br>- Production vidéo : prise de vue, montage (Première, Final Cut), effets spéciaux (After Effects)
-      <br>- Spectacle vivant : scénographie, scénario, costumes, réalisation de courts-métrages
-      <br>- Arts plastiques : dessin, peinture, modèle vivant, sculpture, photographie argentique (prise de vue et développement)
-      <br>- Cours théoriques : histoire de l'art, histoire de la musique, ésthétique de la photographie, droits de l'image
-      `)
+      <br>Filière Ingénierie des Arts de l'Image et du Spectacle Vivant (IAISV)
+      <ul>
+      <li>Arts numériques : Photoshop, Illustrator, Flash, 3DS Max, programmation interactive</li>
+      <li>Production vidéo : prise de vue, montage (Première, Final Cut), effets spéciaux (After Effects)</li>
+      <li>Spectacle vivant : scénographie, scénario, costumes, réalisation de courts-métrages</li>
+      <li>Arts plastiques : dessin, peinture, modèle vivant, sculpture, photographie argentique (prise de vue et développement)</li>
+      <li>Cours théoriques : histoire de l'art, histoire de la musique, ésthétique de la photographie, droits de l'image</li>
+      </ul>`)
     }
   })
   develop.commit({
@@ -164,10 +168,11 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){
       toggleGitTooltip(e, `Master 2 Médias Interactifs, UVHC, Valenciennes
-      <br>- Techniques de gestion de projets et d'entreprise
-      <br>- Vidéo interactive
-      <br>- Programmation web
-      `)
+      <ul>
+      <li>Techniques de gestion de projets et d'entreprise</li>
+      <li>Vidéo interactive</li>
+      <li>Programmation web</li>
+      </ul>`)
     }
   })
   master.commit({
@@ -188,17 +193,18 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){
       toggleGitTooltip(e, `Agence Touche Etoile, Roubaix
-      <br>- Stage puis
-      <br>- Membre de l'équipe de développement puis
-      <br>- Lead Developer
-      <br>- Garant de la qualité technique des applications
-      <br>- Architecte des frameworks internes
-      <br>- Référent technique best practices pour les nouveaux développeurs
-      <br>- Consultant technique en déplacement client
-      <br>- Gestion technique des projets
-      <br>- Estimation des temps à passer pour devis client
-      `)
-    }
+      <ul>
+      <li>Stage puis</li>
+      <li>Membre de l'équipe de développement puis</li>
+      <li>Lead Developer</li>
+      <li>Garant de la qualité technique des applications</li>
+      <li>Architecte des frameworks internes</li>
+      <li>Référent technique best practices pour les nouveaux développeurs</li>
+      <li>Consultant technique en déplacement client</li>
+      <li>Gestion technique des projets</li>
+      <li>Estimation des temps à passer pour devis client</li>
+      </ul>`
+    )}
   }).tag("v2.1.0")
   develop.merge({
     branch: master,
@@ -215,12 +221,14 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){toggleGitTooltip(e, 
       `Formateur Flash / AS3 pour les 3è année du cursus Chef de Projet à CEPRECO, CCI Grand Lille, Roubaix
-      <br>- Réalisation du plan de cours et de l'évolution
-      <br>- Prise en main du logiciel
-      <br>- Réalisation d'animations interactives
-      <br>- Initiation au langage Orienté Objet avec ActionScript 3 (AS3)
-      <br>- Réalisation d'un site internet interactif et animé avec AS3
-      <br>- Évaluation des connaissances`
+      <ul>
+      <li>Réalisation du plan de cours et de l'évolution</li>
+      <li>Prise en main du logiciel</li>
+      <li>Réalisation d'animations interactives</li>
+      <li>Initiation au langage Orienté Objet avec ActionScript 3 (AS3)</li>
+      <li>Réalisation d'un site internet interactif et animé avec AS3</li>
+      <li>Évaluation des connaissances</li>
+      </ul>`
     )}
   }).tag("v2.1.1");
   feature.commit({
@@ -252,12 +260,14 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){toggleGitTooltip(e, 
       `Formateur Javascript pour les 3è année du cursus Chef de Projet à CEPRECO, CCI Grand Lille, Roubaix
-      <br>- Réalisation du plan de cours et de l'évolution
-      <br>- Sensibilisation à la relation client <-> serveur
-      <br>- Initiation à la programmation avec javascript
-      <br>- Réalisation d'un jeu interactif avec javascript
-      <br>- Initiation à jQuery
-      <br>- Évaluation des connaissances`
+      <ul>
+      <li>Réalisation du plan de cours et de l'évolution</li>
+      <li>Sensibilisation à la relation client <-> serveur</li>
+      <li>Initiation à la programmation avec javascript</li>
+      <li>Réalisation d'un jeu interactif avec javascript</li>
+      <li>Initiation à jQuery</li>
+      <li>Évaluation des connaissances</li>
+      </ul>`
     )}
   });
   feature.commit({
@@ -280,12 +290,13 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){
       toggleGitTooltip(e, `Responsable de la production technique et R&D à OP1C, Roubaix
-      <br>- Prise de brief, estimation, conception et réalisation des applications
-      <br>- Animation des équipes
-      <br>- Architecture des frameworks internes
-      <br>- Applications internes pour l'amélioration de la performance des équipes, l'aide à la décision, la gestion des ressources humaines
-      <br>- R&D
-      `)
+      <ul>
+      <li>Prise de brief, estimation, conception et réalisation des applications</li>
+      <li>Animation des équipes</li>
+      <li>Architecture des frameworks internes</li>
+      <li>Applications internes pour l'amélioration de la performance des équipes, l'aide à la décision, la gestion des ressources humaines</li>
+      <li>R&D</li>
+      </ul>`)
     }
   }).tag("v2.2.0");
   develop.merge({
@@ -323,11 +334,12 @@ document.addEventListener('DOMContentLoaded', function() {
     },
     onMessageClick: function(e){
       toggleGitTooltip(e, `
-      <br>- Organisation de la mise en oeuvre du RGPD au sein de l'agence
-      <br>- Élaboration des grandes lignes des différentes politiques (PSSI, PAS, Classification des données, ...)
-      <br>- Mise en place des différents registres (assets, fiches de traitement de la donnée personnelle, ...)
-      <br>- Sensibilisation des équipes aux bonnes pratiques de la protection des données personnelles.
-      `)
+      <ul>
+      <li>Organisation de la mise en oeuvre du RGPD au sein de l'agence</li>
+      <li>Élaboration des grandes lignes des différentes politiques (PSSI, PAS, Classification des données, ...)</li>
+      <li>Mise en place des différents registres (assets, fiches de traitement de la donnée personnelle, ...)</li>
+      <li>Sensibilisation des équipes aux bonnes pratiques de la protection des données personnelles.</li>
+      </ul>`)
     }
   }).tag("v2.3.0");
   develop.merge({

@@ -2,6 +2,9 @@ footer.footer-interface.max-width-container
   .links
     ul.list-unstyled.list-inline.text-end
       li.list-inline-item
+        a.btn-custom.btn-link(href="https://medium.com/@briche.simon" title="Mes articles sur Medium" target="_blank" rel="noopener")
+          i.fab.fa-fw.fa-medium
+      li.list-inline-item
         a.btn-custom.btn-link(href="https://www.linkedin.com/in/simonbriche/" title="Mon profil LinkedIn" target="_blank" rel="noopener")
           i.fab.fa-fw.fa-linkedin
       li.list-inline-item
@@ -13,18 +16,18 @@ footer.footer-interface.max-width-container
       
 
 .footer-interface.max-width-container.buttons-interface
-  button#btn-pending-footer.btn.btn-custom.btn-glass-floating.rounded-circle
+  button#btn-pending-footer.btn.btn-custom.btn-glass-floating.rounded-circle(aria-label="Menu en chargement")
     i.fas.fa-spinner.fa-spin
-  button.btn-profile.btn.btn-custom.btn-glass-floating.rounded-circle
-    img.logo(src=`${cdnURL}/assets/images/logo.svg`)
-  button#btn-close-footer.btn.btn-custom.btn-glass-floating.rounded-circle
+  button.btn-profile.btn.btn-custom.btn-glass-floating.rounded-circle(aria-label="Ouvrir le Menu")
+    img.logo(src=`${cdnURL}/assets/images/logo.svg` alt="Menu")
+  button#btn-close-footer.btn.btn-custom.btn-glass-floating.rounded-circle(aria-label="Fermer le Menu")
     i.fas.fa-times
 
 #notifications-container
   #notification-template.toast(role="alert" aria-live="assertive" aria-atomic="true")
     .toast-header
       strong.title.me-auto Information
-      button.btn-close(type="button" data-bs-dismiss="toast" aria-label="Close")
+      button.btn-close(type="button" data-bs-dismiss="toast" aria-label="Fermer")
       .toast-progress
     .toast-body
 
@@ -33,7 +36,7 @@ footer.footer-interface.max-width-container
     .modal-content
       .modal-body
         .card.portfolio-focus.soft.flat.rounded.border-0.mx-sm-auto
-          img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/wam-thumbnail.png`)
+          img.card-img-top.rounded-top(src=`${cdnURL}/assets/images/wam-thumbnail.webp` alt="Profile picture")
           .card-body.bg-white.rounded-bottom
             h2.card-title.text-red 
               strong Simon BRICHE
@@ -60,12 +63,14 @@ footer.footer-interface.max-width-container
               p J'aime également mettre en place des frameworks et des outils pour optimiser la productivité, et privilégie toujours la simplicité et l'accessibilité, ce qui rend l'onboarding d'un nouveau collaborateur plus aisé.
             
             .text-center.mb-3
-              a.btn.btn-custom.btn-soft.mx-auto(href=`${cdnURL}/cv-simon-briche.pdf` target="_blank") Voir mon CV
+              a.btn.btn-custom.btn-soft.mx-auto(href=`${cdnURL}/cv-simon-briche.pdf` target="_blank" ref="noopener") Voir mon CV
 
             h6.text-red.mb-2 Retrouvez-moi sur
             .text-center.social-networks
               a.text-secondary(href="https://www.linkedin.com/in/simonbriche/" title="Mon profil LinkedIn" target="_blank" rel="noopener")
                 i.fab.fa-fw.fa-linkedin
+              a.text-secondary(href="https://medium.com/@briche.simon" title="Mes articles sur Medium" target="_blank" rel="noopener")
+                i.fab.fa-fw.fa-medium
 
             h6.text-red.mb-2 Ou envoyez-moi un message
             form#form-contact.op1c-form.mb-5
@@ -133,7 +138,7 @@ footer.footer-interface.max-width-container
                                   ul.list-unstyled.d-flex.align-items-stretch.pt-1
                                     each earnedTrophyKey in Object.keys(trophy.earnedTrophies)
                                       li.d-inline-block.text-center.mb-3.px-1
-                                        img.img-fluid(src=`${cdnURL}/assets/images/trophy-${earnedTrophyKey}.png` alt=earnedTrophyKey)
+                                        img.lazyload.fade.img-fluid(data-src=`${cdnURL}/assets/images/trophy-${earnedTrophyKey}.png` alt=earnedTrophyKey loading="lazy")
                                         small.d-block.text-grey #{trophy.earnedTrophies[earnedTrophyKey]}
                           
                   .scroll-arrows
