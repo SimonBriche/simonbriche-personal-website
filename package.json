@@ -1,6 +1,6 @@
 {
   "name": "website",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "private": true,
   "dependencies": {
     "@graphql-tools/load-files": "^6.5.1",
@@ -34,7 +34,7 @@
     "npm": "7.10.0"
   },
   "devDependencies": {
-    "jest": "26.6.0"
+    "jest": "^27.4.5"
   },
   "scripts": {
     "test": "jest",
@@ -44,6 +44,8 @@
     "testRegex": [
       "/(utils|middlewares)/.*\\.test\\.js?$"
     ],
-    "setupFiles": ["./utils/log.js"]
+    "setupFiles": [
+      "./utils/log.js"
+    ]
   }
 }

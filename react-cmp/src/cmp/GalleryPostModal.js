@@ -124,7 +124,7 @@ const GalleryPostModal = (props) => {
                       <ul className="list-inline mb-0">
                         {technologies.map((technology, index) => (
                           <li className="list-inline-item" key={`carousel-technology-${index}`}>
-                            <a href={technology.link} title={technology.name} target="_blank" rel="noopener">
+                            <a href={technology.link} title={technology.name} target="_blank" rel="noopener, noreferrer">
                               <img className="stack-logo bg-white rounded-circle lazyload fade me-2 mb-2" data-src={`${process.env.REACT_APP_CDN_URL}/assets/images/stack/${technology.thumbnail}`} alt={`${technology.name}-${index}`} loading="lazy"/>
                             </a>
                           </li>

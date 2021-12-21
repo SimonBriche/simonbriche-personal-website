@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_cmp=self.webpackChunkreact_cmp||[]).push([[890],{890:function(e,n,t){t.r(n);var c=t(184);n.default=function(e){console.log("props",e);var n=e.bridgeEvent;return n.addEventListener("myEvent",(function(e){console.log("e",e.detail)})),n.addEventListener("myPrivateEvent",(function(e){console.log("e private",e.detail)})),(0,c.jsx)("div",{children:"Je suis le component test"})}}}]);
+//# sourceMappingURL=890.1daab5ef.chunk.js.map

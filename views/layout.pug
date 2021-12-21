@@ -21,10 +21,7 @@ html(lang="fr")
     //-cookies management
     include includes/tarteaucitron
 
-    //-inject React components
-    if reactApp && reactApp.css
-      !=reactApp.css
-
+    //-global css
     link(href=`${cdnURL}/assets/css/all.css`, rel='stylesheet', type='text/css')
     
     //-meta SEO/OG

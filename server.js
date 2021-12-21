@@ -101,9 +101,6 @@ app.use((err, req, res, next) => {
     res.status(500).render('500');
   }
 });
-app.use((err, req, res, next) => {
-  res.status(500).render('500');
-});
 
 //handle server events
 const serverListeningHandler = () => {
