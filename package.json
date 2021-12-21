@@ -34,7 +34,7 @@
     "npm": "7.10.0"
   },
   "devDependencies": {
-    "jest": "26.6.0"
+    "jest": "^27.4.5"
   },
   "scripts": {
     "test": "jest",
@@ -44,6 +44,8 @@
     "testRegex": [
       "/(utils|middlewares)/.*\\.test\\.js?$"
     ],
-    "setupFiles": ["./utils/log.js"]
+    "setupFiles": [
+      "./utils/log.js"
+    ]
   }
 }

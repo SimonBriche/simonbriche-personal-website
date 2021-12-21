@@ -10,5 +10,5 @@ script(src=`${cdnURL}/assets/js/main.js`)
 script(src=`${cdnURL}/assets/js/contact.js`)
 
 //-inject React components
-if reactApp && reactApp.js
-  !=reactApp.js
+if reactPublicURL
+  script(src=`${reactPublicURL}/cmp-loader.js`)

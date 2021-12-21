@@ -32,7 +32,7 @@ const renderAppInElement = (el) => {
     , el);
     el.dataset.rendered = true;
   }
-  else{
+  else if(el.dataset.rendered){
     console.log('el', el, 'is already rendered')
   }
 }
@@ -75,15 +75,16 @@ if(process.env.REACT_APP_RENDER_CMP_WITH_ATTRS){
 //the default name of the global object is ReactComponents, but it could be customized via the REACT_APP_NAMESPACE environment variable
 const appNamespace = process.env.REACT_APP_NAMESPACE || "ReactComponents";
 window[appNamespace] = {
-  ready: true,
-  parseComponents(){
-    //parse the current document and inject all the components in the containers that have a "__react-cmp" class
-    document
+  ready: false,
+  parseComponents(container){
+    //parse the container or the whole document and inject all the components in the containers that have a "__react-cmp" class
+    (container || document)
     .querySelectorAll('.__react-cmp')
     .forEach(renderAppInElement);
   }
 }
 window[appNamespace].parseComponents();
+window[appNamespace].ready = true;
 
 //if dynamic parsing must be done via the window.ReactComponents.parseComponents() method
 //check the availability of window.ReactComponents object via window.ReactComponents.ready property
