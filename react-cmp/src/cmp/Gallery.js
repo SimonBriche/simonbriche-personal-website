@@ -10,7 +10,7 @@ function Gallery(props) {
   useEffect(() => {
     (async () => {
       const query = `{
-        portfolio(filtering:{field: "section", operator:EQUAL,value:"${section}"},orderBy:{sort:PRIORITY, direction:ASC}){
+        portfolio(filtering:{field: "section", operator:EQUAL, value:"${section}"},orderBy:{sort:PRIORITY, direction:ASC}){
           data{id, name, client, pitch, description, thumbnail, types, images, technology_ids}
         }
       }`;

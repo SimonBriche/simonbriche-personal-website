@@ -630,7 +630,7 @@ footer .links ul a.btn-link:hover {
   box-shadow: 0.6rem 0.6rem 1.2rem var(--greyLight), -0.4rem -0.4rem 1rem var(--white);
 }
 .gallery-item {
-  width: 200px;
+  width: 205px;
   cursor: pointer;
   transition: 0.1s all ease-in;
 }

@@ -31,8 +31,7 @@ const Util = {
       delete pagingInfos.last;
     }
     pagingInfos.limit = (pagingInfos.last && pagingInfos.last > 0) ? pagingInfos.last : pagingInfos.first;
-    pagingInfos.cursor = (pagingInfos.after || pagingInfos.before) ? JSON.parse(new Buffer.from(pagingInfos.after || pagingInfos.before, 'base64').toString('ascii')) : null;
-
+    pagingInfos.cursor = (pagingInfos.after || pagingInfos.before) ? JSON.parse(new Buffer.from(pagingInfos.after || pagingInfos.before, 'base64').toString('utf8')) : null;
     return pagingInfos;
   },
   /**
@@ -71,8 +70,8 @@ const Util = {
       startCursor.lastOrderingValues = {};
       endCursor.lastOrderingValues = {};
       orderBy.forEach(item => {
-        startCursor.lastOrderingValues[item.sort] = firstItem[item.sort];
-        endCursor.lastOrderingValues[item.sort] = lastItem[item.sort];
+        startCursor.lastOrderingValues[item.sort] = firstItem ? firstItem[item.sort] : null;
+        endCursor.lastOrderingValues[item.sort] = lastItem ? lastItem[item.sort] : null;
       });
     }
     _logger.verbose("startCursor", startCursor, "endCursor", endCursor);
@@ -91,8 +90,9 @@ const Util = {
    * @param {Array} filtering An array of filters to apply to the query, with format [{operator:OPERATOR<String>, field:FIELDNAME<String>, value:VALUE<Array>}]
    * @param {String} uuidField The name of the uuid field of the table (tie breaker)
    * @param {Object} cursor The cursor that have the uuid value in its "uuid" property
+   * @param {Array} jsonFields An array of that contains all the JSON typed fileds, as the requests will use MySQL's JSON functions
    */
-  generateFilterQuery: function(query, filtering, uuidField, cursor){
+  generateFilterQuery: function(query, filtering, uuidField, cursor, jsonFields){
     //generate filtering rules, regarding the filtering array elements
     if(filtering && filtering.length > 0){
       filtering.forEach(filter => {
@@ -105,10 +105,20 @@ const Util = {
               query.where(filter.field, "!=", filter.value[0]);
             break;
             case "IN":
-              query.whereIn(filter.field, filter.value);
+              if(jsonFields && jsonFields.length > 0 && jsonFields.indexOf(filter.field) !== -1){
+                query.whereRaw("JSON_OVERLAPS("+filter.field+", '"+JSON.stringify(filter.value)+"')");
+              }
+              else{
+                query.whereIn(filter.field, filter.value);
+              }
             break;
             case "NOT_IN":
-              query.whereNotIn(filter.field, filter.value);
+              if(jsonFields && jsonFields.length > 0 && jsonFields.indexOf(filter.field) !== -1){
+                query.whereRaw("NOT JSON_OVERLAPS("+filter.field+", '"+JSON.stringify(filter.value)+"')");
+              }
+              else{
+                query.whereNotIn(filter.field, filter.value);
+              }
             break;
             case "GREATER_THAN":
               query.where(filter.field, ">", filter.value[0]);
@@ -136,34 +146,46 @@ const Util = {
   generateOrderQuery: function(query, orderBy, uuidField, cursor, isInverted){
     //handle orderBy
     if(orderBy && orderBy.length > 0){
-      //generate orderBy rules, regarding the orderBy array elements order
-      orderBy.forEach(order => {
-        const orderDirection = (isInverted) ? ((order.direction === 'ASC') ? 'DESC' : 'ASC') : order.direction;
-        query.orderBy(order.sort, orderDirection);
-      });
-      //the implementation is described here : https://stackoverflow.com/questions/56989560/how-to-get-a-cursor-for-pagination-in-graphql-from-a-database
-      function loop(currentQuery, index){
-        const ordering = orderBy[index];
-
-        if(cursor && cursor.lastOrderingValues[ordering.sort]){
-          const lastValue = cursor.lastOrderingValues[ordering.sort];
-          const direction = (ordering.direction === "ASC") ? ((isInverted) ? '<' : '>') : ((isInverted) ? '>' : '<');
-
-          currentQuery.where(ordering.field, direction, lastValue)
-          .orWhere(function(){
-            this.where(ordering.field, lastValue);
-            if(index < (orderBy.length - 1)){
-              loop(this, (index+1));
-            }
-            else{
-              //generate the tie breaker as the last orderBy rule
-              this.where(uuidField, (isInverted) ? '>' : '<', db.raw(`UUID_TO_BIN("${cursor.uuid}", true)`));
-            }
-          });
+      //if at least one random order is required, ignore all other sorting
+      const randomSort = orderBy.find(item => item.sort === "rand");
+      if(randomSort){
+        query.orderBy('uuid', (isInverted) ? 'ASC' : 'DESC');
+        if(cursor && cursor.uuid){
+          //generate the default tie breaker orderBy rule from the cursor UUID
+          query.having('uuid', (isInverted) ? '>' : '<', cursor.uuid);
         }
-      };
-      //launch the recursive generation
-      loop(query, 0);
+      }
+      else{
+        //generate orderBy rules, regarding the orderBy array elements order
+        orderBy.forEach(order => {
+          const orderDirection = (isInverted) ? ((order.direction === 'ASC') ? 'DESC' : 'ASC') : order.direction;
+          query.orderBy(order.sort, orderDirection);
+        });
+
+        //the implementation is described here : https://stackoverflow.com/questions/56989560/how-to-get-a-cursor-for-pagination-in-graphql-from-a-database
+        function loop(currentQuery, index){
+          const ordering = orderBy[index];
+
+          if(cursor && cursor.lastOrderingValues[ordering.sort]){
+            const lastValue = cursor.lastOrderingValues[ordering.sort];
+            const direction = (ordering.direction === "ASC") ? ((isInverted) ? '<' : '>') : ((isInverted) ? '>' : '<');
+
+            currentQuery.where(ordering.field, direction, lastValue)
+            .orWhere(function(){
+              this.where(ordering.field, lastValue);
+              if(index < (orderBy.length - 1)){
+                loop(this, (index+1));
+              }
+              else{
+                //generate the tie breaker as the last orderBy rule
+                this.where(uuidField, (isInverted) ? '>' : '<', db.raw(`UUID_TO_BIN("${cursor.uuid}", true)`));
+              }
+            });
+          }
+        };
+        //launch the recursive generation
+        loop(query, 0);
+      }
     }
     else if(cursor && cursor.uuid){
       //generate the default tie breaker orderBy rule from the cursor UUID
@@ -180,9 +202,10 @@ const Util = {
    * @param {String} uuidField The name of the uuid field of the table (tie breaker)
    * @param {Object} cursor The cursor that have the uuid value in its "uuid" property, and the previous ordering values in its "lastOrderingValues" property, with format Object.SORT_FIELD_NAME = "LAST_VALUE"
    * @param {Boolean} isInverted Boolean that tells if the ordering must be inverted (backwards pagination) or not (forward pagination)
+   * @param {Array} jsonFields An array of that contains all the JSON typed fileds, as the requests will use MySQL's JSON functions
    */
-  generateOrderAndFilterQuery: function(query, orderBy, filtering, uuidField, cursor, isInverted){
-    Util.generateFilterQuery(query, filtering, uuidField, cursor);
+  generateOrderAndFilterQuery: function(query, orderBy, filtering, uuidField, cursor, isInverted, jsonFields){
+    Util.generateFilterQuery(query, filtering, uuidField, cursor, jsonFields);
     Util.generateOrderQuery(query, orderBy, uuidField, cursor, isInverted);
   }
 }
