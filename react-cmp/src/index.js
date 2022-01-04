@@ -1,7 +1,6 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import './all.css';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 //list here all the components that can be inserted in a web page
@@ -10,6 +9,8 @@ const apps = {
   'Gallery': React.lazy(() => import('./cmp/Gallery')),
   'TestComponent': React.lazy(() => import('./cmp/TestComponent')),
   'GalleryPostModal': React.lazy(() => import('./cmp/GalleryPostModal')),
+  'GalleryFilter': React.lazy(() => import('./cmp/GalleryFilter')),
+  'GalleryTiles': React.lazy(() => import('./cmp/GalleryTiles')),
 }
 //event manager to communicate between the components
 const bridgeEvent = new EventTarget();

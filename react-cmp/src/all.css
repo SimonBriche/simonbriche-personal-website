@@ -43,3 +43,8 @@
     transform: rotate(360deg);
   }
 }
+@media (max-width: 575px) {
+  #gallery-filters .selectfilter {
+    width: 100%;
+  }
+}

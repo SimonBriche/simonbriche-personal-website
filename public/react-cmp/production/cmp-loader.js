@@ -4,15 +4,15 @@
 
   //get the exact script's src as defined in the src attribute
   const scriptSrc = scriptSrcRegexp.exec(document.currentScript.outerHTML);
-  //all the ressources should be relative to the path of this script
-  const ressourcesPath = (scriptSrc && scriptSrc.length > 1) ? scriptSrc[1].replace('cmp-loader.js', '') : '';
+  //all the resources should be relative to the path of this script
+  const resourcesPath = (scriptSrc && scriptSrc.length > 1) ? scriptSrc[1].replace('cmp-loader.js', '') : '';
 
   //get the index content
-  const indexHTML = await (await fetch(ressourcesPath+'index.html')).text();
+  const indexHTML = await (await fetch(resourcesPath+'index.html', {cache:'reload'})).text();
 
   //assume that all the .js and .css files to load are in the "static" folder
-  const reactCSSRegexp = new RegExp(`<link href="${ressourcesPath}static\/css\/(.*?)\.css" rel="stylesheet">`, 'gm');
-  const reactJSRegexp = new RegExp(`<script (.*?) src="${ressourcesPath}static\/js\/(.*?)\.js"><\/script>`, 'gm');
+  const reactCSSRegexp = new RegExp(`<link href="${resourcesPath}static\/css\/(.*?)\.css" rel="stylesheet">`, 'gm');
+  const reactJSRegexp = new RegExp(`<script (.*?) src="${resourcesPath}static\/js\/(.*?)\.js"><\/script>`, 'gm');
 
   //grab all the css tags
   const ReactCSS = [].concat(indexHTML.match(reactCSSRegexp)).join('');

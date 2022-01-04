@@ -43,6 +43,13 @@ const resolvers = {
         totalCount: technologiesData.length
       }
     },
+    portfolioSearchFields: async (root, args, context, info) => {
+      const {fields} = simplify(parse(info), info.returnType);
+      const requestedFields = Object.keys(fields).filter(key => Object.keys(fields[key].fieldsByTypeName).length === 0);
+
+      const searchFields = await PortfolioModel.getPortfolioSearchFields(requestedFields);
+      return searchFields;
+    }
   }
 }
 

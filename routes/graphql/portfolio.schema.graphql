@@ -1,7 +1,8 @@
 type Query {
   portfolioItem(id: String!): PortfolioItem,
   portfolio(first: Int, after: String, last: Int, before: String, orderBy:[PortfolioOrdering!], filtering:[Filtering!]): PortfolioConnection,
-  technologies: TechnologyConnection
+  technologies: TechnologyConnection,
+  portfolioSearchFields: PortfolioSearchFields
 }
 
 type Technology {
@@ -40,8 +41,14 @@ type PortfolioPageInfo{
   endCursor: String
 }
 
+type PortfolioSearchFields{
+  clients: [String!],
+  types: [String!]
+}
+
 input PortfolioOrdering {
   sort: PortfolioSort!
-  direction: Direction! = ASC
+  direction: Direction! = ASC,
+  seed: String
 }
-enum PortfolioSort { CREATED_AT, PRIORITY }
+enum PortfolioSort { CREATED_AT, PRIORITY, RAND, CLIENT }
