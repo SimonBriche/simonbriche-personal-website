@@ -91,7 +91,7 @@ block content
                 span
     
     section.skill.mb-3
-      .properties.collapsed(data-bs-toggle="collapse" data-bs-target="#skill-more-real" aria-expanded="false" role="button" aria-controls="skill-more-real")
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-more-real" aria-expanded="true" role="button" aria-controls="skill-more-real")
         .property 
           |title: 
           span.text-red "Plus de réalisations"
@@ -99,11 +99,11 @@ block content
           |description: 
           span.text-red "Un peu plus de projets, triés par client ou type"
       .skill-content
-        #skill-more-real.collapse
+        #skill-more-real.collapse.show
           .property content:
           .__react-cmp.text-center.my-3(data-react-component="GalleryFilter")
           .__react-cmp.mx-auto(data-react-component="GalleryTiles")
-    
+
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-xp" aria-expanded="true" role="button" aria-controls="skill-xp")
         .property 
