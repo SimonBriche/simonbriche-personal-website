@@ -68,6 +68,7 @@ const config = {
   },
   mail:{
     active: (ENV.ACTIVE_MAIL) ? (ENV.ACTIVE_MAIL === "true") : true,
+    senderEmail: ENV.SENDER_EMAIL,
     supportEmail: ENV.SUPPORT_EMAIL,
     smtpLogin: ENV.MAILGUN_SMTP_LOGIN,
     smtpPassword: ENV.MAILGUN_SMTP_PASSWORD,
