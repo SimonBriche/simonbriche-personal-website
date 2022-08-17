@@ -20,7 +20,7 @@ router.use(require('../middlewares/og-only'));
 //Declare all public routes here
 router
 .get('/', reactLoader, function(req, res, next) {
-  (async function response(){
+  (async () => {
     const trophies = await ConfigModel.get('PSN_TROPHIES', true).catch(e => null);
     const randomTrophies = (trophies) ? ArrayUtil.shuffle(trophies).slice(0, 10) : null;
     const marvelCharacter = await ConfigModel.get('MARVEL_CHARACTER', true).catch(e => null);
