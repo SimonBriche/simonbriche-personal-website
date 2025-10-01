@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <li>Sensibilisation des équipes aux bonnes pratiques de la protection des données personnelles.</li>
       </ul>`)
     }
-  }).tag("v2.3.0");
+  }).tag("v2.2.3");
   develop.merge({
     branch: feature,
     commitOptions:{
@@ -359,16 +359,55 @@ document.addEventListener('DOMContentLoaded', function() {
       toggleGitTooltip(e, "Jury de la promotion de 5è année pour e-ArtSup, École de création visuelle, Lille")
     }
   })
-  master.commit({
-    subject: (new Date().getFullYear())+" - Responsable Développement Web - OP1C"
+  develop.merge({
+    branch: feature,
+    commitOptions:{
+      subject: " "
+    }
+  });
+  develop.commit({
+    subject: "01/2023 - Fin Responsable Développement Web - OP1C"
   })
+  master.commit({
+    subject: "2023 - Consultant Senior - Davidson",
+    style:{
+      message:{
+        font: interactiveMessageFont
+      }
+    },
+    onMessageClick: function(e){
+      toggleGitTooltip(e, `Consultant Senior Architecte Solution à Davidson, Lille
+      <ul>
+      <li>Spécialisé dans l'architecture des solutions cloud</li>
+      <li>Entretiens pour le recrutement de profils techniques, orientés JS et NodeJS</li>
+      </ul>`)
+    }
+  }).tag("v3.0.0");
   develop.merge({
     branch: master,
     commitOptions:{
       subject: " ",
     }
   });
-
+  feature.commit({
+    subject: `${(new Date().getFullYear())} - Cloud Platform Engineer - Decathlon`,
+    style:{
+      message:{
+        font: interactiveMessageFont
+      }
+    },
+    onMessageClick: function(e){
+      toggleGitTooltip(e, `Senior Architect Cloud DevOps Platform Engineer à Decathlon, Btwin Village, Lille
+      <ul>
+      <li>Développement d'une solution déployant une infrastructure cloud via un fichier YAML</li>
+      <li>L'approche GitOPS déploie des composants cloud (environnement GCP) avec un simple commit</li>
+      <li>Les resources elles-mêmes sont déployées avec Terraform</li>
+      <li>La solution permet un déploiement similaire peu importe l'utilisateur</li>
+      </ul>`)
+    }
+  });
+  
+  
   let currentHash;
   const tooltip = document.getElementById('graph-tooltip');
   const SVGgraph = document.querySelector('#graph-container svg');
