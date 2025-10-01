@@ -3,6 +3,7 @@
 This is a minimal template for a website powered by Node 16.x, ExpressJS and Pug template engine.
 
 ## <a name="environment"></a> Environment Variables
+
 - PORT : Port on which the site is accessible with local developement. Don't provide it once hosted, as the host will automatically provide one.
 - NODE_ENV : Environnement of the application (`production` once deployed, `developement` while on local)
 - LOG_LEVEL : Level of debugging. Values can be (in order of inclusion) `debug`, `verbose`, `info`(default), `warn`, `error`. e.g : `debug` level will show all other levels of debugging. `info` will only show `info`, `warn` and `error` levels of debug.
@@ -38,22 +39,28 @@ This is a minimal template for a website powered by Node 16.x, ExpressJS and Pug
 - MARVEL_FETCH_COMICS : Should the server load a random Marvel comics at startup (`true`(default)/`false`)
 
 ## <a name="config"></a> Configuration file
+
 The `config.js` file at the root of the project can be edited to update the default values of the environment variables.
 Along the environment variables, some other configuration can be set :
+
 ### dataPolicy
+
 Update the data policy infos according to the website needs. Those informations are used to generate the data policy page.
 
 ### cspDirectives
-Add the URLs, domains or hosts that are allowed, according to the website needs, for each directive :
-- scriptSrc : The scripts that are allowed to be loaded
-- imgSrc : The images that are allowed to be loaded
-- connectSrc : The APIs that are allowed to be fetched
-- frameSrc : The iframes that are allowed to be displayed
+
+Add the URLs, domains or hosts that are allowed, according to the website needs, for each directive:
+
+- `scriptSrc`: The scripts that are allowed to be loaded
+- `imgSrc`: The images that are allowed to be loaded
+- `connectSrc`: The APIs that are allowed to be fetched
+- `frameSrc`: The iframes that are allowed to be displayed
 
 ## Testing
+
 Run `npm test` to run the test suites. Update the `jest.testRegex` property in the `package.json` file to target the scripts that will be tested.
 
-Run `npm test -- --watch` to run the test suite with each file update. 
+Run `npm test -- --watch` to run the test suite with each file update.
 
 To watch only a specific test file and all its related tests, run `npm test -- --watch --findRelatedTests PATH/TO/FILE.js`.
 To watch only a specific folder and all its related tests, run `npm test -- --watch --findRelatedTests PATH/TO/FOLDER/**/*`.
@@ -64,4 +71,5 @@ Add `--verbose` option to log all the tests' names even if multiple files are te
 **Please note** that the jest package must match the Create React App one to avoid incompatibilities.
 
 ### References
+
 - https://testing.googleblog.com/
