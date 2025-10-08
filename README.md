@@ -73,3 +73,54 @@ Add `--verbose` option to log all the tests' names even if multiple files are te
 ### References
 
 - https://testing.googleblog.com/
+
+## Database
+
+### Local development
+
+You can setup your local database by running a Docker container.
+
+1. Run your container with:
+
+    ```bash
+    docker run --name my-sql-container -p 3309:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:8.0.43
+    ```
+
+2. Connect to your mysql server with:
+
+    ```bash
+    mysql -h 127.0.0.1 -P 3309 -u root -p'password'
+    ```
+
+3. Create your database with:
+
+    ```sql
+    CREATE DATABASE website;
+    ```
+
+4. Ensure that your database is ceated with:
+
+    ```sql
+    SHOW DATABASES;
+    ```
+
+5. The current MySQL driver doesn't support the latest (and default) authentication method. You must update it with:
+
+    ```sql
+    ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+    ```
+
+6. You can now set the `DATABASE_URL` environment variable with something like `mysql://root:password@localhost:3309/website`.
+
+### Connect to a remote database
+
+Just configure the `DATABASE_URL` environment variable with your database settings, in the form `mysql://user:password@host:port/database`.
+
+### Add a new portfolio entry
+
+Insert a new entry with this kind of command:
+
+```sql
+INSERT INTO `portfolio` (`uuid`, `client`, `types`, `name`, `description`, `pitch`, `trivia`, `technology_ids`, `thumbnail`, `images`, `section`, `priority`, `created_at`)
+VALUES (UUID_TO_BIN(UUID(), true), '<client_name>','[\"<type_name>\"]','<name>','<html_description>','<html_preview>',NULL,'[1, 2, 3, 4, 5, 6, 8]','<project>-thumbnail.png','[\"<project-screenshot>-1.png\"]','<section_enum>',0,'2025-10-02 17:42:05')
+```

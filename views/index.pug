@@ -51,6 +51,26 @@ block content
 
 
     section.skill.mb-3
+      .properties(data-bs-toggle="collapse" data-bs-target="#skill-consulting" aria-expanded="true" role="button" aria-controls="skill-consulting")
+        .property 
+          |title: 
+          span.text-red "Consulting"
+        .property 
+          |description: 
+          span.text-red "En tant que consultant chez Davidson SI Nord, j'accompagne mes clients dans la mise en place de solutions techniques adaptées à leurs besoins."
+      .skill-content
+        #skill-consulting.collapse.show
+          .property content: 
+          .position-relative
+            .inner-shadow.rounded
+            .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
+              .__react-cmp.mx-auto(data-react-component="Gallery" data-section="consulting")
+              .scroll-arrows
+                span 
+                span 
+                span
+
+    section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-sixpans" aria-expanded="true" role="button" aria-controls="skill-sixpans")
         .property 
           |title: 
