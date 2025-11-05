@@ -1,6 +1,7 @@
 const express = require('express');
 const helmet = require('helmet');
-const { graphqlHTTP } = require('express-graphql');
+//const { graphqlHTTP } = require('express-graphql');
+const { createHandler } = require('graphql-http/lib/use/express');
 const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { mergeTypeDefs, mergeResolvers } = require('@graphql-tools/merge');
 const { loadFilesSync } = require('@graphql-tools/load-files');
@@ -37,7 +38,7 @@ router.use(
       next();
     }
   },
-  graphqlHTTP({
+  createHandler({
     schema: schema,
     graphiql: (!config.production) ? {headerEditorEnabled: true} : false
   })
