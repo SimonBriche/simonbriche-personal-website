@@ -86,6 +86,12 @@ You can setup your local database by running a Docker container.
     docker run --name my-sql-container -p 3309:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:8.0.43
     ```
 
+    or
+
+    ```bash
+    docker start <CONTAINER_ID>
+    ```
+
 2. Connect to your mysql server with:
 
     ```bash

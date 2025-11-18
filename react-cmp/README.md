@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Local components testing
+
+- Run a local backend server from the root of the repo with `nf start`.
+- If needed, configure the `proxy` to the backend in the `package.json` file.
+- Add a component in `react-cmp/public/index.html` like:
+
+```html
+<div class="__react-cmp mx-auto" data-react-component="Gallery" data-section="consulting"></div>
+```
+
+- Run `npm start` to launch a local server for the frontend

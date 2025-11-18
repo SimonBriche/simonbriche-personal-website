@@ -16,10 +16,15 @@ function Gallery(props) {
       }`;
       const res = await (await fetch(`${process.env.REACT_APP_CDN_URL}/graphql?query=${encodeURIComponent(query)}`)).json();
       setPosts(res.data.portfolio.data);
-      lazyLoadImages(el.current);
     })().catch(e => {console.log('fail to fetch', e)});
   }, [section]);
   
+  useEffect(() => {
+    if(posts){
+      lazyLoadImages(el.current);
+    }
+  }, [posts]);
+
   const postClickHandler = (e, item) => {
     const postEvent = new CustomEvent("openGalleryModal", {
       detail: item
