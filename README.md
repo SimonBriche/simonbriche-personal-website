@@ -86,6 +86,12 @@ You can setup your local database by running a Docker container.
     docker run --name my-sql-container -p 3309:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:8.0.43
     ```
 
+    or
+
+    ```bash
+    docker start <CONTAINER_ID>
+    ```
+
 2. Connect to your mysql server with:
 
     ```bash
@@ -124,3 +130,18 @@ Insert a new entry with this kind of command:
 INSERT INTO `portfolio` (`uuid`, `client`, `types`, `name`, `description`, `pitch`, `trivia`, `technology_ids`, `thumbnail`, `images`, `section`, `priority`, `created_at`)
 VALUES (UUID_TO_BIN(UUID(), true), '<client_name>','[\"<type_name>\"]','<name>','<html_description>','<html_preview>',NULL,'[1, 2, 3, 4, 5, 6, 8]','<project>-thumbnail.png','[\"<project-screenshot>-1.png\"]','<section_enum>',0,'2025-10-02 17:42:05')
 ```
+
+## Updating dependencies
+
+You can list all the dependencies with `npm ls --all`.
+
+### Update to minor version
+
+Run `npm update --save`
+
+### Update all packages to their latest versions
+
+- Run `npm i -g npm-check-updates` to install `npm-check-updates` that will manage to `package.json`
+- Run `ncu` to preview the updates
+- Run `ncu -u` to actually update `package.json`
+- Run `npm install` to actually update the dependencies

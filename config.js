@@ -87,7 +87,7 @@ const config = {
       'i.ytimg.com', //Youtube
       'i.annihil.us' //Marvel
     ],
-    connectSrc: [],
+    connectSrc: ['https://cdn.jsdelivr.net/npm/'],
     frameSrc: ['*.youtube-nocookie.com','*.youtube.com']
   },
   marvel: {

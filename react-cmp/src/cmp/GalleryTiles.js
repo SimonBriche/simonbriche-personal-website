@@ -34,13 +34,18 @@ const GalleryTiles = (props) => {
       setGalleryTiles(prevTiles => ((e.detail.isTilesAppended) ? prevTiles.concat(e.detail.tiles) : e.detail.tiles));
       setShowMore(e.detail.hasNextPage);
       setAfterCursor(e.detail.after);
-      lazyLoadImages(el.current);
     }
     bridge.addEventListener("onGalleryTilesEvent", onGalleryTilesHandler);
     return () => {
       bridge.removeEventListener("onGalleryTilesEvent", onGalleryTilesHandler);
     }
   }, [bridge]);
+
+  useEffect(() => {
+    if(galleryTiles){
+      lazyLoadImages(el.current);
+    }
+  }, [galleryTiles]);
 
   return (
     <div className="gallery-container container-fluid">

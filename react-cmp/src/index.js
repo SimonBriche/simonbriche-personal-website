@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import './all.css';
 import reportWebVitals from './reportWebVitals';
 
@@ -20,17 +20,18 @@ function Fallback() {
 }
 const renderAppInElement = (el) => {
   if (apps[el.dataset.reactComponent] && !el.dataset.rendered){
+    const root = createRoot(el);
     //get the component's name stored in the data-react-component attribute
     const App = apps[el.dataset.reactComponent];
     //render the component, inject all the HTML attributes and the Event bridge
-    ReactDOM.render(
+    root.render(
       <Suspense fallback={<Fallback />}>
         {el.dataset.keepLoading !== "true"
           ? <App {...el.dataset} bridgeEvent={bridgeEvent}/>
           : <Fallback />
         }
       </Suspense>
-    , el);
+    );
     el.dataset.rendered = true;
   }
   else if(el.dataset.rendered){

@@ -18,13 +18,19 @@ const GalleryFilter = (props) => {
         }`;
         const res = await (await fetch(`${process.env.REACT_APP_CDN_URL}/graphql?query=${encodeURIComponent(query)}`)).json();
         setSearchFields(res.data.portfolioSearchFields);
-        window.$('.selectfilter').selectpicker();
       })().catch(e => {console.log('getSearchFields error', e)});
     }
     else{
       console.warn('Bootstrap 5 and jQuery 3 must be loaded to use GalleryFilter component');
     }
   }, []);
+
+  useEffect(() => {
+    if(searchFields){
+      console.log('searchFields updated', searchFields);
+      window.$('.selectfilter').selectpicker();
+    }
+  }, [searchFields]);
 
   const search = useCallback((afterCursor, newSeed) => {
     (async () => {

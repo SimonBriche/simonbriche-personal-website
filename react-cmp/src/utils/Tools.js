@@ -13,7 +13,10 @@ const Tools = {
   },
   lazyLoadImages: (el) => {
     if('loading' in HTMLImageElement.prototype) {
+      console.log('loading in. HTMLImageElement', el);
       const images = el.querySelectorAll("img.lazyload");
+      console.log('images', images);
+
       images.forEach(img => {
         img.onload = function(){
           if(this.classList){
@@ -21,11 +24,13 @@ const Tools = {
             this.classList.add('show')
           }
         };
+        console.log('set img.src');
         img.src = img.dataset.src;
       });
     }
     else{
       import('lazysizes');
+      console.log('import lazysizes');
     }
   },
   randomString: function (length) {

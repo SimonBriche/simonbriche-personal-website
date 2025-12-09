@@ -1,5 +1,7 @@
 const v8 = require('v8');
-const got = require('got');
+// hack to load ESM module 'got' in CJS context
+const got = (...args) => import('got').then(({default: got}) => got(...args));
+
 
 module.exports = {
   /**
