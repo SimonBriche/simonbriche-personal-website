@@ -69,7 +69,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-## Local components testing
+## Testing components
+
+### Local
 
 - Run a local backend server from the root of the repo with `nf start`.
 - If needed, configure the `proxy` to the backend in the `package.json` file.
@@ -80,3 +82,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ```
 
 - Run `npm start` to launch a local server for the frontend
+
+### Development
+
+- Ensure you have configured the `.env` file for your local backend server with:
+
+```bash
+REACT_ENVIRONMENT="development"
+REACT_PUBLIC_URL="/react-cmp/development"
+```
+
+- Run the local backend server from the root of the repo with `nf start`
+- Build development packages with:
+
+```bash
+npm run build:development
+```
+
+- Your can see your components in your local backend environment
