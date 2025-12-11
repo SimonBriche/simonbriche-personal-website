@@ -78,6 +78,8 @@ indent_style = unset
 
 [public/react-cmp/**/*.*]
 max_line_length = unset
+end_of_line = unset
+insert_final_newline = unset
 
 [public/assets/css/*.css]
 max_line_length = unset
