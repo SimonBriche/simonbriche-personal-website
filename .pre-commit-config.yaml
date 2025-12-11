@@ -10,6 +10,7 @@ repos:
               ^public/assets/webfonts/.*|
               ^public/react-cmp/production/.*|
               ^public/assets/vendor/.*|
+              ^public/assets/css/.*|
               ^dev/.*|
               ^keys/.*|
           )$
@@ -40,6 +41,7 @@ repos:
               ^public/assets/webfonts/.*|
               ^public/react-cmp/production/.*|
               ^public/assets/vendor/.*|
+              ^public/assets/css/.*|
               ^dev/.*|
               ^keys/.*|
           )$
