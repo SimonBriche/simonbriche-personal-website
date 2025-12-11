@@ -75,6 +75,7 @@ charset = unset
 max_line_length = unset
 indent_size = unset
 indent_style = unset
+trim_trailing_whitespace = unset
 
 [public/react-cmp/**/*.*]
 max_line_length = unset
