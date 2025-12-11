@@ -4,6 +4,14 @@ repos:
     rev: v6.0.0
     hooks:
       - id: trailing-whitespace # Trims trailing whitespace
+        exclude: |
+          (?x)^(
+              ^public/tarteaucitron/.*|
+              ^public/assets/webfonts/.*|
+              ^public/react-cmp/production/.*|
+              ^dev/.*|
+              ^keys/.*|
+          )$
       - id: check-yaml # Validates YAML files
         args: [--allow-multiple-documents]
       - id: check-toml # Validates TOML files
@@ -27,6 +35,11 @@ repos:
         exclude: |
           (?x)^(
               .gitmodules|
+              ^public/tarteaucitron/.*|
+              ^public/assets/webfonts/.*|
+              ^public/react-cmp/production/.*|
+              ^dev/.*|
+              ^keys/.*|
           )$
 
   - repo: https://gitlab.com/bmares/check-json5
