@@ -55,3 +55,29 @@ indent_size = unset
 
 [Dockerfile]
 max_line_length = unset
+
+# local keys
+[keys/**/*.*]
+max_line_length = unset
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+
+# assets for dev files
+[dev/**/*.*]
+max_line_length = unset
+indent_style = unset
+charset = unset
+
+# public files (generated)
+[public/tarteaucitron/**/*.*]
+max_line_length = unset
+indent_size = unset
+indent_style = unset
+
+[public/react-cmp/**/*.*]
+max_line_length = unset
+
+[public/assets/css/*.css]
+max_line_length = unset

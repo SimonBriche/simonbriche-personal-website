@@ -18,6 +18,10 @@ repos:
       - id: check-merge-conflict # Checks for files that contain merge conflict strings
         args: [--assume-in-merge]
       - id: detect-private-key # Check for the existence of private keys
+        exclude: |
+          (?x)^(
+              ^keys/.*
+          )$
       - id: check-executables-have-shebangs # Checks that executables have shebangs
       - id: end-of-file-fixer # Makes sure files end in a newline and only a newline
         exclude: |
@@ -53,6 +57,10 @@ repos:
     hooks:
       - id: yamllint
         args: [--no-warnings]
+        exclude: |
+          (?x)^(
+              .pre-commit-config.yaml
+          )$
 
   - repo: https://github.com/looztra/yamkix
     rev: v0.13.0

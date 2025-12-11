@@ -38,7 +38,9 @@
   },
   "scripts": {
     "test": "jest",
-    "test:react": "cd ./react-cmp && npm test"
+    "test:react": "cd ./react-cmp && npm test",
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lint:prettier": "npx prettier . --config .prettierrc --ignore-path .prettierignore --ignore-path .gitignore --check"
   },
   "jest": {
     "testRegex": [

@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "davidanson.vscode-markdownlint",
+    "editorconfig.editorconfig",
+    "mhutchie.git-graph",
+    "ms-vsliveshare.vsliveshare",
+    "oderwat.indent-rainbow",
+    "redhat.vscode-yaml",
+    "tamasfe.even-better-toml",
+    "foxundermoon.shell-format",
+    "timonwong.shellcheck",
+    "yzhang.markdown-all-in-one"
+  ]
+}

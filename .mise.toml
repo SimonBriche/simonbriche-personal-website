@@ -1,3 +1,4 @@
 [tools]
 node = '24'
 pre-commit = '4'
+editorconfig-checker = '3'
