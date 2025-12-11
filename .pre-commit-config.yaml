@@ -9,6 +9,7 @@ repos:
               ^public/tarteaucitron/.*|
               ^public/assets/webfonts/.*|
               ^public/react-cmp/production/.*|
+              ^public/assets/vendor/.*|
               ^dev/.*|
               ^keys/.*|
           )$
@@ -38,6 +39,7 @@ repos:
               ^public/tarteaucitron/.*|
               ^public/assets/webfonts/.*|
               ^public/react-cmp/production/.*|
+              ^public/assets/vendor/.*|
               ^dev/.*|
               ^keys/.*|
           )$
