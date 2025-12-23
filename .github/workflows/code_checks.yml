@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       precommit_check_all_files:
-        description: 'Run pre-commit for all files or only the updated ones'
+        description: Run pre-commit for all files or only the updated ones
         required: false
         type: boolean
         default: true
@@ -32,9 +32,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      MISE_OVERRIDE_CONFIG_FILENAMES: .mise.ci.toml
-      PRE_CHECK_ALL_FILES: ${{ github.event_name == 'workflow_dispatch' && inputs.precommit_check_all_files || 'true' }}
-      PRE_CONFIG_FILE: ${{ github.event_name == 'workflow_dispatch' && inputs.precommit_config_file || '.pre-commit-config.yaml' }}
+      MISE_ENV: ci
+      PRE_CHECK_ALL_FILES: ${{ inputs.precommit_check_all_files || 'true' }}
+      PRE_CONFIG_FILE: ${{ inputs.precommit_config_file || '.pre-commit-config.yaml' }}
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v6
@@ -58,7 +58,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v6
         with:
-          node-version: '${{ env.NODE_VERSION }}'
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Install dependencies
         run: |

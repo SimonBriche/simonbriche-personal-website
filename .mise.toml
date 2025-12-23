@@ -2,3 +2,5 @@
 node = '24'
 pre-commit = '4'
 editorconfig-checker = '3'
+shfmt = '3'
+shellcheck = '0.11'
