@@ -7,7 +7,7 @@ const ArrayUtil = require('../utils/array-util');
 
 function r(route) {
   // just a require wrapper
-  return require('./public/' + route);
+  return require('../public/' + route);
 }
 
 //set the locale

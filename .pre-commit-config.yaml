@@ -6,11 +6,11 @@ repos:
       - id: trailing-whitespace # Trims trailing whitespace
         exclude: |
           (?x)^(
-              ^public/tarteaucitron/.*|
-              ^public/assets/webfonts/.*|
-              ^public/react-cmp/production/.*|
-              ^public/assets/vendor/.*|
-              ^public/assets/css/.*|
+              ^src/server/public/tarteaucitron/.*|
+              ^src/server/public/assets/webfonts/.*|
+              ^src/server/public/react-cmp/production/.*|
+              ^src/server/public/assets/vendor/.*|
+              ^src/server/public/assets/css/.*|
               ^dev/.*|
               ^keys/.*|
           )$
@@ -37,11 +37,11 @@ repos:
         exclude: |
           (?x)^(
               .gitmodules|
-              ^public/tarteaucitron/.*|
-              ^public/assets/webfonts/.*|
-              ^public/react-cmp/production/.*|
-              ^public/assets/vendor/.*|
-              ^public/assets/css/.*|
+              ^src/server/public/tarteaucitron/.*|
+              ^src/server/public/assets/webfonts/.*|
+              ^src/server/public/react-cmp/production/.*|
+              ^src/server/public/assets/vendor/.*|
+              ^src/server/public/assets/css/.*|
               ^dev/.*|
               ^keys/.*|
           )$
@@ -95,5 +95,5 @@ repos:
         types_or: [javascript, json]
         require_serial: true
         entry: |
-          bash -c 'if [[ "$CI" = "true" ]]; then npm run lint:prettier; else npm run fix:prettier; fi' --
-          bash -c 'if [[ "$CI" = "true" ]]; then npm --prefix react-cmp/src run lint:prettier; else npm --prefix react-cmp/src run fix:prettier; fi' --
+          bash -c 'if [[ "$CI" = "true" ]]; then npm --prefix src/server run lint:prettier; else npm --prefix src/server run fix:prettier; fi' --
+          bash -c 'if [[ "$CI" = "true" ]]; then npm --prefix src/react-cmp/src run lint:prettier; else npm --prefix src/react-cmp/src run fix:prettier; fi' --

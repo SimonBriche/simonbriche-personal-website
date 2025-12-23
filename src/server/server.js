@@ -167,8 +167,8 @@ if (config.application.useLocalSSLCert) {
   server = https
     .createServer(
       {
-        key: fs.readFileSync('./keys/localhost.key'),
-        cert: fs.readFileSync('./keys/localhost.crt'),
+        key: fs.readFileSync('../../keys/localhost.key'),
+        cert: fs.readFileSync('../../keys/localhost.crt'),
       },
       app
     )
