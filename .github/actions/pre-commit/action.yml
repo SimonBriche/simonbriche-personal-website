@@ -1,0 +1,32 @@
+---
+name: Run pre-commit checks
+description: Run pre-commit checks
+inputs:
+  precommit_config_file:
+    required: false
+    default: .pre-commit-config.yaml
+    description: Path to the alternate pre-commit config file.
+  precommit_check_all_files:
+    required: false
+    default: 'true'
+    description: Set if all files should be checked.
+  use_cache:
+    required: false
+    default: 'true'
+    description: Whether to use caching for pre-commit.
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/cache@v5
+      if: inputs.use_cache != 'false'
+      with:
+        path: ~/.cache/pre-commit
+        key: pre-commit-3|${{ env.python_version }}|${{ hashFiles('.pre-commit-config.yaml') }}
+
+    - name: Run pre-commit checks
+      shell: bash
+      run: |
+        ${{ github.action_path }}/pre-commit.sh \
+          "precommit_config_file=${{ inputs.precommit_config_file }}" \
+          "precommit_check_all_files=${{ inputs.precommit_check_all_files }}"

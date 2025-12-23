@@ -1,0 +1,69 @@
+---
+name: Code checks
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+  workflow_dispatch:
+    inputs:
+      precommit_check_all_files:
+        description: Run pre-commit for all files or only the updated ones
+        required: false
+        type: boolean
+        default: true
+      precommit_config_file:
+        required: false
+        type: string
+        default: .pre-commit-config.yaml
+        description: Path to the pre-commit config file.
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-checks
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: '24'
+
+jobs:
+  lint:
+    name: Pre-commit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      MISE_ENV: ci
+      PRE_CHECK_ALL_FILES: ${{ inputs.precommit_check_all_files || 'true' }}
+      PRE_CONFIG_FILE: ${{ inputs.precommit_config_file || '.pre-commit-config.yaml' }}
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v6
+
+      - uses: jdx/mise-action@v3
+
+      - name: Run pre-commit checks
+        uses: ./.github/actions/pre-commit
+        with:
+          precommit_config_file: ${{ env.PRE_CONFIG_FILE }}
+          precommit_check_all_files: ${{ env.PRE_CHECK_ALL_FILES }}
+
+  node-checks:
+    name: NodeJS checks
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run Jest tests
+        run: |
+          npm run test
