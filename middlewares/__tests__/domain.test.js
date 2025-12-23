@@ -21,20 +21,20 @@ describe('domain middleware', () => {
     ConfigUtil.mock({ production: false });
 
     domainMiddleware(mockReq, mockRes, mockNext);
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
   });
   it('should next if in production but no redirectToDomain specified', () => {
     ConfigUtil.mock({ production: true, application: { redirectToDomain: null } });
 
     domainMiddleware(mockReq, mockRes, mockNext);
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
   });
   it('should next if the hostname is the same as the requested domain', () => {
     ConfigUtil.mock({ production: true, application: { redirectToDomain: 'domain' } });
     mockReq.hostname = 'domain';
 
     domainMiddleware(mockReq, mockRes, mockNext);
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
   });
   it('should redirect to the requested domain if the hostname isn‘t the same as the requested domain', () => {
     ConfigUtil.mock({ production: true, application: { redirectToDomain: 'domain' } });
@@ -45,7 +45,7 @@ describe('domain middleware', () => {
     };
 
     domainMiddleware(mockReq, mockRes, mockNext);
-    expect(mockRes.redirect).toBeCalledWith(
+    expect(mockRes.redirect).toHaveBeenCalledWith(
       301,
       `${mockReq.protocol}://${ConfigUtil.config.application.redirectToDomain}${mockReq.originalUrl}`
     );
@@ -59,7 +59,7 @@ describe('domain middleware', () => {
     };
 
     domainMiddleware(mockReq, mockRes, mockNext);
-    expect(mockRes.redirect).toBeCalledWith(
+    expect(mockRes.redirect).toHaveBeenCalledWith(
       301,
       `https://${ConfigUtil.config.application.redirectToDomain}${mockReq.originalUrl}`
     );

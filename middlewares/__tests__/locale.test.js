@@ -22,7 +22,7 @@ describe('locale middleware', () => {
   it('should next and locale be fr_fr if no locale is provided', () => {
     localeMiddleware(mockReq, mockRes, mockNext);
 
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
     expect(mockReq.locale).toEqual('fr_fr');
     expect(mockRes.locals.locale).toEqual('fr_fr');
   });
@@ -33,7 +33,7 @@ describe('locale middleware', () => {
 
     localeMiddleware(mockReq, mockRes, mockNext);
 
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
     expect(mockReq.locale).toEqual('en_en');
     expect(mockRes.locals.locale).toEqual('en_en');
   });
@@ -44,7 +44,7 @@ describe('locale middleware', () => {
 
     localeMiddleware(mockReq, mockRes, mockNext);
 
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
     expect(mockReq.locale).toEqual('de_de');
     expect(mockRes.locals.locale).toEqual('de_de');
   });
