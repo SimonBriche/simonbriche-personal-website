@@ -1,0 +1,22 @@
+---
+name: Run pre-commit checks
+description: Run pre-commit checks
+inputs:
+  precommit_config_file:
+    required: false
+    default: .pre-commit-config.yaml
+    description: Path to the alternate pre-commit config file.
+  precommit_check_all_files:
+    required: false
+    default: 'true'
+    description: Set if all files should be checked.
+
+runs:
+  using: composite
+  steps:
+    - name: Run pre-commit checks
+      shell: bash
+      run: |
+        ${{ github.action_path }}/pre-commit.sh \
+          "precommit_config_file=${{ inputs.precommit_config_file }}" \
+          "precommit_check_all_files=${{ inputs.precommit_check_all_files }}"
