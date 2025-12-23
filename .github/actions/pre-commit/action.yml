@@ -10,10 +10,20 @@ inputs:
     required: false
     default: 'true'
     description: Set if all files should be checked.
+  use_cache:
+    required: false
+    default: 'true'
+    description: Whether to use caching for pre-commit.
 
 runs:
   using: composite
   steps:
+    - uses: actions/cache@v5
+      if: inputs.use_cache != 'false'
+      with:
+        path: ~/.cache/pre-commit
+        key: pre-commit-3|${{ env.python_version }}|${{ hashFiles('.pre-commit-config.yaml') }}
+
     - name: Run pre-commit checks
       shell: bash
       run: |
