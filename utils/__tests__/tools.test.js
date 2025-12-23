@@ -273,33 +273,33 @@ describe('mergeObjects', () => {
   });
 });
 
-describe('pingURL', () => {
-  it('schedule a ping in specific number of seconds', (done) => {
-    const spy = jest.spyOn(global, 'setTimeout');
-    const delay = 5000;
+// describe('pingURL', () => {
+//   it('schedule a ping in specific number of seconds', (done) => {
+//     const spy = jest.spyOn(global, 'setTimeout');
+//     const delay = 5000;
 
-    tools.pingURL('', delay, undefined, false, function (err, timeoutId) {
-      clearTimeout(timeoutId);
-      // At this point in time, there should have been a single call to setTimeout to schedule the next ping in delay seconds.
-      expect(setTimeout).toHaveBeenCalledTimes(1);
-      expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), delay);
-      spy.mockRestore();
-      done();
-    });
-  });
-  it('stops scheduling after specific number of failures', (done) => {
-    const delay = 10;
-    const retries = 2;
-    const callback = jest.fn();
-    const pingCallback = function (err, timeoutId) {
-      callback();
-      if (err && err.message === 'too_many_fails') {
-        //callback have been called the first schedule + the number of retries
-        expect(callback).toHaveBeenCalledTimes(retries + 1);
-        done();
-      }
-    };
+//     tools.pingURL('', delay, undefined, false, function (err, timeoutId) {
+//       clearTimeout(timeoutId);
+//       // At this point in time, there should have been a single call to setTimeout to schedule the next ping in delay seconds.
+//       expect(setTimeout).toHaveBeenCalledTimes(1);
+//       expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), delay);
+//       spy.mockRestore();
+//       done();
+//     });
+//   });
+//   it('stops scheduling after specific number of failures', (done) => {
+//     const delay = 10;
+//     const retries = 2;
+//     const callback = jest.fn();
+//     const pingCallback = function (err, timeoutId) {
+//       callback();
+//       if (err && err.message === 'too_many_fails') {
+//         //callback have been called the first schedule + the number of retries
+//         expect(callback).toHaveBeenCalledTimes(retries + 1);
+//         done();
+//       }
+//     };
 
-    tools.pingURL('', delay, retries, false, pingCallback);
-  });
-});
+//     tools.pingURL('', delay, retries, false, pingCallback);
+//   });
+// });

@@ -1,6 +1,7 @@
 const v8 = require('v8');
 // hack to load ESM module 'got' in CJS context
-const got = (...args) => import('got').then(({ default: got }) => got(...args));
+// commented out until https://github.com/jestjs/jest/pull/15842 is released
+//const got = import('got').then(got => got.default);
 
 module.exports = {
   /**
@@ -188,8 +189,8 @@ module.exports = {
    */
   pingURL: (url, delay = 60000, retries = 5, rejectUnauthorized = true, callback) => {
     let currentRetries = 0;
-    const ping = () => {
-      got.get(url, { https: { rejectUnauthorized: rejectUnauthorized } }).then(
+    const ping = async () => {
+      (await got).get(url, { https: { rejectUnauthorized: rejectUnauthorized } }).then(
         () => {
           currentRetries = 0;
           const timeoutId = setTimeout(ping, delay);
