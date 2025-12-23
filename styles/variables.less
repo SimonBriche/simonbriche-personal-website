@@ -2,12 +2,12 @@
 
 @std-font-family: 'Ubuntu', sans-serif;
 
-@background-color: #F2F2F2;
+@background-color: #f2f2f2;
 @main-color: #616161;
 @red-color: #b12b28;
 @grey-color: #7e7e7e;
 
-@cdn-url: "";
+@cdn-url: '';
 @max-width-container: 992px;
 
 @rounded-radius: 1.5rem!important;
@@ -16,22 +16,25 @@
 @soft-blur: 40px;
 @soft-size: 15px;
 
-
 :root {
-  --white: #FFFFFF;
+  --white: #ffffff;
   --greyLight: #cecece;
 }
 
-.soft-text-shadow(@size){
-  text-shadow: @size*.3rem @size*.3rem @size*.6rem var(--greyLight), 
-  @size*-.2rem @size*-.2rem @size*.5rem var(--white);
+.soft-text-shadow(@size) {
+  text-shadow:
+    @size*.3rem @size*.3rem @size*.6rem var(--greyLight),
+    @size*-.2rem @size*-.2rem @size*.5rem var(--white);
 }
-.soft-box-shadow(@size){
-  box-shadow: @size*.3rem @size*.3rem @size*.6rem var(--greyLight), 
-  @size*-.2rem @size*-.2rem @size*.5rem var(--white);
+.soft-box-shadow(@size) {
+  box-shadow:
+    @size*.3rem @size*.3rem @size*.6rem var(--greyLight),
+    @size*-.2rem @size*-.2rem @size*.5rem var(--white);
 }
 
-@shadow: .3rem .3rem .6rem var(--greyLight), 
--.2rem -.2rem .5rem var(--white);
-@inner-shadow: inset .2rem .2rem .5rem var(--greyLight), 
-inset -.2rem -.2rem .5rem var(--white);
+@shadow:
+  0.3rem 0.3rem 0.6rem var(--greyLight),
+  -0.2rem -0.2rem 0.5rem var(--white);
+@inner-shadow:
+  inset 0.2rem 0.2rem 0.5rem var(--greyLight),
+  inset -0.2rem -0.2rem 0.5rem var(--white);

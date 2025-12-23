@@ -1,4 +1,4 @@
-const {config} = require('../config');
+const { config } = require('../config');
 const router = require('express').Router();
 const ConfigModel = require('../models/config');
 const StackItemsModel = require('../models/stack-items');
@@ -19,25 +19,25 @@ router.use(require('../middlewares/og-only'));
 
 //Declare all public routes here
 router
-.get('/', reactLoader, function(req, res, next) {
-  (async () => {
-    const trophies = await ConfigModel.get('PSN_TROPHIES', true).catch(e => null);
-    const randomTrophies = (trophies) ? ArrayUtil.shuffle(trophies).slice(0, 10) : null;
-    const marvelCharacter = await ConfigModel.get('MARVEL_CHARACTER', true).catch(e => null);
-    const marvelComics = await ConfigModel.get('MARVEL_COMICS', true).catch(e => null);
+  .get('/', reactLoader, function (req, res, next) {
+    (async () => {
+      const trophies = await ConfigModel.get('PSN_TROPHIES', true).catch((e) => null);
+      const randomTrophies = trophies ? ArrayUtil.shuffle(trophies).slice(0, 10) : null;
+      const marvelCharacter = await ConfigModel.get('MARVEL_CHARACTER', true).catch((e) => null);
+      const marvelComics = await ConfigModel.get('MARVEL_COMICS', true).catch((e) => null);
 
-    //render template with data
-    res.render('index', {
-      bodyClass: 'index', 
-      stackItems: StackItemsModel, 
-      trophies: randomTrophies, 
-      marvelCharacter: marvelCharacter, 
-      marvelComics: marvelComics
-    });
-  })().catch(err => next(err));
-})
-.get('/data-policy', reactLoader, function(req, res) {
-  res.render('data-policy', {bodyClass: 'data-policy', dataPolicy:config.dataPolicy});
-});
+      //render template with data
+      res.render('index', {
+        bodyClass: 'index',
+        stackItems: StackItemsModel,
+        trophies: randomTrophies,
+        marvelCharacter: marvelCharacter,
+        marvelComics: marvelComics,
+      });
+    })().catch((err) => next(err));
+  })
+  .get('/data-policy', reactLoader, function (req, res) {
+    res.render('data-policy', { bodyClass: 'data-policy', dataPolicy: config.dataPolicy });
+  });
 
 module.exports = router;

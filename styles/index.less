@@ -1,8 +1,7 @@
 // main: all.less
 
-
-.skill{
-  .properties{
+.skill {
+  .properties {
     position: relative;
     padding-left: 1rem;
     font-family: 'Source Code Pro', monospace;
@@ -10,54 +9,57 @@
     cursor: pointer;
     transition: 0.1s all ease-in;
 
-    &:before, &:after{
-      content: "{";
+    &:before,
+    &:after {
+      content: '{';
       position: absolute;
       transition: 0.1s all ease-in;
       font-size: 4rem;
       line-height: 0.6;
       color: @soft-bg-color;
-      text-shadow: -8px -8px 12px rgba(255,255,255,0.4),
-      8px 8px 12px rgba(0,0,0,0.08);
+      text-shadow:
+        -8px -8px 12px rgba(255, 255, 255, 0.4),
+        8px 8px 12px rgba(0, 0, 0, 0.08);
       .soft-text-shadow(0.5);
     }
-    &:before{
-      content: "{";
+    &:before {
+      content: '{';
       top: 0;
       left: -1rem;
     }
-    &:after{
-      content: "v";
+    &:after {
+      content: 'v';
       opacity: 0;
       font-size: 2rem;
       top: 1rem;
       left: -0.2rem;
     }
-    &:hover, &.collapsed{
+    &:hover,
+    &.collapsed {
       padding-left: 3rem;
-      &:after{
+      &:after {
         opacity: 1;
       }
-      &:before{
+      &:before {
         left: 1rem;
       }
     }
-    &.collapsed:after{
-      content: ">";
+    &.collapsed:after {
+      content: '>';
     }
   }
-  .property{
+  .property {
     font-family: 'Source Code Pro', monospace;
     color: @grey-color;
   }
-  .skill-content{
+  .skill-content {
     position: relative;
     border-left: 1px solid lighten(@grey-color, 30%);
     margin: 1rem 0 6rem 0.5rem;
     padding-left: 1rem;
 
-    &:after{
-      content: "},";
+    &:after {
+      content: '},';
       position: absolute;
       bottom: -3rem;
       left: -0.5rem;
@@ -67,22 +69,22 @@
       .soft-text-shadow(0.5);
     }
   }
-  &:last-child{
-    .skill-content{
-      &:after{
-        content: "}";
+  &:last-child {
+    .skill-content {
+      &:after {
+        content: '}';
       }
     }
   }
 }
 
-#graph-container{
+#graph-container {
   max-width: 500px;
-  text{
+  text {
     cursor: pointer;
   }
 }
-#graph-tooltip{
+#graph-tooltip {
   pointer-events: none;
   position: absolute;
   background-color: #fff;
@@ -91,21 +93,21 @@
   font-size: 0.8rem;
   background: rgba(255, 255, 255, 0.9);
   transition: 0.3s all ease-out;
-  &:focus{
+  &:focus {
     outline: none;
   }
-  ul{
+  ul {
     padding-left: 1rem;
   }
 }
-.stack-logo{
+.stack-logo {
   width: 30px;
   height: 30px;
   background-color: @soft-bg-color;
   .soft-box-shadow(0.5);
 }
 
-.marvel-thumbnail{
+.marvel-thumbnail {
   width: 150px;
   .soft-box-shadow(2);
 }

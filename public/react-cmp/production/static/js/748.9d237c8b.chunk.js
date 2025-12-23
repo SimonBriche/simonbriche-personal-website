@@ -1,2 +1,24 @@
-"use strict";(self.webpackChunkreact_cmp=self.webpackChunkreact_cmp||[]).push([[748],{748:(e,t,n)=>{n.r(t),n.d(t,{default:()=>c});var s=n(579);const c=e=>{console.log("props",e);const t=e.bridgeEvent;return t.addEventListener("myEvent",function(e){console.log("e",e.detail)}),t.addEventListener("myPrivateEvent",function(e){console.log("e private",e.detail)}),(0,s.jsx)("div",{children:"Je suis le component test"})}}}]);
+'use strict';
+(self.webpackChunkreact_cmp = self.webpackChunkreact_cmp || []).push([
+  [748],
+  {
+    748: (e, t, n) => {
+      (n.r(t), n.d(t, { default: () => c }));
+      var s = n(579);
+      const c = (e) => {
+        console.log('props', e);
+        const t = e.bridgeEvent;
+        return (
+          t.addEventListener('myEvent', function (e) {
+            console.log('e', e.detail);
+          }),
+          t.addEventListener('myPrivateEvent', function (e) {
+            console.log('e private', e.detail);
+          }),
+          (0, s.jsx)('div', { children: 'Je suis le component test' })
+        );
+      };
+    },
+  },
+]);
 //# sourceMappingURL=748.9d237c8b.chunk.js.map

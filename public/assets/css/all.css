@@ -1,13 +1,13 @@
 :root {
-  --white: #FFFFFF;
+  --white: #ffffff;
   --greyLight: #cecece;
 }
 html,
 body {
   color: #616161;
   font-family: 'Ubuntu', sans-serif;
-  background: url("/assets/images/bg-white-3.png");
-  background-color: #F2F2F2;
+  background: url('/assets/images/bg-white-3.png');
+  background-color: #f2f2f2;
 }
 a {
   font-weight: 700;
@@ -20,7 +20,7 @@ a {
   background: #b12b28 !important;
 }
 .lazyloaded {
-  opacity: 1!important;
+  opacity: 1 !important;
   transition: opacity 300ms;
 }
 .rounded {
@@ -53,15 +53,19 @@ a {
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 .overflow-scroll-x {
-  overflow-x: scroll!important;
+  overflow-x: scroll !important;
 }
 .soft {
   background-color: #f2f2f2;
-  box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight), -0.2rem -0.2rem 0.5rem var(--white);
+  box-shadow:
+    0.3rem 0.3rem 0.6rem var(--greyLight),
+    -0.2rem -0.2rem 0.5rem var(--white);
 }
 .soft.pressed {
-  background-image: url("/assets/images/bg-black-inverted-2.png");
-  box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight), inset -0.2rem -0.2rem 0.5rem var(--white);
+  background-image: url('/assets/images/bg-black-inverted-2.png');
+  box-shadow:
+    inset 0.2rem 0.2rem 0.5rem var(--greyLight),
+    inset -0.2rem -0.2rem 0.5rem var(--white);
 }
 .soft.concave {
   background: linear-gradient(145deg, #cecece, #ffffff);
@@ -71,8 +75,12 @@ a {
 }
 .soft-text {
   color: #f2f2f2;
-  text-shadow: -8px -8px 12px rgba(255, 255, 255, 0.4), 8px 8px 12px rgba(0, 0, 0, 0.08);
-  text-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight), -0.2rem -0.2rem 0.5rem var(--white);
+  text-shadow:
+    -8px -8px 12px rgba(255, 255, 255, 0.4),
+    8px 8px 12px rgba(0, 0, 0, 0.08);
+  text-shadow:
+    0.3rem 0.3rem 0.6rem var(--greyLight),
+    -0.2rem -0.2rem 0.5rem var(--white);
 }
 .inner-shadow {
   pointer-events: none;
@@ -112,7 +120,7 @@ header .logo {
   display: none;
 }
 .footer-interface #btn-pending-footer {
-  background: #FFFFFF;
+  background: #ffffff;
 }
 .footer-interface .btn-glass-floating {
   pointer-events: all;
@@ -127,7 +135,13 @@ header .logo {
 footer {
   z-index: 2;
   background-color: rgba(200, 200, 200, 0.3);
-  background: radial-gradient(circle at calc(100% - 46px) -3px, transparent 34px, rgba(0, 0, 0, 0.1) 36px, rgba(255, 255, 255, 0.5) 0) top left;
+  background: radial-gradient(
+      circle at calc(100% - 46px) -3px,
+      transparent 34px,
+      rgba(0, 0, 0, 0.1) 36px,
+      rgba(255, 255, 255, 0.5) 0
+    )
+    top left;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   transition: 0.2s height ease-in;
@@ -135,7 +149,7 @@ footer {
 }
 footer:before,
 footer:after {
-  content: "";
+  content: '';
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -295,16 +309,22 @@ footer .links ul a.btn-link:hover {
 .btn-soft,
 .btn-soft:focus {
   background-color: #f2f2f2;
-  box-shadow: 0.3rem 0.3rem 0.6rem var(--greyLight), -0.2rem -0.2rem 0.5rem var(--white);
+  box-shadow:
+    0.3rem 0.3rem 0.6rem var(--greyLight),
+    -0.2rem -0.2rem 0.5rem var(--white);
 }
 .btn-soft:active {
-  box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight), inset -0.2rem -0.2rem 0.5rem var(--white);
+  box-shadow:
+    inset 0.2rem 0.2rem 0.5rem var(--greyLight),
+    inset -0.2rem -0.2rem 0.5rem var(--white);
   background-color: #ededed;
 }
 .btn-glass-floating {
   width: 60px;
   height: 60px;
-  transition: 0.2s background-color ease-in, 0.2s color ease-in;
+  transition:
+    0.2s background-color ease-in,
+    0.2s color ease-in;
   color: #b12b28;
   font-size: 1.4rem;
   backdrop-filter: blur(3px);
@@ -364,8 +384,8 @@ footer .links ul a.btn-link:hover {
 @media (max-width: 575px) {
   .modal-dialog-scrollable-mobile {
     height: 100%;
-    margin-top: 0!important;
-    margin-bottom: 0!important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
   }
   .modal-dialog-scrollable-mobile .modal-content {
     max-height: 100%;
@@ -382,7 +402,9 @@ footer .links ul a.btn-link:hover {
     background-color: #ededed;
   }
   .btn-soft:hover:focus:active {
-    box-shadow: inset 0.2rem 0.2rem 0.5rem var(--greyLight), inset -0.2rem -0.2rem 0.5rem var(--white);
+    box-shadow:
+      inset 0.2rem 0.2rem 0.5rem var(--greyLight),
+      inset -0.2rem -0.2rem 0.5rem var(--white);
     background-color: #ededed;
   }
 }
@@ -409,13 +431,13 @@ footer .links ul a.btn-link:hover {
 }
 #tarteaucitronRoot #tarteaucitronAlertBig {
   bottom: 1rem;
-  top: auto!important;
-  left: 1rem!important;
-  transform: none!important;
-  background: #FFFFFF !important;
+  top: auto !important;
+  left: 1rem !important;
+  transform: none !important;
+  background: #ffffff !important;
   color: #333;
   width: calc(100% - 2rem) !important;
-  padding: 1rem 0 0!important;
+  padding: 1rem 0 0 !important;
   border-radius: 1.5rem !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
@@ -431,7 +453,7 @@ footer .links ul a.btn-link:hover {
   border-top: 1px solid #eee;
 }
 #tarteaucitronRoot #tarteaucitronAlertBig .tarteaucitronAlertBigBtnWrapper .tarteaucitronCTAButton {
-  margin: 0!important;
+  margin: 0 !important;
   width: 100%;
   padding: 0.75rem 0;
 }
@@ -442,19 +464,22 @@ footer .links ul a.btn-link:hover {
 #tarteaucitronRoot #tarteaucitronAlertBig .tarteaucitronAlertBigBtnWrapper .tarteaucitronCTAButton.tarteaucitronDeny {
   background-color: #cd332d;
 }
-#tarteaucitronRoot #tarteaucitronAlertBig .tarteaucitronAlertBigBtnWrapper .tarteaucitronCTAButton#tarteaucitronCloseAlert {
+#tarteaucitronRoot
+  #tarteaucitronAlertBig
+  .tarteaucitronAlertBigBtnWrapper
+  .tarteaucitronCTAButton#tarteaucitronCloseAlert {
   border-bottom-right-radius: 1.5rem !important;
 }
 #tarteaucitronRoot #tarteaucitronClosePanel,
 #tarteaucitronRoot #tarteaucitronCloseCross {
-  background: #FFFFFF !important;
+  background: #ffffff !important;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
   color: #333 !important;
   text-align: center;
   border: 2px solid #4c4c4c;
-  outline: none!important;
+  outline: none !important;
   width: 20px !important;
   height: 20px !important;
   right: 10px !important;
@@ -468,20 +493,20 @@ footer .links ul a.btn-link:hover {
   top: 30px;
 }
 #tarteaucitronRoot .tarteaucitronTitle {
-  background: #FFF;
+  background: #fff;
 }
 #tarteaucitronRoot #tarteaucitronServices {
-  background: #FFF;
+  background: #fff;
 }
 #tarteaucitronRoot #tarteaucitronServices .tarteaucitronMainLine {
-  border: 0!important;
-  background: #FFF !important;
+  border: 0 !important;
+  background: #fff !important;
 }
 #tarteaucitronRoot #tarteaucitronServices .tarteaucitronMainLine .tarteaucitronH1 {
   color: #27ae60;
 }
 #tarteaucitronRoot #tarteaucitronServices .tarteaucitronMainLine #tarteaucitronInfo {
-  background: #FFF !important;
+  background: #fff !important;
   color: #333;
   border-color: #ccc;
   font-size: 1rem;
@@ -491,11 +516,11 @@ footer .links ul a.btn-link:hover {
   font-weight: 700;
 }
 #tarteaucitronRoot #tarteaucitronServices .tarteaucitronTitle button {
-  background: #FFF !important;
+  background: #fff !important;
   color: #27ae60 !important;
   border-top: 1px solid #ccc;
-  margin-bottom: 0!important;
-  padding-top: 13px!important;
+  margin-bottom: 0 !important;
+  padding-top: 13px !important;
 }
 #tarteaucitronRoot #tarteaucitronServices .tarteaucitronTitle button .tarteaucitronPlus::before {
   color: #27ae60 !important;
@@ -507,15 +532,15 @@ footer .links ul a.btn-link:hover {
   border: none;
 }
 #tarteaucitronRoot #tarteaucitronServices .tarteaucitronBorder > ul > li {
-  background: #FFF;
+  background: #fff;
 }
 .tac_activate .tac_float .tarteaucitronAllow {
   background-color: #27ae60 !important;
 }
 @media (min-width: 768px) {
   #tarteaucitronRoot #tarteaucitronAlertBig {
-    width: 50%!important;
-    left: 50%!important;
+    width: 50% !important;
+    left: 50% !important;
     transform: translateX(-50%) !important;
   }
   #tarteaucitronRoot #tarteaucitronServices {
@@ -525,7 +550,7 @@ footer .links ul a.btn-link:hover {
   #tarteaucitronRoot #tarteaucitronServices .tarteaucitronTitle button {
     border-top-right-radius: 1.5rem;
     border-right: 1px solid #ccc;
-    padding-top: 5px!important;
+    padding-top: 5px !important;
   }
 }
 .skill .properties {
@@ -538,22 +563,26 @@ footer .links ul a.btn-link:hover {
 }
 .skill .properties:before,
 .skill .properties:after {
-  content: "{";
+  content: '{';
   position: absolute;
   transition: 0.1s all ease-in;
   font-size: 4rem;
   line-height: 0.6;
   color: #f2f2f2;
-  text-shadow: -8px -8px 12px rgba(255, 255, 255, 0.4), 8px 8px 12px rgba(0, 0, 0, 0.08);
-  text-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+  text-shadow:
+    -8px -8px 12px rgba(255, 255, 255, 0.4),
+    8px 8px 12px rgba(0, 0, 0, 0.08);
+  text-shadow:
+    0.15rem 0.15rem 0.3rem var(--greyLight),
+    -0.1rem -0.1rem 0.25rem var(--white);
 }
 .skill .properties:before {
-  content: "{";
+  content: '{';
   top: 0;
   left: -1rem;
 }
 .skill .properties:after {
-  content: "v";
+  content: 'v';
   opacity: 0;
   font-size: 2rem;
   top: 1rem;
@@ -572,7 +601,7 @@ footer .links ul a.btn-link:hover {
   left: 1rem;
 }
 .skill .properties.collapsed:after {
-  content: ">";
+  content: '>';
 }
 .skill .property {
   font-family: 'Source Code Pro', monospace;
@@ -585,17 +614,19 @@ footer .links ul a.btn-link:hover {
   padding-left: 1rem;
 }
 .skill .skill-content:after {
-  content: "},";
+  content: '},';
   position: absolute;
   bottom: -3rem;
   left: -0.5rem;
   font-size: 4rem;
   line-height: 0.6;
   color: #f2f2f2;
-  text-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+  text-shadow:
+    0.15rem 0.15rem 0.3rem var(--greyLight),
+    -0.1rem -0.1rem 0.25rem var(--white);
 }
 .skill:last-child .skill-content:after {
-  content: "}";
+  content: '}';
 }
 #graph-container {
   max-width: 500px;
@@ -623,11 +654,15 @@ footer .links ul a.btn-link:hover {
   width: 30px;
   height: 30px;
   background-color: #f2f2f2;
-  box-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+  box-shadow:
+    0.15rem 0.15rem 0.3rem var(--greyLight),
+    -0.1rem -0.1rem 0.25rem var(--white);
 }
 .marvel-thumbnail {
   width: 150px;
-  box-shadow: 0.6rem 0.6rem 1.2rem var(--greyLight), -0.4rem -0.4rem 1rem var(--white);
+  box-shadow:
+    0.6rem 0.6rem 1.2rem var(--greyLight),
+    -0.4rem -0.4rem 1rem var(--white);
 }
 .gallery-item {
   width: 205px;
@@ -636,7 +671,7 @@ footer .links ul a.btn-link:hover {
 }
 .gallery-item:active:hover,
 .gallery-item:active {
-  box-shadow: none!important;
+  box-shadow: none !important;
   transform: scale(0.975);
 }
 .gallery-item:hover {
@@ -645,7 +680,7 @@ footer .links ul a.btn-link:hover {
 }
 .gallery-item .card-body {
   position: relative;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .gallery-item .card-body:before,
 .gallery-item .card-body:after {
@@ -656,12 +691,12 @@ footer .links ul a.btn-link:hover {
   text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.25);
 }
 .gallery-item .card-body:before {
-  content: "{";
+  content: '{';
   top: 0.6rem;
   left: 0.3rem;
 }
 .gallery-item .card-body:after {
-  content: "}";
+  content: '}';
   bottom: 1.6rem;
   right: 0.3rem;
 }
@@ -691,11 +726,13 @@ footer .links ul a.btn-link:hover {
   height: 4rem;
 }
 .portfolio-focus #portfolio-carousel .carousel-control {
-  background: #FFFFFF;
+  background: #ffffff;
   width: 3rem;
   height: 3rem;
   font-size: 1.5rem;
-  box-shadow: 0.15rem 0.15rem 0.3rem var(--greyLight), -0.1rem -0.1rem 0.25rem var(--white);
+  box-shadow:
+    0.15rem 0.15rem 0.3rem var(--greyLight),
+    -0.1rem -0.1rem 0.25rem var(--white);
 }
 .gallery-container:hover .scroll-arrows {
   opacity: 0.5;

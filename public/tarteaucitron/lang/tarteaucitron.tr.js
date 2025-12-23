@@ -1,88 +1,87 @@
 /*global tarteaucitron */
 tarteaucitron.lang = {
+  middleBarHead: '☝ 🍪',
+  adblock: 'Merhaba! Bu site şeffaflıkla oynar ve size etkinleştirilecek üçüncü taraf hizmetleri seçeneği sunar.',
+  adblock_call: 'Kişiselleştirmeye başlamak için lütfen reklam engelleyicinizi devre dışı bırakın.',
+  reload: 'Sayfayı yeniden yükle',
 
-    "middleBarHead": "☝ 🍪",
-    "adblock": "Merhaba! Bu site şeffaflıkla oynar ve size etkinleştirilecek üçüncü taraf hizmetleri seçeneği sunar.",
-    "adblock_call": "Kişiselleştirmeye başlamak için lütfen reklam engelleyicinizi devre dışı bırakın.",
-    "reload": "Sayfayı yeniden yükle",
-    
-    "alertBigScroll": "Kaydırma devam edien,",
-    "alertBigClick": "Navigasyonunuza devam ederek,",
-    "alertBig": "çerez yükleyebilecek üçüncü taraf hizmetlerinin kullanımını kabul edersiniz",
-    
-    "alertBigPrivacy": "Bu site çerezleri kullanır ve etkinleştirmek istediklerinizi kontrol etmenizi sağlar",
-    "alertSmall": "Hizmet yönetimi",
-    "acceptAll": "evet, her şeyi kabul edin",
-    "personalize": "kişiselleştirmek",
-    "close": "kapat",
+  alertBigScroll: 'Kaydırma devam edien,',
+  alertBigClick: 'Navigasyonunuza devam ederek,',
+  alertBig: 'çerez yükleyebilecek üçüncü taraf hizmetlerinin kullanımını kabul edersiniz',
 
-    "privacyUrl": "Gizlilik Politikası",
+  alertBigPrivacy: 'Bu site çerezleri kullanır ve etkinleştirmek istediklerinizi kontrol etmenizi sağlar',
+  alertSmall: 'Hizmet yönetimi',
+  acceptAll: 'evet, her şeyi kabul edin',
+  personalize: 'kişiselleştirmek',
+  close: 'kapat',
 
-    "all": "Tüm hizmetler için tercihler",
+  privacyUrl: 'Gizlilik Politikası',
 
-    "info": "Gizliliğinin korunması",
-    "disclaimer": "Bu üçüncü taraf hizmetlerini yetkilendirerek, çerezlerin depolanmasını ve okunmasını ve düzgün çalışması için gerekli izleme teknolojilerinin kullanımını kabul ediyorsunuz.",
-    "allow": "izin",
-    "deny": "yasak",
-    "noCookie": "Bu hizmet çerez yerleştirmez.",
-    "useCookie": "Bu hizmet para yatırabilir",
-    "useCookieCurrent": "Bu hizmet sunuldu",
-    "useNoCookie": "Bu hizmet herhangi bir çerez yerleştirmedi.",
-    "more": "Daha fazlasını öğrenin",
-    "source": "web sitesine bakın",
-    "credit": "Çerez yönetimi tarteaucitron.js",
-    "noServices": "Bu site, onayınızı gerektiren hiçbir çerez kullanmıyor.",
+  all: 'Tüm hizmetler için tercihler',
 
-    "toggleInfoBox": "Çerezlerin depolanmasıyla ilgili bilgileri göster / gizle",
-    "title": "Çerez yönetimi paneli",
-    "cookieDetail": "Ayrıntı çerezleri",
-    "ourSite": "sitemizde",
-    "modalWindow": "(kalıcı pencere)",
-    "newWindow": "(yeni pencere)",
-    "allowAll": "Tüm çerezlere izin verin",
-    "denyAll": "Tüm çerezleri yasaklayın",
+  info: 'Gizliliğinin korunması',
+  disclaimer:
+    'Bu üçüncü taraf hizmetlerini yetkilendirerek, çerezlerin depolanmasını ve okunmasını ve düzgün çalışması için gerekli izleme teknolojilerinin kullanımını kabul ediyorsunuz.',
+  allow: 'izin',
+  deny: 'yasak',
+  noCookie: 'Bu hizmet çerez yerleştirmez.',
+  useCookie: 'Bu hizmet para yatırabilir',
+  useCookieCurrent: 'Bu hizmet sunuldu',
+  useNoCookie: 'Bu hizmet herhangi bir çerez yerleştirmedi.',
+  more: 'Daha fazlasını öğrenin',
+  source: 'web sitesine bakın',
+  credit: 'Çerez yönetimi tarteaucitron.js',
+  noServices: 'Bu site, onayınızı gerektiren hiçbir çerez kullanmıyor.',
 
-    "icon": "Cookies",
-    
-    "fallback": "devre dışı.",
-    "allowed": "izin verildi",
-    "disallowed": "izin verilmeyen",
+  toggleInfoBox: 'Çerezlerin depolanmasıyla ilgili bilgileri göster / gizle',
+  title: 'Çerez yönetimi paneli',
+  cookieDetail: 'Ayrıntı çerezleri',
+  ourSite: 'sitemizde',
+  modalWindow: '(kalıcı pencere)',
+  newWindow: '(yeni pencere)',
+  allowAll: 'Tüm çerezlere izin verin',
+  denyAll: 'Tüm çerezleri yasaklayın',
 
-    "ads": {
-        "title": "Reklam yönetimi",
-        "details": "Reklam ajansları, sitedeki reklam alanını pazarlayarak gelir elde etmenizi sağlar."
-    },
-    "analytic": {
-        "title": "Kitle ölçümü",
-        "details": "Kitle ölçüm hizmetleri, siteyi geliştirmek için yararlı katılım istatistikleri oluşturur."
-    },
-    "social": {
-        "title": "Sosyal Medya",
-        "details": "Sosyal ağlar sitenin kullanım kolaylığını geliştirir ve paylaşım yoluyla sitenin tanıtımına yardımcı olur."
-    },
-    "video": {
-        "title": "Videolar",
-        "details": "Video paylaşım hizmetleri siteyi multimedya içeriğiyle zenginleştirir ve görünürlüğünü artırır.\n" +
-            "\n"
-    },
-    "comment": {
-        "title": "yorumlar\n",
-        "details": "Yorum yöneticileri yorumlarınızın gönderilmesini kolaylaştırır ve spam ile mücadele eder.",
-    },
-    "support": {
-        "title": "destek",
-        "details": "Destek hizmetleri, site ekibiyle iletişim kurmanıza ve ekibinizi geliştirmenize yardımcı olur.\n" +
-            "\n"
-    },
-    "api": {
-        "title": "APIs",
-        "details": "APIs komut dosyalarının yüklenmesine izin verir: coğrafi konum, arama motorları, çeviriler, ..."
-    },
-    "other": {
-        "title": "diğer\n",
-        "details": "Web içeriğini görüntüleme hizmetleri."
-    },
-    
-    "mandatoryTitle": "Mandatory cookies",
-    "mandatoryText": "This site uses cookies necessary for its proper functioning which cannot be deactivated."
+  icon: 'Cookies',
+
+  fallback: 'devre dışı.',
+  allowed: 'izin verildi',
+  disallowed: 'izin verilmeyen',
+
+  ads: {
+    title: 'Reklam yönetimi',
+    details: 'Reklam ajansları, sitedeki reklam alanını pazarlayarak gelir elde etmenizi sağlar.',
+  },
+  analytic: {
+    title: 'Kitle ölçümü',
+    details: 'Kitle ölçüm hizmetleri, siteyi geliştirmek için yararlı katılım istatistikleri oluşturur.',
+  },
+  social: {
+    title: 'Sosyal Medya',
+    details:
+      'Sosyal ağlar sitenin kullanım kolaylığını geliştirir ve paylaşım yoluyla sitenin tanıtımına yardımcı olur.',
+  },
+  video: {
+    title: 'Videolar',
+    details: 'Video paylaşım hizmetleri siteyi multimedya içeriğiyle zenginleştirir ve görünürlüğünü artırır.\n' + '\n',
+  },
+  comment: {
+    title: 'yorumlar\n',
+    details: 'Yorum yöneticileri yorumlarınızın gönderilmesini kolaylaştırır ve spam ile mücadele eder.',
+  },
+  support: {
+    title: 'destek',
+    details: 'Destek hizmetleri, site ekibiyle iletişim kurmanıza ve ekibinizi geliştirmenize yardımcı olur.\n' + '\n',
+  },
+  api: {
+    title: 'APIs',
+    details: 'APIs komut dosyalarının yüklenmesine izin verir: coğrafi konum, arama motorları, çeviriler, ...',
+  },
+  other: {
+    title: 'diğer\n',
+    details: 'Web içeriğini görüntüleme hizmetleri.',
+  },
+
+  mandatoryTitle: 'Mandatory cookies',
+  mandatoryText: 'This site uses cookies necessary for its proper functioning which cannot be deactivated.',
 };

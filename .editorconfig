@@ -23,7 +23,7 @@ indent_style = tab
 max_line_length = unset
 
 # Handled by prettier
-[src/**/*.js]
+[*.js]
 max_line_length = unset
 
 [*.pug]
@@ -56,6 +56,9 @@ indent_size = unset
 [Dockerfile]
 max_line_length = unset
 
+[styles/*.less]
+max_line_length = unset
+
 # local keys
 [keys/**/*.*]
 max_line_length = unset
@@ -83,4 +86,7 @@ end_of_line = unset
 insert_final_newline = unset
 
 [public/assets/css/*.css]
+max_line_length = unset
+
+[react-cmp/public/index.html]
 max_line_length = unset
