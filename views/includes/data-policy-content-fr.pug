@@ -8,14 +8,14 @@
     li quels sont les objectifs du recueil de ces données (finalités)
     li si ces données sont obligatoires ou facultatives pour la gestion de votre demande
     li qui pourra en prendre connaissance
-    li 
-      a(href="https://www.cnil.fr/fr/comprendre-vos-droits" target="_blank" ref="noopener") vos droits Informatique et Libertés 
+    li
+      a(href="https://www.cnil.fr/fr/comprendre-vos-droits" target="_blank" ref="noopener") vos droits Informatique et Libertés
       | et la façon de les exercer auprès de la CNIL.
 
   p Les données personnelles recueillies dans le cadre des services proposés sur #{dataPolicy[locale].websiteUrl} sont traitées selon des protocoles sécurisés et permettent à #{dataPolicy[locale].companyName} de gérer les demandes reçues dans ses applications informatiques.
 
-  p 
-    |Pour toute information ou exercice de vos droits Informatique et Libertés sur les traitements de données personnelles gérés par #{dataPolicy[locale].companyName}, vous pouvez contacter son délégué à la protection des données (DPO) par email à l'adresse 
+  p
+    |Pour toute information ou exercice de vos droits Informatique et Libertés sur les traitements de données personnelles gérés par #{dataPolicy[locale].companyName}, vous pouvez contacter son délégué à la protection des données (DPO) par email à l'adresse
     a(href="mailto:"+dataPolicy[locale].dpoEmail) #{dataPolicy[locale].dpoEmail}
 
 
@@ -23,12 +23,12 @@
 
   strong Dernière mise à jour le 18 mai 2018
 
-  p 
+  p
     | Cette politique de cookies explique comment #{dataPolicy[locale].companyName} («nous», «notre» et «nos») utilise des cookies et des technologies similaires pour vous reconnaître lorsque vous visitez nos sites Web à l'adresse #{dataPolicy[locale].websiteUrl}, ("Sites Internet"). Il explique quelles sont ces technologies et pourquoi nous les utilisons, ainsi que vos droits à contrôler notre utilisation de celles-ci.
 
   if dataPolicy[locale].privacyPolicyUrl
-    p 
-      |Dans certains cas, nous pouvons utiliser des cookies pour collecter des informations personnelles, ou cela devient des informations personnelles si nous les combinons avec d'autres informations. Dans de tels cas, notre 
+    p
+      |Dans certains cas, nous pouvons utiliser des cookies pour collecter des informations personnelles, ou cela devient des informations personnelles si nous les combinons avec d'autres informations. Dans de tels cas, notre
       a(href=dataPolicy[locale].privacyPolicyUrl target="_blank") Politique de confidentialité
       |  s'appliquera en plus de ce document.
 
@@ -49,13 +49,13 @@
   p Ces cookies sont strictement nécessaires pour vous fournir des services disponibles sur nos sites Web et pour utiliser certaines de ses fonctionnalités, telles que l'accès à des zones sécurisées.
 
   ul.text-break
-    li 
+    li
       h5 Qui sert ces cookies
       ul
-        li 
+        li
           strong Fournisseur de cookies: #{dataPolicy[locale].companyName}
         li URL du site Web: #{dataPolicy[locale].websiteUrl}
-    li 
+    li
       h5 Comment les refuser
       p Parce que ces cookies sont strictement nécessaires pour vous livrer les sites Web, vous ne pouvez pas les refuser. Vous pouvez les bloquer ou les supprimer en modifiant les paramètres de votre navigateur, comme décrit ci-dessous dans la section "Comment puis-je contrôler les cookies ?".
 
@@ -63,27 +63,27 @@
     h4 Cookies d'analyse et de personnalisation
 
     p Ces cookies recueillent des informations qui sont utilisées sous une forme agrégée pour nous aider à comprendre comment notre site Web est utilisé ou à quel point nos campagnes de marketing sont efficaces, ou pour nous aider à personnaliser nos sites Web pour vous.
-    
+
     ul.text-break
-      li 
+      li
         h5 Qui sert ces cookies:
-        
+
         if dataPolicy.stats.isGoogleAnalytics
           ul
-            li 
+            li
               strong Fournisseur de cookies: Google Analytics
-            li 
-              |URL du site Web: 
+            li
+              |URL du site Web:
               a(href="https://support.google.com/analytics/answer/6004245" target="_blank" ref="noopener") https://support.google.com/analytics/answer/6004245
         if dataPolicy.stats.isGTM
           ul
-            li 
+            li
               strong Fournisseur de cookies: Google Tag Manager
-            li 
-              |URL du site Web: 
+            li
+              |URL du site Web:
               a(href="http://www.google.com/ads/preferences/" target="_blank" ref="noopener") http://www.google.com/ads/preferences/
 
-      li 
+      li
         h5 Comment les refuser
         p Pour refuser ces cookies, veuillez suivre les instructions ci-dessous dans la rubrique "Comment puis-je contrôler les cookies ?".
 
@@ -93,64 +93,64 @@
     p Ces cookies sont utilisés pour rendre les messages publicitaires plus pertinents pour vous. Ils remplissent des fonctions telles que la réapparition continue de la même annonce, en veillant à ce que les annonces soient correctement affichées pour les annonceurs et, dans certains cas, en sélectionnant des annonces basées sur vos centres d'intérêt.
 
     ul.text-break
-      li 
+      li
         h5 Qui sert ces cookies
-        
+
         if dataPolicy.marketing.isFacebookPixel
           ul
-            li 
+            li
               strong Fournisseur de cookies: Facebook
-            li 
-              |URL du site Web: 
+            li
+              |URL du site Web:
               a(href="https://www.facebook.com/business/help/www/651294705016616" target="_blank" ref="noopener") https://www.facebook.com/business/help/www/651294705016616
-        
+
         if dataPolicy.marketing.isLinkedInPixel
           ul
-            li 
+            li
               strong Fournisseur de cookies: LinkedIn
-            li 
-              |URL du site Web: 
+            li
+              |URL du site Web:
               a(href="https://www.linkedin.com/legal/cookie-policy" target="_blank" ref="noopener") https://www.linkedin.com/legal/cookie-policy
 
         if dataPolicy.marketing.isGoogleAdwordsRemarketing
           ul
-            li 
+            li
               strong Fournisseur de cookies: Google Adwords (remarketing)
-            li 
-              |URL du site Web: 
+            li
+              |URL du site Web:
               a(href="https://www.google.com/settings/ads" target="_blank" ref="noopener") https://www.google.com/settings/ads
 
-      li 
-        h5 Comment les refuser : 
+      li
+        h5 Comment les refuser :
         p Pour refuser ces cookies, veuillez suivre les instructions ci-dessous dans la rubrique "Comment puis-je contrôler les cookies?".
-  
+
   if dataPolicy.social.active
     h4 Cookies de réseaux sociaux:
 
     p Ces cookies sont utilisés pour vous permettre de partager des pages et du contenu que vous trouvez intéressants sur nos sites Web via des réseaux sociaux tiers et d'autres sites Web. Ces cookies peuvent également être utilisés à des fins publicitaires.
 
     ul.text-break
-      li 
+      li
         h5 Qui sert ces cookies:
-        
+
         if dataPolicy.social.isFacebook
           ul
-            li 
+            li
               strong Fournisseur de cookies: Facebook
-            li 
-              |URL du site Web: 
+            li
+              |URL du site Web:
               a(href="https://www.facebook.com/policies/cookies/" target="_blank" ref="noopener") https://www.facebook.com/policies/cookies
-        
+
         if dataPolicy.social.isTwitter
           ul
-            li 
+            li
               strong Fournisseur de cookies: Twitter
-            li 
-              |URL du site Web: 
+            li
+              |URL du site Web:
               a(href="https://support.twitter.com/articles/20170514" target="_blank" ref="noopener") https://support.twitter.com/articles/20170514
 
       li
-        h5 Comment les refuser : 
+        h5 Comment les refuser :
         p Pour refuser ces cookies, veuillez suivre les instructions ci-dessous dans la rubrique "Comment puis-je contrôler les cookies?".
 
   h3 Qu'en est-il des autres technologies de suivi, comme les balises Web?
@@ -163,7 +163,7 @@
 
   h3 Comment puis-je contrôler les cookies?
 
-  p 
+  p
     | Vous avez le droit de décider d'accepter ou de refuser les cookies. Vous pouvez exercer vos préférences de cookies en cliquant sur le lien "
     span.handleTASPanel(style="cursor:pointer;text-decoration:underline;") Gestion des cookies
     | " présent sur ce site.
@@ -173,19 +173,19 @@
   p En outre, la plupart des réseaux publicitaires vous offrent un moyen de refuser la publicité ciblée. Si vous souhaitez obtenir plus d'informations, visitez :
 
   ul
-    li 
+    li
       |AllAboutCookies : (
       a(href="https://www.allaboutcookies.org" target="_blank" rel="noopener" ref="noopener") Voir le site
       |)
-    li 
+    li
       |Your Ad choices : (
       a(href="http://www.aboutads.info/choices/" target="_blank" rel="noopener" ref="noopener") Voir le site
       |)
-    li 
+    li
       |Your online choices : (
       a(href="https://www.youronlinechoices.com" target="_blank" rel="noopener" ref="noopener") Voir le site
       |)
-    li 
+    li
       |Network Advertising Initiative : (
       a(href="https://www.networkadvertising.org" target="_blank" rel="noopener" ref="noopener") Voir le site
       |)
@@ -199,13 +199,13 @@
 
   h3 Où puis-je obtenir plus d'informations?
 
-  p 
-    |Si vous avez des questions concernant notre utilisation des cookies ou d'autres technologies, envoyez-nous un email à 
+  p
+    |Si vous avez des questions concernant notre utilisation des cookies ou d'autres technologies, envoyez-nous un email à
     a(href="mailto:"+dataPolicy[locale].companyContactEmail) #{dataPolicy[locale].companyContactEmail}
     if dataPolicy[locale].companyAddress
       | ou par courrier postal à:
       br
       br
       != dataPolicy[locale].companyAddress
-    else 
+    else
       |.

@@ -11,7 +11,7 @@ describe('SEO meta middleware', () => {
     mockReq = {};
     mockRes = {
       locals: {},
-      render: jest.fn()
+      render: jest.fn(),
     };
   });
   afterEach(() => {
@@ -22,18 +22,18 @@ describe('SEO meta middleware', () => {
   it('should inject basic SEO meta for a generic route with specified locale', () => {
     mockReq.locale = 'fr_fr';
     mockReq.protocol = 'https';
-    mockReq.headers = {host:"domain.com"};
-    mockReq.originalUrl = "/some/generic/route/";
-    
+    mockReq.headers = { host: 'domain.com' };
+    mockReq.originalUrl = '/some/generic/route/';
+
     seoMetaMiddleware(mockReq, mockRes, mockNext);
     expect(mockRes.locals.meta.html.title).toEqual(SEOMetaModel['fr_fr'].html.title);
   });
   it('should inject specific SEO meta for a specific route with specified locale', () => {
     mockReq.locale = 'fr_fr';
     mockReq.protocol = 'https';
-    mockReq.headers = {host:"domain.com"};
-    mockReq.originalUrl = "/test";
-    
+    mockReq.headers = { host: 'domain.com' };
+    mockReq.originalUrl = '/test';
+
     seoMetaMiddleware(mockReq, mockRes, mockNext);
     expect(mockRes.locals.meta.html.title).toEqual(SEOMetaModel['fr_fr'].test.html.title);
   });

@@ -3,7 +3,7 @@ script(type="text/javascript" src=`${cdnURL}/tarteaucitron/tarteaucitron.js`)
 script(type='text/javascript' nonce=nonce).
   const locale = "#{locale}";
   if(locale){
-    //convert locale to tarteaucitron lang code 
+    //convert locale to tarteaucitron lang code
     switch(locale){
       case 'de_de':
         window.tarteaucitronForceLanguage = 'de';
@@ -43,12 +43,12 @@ script(type='text/javascript' nonce=nonce).
     "cookieName": "tarteaucitron", /* Cookie name */
 
     "orientation": "middle", /* Banner position (top - bottom) */
-    
+
     "groupServices": false, /* Group services by category */
-                        
+
     "showAlertSmall": false, /* Show the small banner on bottom right */
     "cookieslist": false, /* Show the cookie list */
-                        
+
     "closePopup": true, /* Show a close X on the banner */
 
     "showIcon": false, /* Show cookie icon to manage cookies */
@@ -56,11 +56,11 @@ script(type='text/javascript' nonce=nonce).
     "iconPosition": "BottomRight", /* BottomRight, BottomLeft, TopRight and TopLeft */
 
     "adblocker": false, /* Show a Warning if an adblocker is detected */
-                        
+
     "DenyAllCta" : true, /* Show the deny all button */
     "AcceptAllCta" : true, /* Show the accept all button when highPrivacy on */
     "highPrivacy": true, /* HIGHLY RECOMMANDED Disable auto consent */
-                        
+
     "handleBrowserDNTRequest": false, /* If Do Not Track == 1, disallow all */
 
     "removeCredit": true, /* Remove credit link */
@@ -70,7 +70,7 @@ script(type='text/javascript' nonce=nonce).
     "useExternalJs": false, /* If false, the tarteaucitron.js file will be loaded */
 
     //"cookieDomain": ".my-multisite-domaine.fr", /* Shared cookie for multisite */
-                      
+
     "readmoreLink": "", /* Change the default readmore link */
 
     "mandatory": true, /* Show a message about mandatory cookies */
@@ -83,7 +83,7 @@ script(type='text/javascript' nonce=nonce).
 
   //load Youtube
   (tarteaucitron.job = tarteaucitron.job || []).push('youtube');
-  
+
   //handle custom button to display preferences panel
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.handleTASPanel').forEach(item => {

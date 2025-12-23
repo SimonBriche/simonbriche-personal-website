@@ -72,7 +72,7 @@ Add `--verbose` option to log all the tests' names even if multiple files are te
 
 ### References
 
-- https://testing.googleblog.com/
+- <https://testing.googleblog.com/>
 
 ## Database
 
@@ -82,39 +82,39 @@ You can setup your local database by running a Docker container.
 
 1. Run your container with:
 
-    ```bash
-    docker run --name my-sql-container -p 3309:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:8.0.43
-    ```
+   ```bash
+   docker run --name my-sql-container -p 3309:3306 -e MYSQL_ROOT_PASSWORD=password -d mysql:8.0.43
+   ```
 
-    or
+   or
 
-    ```bash
-    docker start <CONTAINER_ID>
-    ```
+   ```bash
+   docker start <CONTAINER_ID>
+   ```
 
 2. Connect to your mysql server with:
 
-    ```bash
-    mysql -h 127.0.0.1 -P 3309 -u root -p'password'
-    ```
+   ```bash
+   mysql -h 127.0.0.1 -P 3309 -u root -p'password'
+   ```
 
 3. Create your database with:
 
-    ```sql
-    CREATE DATABASE website;
-    ```
+   ```sql
+   CREATE DATABASE website;
+   ```
 
 4. Ensure that your database is ceated with:
 
-    ```sql
-    SHOW DATABASES;
-    ```
+   ```sql
+   SHOW DATABASES;
+   ```
 
 5. The current MySQL driver doesn't support the latest (and default) authentication method. You must update it with:
 
-    ```sql
-    ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
-    ```
+   ```sql
+   ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+   ```
 
 6. You can now set the `DATABASE_URL` environment variable with something like `mysql://root:password@localhost:3309/website`.
 

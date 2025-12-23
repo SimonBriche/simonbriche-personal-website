@@ -1,7 +1,7 @@
-const {config} = require('../config');
+const { config } = require('../config');
 
-module.exports = function(req, res, next) {
-  if(config.production && !req.secure && config.application.forceSSLRedirection) {
+module.exports = function (req, res, next) {
+  if (config.production && !req.secure && config.application.forceSSLRedirection) {
     res.redirect(301, `https://${req.hostname}${req.originalUrl}`);
   } else {
     next();

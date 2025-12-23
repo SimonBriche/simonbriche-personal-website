@@ -1,54 +1,66 @@
 type Query {
-  portfolioItem(id: String!): PortfolioItem,
-  portfolio(first: Int, after: String, last: Int, before: String, orderBy:[PortfolioOrdering!], filtering:[Filtering!]): PortfolioConnection,
-  technologies: TechnologyConnection,
+  portfolioItem(id: String!): PortfolioItem
+  portfolio(
+    first: Int
+    after: String
+    last: Int
+    before: String
+    orderBy: [PortfolioOrdering!]
+    filtering: [Filtering!]
+  ): PortfolioConnection
+  technologies: TechnologyConnection
   portfolioSearchFields: PortfolioSearchFields
 }
 
 type Technology {
-  id: String!,
-  name: String,
-  link: String,
+  id: String!
+  name: String
+  link: String
   thumbnail: String
 }
-type TechnologyConnection{
-  data: [Technology],
+type TechnologyConnection {
+  data: [Technology]
   totalCount: Int
 }
 
 type PortfolioItem {
-  id: String!,
-  name: String,
-  pitch: String,
-  description: String,
-  thumbnail: String,
-  client: String,
-  types: [String!],
-  images: [String!],
+  id: String!
+  name: String
+  pitch: String
+  description: String
+  thumbnail: String
+  client: String
+  types: [String!]
+  images: [String!]
   technology_ids: [String!]
 }
 
-type PortfolioConnection{
-  data: [PortfolioItem],
-  pageInfo: PortfolioPageInfo,
+type PortfolioConnection {
+  data: [PortfolioItem]
+  pageInfo: PortfolioPageInfo
   totalCount: Int
 }
 
-type PortfolioPageInfo{
-  hasNextPage: Boolean,
-  hasPreviousPage: Boolean,
-  startCursor: String,
+type PortfolioPageInfo {
+  hasNextPage: Boolean
+  hasPreviousPage: Boolean
+  startCursor: String
   endCursor: String
 }
 
-type PortfolioSearchFields{
-  clients: [String!],
+type PortfolioSearchFields {
+  clients: [String!]
   types: [String!]
 }
 
 input PortfolioOrdering {
   sort: PortfolioSort!
-  direction: Direction! = ASC,
+  direction: Direction! = ASC
   seed: String
 }
-enum PortfolioSort { CREATED_AT, PRIORITY, RAND, CLIENT }
+enum PortfolioSort {
+  CREATED_AT
+  PRIORITY
+  RAND
+  CLIENT
+}

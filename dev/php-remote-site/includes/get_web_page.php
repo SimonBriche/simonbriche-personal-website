@@ -11,7 +11,7 @@
       $user_agent='Mozilla/5.0 (Windows NT 6.1; rv:8.0) Gecko/20100101 Firefox/8.0';
 
       $options = array(
-  
+
           CURLOPT_CUSTOMREQUEST  =>"GET",        //set request type post or get
           CURLOPT_POST           =>false,        //set to GET
           //CURLOPT_USERAGENT      => $user_agent, //set user agent
@@ -35,17 +35,17 @@
       $ch      = curl_init( $url );
       //curl_setopt_array( $ch, $options );
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      
+
       if($setHeaders){
         curl_setopt($ch, CURLOPT_HEADERFUNCTION, "HandleHeaderLine");
       }
-      
+
       $content = curl_exec( $ch );
       $err     = curl_errno( $ch );
       $errmsg  = curl_error( $ch );
       $header  = curl_getinfo( $ch );
       curl_close( $ch );
-  
+
       $header['errno']   = $err;
       $header['errmsg']  = $errmsg;
       $header['content'] = $content;
@@ -53,7 +53,7 @@
       if($mustRender){
         echo $header['content'];
       }
-      
+
       return $header;
     }
   }

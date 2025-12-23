@@ -4,11 +4,13 @@ module.exports = {
    * @param {array} array The array to randomize.
    * @returns {array} A new array, with randomized elements.
    */
-  shuffle: function(array){
-    if(!array) return null;
-    
+  shuffle: function (array) {
+    if (!array) return null;
+
     const newArray = array.slice(0);
-    let currentIndex = newArray.length, temporaryValue, randomIndex;
+    let currentIndex = newArray.length,
+      temporaryValue,
+      randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -21,8 +23,8 @@ module.exports = {
       newArray[currentIndex] = newArray[randomIndex];
       newArray[randomIndex] = temporaryValue;
     }
-    
+
     //return a duplicate of the array
     return newArray;
-  }
-}
+  },
+};

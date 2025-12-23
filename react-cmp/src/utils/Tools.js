@@ -2,33 +2,34 @@
 
 const Tools = {
   isBootstrapAvailable: (version) => {
-    if(!version) return true;
-    if(!(window.bootstrap && window.bootstrap.Modal && window.bootstrap.Modal.VERSION)) return false;
-    return window.bootstrap.Modal.VERSION.localeCompare(version, undefined, { numeric: true, sensitivity: 'base' }) >= 0;
+    if (!version) return true;
+    if (!(window.bootstrap && window.bootstrap.Modal && window.bootstrap.Modal.VERSION)) return false;
+    return (
+      window.bootstrap.Modal.VERSION.localeCompare(version, undefined, { numeric: true, sensitivity: 'base' }) >= 0
+    );
   },
   isJQueryAvailable: (version) => {
-    if(!version) return true;
-    if(!(window.$ && window.$.fn && window.$.fn.jquery)) return false;
+    if (!version) return true;
+    if (!(window.$ && window.$.fn && window.$.fn.jquery)) return false;
     return window.$.fn.jquery.localeCompare(version, undefined, { numeric: true, sensitivity: 'base' }) >= 0;
   },
   lazyLoadImages: (el) => {
-    if('loading' in HTMLImageElement.prototype) {
+    if ('loading' in HTMLImageElement.prototype) {
       console.log('loading in. HTMLImageElement', el);
-      const images = el.querySelectorAll("img.lazyload");
+      const images = el.querySelectorAll('img.lazyload');
       console.log('images', images);
 
-      images.forEach(img => {
-        img.onload = function(){
-          if(this.classList){
+      images.forEach((img) => {
+        img.onload = function () {
+          if (this.classList) {
             //adding the 'show' class "nullify" the 'fade' class that is applied to lazyload img
-            this.classList.add('show')
+            this.classList.add('show');
           }
         };
         console.log('set img.src');
         img.src = img.dataset.src;
       });
-    }
-    else{
+    } else {
       import('lazysizes');
       console.log('import lazysizes');
     }
@@ -36,15 +37,15 @@ const Tools = {
   randomString: function (length) {
     const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let result = '';
-    for (let i = length; i > 0; --i){
+    for (let i = length; i > 0; --i) {
       result += chars[Math.round(Math.random() * (chars.length - 1))];
     }
     return result;
   },
-  randomBetween: function(min, max){
-    return Math.ceil(max - Math.random()*(max - (min - 1)));
-  }
-}
+  randomBetween: function (min, max) {
+    return Math.ceil(max - Math.random() * (max - (min - 1)));
+  },
+};
 
 export const isBootstrapAvailable = Tools.isBootstrapAvailable;
 export const isJQueryAvailable = Tools.isJQueryAvailable;

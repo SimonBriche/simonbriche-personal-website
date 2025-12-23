@@ -3,8 +3,8 @@ type Mutation {
 }
 
 input ContactMessageInput {
-  first_name: String!,
-  last_name: String!,
-  email: String!,
+  first_name: String!
+  last_name: String!
+  email: String!
   message: String
 }

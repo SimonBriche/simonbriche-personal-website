@@ -1,6 +1,6 @@
 const fs = require('fs');
 const nodemailer = require('nodemailer');
-const {config} = require('../config');
+const { config } = require('../config');
 
 module.exports = {
   /**
@@ -11,54 +11,52 @@ module.exports = {
    * @param {string} variables.imagesPath The absolute path of the folder containing the email's images (e.g : https://domain.com/images/)
    * @returns {string|false} A string that represents the HTML template with the injected variables, false if no template was found.
    */
-  getHtmlContent: function(htmlLocation, variables){
+  getHtmlContent: function (htmlLocation, variables) {
     let htmlContent;
-    try{
-      htmlContent = fs.readFileSync(htmlLocation+'/index.html');
-    } 
-    catch(e){
+    try {
+      htmlContent = fs.readFileSync(htmlLocation + '/index.html');
+    } catch (e) {
       _logger.error('no template found with location', htmlLocation);
     }
 
-    if(htmlContent){
+    if (htmlContent) {
       htmlContent = htmlContent.toString();
-      if(variables){
+      if (variables) {
         //variables replacement
-        Object.keys(variables).forEach(key => {
-          htmlContent = htmlContent.replace(new RegExp('{{'+key+'}}', 'g'), variables[key]);
+        Object.keys(variables).forEach((key) => {
+          htmlContent = htmlContent.replace(new RegExp('{{' + key + '}}', 'g'), variables[key]);
         });
       }
-      
+
       //images path
       let imagesPath;
       // if imagesPath is provided
-      if(variables && variables.imagesPath){
+      if (variables && variables.imagesPath) {
         imagesPath = variables.imagesPath;
       }
       //try to figure it out with the html path
-      else{
+      else {
         //if we want autoPath
-        if(!variables || (variables && variables.imagesAutoPath !== false)){
+        if (!variables || (variables && variables.imagesAutoPath !== false)) {
           //guess images absolute URL with ENV.APPLICATION_URL or ENV.REDIRECT_TO_DOMAIN
-          const applicationURL = (config.application.url || `https://${config.application.redirectToDomain}/`);
-          if(applicationURL){
+          const applicationURL = config.application.url || `https://${config.application.redirectToDomain}/`;
+          if (applicationURL) {
             //trim start of the path
-            imagesPath = htmlLocation.substr(htmlLocation.indexOf('public/')).replace('public/','');
+            imagesPath = htmlLocation.substr(htmlLocation.indexOf('public/')).replace('public/', '');
             //add absolute application URL
-            imagesPath = applicationURL+imagesPath;
+            imagesPath = applicationURL + imagesPath;
             //add image folder
             imagesPath = imagesPath + '/images/';
           }
         }
       }
       //replace the default path by imagesPath if found
-      if(imagesPath){
+      if (imagesPath) {
         htmlContent = htmlContent.replace(/images\//g, imagesPath);
       }
-      
+
       return htmlContent;
-    }
-    else{
+    } else {
       return false;
     }
   },
@@ -77,33 +75,36 @@ module.exports = {
    * @param {string} mailOptions.variables.imagesPath The absolute path of the folder containing the email's images (e.g : https://domain.com/images/)
    * @returns {Object} Informations about the sent email.
    */
-  sendMail: function(mailOptions){
-    return new Promise(function(resolve, reject){
-      (async function(){
-        const transporter = nodemailer.createTransport({
-          //service 'Mailgun' EU by default
-          host: mailOptions.host || config.mail.host || "smtp.eu.mailgun.org",
-          port: mailOptions.port || 465,
-          secure: !(mailOptions.secure === false),
-          auth: {
-            user: mailOptions.login || config.mail.smtpLogin,
-            pass: mailOptions.password || config.mail.smtpPassword
+  sendMail: function (mailOptions) {
+    return new Promise(
+      function (resolve, reject) {
+        (async function () {
+          const transporter = nodemailer.createTransport({
+            //service 'Mailgun' EU by default
+            host: mailOptions.host || config.mail.host || 'smtp.eu.mailgun.org',
+            port: mailOptions.port || 465,
+            secure: !(mailOptions.secure === false),
+            auth: {
+              user: mailOptions.login || config.mail.smtpLogin,
+              pass: mailOptions.password || config.mail.smtpPassword,
+            },
+          });
+
+          //TODO: generate mirror link
+          if (mailOptions && mailOptions.htmlPath) {
+            mailOptions.html = this.getHtmlContent(mailOptions.htmlPath, mailOptions.variables);
           }
-        });
-        
-        //TODO: generate mirror link
-        if(mailOptions && mailOptions.htmlPath){
-          mailOptions.html = this.getHtmlContent(mailOptions.htmlPath, mailOptions.variables);
-        }
-        if(config.mail.active){
-          const mailSent = await transporter.sendMail(mailOptions);
-          resolve(mailSent);
-        }
-        else{
-          _logger.info('Mailer is inactive, check your ACTIVE_MAIL environment variable');
-          resolve(true);
-        }
-      }.bind(this))().catch(reject);
-    }.bind(this));
-  }
+          if (config.mail.active) {
+            const mailSent = await transporter.sendMail(mailOptions);
+            resolve(mailSent);
+          } else {
+            _logger.info('Mailer is inactive, check your ACTIVE_MAIL environment variable');
+            resolve(true);
+          }
+        })
+          .bind(this)()
+          .catch(reject);
+      }.bind(this)
+    );
+  },
 };

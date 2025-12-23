@@ -1,5 +1,5 @@
 extends layout
-    
+
 block pagecss
   link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta2/dist/css/bootstrap-select.min.css")
 
@@ -7,37 +7,37 @@ block content
   .max-width-container.p-3
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-intro" aria-expanded="true" role="button" aria-controls="skill-intro")
-        .property 
-          |title: 
+        .property
+          |title:
           span.text-red "Simon BRICHE"
-        .property 
-          |description: 
+        .property
+          |description:
           span.text-red "Leitmotiv"
       .skill-content
         #skill-intro.collapse.show
-          .property content: 
+          .property content:
           .soft.flat.text-left.my-2.p-3.mx-auto.rounded
             p
-              |J'apporte mon expertise du monde de la production d'applications web avec un objectif principal : 
+              |J'apporte mon expertise du monde de la production d'applications web avec un objectif principal :
               strong augmenter la productivité.
 
-            p 
-              |Aujourd'hui, avec la mise en place de méthodes et d'outils adaptés à l'organisation, j'assure la 
-              strong rentabilité et la stabilité 
-              |de toute la production technique mes clients. J'interviens à toutes les phases du projet : de la prise de brief à la conception puis à la réalisation, ou en totale autonomie avec le client. 
-            p 
-              |Qu'il s'agisse de sites événementiels, bots conversationnels, Facebook Live ou d'autres solutions techniques innovantes, elles sont toutes faites 
-              strong sur-mesure 
+            p
+              |Aujourd'hui, avec la mise en place de méthodes et d'outils adaptés à l'organisation, j'assure la
+              strong rentabilité et la stabilité
+              |de toute la production technique mes clients. J'interviens à toutes les phases du projet : de la prise de brief à la conception puis à la réalisation, ou en totale autonomie avec le client.
+            p
+              |Qu'il s'agisse de sites événementiels, bots conversationnels, Facebook Live ou d'autres solutions techniques innovantes, elles sont toutes faites
+              strong sur-mesure
               |pour répondre au mieux à la demande du client.
 
-            p 
+            p
               strong
-                span.text-red Mon leitmotiv : 
+                span.text-red Mon leitmotiv :
                 |Always use the right tool for the job
             .text-center.mt-5
               .btn.btn-custom.btn-soft.btn-profile.mx-auto En savoir plus
           //-.buttons
-            button.btn.btn-custom.btn-soft.mx-3 Press me 
+            button.btn.btn-custom.btn-soft.mx-3 Press me
 
             .soft.flat.text-center.m-3.p-5.mx-auto.rounded(style="width:300px")
               |I'm flat
@@ -52,71 +52,71 @@ block content
 
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-consulting" aria-expanded="true" role="button" aria-controls="skill-consulting")
-        .property 
-          |title: 
+        .property
+          |title:
           span.text-red "Consulting"
-        .property 
-          |description: 
+        .property
+          |description:
           span.text-red "En tant que consultant chez Davidson SI Nord, j'accompagne mes clients dans la mise en place de solutions techniques adaptées à leurs besoins."
       .skill-content
         #skill-consulting.collapse.show
-          .property content: 
+          .property content:
           .position-relative
             .inner-shadow.rounded
             .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
               .__react-cmp.mx-auto(data-react-component="Gallery" data-section="consulting")
               .scroll-arrows
-                span 
-                span 
+                span
+                span
                 span
 
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-sixpans" aria-expanded="true" role="button" aria-controls="skill-sixpans")
-        .property 
-          |title: 
+        .property
+          |title:
           span.text-red "Sixpans"
-        .property 
-          |description: 
+        .property
+          |description:
           span.text-red "Plateforme d'aide à la productivité que j'ai développée 100% in-house au sein de l'agence OP1C. Elle est constituée de plusieurs modules répondant chacun à un besoin spécifique, pour l'interne ou les clients. C'est une plateforme évolutive qui s'est construite en symbiose avec les autres métiers de l'agence, à l'écoute de leurs problématiques."
       .skill-content
         #skill-sixpans.collapse.show
-          .property content: 
+          .property content:
           .position-relative
             .inner-shadow.rounded
             .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
               .__react-cmp.mx-auto(data-react-component="Gallery" data-section="sixpans")
               .scroll-arrows
-                span 
-                span 
+                span
+                span
                 span
 
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-real" aria-expanded="true" role="button" aria-controls="skill-real")
-        .property 
-          |title: 
+        .property
+          |title:
           span.text-red "Réalisations clients"
-        .property 
-          |description: 
+        .property
+          |description:
           span.text-red "Une sélection d'applications, sites web ou dispositifs sociaux que j'ai pu faire pour mes clients."
       .skill-content
         #skill-real.collapse.show
-          .property content: 
+          .property content:
           .position-relative
             .inner-shadow.rounded
             .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
               .__react-cmp.mx-auto(data-react-component="Gallery" data-section="featured")
               .scroll-arrows
-                span 
-                span 
                 span
-    
+                span
+                span
+
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-more-real" aria-expanded="true" role="button" aria-controls="skill-more-real")
-        .property 
-          |title: 
+        .property
+          |title:
           span.text-red "Plus de réalisations"
-        .property 
-          |description: 
+        .property
+          |description:
           span.text-red "Un peu plus de projets, triés par client ou type"
       .skill-content
         #skill-more-real.collapse.show
@@ -126,32 +126,32 @@ block content
 
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-xp" aria-expanded="true" role="button" aria-controls="skill-xp")
-        .property 
-          |title: 
+        .property
+          |title:
           span.text-red "Experience"
-        .property 
-          |description: 
+        .property
+          |description:
           span.text-red "Mon cursus professionnel et extra-professionnel. Cliquez sur les lignes en gras pour en savoir plus !"
       .skill-content
         #skill-xp.collapse.show
-          .property content: 
+          .property content:
           .graph-wrapper.position-relative
             #graph-tooltip.fade.rounded.shadow.px-3.py-2(tabindex="-1")
             #graph-container.pb-0
           .graph-wrapper.position-relative
             #graph-container-2.pb-0
-    
+
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-stack" aria-expanded="true" role="button" aria-controls="skill-stack")
-        .property 
-          |title: 
+        .property
+          |title:
           span.text-red "Ma stack"
-        .property 
-          |description: 
+        .property
+          |description:
           span.text-red "Les outils et plateformes que j'utilise au quotidien au sein de mon agence"
       .skill-content
         #skill-stack.collapse.show
-          .property.mb-2 content: 
+          .property.mb-2 content:
           #stack-accordion.accordion.accordion-custom.rounded.soft
             each stackItem in stackItems
               .accordion-item
@@ -168,36 +168,36 @@ block content
 
     section.skill.mb-3
       .properties(data-bs-toggle="collapse" data-bs-target="#skill-hobby" aria-expanded="true" role="button" aria-controls="skill-hobby")
-        .property 
-          |title: 
+        .property
+          |title:
           span.text-red "Hobbies et projets étudiant"
-        .property 
-          |description: 
+        .property
+          |description:
           span.text-red "Des projets réalisés durant mon cursus scolaire et quelques croquis faits sur mon temps libre ou durant mes études."
       .skill-content
         #skill-hobby.collapse.show
-          .property content: 
+          .property content:
           .position-relative
             .inner-shadow.rounded
             .gallery-container.d-flex.position-relative.container-fluid.text-start.rounded.soft.pressed.overflow-scroll-x.my-3.pb-3
               .__react-cmp.mx-auto(data-react-component="Gallery" data-section="perso")
               .scroll-arrows
-                span 
-                span 
+                span
+                span
                 span
 
     if marvelCharacter || marvelComics
       section.skill.mb-3
         .properties(data-bs-toggle="collapse" data-bs-target="#skill-marvel" aria-expanded="true" role="button" aria-controls="skill-marvel")
-          .property 
-            |title: 
+          .property
+            |title:
             span.text-red "BONUS : 1 jour - 1 personnage - 1 comics"
-          .property 
-            |description: 
+          .property
+            |description:
             span.text-red "J'aime les comics et les mangas, mais aussi partager mes passions ! Je vous propose donc de découvrir chaque jour un personnage et un comics Marvel au hasard 🎁"
         .skill-content
           #skill-marvel.collapse.show
-            .property content: 
+            .property content:
             .position-relative
               .row.align-items-center
                 if marvelCharacter
@@ -205,7 +205,7 @@ block content
                     .soft.flat.text-left.my-2.p-3.mx-auto.rounded.text-center
                       img.marvel-thumbnail.lazyload.fade.rounded-circle.mb-3(data-src=marvelCharacter.thumbnail alt=marvelCharacter.name loading="lazy")
                       h2.text-red #{marvelCharacter.name}
-                      if marvelCharacter.description 
+                      if marvelCharacter.description
                         p #{marvelCharacter.description}
                 if marvelComics
                   .col-12.col-md-8
@@ -214,9 +214,9 @@ block content
                         .col-12.col-sm-4.text-center
                           a(href=marvelComics.link target="_blank" ref="noopener")
                             img.soft.img-fluid.lazyload.fade.rounded.mb-3.mb-sm-0(data-src=marvelComics.thumbnail alt=marvelComics.name loading="lazy")
-                        .col-12.col-sm-8 
+                        .col-12.col-sm-8
                           h2.text-red #{marvelComics.name}
-                          if marvelComics.description 
+                          if marvelComics.description
                             p !{marvelComics.description}
     .text-center.mb-5
       .btn.btn-custom.btn-soft.btn-profile.mx-auto Voir ce que j'aime faire

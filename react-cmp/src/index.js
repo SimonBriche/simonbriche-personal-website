@@ -1,72 +1,78 @@
 import React, { Suspense } from 'react';
-import {createRoot} from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import './all.css';
 import reportWebVitals from './reportWebVitals';
 
 //list here all the components that can be inserted in a web page
 const apps = {
-  'App': React.lazy(() => import('./App')),
-  'Gallery': React.lazy(() => import('./cmp/Gallery')),
-  'TestComponent': React.lazy(() => import('./cmp/TestComponent')),
-  'GalleryPostModal': React.lazy(() => import('./cmp/GalleryPostModal')),
-  'GalleryFilter': React.lazy(() => import('./cmp/GalleryFilter')),
-  'GalleryTiles': React.lazy(() => import('./cmp/GalleryTiles')),
-}
+  App: React.lazy(() => import('./App')),
+  Gallery: React.lazy(() => import('./cmp/Gallery')),
+  TestComponent: React.lazy(() => import('./cmp/TestComponent')),
+  GalleryPostModal: React.lazy(() => import('./cmp/GalleryPostModal')),
+  GalleryFilter: React.lazy(() => import('./cmp/GalleryFilter')),
+  GalleryTiles: React.lazy(() => import('./cmp/GalleryTiles')),
+};
 //event manager to communicate between the components
 const bridgeEvent = new EventTarget();
 //common fallback for all the components
 function Fallback() {
-  return <div className="cmp-loader"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>;
+  return (
+    <div className="cmp-loader">
+      <div className="lds-ring">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
 }
 const renderAppInElement = (el) => {
-  if (apps[el.dataset.reactComponent] && !el.dataset.rendered){
+  if (apps[el.dataset.reactComponent] && !el.dataset.rendered) {
     const root = createRoot(el);
     //get the component's name stored in the data-react-component attribute
     const App = apps[el.dataset.reactComponent];
     //render the component, inject all the HTML attributes and the Event bridge
     root.render(
       <Suspense fallback={<Fallback />}>
-        {el.dataset.keepLoading !== "true"
-          ? <App {...el.dataset} bridgeEvent={bridgeEvent}/>
-          : <Fallback />
-        }
+        {el.dataset.keepLoading !== 'true' ?
+          <App {...el.dataset} bridgeEvent={bridgeEvent} />
+        : <Fallback />}
       </Suspense>
     );
     el.dataset.rendered = true;
+  } else if (el.dataset.rendered) {
+    console.log('el', el, 'is already rendered');
   }
-  else if(el.dataset.rendered){
-    console.log('el', el, 'is already rendered')
-  }
-}
+};
 
 //ONLY FOR THE DEV PHASE
 const rootEl = document.getElementById('root');
 //generate components without attributes
-if(process.env.REACT_APP_RENDER_CMP){
+if (process.env.REACT_APP_RENDER_CMP) {
   const components = process.env.REACT_APP_RENDER_CMP.split(',');
-  
-  components.forEach(item => {
+
+  components.forEach((item) => {
     const componentEl = document.createElement('div');
-    componentEl.setAttribute("data-react-component", item);
-    componentEl.className = "__react-cmp";
+    componentEl.setAttribute('data-react-component', item);
+    componentEl.className = '__react-cmp';
     rootEl.append(componentEl);
   });
 }
 //generate components with attributes
-if(process.env.REACT_APP_RENDER_CMP_WITH_ATTRS){
+if (process.env.REACT_APP_RENDER_CMP_WITH_ATTRS) {
   let componentsWithAttrs;
-  try{
+  try {
     componentsWithAttrs = JSON.parse(process.env.REACT_APP_RENDER_CMP_WITH_ATTRS);
-  }
-  catch(e){
+  } catch (e) {
     console.log('fail to parse REACT_APP_RENDER_CMP_WITH_ATTRS', e);
   }
-  if(componentsWithAttrs){
-    componentsWithAttrs.forEach(cmp => {
+  if (componentsWithAttrs) {
+    componentsWithAttrs.forEach((cmp) => {
       const componentEl = document.createElement('div');
-      componentEl.setAttribute("data-react-component", cmp.class);
-      componentEl.className = "__react-cmp";
-      Object.keys(cmp.data).forEach(attrKey => {
+      componentEl.setAttribute('data-react-component', cmp.class);
+      componentEl.className = '__react-cmp';
+      Object.keys(cmp.data).forEach((attrKey) => {
         componentEl.setAttribute(attrKey, cmp.data[attrKey]);
       });
       rootEl.append(componentEl);
@@ -75,23 +81,21 @@ if(process.env.REACT_APP_RENDER_CMP_WITH_ATTRS){
 }
 
 //the default name of the global object is ReactComponents, but it could be customized via the REACT_APP_NAMESPACE environment variable
-const appNamespace = process.env.REACT_APP_NAMESPACE || "ReactComponents";
+const appNamespace = process.env.REACT_APP_NAMESPACE || 'ReactComponents';
 window[appNamespace] = {
   ready: false,
-  parseComponents(container){
+  parseComponents(container) {
     //parse the container or the whole document and inject all the components in the containers that have a "__react-cmp" class
-    (container || document)
-    .querySelectorAll('.__react-cmp')
-    .forEach(renderAppInElement);
-  }
-}
+    (container || document).querySelectorAll('.__react-cmp').forEach(renderAppInElement);
+  },
+};
 window[appNamespace].parseComponents();
 window[appNamespace].ready = true;
 
 //if dynamic parsing must be done via the window.ReactComponents.parseComponents() method
 //check the availability of window.ReactComponents object via window.ReactComponents.ready property
 //or define a window.ReactComponentsAsyncInit() method to be notified of the availability
-if(typeof window[`${appNamespace}AsyncInit`] === 'function'){
+if (typeof window[`${appNamespace}AsyncInit`] === 'function') {
   window[`${appNamespace}AsyncInit`]();
 }
 
