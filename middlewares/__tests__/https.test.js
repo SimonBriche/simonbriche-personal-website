@@ -21,7 +21,7 @@ describe('domain middleware', () => {
     ConfigUtil.mock({ production: false });
 
     httpsMiddleware(mockReq, mockRes, mockNext);
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
   });
 
   it('should next if in production and secure', () => {
@@ -29,7 +29,7 @@ describe('domain middleware', () => {
     mockReq.secure = true;
 
     httpsMiddleware(mockReq, mockRes, mockNext);
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
   });
 
   it('should next if in production, unsecure but SSL not required', () => {
@@ -37,7 +37,7 @@ describe('domain middleware', () => {
     mockReq.secure = false;
 
     httpsMiddleware(mockReq, mockRes, mockNext);
-    expect(mockNext).toBeCalledTimes(1);
+    expect(mockNext).toHaveBeenCalledTimes(1);
   });
 
   it('should redirect to the same route with SSL if in production and unsecure', () => {
@@ -48,6 +48,6 @@ describe('domain middleware', () => {
       secure: false,
     };
     httpsMiddleware(mockReq, mockRes, mockNext);
-    expect(mockRes.redirect).toBeCalledWith(301, `https://${mockReq.hostname}${mockReq.originalUrl}`);
+    expect(mockRes.redirect).toHaveBeenCalledWith(301, `https://${mockReq.hostname}${mockReq.originalUrl}`);
   });
 });
