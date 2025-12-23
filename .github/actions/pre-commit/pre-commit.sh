@@ -21,7 +21,6 @@ __dir="$(cd "$(dirname "${BASH_SOURCE[${__b3bp_tmp_source_idx:-0}]}")" && pwd)"
 __file="${__dir}/$(basename "${BASH_SOURCE[${__b3bp_tmp_source_idx:-0}]}")"
 __base="$(basename "${__file}" .sh)"
 
-echo "[DEBUG] Running script [${__base}]"
 
 precommit_config_file=$(echo "${1?}" | cut -d "=" -f2)
 precommit_check_all_files=$(echo "${2?}" | cut -d "=" -f2)
@@ -35,6 +34,8 @@ else
   echo "::error title=Run pre-commit checks::Please setup pre-commit through mise"
   exit 1
 fi
+
+echo "[DEBUG] Running precommit with precommit_check_all_files [${precommit_check_all_files}] and precommit_config_file [${precommit_config_file}]"
 
 declare -a precommit_args=()
 if [[ "${precommit_check_all_files}" == "true" ]]; then

@@ -10,14 +10,15 @@ on:
   workflow_dispatch:
     inputs:
       precommit_check_all_files:
-        description: 'Whether to check all files with pre-commit or only the changed ones'
+        description: 'Run pre-commit for all files or only the updated ones'
         required: false
-        default: 'false'
+        type: boolean
+        default: true
       precommit_config_file:
         required: false
         type: string
         default: .pre-commit-config.yaml
-        description: Path to the alternate pre-commit config file.
+        description: Path to the pre-commit config file.
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}-checks
   cancel-in-progress: true
@@ -30,6 +31,10 @@ jobs:
     name: Pre-commit
     runs-on: ubuntu-latest
     timeout-minutes: 20
+    env:
+      MISE_OVERRIDE_CONFIG_FILENAMES: .mise.ci.toml
+      PRE_CHECK_ALL_FILES: ${{ inputs.precommit_check_all_files || 'true' }}
+      PRE_CONFIG_FILE: ${{ inputs.precommit_config_file || '.pre-commit-config.yaml' }}
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v6
