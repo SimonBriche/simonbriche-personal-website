@@ -3,8 +3,8 @@ version: 2
 updates:
   - package-ecosystem: npm
     directories:
-      - /
-      - /react-cmp
+      - /src/server
+      - /src/react-cmp
     schedule:
       interval: monthly
     commit-message:

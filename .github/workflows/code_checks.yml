@@ -62,8 +62,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          cd src/server
           npm install
 
       - name: Run Jest tests
         run: |
+          cd src/server
           npm run test
