@@ -73,7 +73,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### Local
 
-- Run a local backend server from the root of the repo with `nf start`.
+- Run a [local backend](../server/README.md) server from the root of the repo with `nf start`.
 - If needed, configure the `proxy` to the backend in the `package.json` file.
 - Add a component in `react-cmp/public/index.html` like:
 
@@ -83,7 +83,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 - Run `npm start` to launch a local server for the frontend
 
-### Development
+### Build for development
 
 - Ensure you have configured the `.env` file for your local backend server with:
 
@@ -99,4 +99,22 @@ REACT_PUBLIC_URL="/react-cmp/development"
 npm run build:development
 ```
 
+- This will export the files in the `src/server/public/react-cmp/development`
 - Your can see your components in your local backend environment
+
+### Build for development
+
+- In your production environment, ensure you have configured le variables as:
+
+```bash
+REACT_ENVIRONMENT="production"
+REACT_PUBLIC_URL="<your_production _server_url>/react-cmp/production"
+```
+
+- Build production packages with:
+
+```bash
+npm run build
+```
+
+- This will export the files in the `src/server/public/react-cmp/production` folder, that must be commited
