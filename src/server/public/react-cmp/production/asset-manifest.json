@@ -25,8 +25,5 @@
     "488.f06de0d2.chunk.js.map": "https://site--server--pn9hc6z44glx.code.run/react-cmp/production/static/js/488.f06de0d2.chunk.js.map",
     "508.fae64f27.chunk.js.map": "https://site--server--pn9hc6z44glx.code.run/react-cmp/production/static/js/508.fae64f27.chunk.js.map"
   },
-  "entrypoints": [
-    "static/css/main.b81b968f.css",
-    "static/js/main.66315d4c.js"
-  ]
+  "entrypoints": ["static/css/main.b81b968f.css", "static/js/main.66315d4c.js"]
 }

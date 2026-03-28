@@ -1,2 +1,296 @@
-"use strict";(self.webpackChunkreact_cmp=self.webpackChunkreact_cmp||[]).push([[214],{214:(e,a,s)=>{s.r(a),s.d(a,{default:()=>o});var t=s(43),l=s(689),n=s(579);const o=e=>{const a=(0,t.useRef)(null),s=e.bridgeEvent,[o,c]=(0,t.useState)(null),[i,r]=(0,t.useState)(null),[d,m]=(0,t.useState)(null);return(0,t.useEffect)(()=>{(0,l.I$)("5")?c(new window.bootstrap.Modal(a.current,{keyboard:!1,backdrop:!1})):console.warn("Bootstrap 5 must be loaded to use GalleryPostModal component")},[]),(0,t.useEffect)(()=>{if(s&&o){let e;const t=()=>(e||(e=new Promise(function(e,a){(async()=>{const a=await(await fetch("".concat("https://site--server--pn9hc6z44glx.code.run","/graphql?query=").concat(encodeURIComponent("{\n                technologies{\n                  data {id, name, link, thumbnail}\n                }\n              }")))).json();e(a.data.technologies.data)})().catch(a)})),e);s.addEventListener("openGalleryModal",e=>{r(e.detail),t().then(a=>{m(e.detail.technology_ids.map(e=>a.find(a=>a.id===e)))}).catch(e=>{console.log("fail to get technologies",e)}).finally(()=>{(0,l.fB)(a.current)}),o.show(),a.current.addEventListener("hidden.bs.modal",function(e){r(null)},{once:!0}),document.querySelectorAll(".footer-interface").forEach(e=>e.classList.toggle("open"))})}},[s,o]),(0,n.jsx)("div",{id:"modal-portfolio",className:"modal modal-interface fade",tabIndex:"-1","aria-labelledby":"modalPortfolio","aria-hidden":"true",ref:a,children:(0,n.jsx)("div",{className:"modal-dialog",children:(0,n.jsx)("div",{className:"modal-content",children:(0,n.jsx)("div",{className:"modal-body",children:i&&(0,n.jsxs)("div",{className:"card portfolio-focus soft shadow rounded border-0 mx-sm-auto",children:[(0,n.jsx)("img",{className:"card-img-top rounded-top",src:"".concat("https://site--server--pn9hc6z44glx.code.run","/assets/images/gallery/").concat(i.thumbnail),alt:i.name}),(0,n.jsxs)("div",{className:"card-body bg-white rounded-bottom",children:[(0,n.jsx)("h2",{className:"card-title text-red",children:(0,n.jsx)("strong",{children:i.name})}),(0,n.jsx)("h4",{children:i.client}),i.pitch&&(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)("h6",{className:"text-red mb-0",children:"En r\xe9sum\xe9"}),(0,n.jsx)("div",{className:"card-text mb-3",dangerouslySetInnerHTML:{__html:i.pitch}})]}),i.description&&(0,n.jsxs)(n.Fragment,{children:[(0,n.jsx)("h6",{className:"text-red mb-0",children:"Plus en d\xe9tails"}),(0,n.jsx)("div",{className:"card-text mb-3",dangerouslySetInnerHTML:{__html:i.description}})]}),(0,n.jsxs)("div",{id:"portfolio-carousel",className:"carousel slide","data-bs-ride":"carousel",children:[(0,n.jsx)("div",{className:"carousel-inner",children:i.images&&i.images.map((e,a)=>(0,n.jsx)("div",{className:"carousel-item ".concat(0===a?"active":""),children:(0,n.jsx)("img",{className:"d-block w-100 lazyload fade","data-src":"".concat("https://site--server--pn9hc6z44glx.code.run","/assets/images/gallery/").concat(e),alt:"".concat(i.client,"-").concat(a),loading:"lazy"})},"carousel-image-".concat(a)))}),i.images&&i.images.length>0&&(0,n.jsxs)("div",{className:"carousel-control-container",children:[(0,n.jsxs)("button",{className:"carousel-control-prev carousel-control rounded-circle m-2",type:"button","data-bs-target":"#portfolio-carousel","data-bs-slide":"prev",children:[(0,n.jsx)("i",{className:"fas fa-chevron-left text-red","aria-hidden":"true"}),(0,n.jsx)("span",{className:"visually-hidden",children:"Previous"})]}),(0,n.jsxs)("button",{className:"carousel-control-next carousel-control rounded-circle m-2",type:"button","data-bs-target":"#portfolio-carousel","data-bs-slide":"next",children:[(0,n.jsx)("i",{className:"fas fa-chevron-right text-red","aria-hidden":"true"}),(0,n.jsx)("span",{className:"visually-hidden",children:"Next"})]})]})]}),i.types&&(0,n.jsx)("div",{className:"tags",children:(0,n.jsx)("ul",{className:"list-inline",children:i.types.map((e,a)=>(0,n.jsx)("li",{className:"list-inline-item",children:(0,n.jsx)("span",{className:"badge bg-secondary rounded-pill",children:e})},"carousel-type-".concat(a)))})}),d&&(0,n.jsxs)("div",{className:"techno",children:[(0,n.jsx)("i",{className:"small",children:"Built with"}),(0,n.jsx)("ul",{className:"list-inline mb-0",children:d.map((e,a)=>(0,n.jsx)("li",{className:"list-inline-item",children:(0,n.jsx)("a",{href:e.link,title:e.name,target:"_blank",rel:"noopener, noreferrer",children:(0,n.jsx)("img",{className:"stack-logo bg-white rounded-circle lazyload fade me-2 mb-2","data-src":"".concat("https://site--server--pn9hc6z44glx.code.run","/assets/images/stack/").concat(e.thumbnail),alt:"".concat(e.name,"-").concat(a),loading:"lazy"})})},"carousel-technology-".concat(a)))})]})]})]})})})})})}},689:(e,a,s)=>{s.d(a,{I$:()=>l,fB:()=>o,sc:()=>c,ud:()=>n});const t={isBootstrapAvailable:e=>!e||!!(window.bootstrap&&window.bootstrap.Modal&&window.bootstrap.Modal.VERSION)&&window.bootstrap.Modal.VERSION.localeCompare(e,void 0,{numeric:!0,sensitivity:"base"})>=0,isJQueryAvailable:e=>!e||!!(window.$&&window.$.fn&&window.$.fn.jquery)&&window.$.fn.jquery.localeCompare(e,void 0,{numeric:!0,sensitivity:"base"})>=0,lazyLoadImages:e=>{if("loading"in HTMLImageElement.prototype){console.log("loading in. HTMLImageElement",e);const a=e.querySelectorAll("img.lazyload");console.log("images",a),a.forEach(e=>{e.onload=function(){this.classList&&this.classList.add("show")},console.log("set img.src"),e.src=e.dataset.src})}else s.e(508).then(s.t.bind(s,508,23)),console.log("import lazysizes")},randomString:function(e){const a="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";let s="";for(let t=e;t>0;--t)s+=a[Math.round(61*Math.random())];return s},randomBetween:function(e,a){return Math.ceil(a-Math.random()*(a-(e-1)))}},l=t.isBootstrapAvailable,n=t.isJQueryAvailable,o=t.lazyLoadImages,c=t.randomBetween}}]);
+'use strict';
+(self.webpackChunkreact_cmp = self.webpackChunkreact_cmp || []).push([
+  [214],
+  {
+    214: (e, a, s) => {
+      (s.r(a), s.d(a, { default: () => o }));
+      var t = s(43),
+        l = s(689),
+        n = s(579);
+      const o = (e) => {
+        const a = (0, t.useRef)(null),
+          s = e.bridgeEvent,
+          [o, c] = (0, t.useState)(null),
+          [i, r] = (0, t.useState)(null),
+          [d, m] = (0, t.useState)(null);
+        return (
+          (0, t.useEffect)(() => {
+            (0, l.I$)('5') ?
+              c(new window.bootstrap.Modal(a.current, { keyboard: !1, backdrop: !1 }))
+            : console.warn('Bootstrap 5 must be loaded to use GalleryPostModal component');
+          }, []),
+          (0, t.useEffect)(() => {
+            if (s && o) {
+              let e;
+              const t = () => (
+                e ||
+                  (e = new Promise(function (e, a) {
+                    (async () => {
+                      const a = await (
+                        await fetch(
+                          ''
+                            .concat('https://site--server--pn9hc6z44glx.code.run', '/graphql?query=')
+                            .concat(
+                              encodeURIComponent(
+                                '{\n                technologies{\n                  data {id, name, link, thumbnail}\n                }\n              }'
+                              )
+                            )
+                        )
+                      ).json();
+                      e(a.data.technologies.data);
+                    })().catch(a);
+                  })),
+                e
+              );
+              s.addEventListener('openGalleryModal', (e) => {
+                (r(e.detail),
+                  t()
+                    .then((a) => {
+                      m(e.detail.technology_ids.map((e) => a.find((a) => a.id === e)));
+                    })
+                    .catch((e) => {
+                      console.log('fail to get technologies', e);
+                    })
+                    .finally(() => {
+                      (0, l.fB)(a.current);
+                    }),
+                  o.show(),
+                  a.current.addEventListener(
+                    'hidden.bs.modal',
+                    function (e) {
+                      r(null);
+                    },
+                    { once: !0 }
+                  ),
+                  document.querySelectorAll('.footer-interface').forEach((e) => e.classList.toggle('open')));
+              });
+            }
+          }, [s, o]),
+          (0, n.jsx)('div', {
+            id: 'modal-portfolio',
+            className: 'modal modal-interface fade',
+            tabIndex: '-1',
+            'aria-labelledby': 'modalPortfolio',
+            'aria-hidden': 'true',
+            ref: a,
+            children: (0, n.jsx)('div', {
+              className: 'modal-dialog',
+              children: (0, n.jsx)('div', {
+                className: 'modal-content',
+                children: (0, n.jsx)('div', {
+                  className: 'modal-body',
+                  children:
+                    i &&
+                    (0, n.jsxs)('div', {
+                      className: 'card portfolio-focus soft shadow rounded border-0 mx-sm-auto',
+                      children: [
+                        (0, n.jsx)('img', {
+                          className: 'card-img-top rounded-top',
+                          src: ''
+                            .concat('https://site--server--pn9hc6z44glx.code.run', '/assets/images/gallery/')
+                            .concat(i.thumbnail),
+                          alt: i.name,
+                        }),
+                        (0, n.jsxs)('div', {
+                          className: 'card-body bg-white rounded-bottom',
+                          children: [
+                            (0, n.jsx)('h2', {
+                              className: 'card-title text-red',
+                              children: (0, n.jsx)('strong', { children: i.name }),
+                            }),
+                            (0, n.jsx)('h4', { children: i.client }),
+                            i.pitch &&
+                              (0, n.jsxs)(n.Fragment, {
+                                children: [
+                                  (0, n.jsx)('h6', { className: 'text-red mb-0', children: 'En r\xe9sum\xe9' }),
+                                  (0, n.jsx)('div', {
+                                    className: 'card-text mb-3',
+                                    dangerouslySetInnerHTML: { __html: i.pitch },
+                                  }),
+                                ],
+                              }),
+                            i.description &&
+                              (0, n.jsxs)(n.Fragment, {
+                                children: [
+                                  (0, n.jsx)('h6', { className: 'text-red mb-0', children: 'Plus en d\xe9tails' }),
+                                  (0, n.jsx)('div', {
+                                    className: 'card-text mb-3',
+                                    dangerouslySetInnerHTML: { __html: i.description },
+                                  }),
+                                ],
+                              }),
+                            (0, n.jsxs)('div', {
+                              id: 'portfolio-carousel',
+                              className: 'carousel slide',
+                              'data-bs-ride': 'carousel',
+                              children: [
+                                (0, n.jsx)('div', {
+                                  className: 'carousel-inner',
+                                  children:
+                                    i.images &&
+                                    i.images.map((e, a) =>
+                                      (0, n.jsx)(
+                                        'div',
+                                        {
+                                          className: 'carousel-item '.concat(0 === a ? 'active' : ''),
+                                          children: (0, n.jsx)('img', {
+                                            className: 'd-block w-100 lazyload fade',
+                                            'data-src': ''
+                                              .concat(
+                                                'https://site--server--pn9hc6z44glx.code.run',
+                                                '/assets/images/gallery/'
+                                              )
+                                              .concat(e),
+                                            alt: ''.concat(i.client, '-').concat(a),
+                                            loading: 'lazy',
+                                          }),
+                                        },
+                                        'carousel-image-'.concat(a)
+                                      )
+                                    ),
+                                }),
+                                i.images &&
+                                  i.images.length > 0 &&
+                                  (0, n.jsxs)('div', {
+                                    className: 'carousel-control-container',
+                                    children: [
+                                      (0, n.jsxs)('button', {
+                                        className: 'carousel-control-prev carousel-control rounded-circle m-2',
+                                        type: 'button',
+                                        'data-bs-target': '#portfolio-carousel',
+                                        'data-bs-slide': 'prev',
+                                        children: [
+                                          (0, n.jsx)('i', {
+                                            className: 'fas fa-chevron-left text-red',
+                                            'aria-hidden': 'true',
+                                          }),
+                                          (0, n.jsx)('span', { className: 'visually-hidden', children: 'Previous' }),
+                                        ],
+                                      }),
+                                      (0, n.jsxs)('button', {
+                                        className: 'carousel-control-next carousel-control rounded-circle m-2',
+                                        type: 'button',
+                                        'data-bs-target': '#portfolio-carousel',
+                                        'data-bs-slide': 'next',
+                                        children: [
+                                          (0, n.jsx)('i', {
+                                            className: 'fas fa-chevron-right text-red',
+                                            'aria-hidden': 'true',
+                                          }),
+                                          (0, n.jsx)('span', { className: 'visually-hidden', children: 'Next' }),
+                                        ],
+                                      }),
+                                    ],
+                                  }),
+                              ],
+                            }),
+                            i.types &&
+                              (0, n.jsx)('div', {
+                                className: 'tags',
+                                children: (0, n.jsx)('ul', {
+                                  className: 'list-inline',
+                                  children: i.types.map((e, a) =>
+                                    (0, n.jsx)(
+                                      'li',
+                                      {
+                                        className: 'list-inline-item',
+                                        children: (0, n.jsx)('span', {
+                                          className: 'badge bg-secondary rounded-pill',
+                                          children: e,
+                                        }),
+                                      },
+                                      'carousel-type-'.concat(a)
+                                    )
+                                  ),
+                                }),
+                              }),
+                            d &&
+                              (0, n.jsxs)('div', {
+                                className: 'techno',
+                                children: [
+                                  (0, n.jsx)('i', { className: 'small', children: 'Built with' }),
+                                  (0, n.jsx)('ul', {
+                                    className: 'list-inline mb-0',
+                                    children: d.map((e, a) =>
+                                      (0, n.jsx)(
+                                        'li',
+                                        {
+                                          className: 'list-inline-item',
+                                          children: (0, n.jsx)('a', {
+                                            href: e.link,
+                                            title: e.name,
+                                            target: '_blank',
+                                            rel: 'noopener, noreferrer',
+                                            children: (0, n.jsx)('img', {
+                                              className: 'stack-logo bg-white rounded-circle lazyload fade me-2 mb-2',
+                                              'data-src': ''
+                                                .concat(
+                                                  'https://site--server--pn9hc6z44glx.code.run',
+                                                  '/assets/images/stack/'
+                                                )
+                                                .concat(e.thumbnail),
+                                              alt: ''.concat(e.name, '-').concat(a),
+                                              loading: 'lazy',
+                                            }),
+                                          }),
+                                        },
+                                        'carousel-technology-'.concat(a)
+                                      )
+                                    ),
+                                  }),
+                                ],
+                              }),
+                          ],
+                        }),
+                      ],
+                    }),
+                }),
+              }),
+            }),
+          })
+        );
+      };
+    },
+    689: (e, a, s) => {
+      s.d(a, { I$: () => l, fB: () => o, sc: () => c, ud: () => n });
+      const t = {
+          isBootstrapAvailable: (e) =>
+            !e ||
+            (!!(window.bootstrap && window.bootstrap.Modal && window.bootstrap.Modal.VERSION) &&
+              window.bootstrap.Modal.VERSION.localeCompare(e, void 0, { numeric: !0, sensitivity: 'base' }) >= 0),
+          isJQueryAvailable: (e) =>
+            !e ||
+            (!!(window.$ && window.$.fn && window.$.fn.jquery) &&
+              window.$.fn.jquery.localeCompare(e, void 0, { numeric: !0, sensitivity: 'base' }) >= 0),
+          lazyLoadImages: (e) => {
+            if ('loading' in HTMLImageElement.prototype) {
+              console.log('loading in. HTMLImageElement', e);
+              const a = e.querySelectorAll('img.lazyload');
+              (console.log('images', a),
+                a.forEach((e) => {
+                  ((e.onload = function () {
+                    this.classList && this.classList.add('show');
+                  }),
+                    console.log('set img.src'),
+                    (e.src = e.dataset.src));
+                }));
+            } else (s.e(508).then(s.t.bind(s, 508, 23)), console.log('import lazysizes'));
+          },
+          randomString: function (e) {
+            const a = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let s = '';
+            for (let t = e; t > 0; --t) s += a[Math.round(61 * Math.random())];
+            return s;
+          },
+          randomBetween: function (e, a) {
+            return Math.ceil(a - Math.random() * (a - (e - 1)));
+          },
+        },
+        l = t.isBootstrapAvailable,
+        n = t.isJQueryAvailable,
+        o = t.lazyLoadImages,
+        c = t.randomBetween;
+    },
+  },
+]);
 //# sourceMappingURL=214.ef86dcd6.chunk.js.map

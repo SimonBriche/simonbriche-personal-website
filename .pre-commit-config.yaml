@@ -94,6 +94,11 @@ repos:
         files: ^.*$
         types_or: [javascript, json]
         require_serial: true
+        exclude: |
+          (?x)^(
+              ^src/server/public/react-cmp/development/.*
+              ^src/server/public/react-cmp/production/.*
+          )$
         entry: |
           bash -c 'if [[ "$CI" = "true" ]]; then npm --prefix src/server run lint:prettier; else npm --prefix src/server run fix:prettier; fi' --
           bash -c 'if [[ "$CI" = "true" ]]; then npm --prefix src/react-cmp/src run lint:prettier; else npm --prefix src/react-cmp/src run fix:prettier; fi' --
