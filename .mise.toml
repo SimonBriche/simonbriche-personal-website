@@ -1,6 +1,6 @@
 [tools]
 node = '24'
-pre-commit = '4'
+prek = '0.3'
 editorconfig-checker = '3'
 shfmt = '3'
 shellcheck = '0.11'
