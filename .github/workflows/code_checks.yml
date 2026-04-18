@@ -43,7 +43,7 @@ jobs:
       - uses: j178/prek-action@v2
         with:
           extra-args: |-
-            ${{ case(env.PRE_CHECK_ALL_FILES, '--all-files', '') }} --config=${{ env.PRE_CONFIG_FILE }}
+            ${{ case(env.PRE_CHECK_ALL_FILES == 'true', '--all-files', '') }} --config=${{ env.PRE_CONFIG_FILE }}
 
   node-checks:
     name: NodeJS checks
