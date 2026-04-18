@@ -38,11 +38,11 @@ jobs:
     steps:
       - name: Checkout current branch
         uses: actions/checkout@v6
-
       - uses: jdx/mise-action@v3
       - uses: j178/prek-action@v2
         with:
-          extra-args: ${{ env.PRE_CHECK_ALL_FILES == 'true' && '--all-files' || '' }} --config=${{ env.PRE_CONFIG_FILE }}
+          extra-args: |
+            ${{ env.PRE_CHECK_ALL_FILES == 'true' && '--all-files' || '' }} --config=${{ env.PRE_CONFIG_FILE }}
 
   node-checks:
     name: NodeJS checks
