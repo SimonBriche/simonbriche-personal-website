@@ -42,7 +42,7 @@ jobs:
       - uses: j178/prek-action@v2
         with:
           extra-args: |
-            ${{ env.PRE_CHECK_ALL_FILES == 'diff_only' && '' || '--all-files' }} --config=${{ env.PRE_CONFIG_FILE }}
+            ${{ case(env.PRE_CHECK_ALL_FILES == 'diff_only', '--all-files', '') }} --config=${{ env.PRE_CONFIG_FILE }}
 
   node-checks:
     name: NodeJS checks
