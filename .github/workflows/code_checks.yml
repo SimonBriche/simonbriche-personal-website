@@ -33,7 +33,8 @@ jobs:
     timeout-minutes: 20
     env:
       MISE_ENV: ci
-      PRE_CHECK_ALL_FILES: ${{ inputs.precommit_check_all_files || 'diff_only' }}
+      PRE_CHECK_ALL_FILES: |-
+        ${{ case(github.event_name == 'workflow_dispatch', github.event.inputs.precommit_check_all_files, true) }}
       PRE_CONFIG_FILE: ${{ inputs.precommit_config_file || '.pre-commit-config.yaml' }}
     steps:
       - name: Checkout current branch
@@ -41,8 +42,8 @@ jobs:
       - uses: jdx/mise-action@v3
       - uses: j178/prek-action@v2
         with:
-          extra-args: |
-            ${{ case(env.PRE_CHECK_ALL_FILES == 'diff_only', '', '--all-files') }} --config=${{ env.PRE_CONFIG_FILE }}
+          extra-args: |-
+            ${{ case(env.PRE_CHECK_ALL_FILES, '--all-files', '') }} --config=${{ env.PRE_CONFIG_FILE }}
 
   node-checks:
     name: NodeJS checks
