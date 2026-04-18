@@ -42,7 +42,7 @@ jobs:
       - uses: jdx/mise-action@v3
       - uses: j178/prek-action@v2
         with:
-          extra-args: '--all-files=${{ env.PRE_CHECK_ALL_FILES }} --config=${{ env.PRE_CONFIG_FILE }}'
+          extra-args: ${{ env.PRE_CHECK_ALL_FILES == 'true' && '--all-files' || '' }} --config=${{ env.PRE_CONFIG_FILE }}
 
   node-checks:
     name: NodeJS checks
