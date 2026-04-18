@@ -28,7 +28,7 @@ env:
 
 jobs:
   lint:
-    name: Pre-commit
+    name: Prek
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
@@ -40,12 +40,9 @@ jobs:
         uses: actions/checkout@v6
 
       - uses: jdx/mise-action@v3
-
-      - name: Run pre-commit checks
-        uses: ./.github/actions/pre-commit
+      - uses: j178/prek-action@v2
         with:
-          precommit_config_file: ${{ env.PRE_CONFIG_FILE }}
-          precommit_check_all_files: ${{ env.PRE_CHECK_ALL_FILES }}
+          extra-args: '--all-files=${{ env.PRE_CHECK_ALL_FILES }} --config=${{ env.PRE_CONFIG_FILE }}'
 
   node-checks:
     name: NodeJS checks
