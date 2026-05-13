@@ -4,3 +4,111 @@ prek = '0.3'
 editorconfig-checker = '3'
 shfmt = '3'
 shellcheck = '0.11'
+
+[env]
+DOCKER_IMAGE_NAME = "simonbriche/website"
+DOCKER_REGISTRY = "docker.io"
+
+[tasks."server"]
+description = "Run the server"
+run = "cd src/server && nf start"
+
+[tasks."server:build"]
+description = "Build the server to be ready for production"
+depends = [
+  "react:build"
+]
+run = "echo 'server is ready to be deployed to production'"
+
+[tasks."react:build"]
+description = "Build the React components"
+usage = '''
+flag "--dev" help="Build for development" default=#false
+'''
+run = '''
+  #!/usr/bin/env bash
+  echo "Building frontend for development"
+  # if [[ "${dev}" == "true" ]]; then
+  #   npm run build:development --prefix src/react-cmp
+  # else
+  #   npm run build --prefix src/react-cmp
+  # fi
+  echo "Frontend is built"
+'''
+
+# Docker related tasks
+[tasks."docker:full-image-name"]
+description = "Export the full image name (registry+image_name:tag) as an environment variable for use in other tasks. Example: eval\"$(mise run docker:full-image-name)\""
+usage = '''
+arg "<image_name>" help="Name of the Docker image to build" default="" env="DOCKER_IMAGE_NAME"
+flag "-r --registry <registry>" help="Name of the Docker registry to push the image" default="" env="DOCKER_REGISTRY"
+flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
+'''
+run = '''
+  #!/usr/bin/env bash
+
+  if [[ -n "${usage_tag}" ]]; then
+    full_image_ref="${usage_registry}/${usage_image_name}:${usage_tag}"
+  else
+    full_image_ref="${usage_registry}/${usage_image_name}:$(git rev-parse --short HEAD)"
+  fi
+  echo "${full_image_ref}"
+'''
+
+[tasks."docker:build"]
+description = "Build the Docker image for the server"
+usage = '''
+arg "<image_name>" help="Name of the Docker image to build" default="" env="DOCKER_IMAGE_NAME"
+flag "-r --registry <registry>" help="Name of the Docker registry to push the image" default="" env="DOCKER_REGISTRY"
+flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
+flag "-f --file <file>" help="Path to the Dockerfile" default="Dockerfile"
+'''
+run = '''
+  #!/usr/bin/env bash
+
+  full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
+  echo "Building Docker image with ${usage_file}..."
+  echo "Full image name: ${full_image_ref}"
+  docker buildx build -f "${usage_file}" -t "${full_image_ref}" --build-arg ARG_DOCKER_BASE_IMAGE_NAME=node --build-arg ARG_DOCKER_BASE_IMAGE_VERSION=24-alpine .
+  echo "Docker image built end"
+'''
+
+[tasks."docker:push"]
+description = "Push the Docker image to the registry"
+wait_for = ["docker:build"]
+usage = '''
+arg "<image_name>" help="Name of the Docker image to build" default="" env="DOCKER_IMAGE_NAME"
+flag "-r --registry <registry>" help="Name of the Docker registry to push the image" default="" env="DOCKER_REGISTRY"
+flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
+'''
+run = '''
+  #!/usr/bin/env bash
+
+  full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
+  echo "Pushing Docker image to ${full_image_ref}..."
+  #docker push "${full_image_ref}"
+  echo "Docker image pushed end"
+'''
+
+[tasks.docker]
+description = "Full build of the Docker image (frontend and backend) and push it to the registry."
+depends = [
+  { task = "docker:build", args = [
+    "{{usage.image_name}}",
+    "--registry", "{{usage.registry}}",
+    "--tag", "{{usage.tag}}",
+    "--file", "{{usage.file}}"
+  ] },
+  { task = "docker:push", args = [
+    "{{usage.image_name}}",
+    "--registry", "{{usage.registry}}",
+    "--tag", "{{usage.tag}}"
+  ] }
+]
+usage = '''
+arg "<image_name>" help="Name of the Docker image to push" default="" env="DOCKER_IMAGE_NAME"
+flag "-r --registry <registry>" help="Name of the Docker registry to push the image" default="" env="DOCKER_REGISTRY"
+flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
+flag "-f --file <file>" help="Path to the Dockerfile" default="Dockerfile"
+'''
+run = "echo 'Docker image built and pushed end'"
