@@ -34,6 +34,7 @@ COPY src/server/Procfile ./
 COPY src/server/config.js ./
 COPY src/server/server.js ./
 COPY src/server/locale ./locale
+COPY src/server/lib ./lib
 COPY src/server/middlewares ./middlewares
 COPY src/server/models ./models
 COPY src/server/utils ./utils

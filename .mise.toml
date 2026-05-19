@@ -8,6 +8,8 @@ shellcheck = '0.11'
 [env]
 DOCKER_IMAGE_NAME = "simonbriche/website"
 DOCKER_REGISTRY = "docker.io"
+DOCKER_HOST_PORT = "3000"
+DOCKER_CONTAINER_PORT = "3000"
 
 [tasks."server"]
 description = "Run the server"
@@ -38,10 +40,10 @@ run = '''
 
 # Docker related tasks
 [tasks."docker:full-image-name"]
-description = "Export the full image name (registry+image_name:tag) as an environment variable for use in other tasks. Example: eval\"$(mise run docker:full-image-name)\""
+description = "Print the full image name."
 usage = '''
-arg "<image_name>" help="Name of the Docker image to build" default="" env="DOCKER_IMAGE_NAME"
-flag "-r --registry <registry>" help="Name of the Docker registry to push the image" default="" env="DOCKER_REGISTRY"
+arg "<image_name>" help="Name of the Docker image to build" env="DOCKER_IMAGE_NAME"
+flag "-r --registry <registry>" help="Name of the Docker registry to push the image" env="DOCKER_REGISTRY"
 flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 '''
 run = '''
@@ -58,8 +60,8 @@ run = '''
 [tasks."docker:build"]
 description = "Build the Docker image for the server"
 usage = '''
-arg "<image_name>" help="Name of the Docker image to build" default="" env="DOCKER_IMAGE_NAME"
-flag "-r --registry <registry>" help="Name of the Docker registry to push the image" default="" env="DOCKER_REGISTRY"
+arg "<image_name>" help="Name of the Docker image to build" env="DOCKER_IMAGE_NAME"
+flag "-r --registry <registry>" help="Name of the Docker registry to push the image" env="DOCKER_REGISTRY"
 flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 flag "-f --file <file>" help="Path to the Dockerfile" default="Dockerfile"
 '''
@@ -77,8 +79,8 @@ run = '''
 description = "Push the Docker image to the registry"
 wait_for = ["docker:build"]
 usage = '''
-arg "<image_name>" help="Name of the Docker image to build" default="" env="DOCKER_IMAGE_NAME"
-flag "-r --registry <registry>" help="Name of the Docker registry to push the image" default="" env="DOCKER_REGISTRY"
+arg "<image_name>" help="Name of the Docker image to build" env="DOCKER_IMAGE_NAME"
+flag "-r --registry <registry>" help="Name of the Docker registry to push the image" env="DOCKER_REGISTRY"
 flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 '''
 run = '''
@@ -90,8 +92,29 @@ run = '''
   echo "Docker image pushed end"
 '''
 
+[tasks."docker:run"]
+description = "Run the Docker image"
+usage = '''
+arg "<image_name>" help="Name of the Docker image to build" env="DOCKER_IMAGE_NAME"
+flag "-p --port <port>" help="Port to expose for the host" env="DOCKER_HOST_PORT"
+flag "--container-port <container_port>" help="Port to expose for the Docker container" env="DOCKER_CONTAINER_PORT"
+flag "-r --registry <registry>" help="Name of the Docker registry to get the image from" env="DOCKER_REGISTRY"
+flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
+'''
+run = '''
+  #!/usr/bin/env bash
+
+  full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
+  echo "Running Docker image ${full_image_ref}..."
+  docker container run \
+		-ti \
+		-p${usage_port}:${usage_container_port} \
+		--rm \
+		  ${full_image_ref}
+'''
+
 [tasks.docker]
-description = "Full build of the Docker image (frontend and backend) and push it to the registry."
+description = "Full build and push of the Docker image registry"
 depends = [
   { task = "docker:build", args = [
     "{{usage.image_name}}",
@@ -106,8 +129,8 @@ depends = [
   ] }
 ]
 usage = '''
-arg "<image_name>" help="Name of the Docker image to push" default="" env="DOCKER_IMAGE_NAME"
-flag "-r --registry <registry>" help="Name of the Docker registry to push the image" default="" env="DOCKER_REGISTRY"
+arg "<image_name>" help="Name of the Docker image to push" env="DOCKER_IMAGE_NAME"
+flag "-r --registry <registry>" help="Name of the Docker registry to push the image" env="DOCKER_REGISTRY"
 flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 flag "-f --file <file>" help="Path to the Dockerfile" default="Dockerfile"
 '''
