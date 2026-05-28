@@ -24,13 +24,15 @@ See the frontend [documentation](./src/react-cmp/README.md) to contribute to the
 
 ### Push to Github registry
 
-- You must login to the registry with:
+- By default, the registry is set to `ghcr.io` so you must login to the registry with:
   - A Github token with `repo, write:packages` permissions.
   - Login to the registry
 
     ```bash
     echo "<your_token>" | docker login ghcr.io -u USERNAME --password-stdin
     ```
+
+- Run `mise run docker:push`.
 
 ## Docker compose
 
