@@ -45,6 +45,7 @@ build/Release
 .env
 .env.test
 .env.production
+.env.docker-compose
 
 # Next.js build output
 .next

@@ -1,0 +1,41 @@
+---
+services:
+  db:
+    image: mysql:8.0.43
+    container_name: website-db
+    platform: linux/x86_64
+    restart: unless-stopped
+    env_file: ./.env.docker-compose
+    environment:
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+    ports:
+      - $MYSQL_PORT:$MYSQL_CONTAINER_PORT
+    volumes:
+      - db:/var/lib/mysql
+
+  dbgate:
+    image: dbgate/dbgate
+    container_name: dbgate
+    restart: always
+    env_file: ./.env.docker-compose
+    ports:
+      - $DBGATE_PORT:$DBGATE_CONTAINER_PORT
+    volumes:
+      - dbgate-data:/root/.dbgate
+    environment:
+      CONNECTIONS: con1
+
+      LABEL_con1: MySql
+      SERVER_con1: db
+      USER_con1: $MYSQL_USER
+      PASSWORD_con1: $MYSQL_ROOT_PASSWORD
+      PORT_con1: $MYSQL_CONTAINER_PORT
+      ENGINE_con1: mysql@dbgate-plugin-mysql
+      DATABASE_con1: $MYSQL_DATABASE
+volumes:
+  dbgate-data:
+    driver: local
+  db:
+    driver: local
