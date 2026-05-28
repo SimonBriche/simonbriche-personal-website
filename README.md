@@ -22,6 +22,16 @@ See the frontend [documentation](./src/react-cmp/README.md) to contribute to the
     - Run `docker ps` to get its ID.
     - Run `docker stop <container_id>` to stop it.
 
+### Push to Github registry
+
+- You must login to the registry with:
+  - A Github token with `repo, write:packages` permissions.
+  - Login to the registry
+
+    ```bash
+    echo "<your_token>" | docker login ghcr.io -u USERNAME --password-stdin
+    ```
+
 ## Docker compose
 
 - Run the MySQL container along an instance of dbgate with:

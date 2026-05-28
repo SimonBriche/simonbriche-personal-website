@@ -7,7 +7,7 @@ shellcheck = '0.11'
 
 [env]
 DOCKER_IMAGE_NAME = "simonbriche/website"
-DOCKER_REGISTRY = "docker.io"
+DOCKER_REGISTRY = "ghcr.io"
 DOCKER_HOST_PORT = "3000"
 DOCKER_CONTAINER_PORT = "3000"
 
@@ -88,7 +88,7 @@ run = '''
 
   full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
   echo "Pushing Docker image to ${full_image_ref}..."
-  #docker push "${full_image_ref}"
+  docker push "${full_image_ref}"
   echo "Docker image pushed end"
 '''
 
@@ -107,10 +107,10 @@ run = '''
   full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
   echo "Running Docker image ${full_image_ref}..."
   docker container run \
-		-ti \
-		-p${usage_port}:${usage_container_port} \
-		--rm \
-		  ${full_image_ref}
+    -ti \
+    -p${usage_port}:${usage_container_port} \
+    --rm \
+      ${full_image_ref}
 '''
 
 [tasks.docker]
