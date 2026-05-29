@@ -29,6 +29,8 @@ flag "--dev" help="Build for development" default=#false
 '''
 run = '''
   #!/usr/bin/env bash
+  set -euo pipefail
+
   echo "Building frontend for development"
   # if [[ "${dev}" == "true" ]]; then
   #   npm run build:development --prefix src/react-cmp
@@ -48,6 +50,7 @@ flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 '''
 run = '''
   #!/usr/bin/env bash
+  set -euo pipefail
 
   if [[ -n "${usage_tag}" ]]; then
     full_image_ref="${usage_registry}/${usage_image_name}:${usage_tag}"
@@ -67,12 +70,13 @@ flag "-f --file <file>" help="Path to the Dockerfile" default="Dockerfile"
 '''
 run = '''
   #!/usr/bin/env bash
+  set -euo pipefail
 
   full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
   echo "Building Docker image with ${usage_file}..."
   echo "Full image name: ${full_image_ref}"
   docker buildx build -f "${usage_file}" -t "${full_image_ref}" --build-arg ARG_DOCKER_BASE_IMAGE_NAME=node --build-arg ARG_DOCKER_BASE_IMAGE_VERSION=24-alpine .
-  echo "Docker image built end"
+  echo "Docker image built successfully"
 '''
 
 [tasks."docker:push"]
@@ -85,11 +89,12 @@ flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 '''
 run = '''
   #!/usr/bin/env bash
+  set -euo pipefail
 
   full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
   echo "Pushing Docker image to ${full_image_ref}..."
   docker push "${full_image_ref}"
-  echo "Docker image pushed end"
+  echo "Docker image pushed successfully"
 '''
 
 [tasks."docker:run"]
@@ -103,6 +108,7 @@ flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 '''
 run = '''
   #!/usr/bin/env bash
+  set -euo pipefail
 
   full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
   echo "Running Docker image ${full_image_ref}..."
@@ -134,4 +140,4 @@ flag "-r --registry <registry>" help="Name of the Docker registry to push the im
 flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 flag "-f --file <file>" help="Path to the Dockerfile" default="Dockerfile"
 '''
-run = "echo 'Docker image built and pushed end'"
+run = "echo 'Docker image built and pushed successfully'"
