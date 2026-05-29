@@ -11,6 +11,7 @@ FROM base AS build-react
 # Copy react source files
 COPY src/react-cmp ./src/react-cmp
 
+RUN npm ci --prefix src/react-cmp --omit=dev
 # Build react files in src/server/src/react-cmp/production
 RUN npm run build --prefix src/react-cmp
 
