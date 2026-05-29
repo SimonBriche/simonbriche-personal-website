@@ -1,0 +1,55 @@
+---
+name: Docker image
+description: Build Docker image
+inputs:
+  docker_img_name:
+    description: The docker image name.
+    required: false
+    default: ''
+  docker_img_tag:
+    description: The docker image tag. Defaults to the current git state.
+    required: false
+    default: ''
+  docker_provider:
+    description: The docker image provider. Only 'github' (GitHub Container Registry) is supported.
+    required: false
+    default: github
+  is_push:
+    description: Whether to push the built Docker image to the registry. Defaults to true for push events and false for workflow_dispatch events.
+    required: false
+    default: false
+
+outputs:
+  image-name:
+    description: Docker image name
+    value: ${{ steps.build-docker-image.outputs.image-name }}
+  image-ref:
+    description: Docker image reference
+    value: ${{ steps.build-docker-image.outputs.image-ref }}
+  image-tag:
+    description: Docker image tag
+    value: ${{ steps.build-docker-image.outputs.image-tag }}
+  image-digest:
+    description: Docker image SHA-256 digest
+    value: ${{ steps.docker-push.outputs.image-digest }}
+
+runs:
+  using: composite
+  steps:
+    - name: Build docker image
+      shell: bash
+      id: build-docker-image
+      run: |
+        echo "Build docker image with provider=${{ inputs.docker_provider }}, name=${{ inputs.docker_img_name }}, tag=${{ inputs.docker_img_tag }}"
+        echo "::group::Build Docker image"
+        mise run docker:build
+        echo "::endgroup::"
+
+    - name: Push Docker image to GAR
+      if: inputs.is_push == 'true'
+      id: push-docker-image
+      shell: bash
+      run: |
+        echo "::group::Push Docker image"
+        mise run docker:push
+        echo "::endgroup::"
