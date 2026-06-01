@@ -14,7 +14,7 @@ inputs:
     description: The docker image provider. Only 'github' (GitHub Container Registry) is supported.
     required: false
     default: github
-  is_push:
+  must_push:
     description: Whether to push the built Docker image to the registry. Defaults to true for push events and false for workflow_dispatch events.
     required: false
     default: false
@@ -46,7 +46,7 @@ runs:
         echo "::endgroup::"
 
     - name: Push Docker image to GAR
-      if: inputs.is_push == 'true'
+      if: inputs.must_push == 'true'
       id: push-docker-image
       shell: bash
       run: |
