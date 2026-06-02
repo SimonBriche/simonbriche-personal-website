@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       precommit_check_all_files:
-        description: Run pre-commit for all files or only the updated ones
+        description: Run pre-commit for all files (true) or only the updated ones (false)
         required: false
         type: boolean
         default: true
