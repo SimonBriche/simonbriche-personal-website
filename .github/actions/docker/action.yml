@@ -42,7 +42,7 @@ runs:
       run: |
         echo "Build docker image with provider=${{ inputs.docker_provider }}, name=${{ inputs.docker_img_name }}, tag=${{ inputs.docker_img_tag }}"
         echo "::group::Build Docker image"
-        mise run docker:build
+        DOCKER_EXTRA_ARGS="--label org.opencontainers.image.source=https://github.com/SimonBriche/simonbriche-personal-website --label org.opencontainers.image.description=MyWebsite" mise run docker:build
         echo "::endgroup::"
 
     - name: Push Docker image to GAR
@@ -51,5 +51,5 @@ runs:
       shell: bash
       run: |
         echo "::group::Push Docker image"
-        DOCKER_EXTRA_ARGS="--label org.opencontainers.image.source=https://github.com/SimonBriche/simonbriche-personal-website --label org.opencontainers.image.description=MyWebsite" mise run docker:push
+        mise run docker:push
         echo "::endgroup::"
