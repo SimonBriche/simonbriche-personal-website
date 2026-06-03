@@ -33,7 +33,6 @@ jobs:
     name: Prek
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    if: false
     env:
       MISE_ENV: ci
       PRE_CHECK_ALL_FILES: |-
@@ -56,7 +55,6 @@ jobs:
     name: NodeJS checks
     runs-on: ubuntu-latest
     needs: lint
-    if: false
     steps:
       - name: Checkout Code
         uses: actions/checkout@v6
