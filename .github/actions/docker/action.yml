@@ -18,14 +18,13 @@ inputs:
     description: The base docker image version.
     required: false
     default: 'current-alpine'
-  docker_provider:
-    description: The docker image provider. Only 'github' (GitHub Container Registry) is supported.
-    required: false
-    default: github
   must_push:
     description: Whether to push the built Docker image to the registry or not. Defaults to true for push events and false for workflow_dispatch events.
     required: false
     default: false
+  token:
+    description: The token to authenticate to the registry.
+    required: true
 
 outputs:
   image-name:
@@ -44,11 +43,17 @@ outputs:
 runs:
   using: composite
   steps:
+    - name: Log in to GHCR
+      uses: docker/login-action@v4
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ inputs.token }}
     - name: Build docker image
       shell: bash
       id: build-docker-image
       run: |
-        echo "Build docker image with provider=${{ inputs.docker_provider }}, name=${{ inputs.docker_image_name }}, tag=${{ inputs.docker_image_tag }}"
+        echo "Build docker image with name=${{ inputs.docker_image_name }}, tag=${{ inputs.docker_image_tag }}"
         echo "::group::Build Docker image"
 
         docker_labels="--label org.opencontainers.image.source=https://github.com/simonbriche/simonbriche-personal-website --label org.opencontainers.image.description=MyWebsite --label org.opencontainers.image.licenses=MIT"

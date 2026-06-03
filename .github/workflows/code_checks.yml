@@ -20,7 +20,7 @@ on:
         default: .pre-commit-config.yaml
         description: Path to the pre-commit config file.
       push_docker_image:
-        description: Whether to push or not the built Docker image to the registry
+        description: Whether or not to push the built Docker image to the registry
         required: false
         type: boolean
         default: false
@@ -114,3 +114,4 @@ jobs:
           docker_base_image_version: ${{ steps.get-mise-node-version.outputs.node_version }}-alpine
           docker_provider: github
           must_push: ${{ github.event.inputs.push_docker_image || false }}
+          token: ${{ secrets.GITHUB_TOKEN }}
