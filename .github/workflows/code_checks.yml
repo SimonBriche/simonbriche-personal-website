@@ -20,7 +20,7 @@ on:
         default: .pre-commit-config.yaml
         description: Path to the pre-commit config file.
       push_docker_image:
-        description: Whether to push the built Docker image to the registry
+        description: Whether to push or not the built Docker image to the registry
         required: false
         type: boolean
         default: false
@@ -75,6 +75,9 @@ jobs:
           npm run test
 
   docker-build:
+    permissions:
+      contents: read
+      packages: write
     name: Docker build
     runs-on: ubuntu-latest
     steps:

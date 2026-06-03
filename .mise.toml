@@ -102,7 +102,7 @@ flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 '''
 run = '''
   #!/usr/bin/env bash
-  set -euo pipefail
+  set -xeuo pipefail
 
   full_image_ref="$(mise run docker:full-image-name "${usage_image_name}" --registry "${usage_registry}" --tag "${usage_tag}")"
   echo "Pushing Docker image to ${full_image_ref}..."
