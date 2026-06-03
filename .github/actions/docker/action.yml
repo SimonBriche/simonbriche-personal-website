@@ -2,14 +2,22 @@
 name: Docker image
 description: Build Docker image
 inputs:
-  docker_img_name:
+  docker_image_name:
     description: The docker image name.
     required: false
     default: ''
-  docker_img_tag:
+  docker_image_tag:
     description: The docker image tag. Defaults to the current git state.
     required: false
     default: ''
+  docker_base_image_name:
+    description: The base docker image name.
+    required: false
+    default: 'node'
+  docker_base_image_version:
+    description: The base docker image version.
+    required: false
+    default: 'current-alpine'
   docker_provider:
     description: The docker image provider. Only 'github' (GitHub Container Registry) is supported.
     required: false
@@ -40,9 +48,20 @@ runs:
       shell: bash
       id: build-docker-image
       run: |
-        echo "Build docker image with provider=${{ inputs.docker_provider }}, name=${{ inputs.docker_img_name }}, tag=${{ inputs.docker_img_tag }}"
+        echo "Build docker image with provider=${{ inputs.docker_provider }}, name=${{ inputs.docker_image_name }}, tag=${{ inputs.docker_image_tag }}"
         echo "::group::Build Docker image"
-        DOCKER_EXTRA_ARGS="--label org.opencontainers.image.source=https://github.com/SimonBriche/simonbriche-personal-website --label org.opencontainers.image.description=MyWebsite" mise run docker:build
+
+        docker_labels="--label org.opencontainers.image.source=https://github.com/SimonBriche/simonbriche-personal-website --label org.opencontainers.image.description=MyWebsite --label org.opencontainers.image.licenses=MIT"
+
+        docker_build_args=""
+        if [[ -n "${{ inputs.docker_base_image_name }}" ]]; then
+          docker_build_args+=" --build-arg ARG_DOCKER_BASE_IMAGE_NAME=${{ inputs.docker_base_image_name }}"
+        fi
+        if [[ -n "${{ inputs.docker_base_image_version }}" ]]; then
+          docker_build_args+=" --build-arg ARG_DOCKER_BASE_IMAGE_VERSION=${{ inputs.docker_base_image_version }}"
+        fi
+
+        DOCKER_EXTRA_ARGS="${docker_labels}${docker_build_args}" mise run docker:build
         echo "::endgroup::"
 
     - name: Push Docker image to GAR

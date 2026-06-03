@@ -28,9 +28,6 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}-checks
   cancel-in-progress: true
 
-env:
-  NODE_VERSION: '24'
-
 jobs:
   lint:
     name: Prek
@@ -82,15 +79,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
+        id: checkout
         uses: actions/checkout@v6
 
       - name: Install mise
+        id: mise-install
         uses: jdx/mise-action@v3
 
+      - name: Read Node version from .mise.toml
+        id: get-mise-node-version
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          node_version="$(mise ls --local --json node | jq -r '.[0].requested_version // empty')"
+
+          if [[ -z "${node_version}" ]]; then
+            echo "Unable to read [tools].node from .mise.toml" >&2
+            exit 1
+          fi
+
+          echo "node_version=${node_version}" >> "$GITHUB_OUTPUT"
+          echo "Node version from .mise.toml: ${node_version}"
+
       - name: Docker build
+        id: docker-build
         uses: ./.github/actions/docker
         with:
-          docker_img_name: website
-          docker_img_tag: ${{ github.sha }}
+          docker_image_name: website
+          docker_image_tag: ${{ github.sha }}
+          docker_base_image_version: ${{ steps.get-mise-node-version.outputs.node_version }}-alpine
           docker_provider: github
           must_push: ${{ github.event.inputs.push_docker_image || false }}
