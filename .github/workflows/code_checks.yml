@@ -80,6 +80,7 @@ jobs:
       packages: write
     name: Docker build
     runs-on: ubuntu-latest
+    needs: node-checks
     steps:
       - name: Checkout Code
         id: checkout
