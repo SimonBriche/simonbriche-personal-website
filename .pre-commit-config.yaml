@@ -76,7 +76,8 @@ repos:
         args: [--no-warnings]
         exclude: |
           (?x)^(
-              .pre-commit-config.yaml
+              .pre-commit-config.yaml|
+              .github/actions/docker/action.yml
           )$
 
   - repo: https://github.com/looztra/yamkix

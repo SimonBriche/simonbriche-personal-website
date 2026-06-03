@@ -1,0 +1,82 @@
+---
+name: Docker image
+description: Build Docker image
+inputs:
+  docker_image_name:
+    description: The docker image name.
+    required: false
+    default: ''
+  docker_image_tag:
+    description: The docker image tag. Defaults to the current git state.
+    required: false
+    default: ''
+  docker_base_image_name:
+    description: The base docker image name.
+    required: false
+    default: node
+  docker_base_image_version:
+    description: The base docker image version.
+    required: false
+    default: current-alpine
+  must_push:
+    description: Push Docker image to registry or not.
+    required: false
+    default: false
+  token:
+    description: The token to authenticate to the registry.
+    required: true
+
+outputs:
+  image-name:
+    description: Docker image name
+    value: ${{ steps.build-docker-image.outputs.image-name }}
+  image-ref:
+    description: Docker image reference
+    value: ${{ steps.build-docker-image.outputs.image-ref }}
+  image-tag:
+    description: Docker image tag
+    value: ${{ steps.build-docker-image.outputs.image-tag }}
+  image-digest:
+    description: Docker image SHA-256 digest
+    value: ${{ steps.docker-push.outputs.image-digest }}
+
+runs:
+  using: composite
+  steps:
+    - name: Log in to GHCR
+      uses: docker/login-action@v4
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ inputs.token }}
+    - name: Build docker image
+      shell: bash
+      id: build-docker-image
+      run: |
+        echo "Build docker image with name=${{ inputs.docker_image_name }}, tag=${{ inputs.docker_image_tag }}"
+        echo "::group::Build Docker image"
+
+        docker_labels=""
+        docker_labels+=" --label org.opencontainers.image.source=https://github.com/simonbriche/simonbriche-personal-website"
+        docker_labels+=" --label org.opencontainers.image.description=MyWebsite"
+        docker_labels+=" --label org.opencontainers.image.licenses=MIT"
+
+        docker_build_args=""
+        if [[ -n "${{ inputs.docker_base_image_name }}" ]]; then
+          docker_build_args+=" --build-arg ARG_DOCKER_BASE_IMAGE_NAME=${{ inputs.docker_base_image_name }}"
+        fi
+        if [[ -n "${{ inputs.docker_base_image_version }}" ]]; then
+          docker_build_args+=" --build-arg ARG_DOCKER_BASE_IMAGE_VERSION=${{ inputs.docker_base_image_version }}"
+        fi
+
+        DOCKER_EXTRA_ARGS="${docker_labels}${docker_build_args}" mise run docker:build
+        echo "::endgroup::"
+
+    - name: Push Docker image to GAR
+      if: inputs.must_push == 'true'
+      id: push-docker-image
+      shell: bash
+      run: |
+        echo "::group::Push Docker image"
+        mise run docker:push
+        echo "::endgroup::"

@@ -90,3 +90,6 @@ max_line_length = unset
 
 [src/react-cmp/public/index.html]
 max_line_length = unset
+
+[.mise.toml]
+max_line_length = unset
