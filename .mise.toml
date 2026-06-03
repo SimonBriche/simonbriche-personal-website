@@ -7,6 +7,7 @@ shellcheck = '0.11'
 
 [env]
 DOCKER_IMAGE_NAME = "simonbriche/simonbriche-personal-website"
+DOCKER_BASE_IMAGE_VERSION = "24-alpine"
 DOCKER_REGISTRY = "ghcr.io"
 DOCKER_HOST_PORT = "3000"
 DOCKER_CONTAINER_PORT = "3000"
@@ -67,7 +68,7 @@ arg "<image_name>" help="Name of the Docker image to build" env="DOCKER_IMAGE_NA
 flag "-r --registry <registry>" help="Name of the Docker registry to push the image" env="DOCKER_REGISTRY"
 flag "-t --tag <tag>" help="Tag to apply to the built image" default=""
 flag "-f --file <file>" help="Path to the Dockerfile" default="Dockerfile"
-flag "-x --extra-arg <extra_arg>" var=#true help="Extra args to pass to the docker build command" env="DOCKER_EXTRA_ARGS"
+flag "-x --extra-arg <extra_arg>" var=#true help="Extra args to pass to the docker build command. Use DOCKER_EXTRA_ARGS env var to avoid parsing issues." env="DOCKER_EXTRA_ARGS"
 '''
 run = '''
   #!/usr/bin/env bash
@@ -85,8 +86,6 @@ run = '''
   docker buildx build ${usage_extra_arg[@]} \
     -f "${usage_file}" \
     -t "${full_image_ref}" \
-    --build-arg ARG_DOCKER_BASE_IMAGE_NAME=node \
-    --build-arg ARG_DOCKER_BASE_IMAGE_VERSION=24-alpine \
     .
 
   echo "Docker image built successfully"

@@ -89,21 +89,21 @@ jobs:
         id: mise-install
         uses: jdx/mise-action@v3
 
-      - name: Read Node version from .mise.toml
-        id: get-mise-node-version
+      - name: Read Docker base image version from .mise.toml
+        id: get-mise-docker-base-image-version
         shell: bash
         run: |
           set -euo pipefail
 
-          node_version="$(mise ls --local --json node | jq -r '.[0].requested_version // empty')"
+          docker_base_image_version="$(mise env --json | jq -r '.DOCKER_BASE_IMAGE_VERSION // empty')"
 
-          if [[ -z "${node_version}" ]]; then
-            echo "Unable to read [tools].node from .mise.toml" >&2
+          if [[ -z "${docker_base_image_version}" ]]; then
+            echo "Unable to read [env].DOCKER_BASE_IMAGE_VERSION from .mise.toml" >&2
             exit 1
           fi
 
-          echo "node_version=${node_version}" >> "$GITHUB_OUTPUT"
-          echo "Node version from .mise.toml: ${node_version}"
+          echo "docker_base_image_version=${docker_base_image_version}" >> "$GITHUB_OUTPUT"
+          echo "Docker base image version from .mise.toml: ${docker_base_image_version}"
 
       - name: Docker build
         id: docker-build
@@ -111,7 +111,6 @@ jobs:
         with:
           docker_image_name: website
           docker_image_tag: ${{ github.sha }}
-          docker_base_image_version: ${{ steps.get-mise-node-version.outputs.node_version }}-alpine
-          docker_provider: github
+          docker_base_image_version: ${{ steps.get-mise-docker-base-image-version.outputs.docker_base_image_version }}
           must_push: ${{ github.event.inputs.push_docker_image || false }}
           token: ${{ secrets.GITHUB_TOKEN }}
