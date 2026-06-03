@@ -13,13 +13,13 @@ inputs:
   docker_base_image_name:
     description: The base docker image name.
     required: false
-    default: 'node'
+    default: node
   docker_base_image_version:
     description: The base docker image version.
     required: false
-    default: 'current-alpine'
+    default: current-alpine
   must_push:
-    description: Whether to push the built Docker image to the registry or not. Defaults to true for push events and false for workflow_dispatch events.
+    description: Push Docker image to registry or not.
     required: false
     default: false
   token:
@@ -56,7 +56,10 @@ runs:
         echo "Build docker image with name=${{ inputs.docker_image_name }}, tag=${{ inputs.docker_image_tag }}"
         echo "::group::Build Docker image"
 
-        docker_labels="--label org.opencontainers.image.source=https://github.com/simonbriche/simonbriche-personal-website --label org.opencontainers.image.description=MyWebsite --label org.opencontainers.image.licenses=MIT"
+        docker_labels=""
+        docker_labels+=" --label org.opencontainers.image.source=https://github.com/simonbriche/simonbriche-personal-website"
+        docker_labels+=" --label org.opencontainers.image.description=MyWebsite"
+        docker_labels+=" --label org.opencontainers.image.licenses=MIT"
 
         docker_build_args=""
         if [[ -n "${{ inputs.docker_base_image_name }}" ]]; then

@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - develop
+    tags:
+      - v*
   pull_request:
     branches:
       - develop
@@ -110,5 +112,10 @@ jobs:
           docker_image_name: website
           docker_image_tag: ${{ github.sha }}
           docker_base_image_version: ${{ steps.get-mise-docker-base-image-version.outputs.docker_base_image_version }}
-          must_push: ${{ github.event.inputs.push_docker_image || false }}
+          must_push: |-
+            ${{ case(
+              github.event_name == 'push', true,
+              github.event_name == 'workflow_dispatch' && github.event.inputs.push_docker_image == 'true', true,
+              false
+            ) }}
           token: ${{ secrets.GITHUB_TOKEN }}
