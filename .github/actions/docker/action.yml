@@ -51,7 +51,7 @@ runs:
         echo "Build docker image with provider=${{ inputs.docker_provider }}, name=${{ inputs.docker_image_name }}, tag=${{ inputs.docker_image_tag }}"
         echo "::group::Build Docker image"
 
-        docker_labels="--label org.opencontainers.image.source=https://github.com/SimonBriche/simonbriche-personal-website --label org.opencontainers.image.description=MyWebsite --label org.opencontainers.image.licenses=MIT"
+        docker_labels="--label org.opencontainers.image.source=https://github.com/simonbriche/simonbriche-personal-website --label org.opencontainers.image.description=MyWebsite --label org.opencontainers.image.licenses=MIT"
 
         docker_build_args=""
         if [[ -n "${{ inputs.docker_base_image_name }}" ]]; then
