@@ -51,3 +51,20 @@ docker compose --env-file .env.docker-compose down
 ```
 
 - Feel free to customize the ports by updating the `.env.docker-compose`.
+
+## Kubernetes
+
+You can run the app in a local kubernetes cluster, e.g. with Rancher:
+
+- Ensure to have Rancher running with Kubernetes support
+- Switch to the rancher context (if applicable):
+
+```bash
+kubectx rancher-desktop
+```
+
+- Deploy the configuration in the cluster:
+
+```bash
+kubectl apply -f k8s/website.yaml
+```

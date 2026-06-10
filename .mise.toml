@@ -11,6 +11,7 @@ DOCKER_BASE_IMAGE_VERSION = "24-alpine"
 DOCKER_REGISTRY = "ghcr.io"
 DOCKER_HOST_PORT = "3000"
 DOCKER_CONTAINER_PORT = "3000"
+DOCKER_EXTRA_ARGS = ""
 
 [tasks."server"]
 description = "Run the server"

@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: website
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: website-deployment
+  namespace: website
+  labels:
+    app: website-app
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: website-app
+  template:
+    metadata:
+      labels:
+        app: website-app
+    spec:
+      containers:
+        - name: website-container
+          image: ghcr.io/simonbriche/simonbriche-personal-website:c0e6add
+          imagePullPolicy: Always
+          ports:
+            - name: web
+              containerPort: 3000
+          resources:
+            limits:
+              memory: "1Gi"
+              cpu: "2"
+            requests:
+              cpu: "1"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+              scheme: HTTP
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          env:
+            - name: DATABASE_ENABLED
+              value: "false"
+            - name: SESSION_SECRET
+              value: "my-session-secret"
+            - name: COOKIE_SECRET
+              value: "my-cookie-secret"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: website-service
+  namespace: website
+spec:
+  type: NodePort
+  ports:
+    - name: web
+      port: 80
+      targetPort: web
+      nodePort: 30080
+  selector:
+    app: website-app
