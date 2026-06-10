@@ -38,6 +38,9 @@ router
   })
   .get('/data-policy', reactLoader, function (req, res) {
     res.render('data-policy', { bodyClass: 'data-policy', dataPolicy: config.dataPolicy });
+  })
+  .get('/health', function (req, res) {
+    res.sendStatus(200);
   });
 
 module.exports = router;
