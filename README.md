@@ -68,3 +68,10 @@ kubectx rancher-desktop
 ```bash
 kubectl apply -f k8s/website.yaml
 ```
+
+- Access the website through <http://localhost:30080/>
+- Remove the configuration from the cluster:
+
+```bash
+kubectl delete -f k8s/website.yaml
+```

@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
         - name: website-container
-          image: ghcr.io/simonbriche/simonbriche-personal-website:c0e6add
+          image: ghcr.io/simonbriche/simonbriche-personal-website:5de7a09
           imagePullPolicy: Always
           ports:
             - name: web
